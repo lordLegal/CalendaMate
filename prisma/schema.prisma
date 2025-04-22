@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Benutzer aus der Web-Applikation
+model User {
+  id            Int     @id @default(autoincrement())
+  email         String  @unique
+  username      String
+  passwordHash  String  @map("password_hash")
+  emailVerified Boolean @default(false) @map("email_verified")
+  totpKey       Bytes?  @map("totp_key")
+  recoveryCode  Bytes   @map("recovery_code")
+
+  // Beziehungen
+  sessions           Session[]
+  emailVerifications EmailVerificationRequest[]
+  passwordResets     PasswordResetSession[]
+  apiKeys            ApiKey[]                   @relation("UserApiKeys")
+
+  @@index([email], name: "email_index")
+  @@map("user")
+}
+
+model Session {
+  id                String   @id @default(uuid())
+  userId            Int      @map("user_id")
+  expiresAt         DateTime @map("expires_at")
+  twoFactorVerified Boolean  @default(false) @map("two_factor_verified")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("session")
+}
+
+model EmailVerificationRequest {
+  id        String   @id @default(uuid())
+  userId    Int      @map("user_id")
+  email     String
+  code      String
+  expiresAt DateTime @map("expires_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("email_verification_request")
+}
+
+model PasswordResetSession {
+  id                String   @id @default(uuid())
+  userId            Int      @map("user_id")
+  email             String
+  code              String
+  expiresAt         DateTime @map("expires_at")
+  emailVerified     Boolean  @default(false) @map("email_verified")
+  twoFactorVerified Boolean  @default(false) @map("two_factor_verified")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("password_reset_session")
+}
+
+// Modelle für die WebUntis API
+model ApiKey {
+  id          String  @id @default(uuid())
+  key         String  @unique
+  credits     Int
+  unlimited   Boolean
+  minInterval Int     @default(0)
+
+  // Verknüpfung zum Owner-User
+  ownerId Int?  @map("owner_id")
+  owner   User? @relation("UserApiKeys", fields: [ownerId], references: [id])
+
+  description String?
+  createdAt   DateTime      @default(now())
+  lastRequest DateTime?
+  usageLogs   ApiUsageLog[]
+
+  @@map("api_key")
+}
+
+model ApiUsageLog {
+  id         String   @id @default(uuid())
+  timestamp  DateTime @default(now())
+  endpoint   String
+  params     Json
+  statusCode Int
+  ipAddress  String?
+  userAgent  String?
+
+  apiKey   ApiKey @relation(fields: [apiKeyId], references: [id])
+  apiKeyId String @map("api_key_id")
+
+  @@map("api_usage_log")
+}
+
+model TimetableCache {
+  id        String   @id @default(uuid())
+  username  String
+  school    String
+  date      DateTime
+  data      Json
+  expiresAt DateTime
+
+  @@index([username, school, date])
+  @@map("timetable_cache")
+}
