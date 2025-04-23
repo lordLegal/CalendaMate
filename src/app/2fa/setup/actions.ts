@@ -78,8 +78,8 @@ export async function setup2FAAction(_prev: ActionResult, formData: FormData): P
 			message: "Invalid code"
 		};
 	}
-	updateUserTOTPKey(session.userId, key);
-	setSessionAs2FAVerified(session.id);
+	await updateUserTOTPKey(session.userId, key);
+	await setSessionAs2FAVerified(session.id);
 	return redirect("/recovery-code");
 }
 

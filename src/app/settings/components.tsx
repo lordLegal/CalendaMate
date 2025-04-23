@@ -46,6 +46,28 @@ export function UpdatePasswordForm() {
     </form>
   );
 }
+// Calendar connections (Google & Microsoft)
+export function CalendarConnections() {
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl font-semibold mb-4">Calendar Connections</h2>
+      <div className="flex flex-col gap-4">
+        <a
+          href="/api/oauth/google/authorize"
+          className="w-full inline-block text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded"
+        >
+          Mit Google Kalender verbinden
+        </a>
+        <a
+          href="/api/oauth/microsoft/authorize"
+          className="w-full inline-block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
+        >
+          Mit Microsoft Kalender verbinden
+        </a>
+      </div>
+    </div>
+  );
+}
 
 const initialUpdateFormState = { message: "" };
 

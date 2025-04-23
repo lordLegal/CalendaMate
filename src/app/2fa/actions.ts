@@ -58,7 +58,7 @@ export async function verify2FAAction(_prev: ActionResult, formData: FormData): 
 		};
 	}
 	totpBucket.reset(user.id);
-	setSessionAs2FAVerified(session.id);
+  await setSessionAs2FAVerified(session.id);
 	return redirect("/");
 }
 

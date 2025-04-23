@@ -29,6 +29,7 @@ model User {
   emailVerifications EmailVerificationRequest[]
   passwordResets     PasswordResetSession[]
   apiKeys            ApiKey[]                   @relation("UserApiKeys")
+  calendarAccounts   CalendarAccount[]
 
   @@index([email], name: "email_index")
   @@map("user")
@@ -116,4 +117,29 @@ model TimetableCache {
 
   @@index([username, school, date])
   @@map("timetable_cache")
+}
+
+// External calendar connections (OAuth tokens) for Google, Microsoft, and iCloud/Apple
+enum CalendarProvider {
+  GOOGLE
+  MICROSOFT
+  ICLOUD
+}
+
+model CalendarAccount {
+  id                Int              @id @default(autoincrement())
+  user              User             @relation(fields: [userId], references: [id])
+  userId            Int
+  provider          CalendarProvider @default(GOOGLE)
+  providerAccountId String // The provider-specific user/account identifier
+  accessToken       String // OAuth access token
+  refreshToken      String? // OAuth refresh token
+  expiresAt         DateTime? // Token expiry
+  scope             String? // Granted scopes
+  calendarId        String? // Default calendar identifier (e.g., "primary")
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@unique([userId, provider])
+  @@map("calendar_account")
 }

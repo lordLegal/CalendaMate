@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RecoveryCodeSection, UpdateEmailForm, UpdatePasswordForm } from "./components";
+import { RecoveryCodeSection, UpdateEmailForm, UpdatePasswordForm, CalendarConnections } from "./components";
 import { getCurrentSession } from "@/lib/server/session";
 import { getUserRecoverCode } from "@/lib/server/user";
 import { redirect } from "next/navigation";
@@ -60,6 +60,10 @@ export default async function Page() {
             <RecoveryCodeSection recoveryCode={recoveryCode} />
           </section>
         )}
+        {/* Calendar connections */}
+        <section className="mb-8 p-6 bg-white shadow rounded">
+          <CalendarConnections />
+        </section>
       </main>
     </div>
   );

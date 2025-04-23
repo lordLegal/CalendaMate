@@ -1,7 +1,7 @@
 "use server";
 
 import { verifyEmailInput } from "@/lib/server/email";
-import { hashPassword, verifyPasswordHash } from "@/lib/server/password";
+import { verifyPasswordHash } from "@/lib/server/password";
 import { RefillingTokenBucket, Throttler } from "@/lib/server/rate-limit";
 import { createSession, generateSessionToken, setSessionTokenCookie } from "@/lib/server/session";
 import { getUserFromEmail, getUserPasswordHash } from "@/lib/server/user";
@@ -67,12 +67,7 @@ export async function loginAction(_prev: ActionResult, formData: FormData): Prom
 		};
 	}
 	const passwordHash = await getUserPasswordHash(user.id);
-	console.log("passwordHash", passwordHash);
-	console.log("password", await hashPassword(password));
-	console.log("passwordHash", password);
-
-	const validPassword = await verifyPasswordHash(passwordHash, password);
-	console.log("validPassword", validPassword);
+  const validPassword = await verifyPasswordHash(passwordHash, password);
 	if (!validPassword) {
 		return {
 			message: "Invalid password"
@@ -84,7 +79,7 @@ export async function loginAction(_prev: ActionResult, formData: FormData): Prom
 	};
 	const sessionToken = await generateSessionToken();
 	const session = await createSession(sessionToken, user.id, sessionFlags);
-	setSessionTokenCookie(sessionToken, session.expiresAt);
+	await setSessionTokenCookie(sessionToken, session.expiresAt);
 
 	if (!user.emailVerified) {
 		return redirect("/verify-email");

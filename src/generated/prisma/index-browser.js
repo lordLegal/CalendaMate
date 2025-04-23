@@ -184,6 +184,20 @@ exports.Prisma.TimetableCacheScalarFieldEnum = {
   expiresAt: 'expiresAt'
 };
 
+exports.Prisma.CalendarAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  expiresAt: 'expiresAt',
+  scope: 'scope',
+  calendarId: 'calendarId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -208,7 +222,11 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-
+exports.CalendarProvider = exports.$Enums.CalendarProvider = {
+  GOOGLE: 'GOOGLE',
+  MICROSOFT: 'MICROSOFT',
+  ICLOUD: 'ICLOUD'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -217,7 +235,8 @@ exports.Prisma.ModelName = {
   PasswordResetSession: 'PasswordResetSession',
   ApiKey: 'ApiKey',
   ApiUsageLog: 'ApiUsageLog',
-  TimetableCache: 'TimetableCache'
+  TimetableCache: 'TimetableCache',
+  CalendarAccount: 'CalendarAccount'
 };
 
 /**

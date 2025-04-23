@@ -86,8 +86,8 @@ export async function signupAction(_prev: ActionResult, formData: FormData): Pro
 	let emailVerificationRequest;
 	try {
 		emailVerificationRequest = await createEmailVerificationRequest(user.id, user.email);
-		sendVerificationEmail(emailVerificationRequest.email, emailVerificationRequest.code);
-		setEmailVerificationRequestCookie(emailVerificationRequest);
+		await sendVerificationEmail(emailVerificationRequest.email, emailVerificationRequest.code);
+		await setEmailVerificationRequestCookie(emailVerificationRequest);
 	} catch (error) {
 		console.error("Error creating email verification request:", error);
 		return {
@@ -103,7 +103,7 @@ export async function signupAction(_prev: ActionResult, formData: FormData): Pro
 	};
 	const sessionToken = await generateSessionToken();
 	const session = await createSession(sessionToken, user.id, sessionFlags);
-	setSessionTokenCookie(sessionToken, session.expiresAt);
+	await setSessionTokenCookie(sessionToken, session.expiresAt);
 	} catch (error) {
 		console.error("Error creating session:", error);
 		return {
