@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@/generated/prisma';
 import { encodeHexLowerCase } from "@oslojs/encoding";
 import { generateRandomOTP } from "./utils";
 import { sha256 } from "@oslojs/crypto/sha2";

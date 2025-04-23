@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@/generated/prisma';
 import { decrypt, decryptToString, encrypt, encryptString } from "./encryption";
 import { hashPassword } from "./password";
 import { generateRandomRecoveryCode } from "./utils";

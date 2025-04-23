@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client';
 import { generateRandomOTP } from "./utils";
 import { ExpiringTokenBucket } from "./rate-limit";
 import { encodeBase32 } from "@oslojs/encoding";
 import { cookies } from "next/headers";
 import { getCurrentSession } from "./session";
 import nodemailer from 'nodemailer';
+import { PrismaClient } from '@/generated/prisma';
 
 const prisma = new PrismaClient();
 
