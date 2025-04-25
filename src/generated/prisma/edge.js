@@ -234,7 +234,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\bened\\Documents\\GitHub\\CalendaMate\\src\\generated\\prisma",
+      "value": "C:\\Users\\Martin\\hiddengpt-hardware\\CalendaMate\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -248,7 +248,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\bened\\Documents\\GitHub\\CalendaMate\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Martin\\hiddengpt-hardware\\CalendaMate\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

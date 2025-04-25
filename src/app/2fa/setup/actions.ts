@@ -17,6 +17,8 @@ export async function setup2FAAction(_prev: ActionResult, formData: FormData): P
 		};
 	}
 	const { session, user } = await getCurrentSession();
+	console.log("Session: ", session);
+	console.log("User: ", user);
 	if (session === null) {
 		return {
 			message: "Not authenticated"

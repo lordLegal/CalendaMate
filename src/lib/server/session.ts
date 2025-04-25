@@ -8,6 +8,10 @@ import type { User } from "./user";
 
 const prisma = new PrismaClient();
 
+const SESSION_COOKIE_NAME = process.env.NODE_ENV === 'production'
+        ? '__Host-session'
+        : 'session';
+
 export async function validateSessionToken(token: string): Promise<SessionValidationResult> {
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 	
@@ -69,12 +73,15 @@ export async function validateSessionToken(token: string): Promise<SessionValida
 export const getCurrentSession = cache(async (): Promise<SessionValidationResult> => {
 	"use server";
 	const cookieStore = await cookies();
-  // Use __Host- prefix for session cookie to enforce Secure, Path='/'
-  const token = cookieStore.get("__Host-session")?.value ?? null;
+  	// Use __Host- prefix for session cookie to enforce Secure, Path='/'
+  	const token = cookieStore.get(SESSION_COOKIE_NAME)?.value ?? null;
+	console.log("Session cookie:", SESSION_COOKIE_NAME, token);
+	console.log("Cookie store:", cookieStore.get(SESSION_COOKIE_NAME));
 	if (token === null) {
 		return { session: null, user: null };
 	}
 	const result = await validateSessionToken(token);
+	console.log("Session validation result:", result);
 	return result;
 });
 
@@ -93,19 +100,22 @@ export async function invalidateUserSessions(userId: number): Promise<void> {
 export async function setSessionTokenCookie(token: string, expiresAt: Date): Promise<void> {
 	"use server";
 	const cookieStore = await cookies();
-	cookieStore.set("__Host-session", token, {
+	cookieStore.set(SESSION_COOKIE_NAME, token, {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",
 		sameSite: "lax",
 		expires: expiresAt
 	});
+	console.log("Set session cookie:", SESSION_COOKIE_NAME, token, expiresAt);
+	console.log("Cookie store:", cookieStore.get(SESSION_COOKIE_NAME));
+	console.log("Cookie store all:", cookieStore.getAll());
 }
 
 export async function deleteSessionTokenCookie(): Promise<void> {
 	"use server";
 	const cookieStore = await cookies();
-	cookieStore.set("__Host-session", "", {
+	cookieStore.set(SESSION_COOKIE_NAME, "", {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",

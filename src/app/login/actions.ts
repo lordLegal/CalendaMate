@@ -46,36 +46,37 @@ export async function loginAction(_prev: ActionResult, formData: FormData): Prom
 		};
 	}
   // Fetch user and verify password; avoid user-enumeration by using generic error
-  const user = await getUserFromEmail(email);
-  let validPassword = false;
-  if (user) {
-    const passwordHash = await getUserPasswordHash(user.id);
-    validPassword = await verifyPasswordHash(passwordHash, password);
-  }
-  // Rate-limit checks
-  if (clientIP !== null) {
-    // consume one token per login attempt
-    if (!ipBucket.consume(clientIP, 1)) {
-      return { message: "Too many requests" };
-    }
-  }
-  if (user) {
-    if (!throttler.consume(user.id)) {
-      return { message: "Too many requests" };
-    }
-  }
-  // If authentication fails, respond with generic message
-  if (!user || !validPassword) {
-    return { message: "Invalid email or password" };
-  }
+	const user = await getUserFromEmail(email);
+	let validPassword = false;
+	if (user) {
+		const passwordHash = await getUserPasswordHash(user.id);
+		validPassword = await verifyPasswordHash(passwordHash, password);
+	}
+	// Rate-limit checks
+	if (clientIP !== null) {
+		// consume one token per login attempt
+		if (!ipBucket.consume(clientIP, 1)) {
+		return { message: "Too many requests" };
+		}
+	}
+	if (user) {
+		if (!throttler.consume(user.id)) {
+		return { message: "Too many requests" };
+		}
+	}
+	// If authentication fails, respond with generic message
+	if (!user || !validPassword) {
+		return { message: "Invalid email or password" };
+	}
   // Reset throttle on successful login
-  throttler.reset(user.id);
 	const sessionFlags: SessionFlags = {
 		twoFactorVerified: false
 	};
 	const sessionToken = await generateSessionToken();
+	console.log("Session token: ", sessionToken);
 	const session = await createSession(sessionToken, user.id, sessionFlags);
-	await setSessionTokenCookie(sessionToken, session.expiresAt);
+	console.log("Session created: ", session);
+	console.log( await setSessionTokenCookie(sessionToken, session.expiresAt));
 
 	if (!user.emailVerified) {
 		return redirect("/verify-email");

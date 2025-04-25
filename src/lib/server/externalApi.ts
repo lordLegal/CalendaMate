@@ -13,8 +13,8 @@ async function callExternalApi(
   apiKey: string,
   path: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'POST',
-  body?: any
-): Promise<any> {
+  body?: unknown
+): Promise<unknown> {
   const url = `${BASE_URL}${path}`;
   const res = await fetch(url, {
     method,
@@ -36,8 +36,8 @@ async function callExternalApi(
  */
 export async function externalCreateEvent(
   apiKeyId: string,
-  eventData: any
-): Promise<any> {
+  eventData: unknown
+): Promise<unknown> {
   const prisma = new PrismaClient();
   const apiKey = await prisma.apiKey.findUnique({ where: { id: apiKeyId } });
   if (!apiKey) {
@@ -52,8 +52,8 @@ export async function externalCreateEvent(
 export async function externalUpdateEvent(
   apiKeyId: string,
   eventId: string,
-  eventData: any
-): Promise<any> {
+  eventData: unknown
+): Promise<unknown> {
   const prisma = new PrismaClient();
   const apiKey = await prisma.apiKey.findUnique({ where: { id: apiKeyId } });
   if (!apiKey) {
@@ -67,8 +67,8 @@ export async function externalUpdateEvent(
  */
 export async function externalCreateTask(
   apiKeyId: string,
-  taskData: any
-): Promise<any> {
+  taskData: unknown
+): Promise<unknown> {
   const prisma = new PrismaClient();
   const apiKey = await prisma.apiKey.findUnique({ where: { id: apiKeyId } });
   if (!apiKey) {
@@ -83,8 +83,8 @@ export async function externalCreateTask(
 export async function externalUpdateTask(
   apiKeyId: string,
   taskId: string,
-  taskData: any
-): Promise<any> {
+  taskData: unknown
+): Promise<unknown> {
   const prisma = new PrismaClient();
   const apiKey = await prisma.apiKey.findUnique({ where: { id: apiKeyId } });
   if (!apiKey) {
