@@ -127,6 +127,18 @@ exports.Prisma.UserScalarFieldEnum = {
   recoveryCode: 'recoveryCode'
 };
 
+exports.Prisma.SubscriptionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  stripeCustomerId: 'stripeCustomerId',
+  stripeSubscriptionId: 'stripeSubscriptionId',
+  status: 'status',
+  priceId: 'priceId',
+  currentPeriodEnd: 'currentPeriodEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -230,6 +242,7 @@ exports.CalendarProvider = exports.$Enums.CalendarProvider = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Subscription: 'Subscription',
   Session: 'Session',
   EmailVerificationRequest: 'EmailVerificationRequest',
   PasswordResetSession: 'PasswordResetSession',

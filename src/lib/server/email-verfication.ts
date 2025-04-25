@@ -100,7 +100,8 @@ export async function sendVerificationEmail(email: string, code: string): Promis
 
 export async function setEmailVerificationRequestCookie(request: EmailVerificationRequest): Promise<void> {
 	const cookieStore = await cookies();
-	cookieStore.set("email_verification", request.id, {
+  // Use __Host- prefix for email verification cookie
+  cookieStore.set("__Host-email_verification", request.id, {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",
@@ -111,7 +112,7 @@ export async function setEmailVerificationRequestCookie(request: EmailVerificati
 
 export async function deleteEmailVerificationRequestCookie(): Promise<void> {
 	const cookieStore = await cookies();
-	cookieStore.set("email_verification", "", {
+  cookieStore.set("__Host-email_verification", "", {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",
@@ -129,7 +130,7 @@ export async function getUserEmailVerificationRequestFromRequest(): Promise<Emai
 	}
 	
 	const cookieStore = await cookies();
-	const id = cookieStore.get("email_verification")?.value ?? null;
+  const id = cookieStore.get("__Host-email_verification")?.value ?? null;
 	if (id === null) {
 		return null;
 	}

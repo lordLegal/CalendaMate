@@ -8,13 +8,15 @@ export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
-  const stored = req.cookies.get('oauth_state')?.value;
+  // Read __Host- prefixed cookie for OAuth state
+  const stored = req.cookies.get('__Host-oauth_state_google')?.value;
   if (!code || state !== stored) {
     return NextResponse.redirect('/settings?error=oauth_state_mismatch');
   }
   // Clear state cookie
   const response = NextResponse.redirect('/settings?connected=google');
-  response.cookies.delete('oauth_state');
+  // Clear state cookie
+  response.cookies.delete('__Host-oauth_state_google');
   // Exchange code for tokens
   const redirectUri = `${req.nextUrl.origin}/api/oauth/google/callback`;
   const tokenRes = await fetch('https://oauth2.googleapis.com/token', {

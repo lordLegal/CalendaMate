@@ -4,6 +4,8 @@ import { getCurrentSession } from "@/lib/server/session";
 import { getUserRecoverCode } from "@/lib/server/user";
 import { redirect } from "next/navigation";
 import { globalGETRateLimit } from "@/lib/server/requests";
+import prisma from "@/lib/server/prisma";
+import ManageSubscriptionButton from "@/app/components/ManageSubscriptionButton";
 
 export default async function Page() {
   if (!await globalGETRateLimit()) {
@@ -24,6 +26,10 @@ export default async function Page() {
   if (user.registered2FA) {
     recoveryCode = await getUserRecoverCode(user.id);
   }
+  const sub = user
+    ? await prisma.subscription.findUnique({ where: { userId: user.id } })
+    : null
+  const isActive = sub?.status === 'active'
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow p-4 flex justify-between items-center">
@@ -63,6 +69,10 @@ export default async function Page() {
         {/* Calendar connections */}
         <section className="mb-8 p-6 bg-white shadow rounded">
           <CalendarConnections />
+        </section>
+        <section className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">Subscription</h2>
+          <ManageSubscriptionButton isActive={isActive} />
         </section>
       </main>
     </div>

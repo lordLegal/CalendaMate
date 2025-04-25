@@ -16,7 +16,8 @@ export async function GET(req: NextRequest) {
   url.searchParams.set('state', state);
   // Redirect with state cookie
   const response = NextResponse.redirect(url.toString());
-  response.cookies.set('oauth_state', state, {
+  // Use __Host- prefix for OAuth state, per provider
+  response.cookies.set('__Host-oauth_state_google', state, {
     httpOnly: true,
     path: '/',
     secure: process.env.NODE_ENV === 'production',

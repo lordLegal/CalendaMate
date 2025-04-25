@@ -65,12 +65,12 @@ export async function verifyEmailAction(_prev: ActionResult, formData: FormData)
 		};
 	}
 	try {
-	if (Date.now() >= await verificationRequest.expiresAt.getTime()) {
+	if (Date.now() >= verificationRequest.expiresAt.getTime()) {
+		// expired: issue new code and update cookie
 		verificationRequest = await createEmailVerificationRequest(verificationRequest.userId, verificationRequest.email);
-		sendVerificationEmail(verificationRequest.email, verificationRequest.code);
-		return {
-			message: "The verification code was expired. We sent another code to your inbox."
-		};
+		await sendVerificationEmail(verificationRequest.email, verificationRequest.code);
+		await setEmailVerificationRequestCookie(verificationRequest);
+		return { message: "The verification code was expired. We sent another code to your inbox." };
 	}
 	if (verificationRequest.code !== code) {
 		return {

@@ -110,7 +110,8 @@ export async function invalidateUserPasswordResetSessions(userId: number): Promi
 export async function validatePasswordResetSessionRequest(): Promise<PasswordResetSessionValidationResult> {
 	"use server";
 	const cookieStore = await cookies();
-	const token = cookieStore.get("password_reset_session")?.value ?? null;
+  // Use __Host- prefix for password reset session cookie
+  const token = cookieStore.get("__Host-password_reset_session")?.value ?? null;
 	if (token === null) {
 		return { session: null, user: null };
 	}
@@ -124,7 +125,7 @@ export async function validatePasswordResetSessionRequest(): Promise<PasswordRes
 export async function setPasswordResetSessionTokenCookie(token: string, expiresAt: Date): Promise<void> {
 	'use server'
 	const cookieStore = await cookies();
-	cookieStore.set("password_reset_session", token, {
+	cookieStore.set("__Host-password_reset_session", token, {
 		expires: expiresAt,
 		sameSite: "lax",
 		httpOnly: true,
@@ -135,7 +136,7 @@ export async function setPasswordResetSessionTokenCookie(token: string, expiresA
 export async function deletePasswordResetSessionTokenCookie(): Promise<void> {
 	'use server'
 	const cookieStore = await cookies();
-	cookieStore.set("password_reset_session", "", {
+	cookieStore.set("__Host-password_reset_session", "", {
 		maxAge: 0,
 		sameSite: "lax",
 		httpOnly: true,
@@ -144,8 +145,34 @@ export async function deletePasswordResetSessionTokenCookie(): Promise<void> {
 	});
 }
 
+import nodemailer from 'nodemailer';
+/**
+ * Send a password reset code via SMTP email.
+ */
 export async function sendPasswordResetEmail(email: string, code: string): Promise<void> {
-	console.log(`To ${email}: Your reset code is ${code}`);
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+    const mailOptions = {
+      from: '"Quiz App" <' + process.env.SMTP_FROM_EMAIL + '>',
+      to: email,
+      subject: 'Your Password Reset Code',
+      text: `Your password reset code is ${code}`,
+      html: `<p>Your password reset code is <strong>${code}</strong></p>`,
+    };
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`Password reset email sent: ${info.messageId}`);
+  } catch (error) {
+    console.error('Error sending password reset email:', error);
+    throw new Error(`Fehler beim Senden der Passwort-Reset-E-Mail: ${error}`);
+  }
 }
 
 export interface PasswordResetSession {

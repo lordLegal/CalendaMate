@@ -69,7 +69,8 @@ export async function validateSessionToken(token: string): Promise<SessionValida
 export const getCurrentSession = cache(async (): Promise<SessionValidationResult> => {
 	"use server";
 	const cookieStore = await cookies();
-	const token = cookieStore.get("session")?.value ?? null;
+  // Use __Host- prefix for session cookie to enforce Secure, Path='/'
+  const token = cookieStore.get("__Host-session")?.value ?? null;
 	if (token === null) {
 		return { session: null, user: null };
 	}
@@ -92,7 +93,7 @@ export async function invalidateUserSessions(userId: number): Promise<void> {
 export async function setSessionTokenCookie(token: string, expiresAt: Date): Promise<void> {
 	"use server";
 	const cookieStore = await cookies();
-	cookieStore.set("session", token, {
+	cookieStore.set("__Host-session", token, {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",
@@ -104,7 +105,7 @@ export async function setSessionTokenCookie(token: string, expiresAt: Date): Pro
 export async function deleteSessionTokenCookie(): Promise<void> {
 	"use server";
 	const cookieStore = await cookies();
-	cookieStore.set("session", "", {
+	cookieStore.set("__Host-session", "", {
 		httpOnly: true,
 		path: "/",
 		secure: process.env.NODE_ENV === "production",

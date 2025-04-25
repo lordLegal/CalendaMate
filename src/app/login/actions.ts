@@ -45,35 +45,31 @@ export async function loginAction(_prev: ActionResult, formData: FormData): Prom
 			message: "Invalid email"
 		};
 	}
-	const user = await getUserFromEmail(email);
-	if (user === null) {
-		return {
-			message: "Account does not exist"
-		};
-	}
-	if (clientIP !== null && !ipBucket.consume(clientIP, 1)) {
-		return {
-			message: "Too many requests"
-		};
-	}
-	if (!throttler.consume(user.id)) {
-		return {
-			message: "Too many requests"
-		};
-	}
-	if (user === null) {
-		return {
-			message: "Account does not exist"
-		};
-	}
-	const passwordHash = await getUserPasswordHash(user.id);
-  const validPassword = await verifyPasswordHash(passwordHash, password);
-	if (!validPassword) {
-		return {
-			message: "Invalid password"
-		};
-	}
-	throttler.reset(user.id);
+  // Fetch user and verify password; avoid user-enumeration by using generic error
+  const user = await getUserFromEmail(email);
+  let validPassword = false;
+  if (user) {
+    const passwordHash = await getUserPasswordHash(user.id);
+    validPassword = await verifyPasswordHash(passwordHash, password);
+  }
+  // Rate-limit checks
+  if (clientIP !== null) {
+    // consume one token per login attempt
+    if (!ipBucket.consume(clientIP, 1)) {
+      return { message: "Too many requests" };
+    }
+  }
+  if (user) {
+    if (!throttler.consume(user.id)) {
+      return { message: "Too many requests" };
+    }
+  }
+  // If authentication fails, respond with generic message
+  if (!user || !validPassword) {
+    return { message: "Invalid email or password" };
+  }
+  // Reset throttle on successful login
+  throttler.reset(user.id);
 	const sessionFlags: SessionFlags = {
 		twoFactorVerified: false
 	};
