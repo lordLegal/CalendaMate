@@ -1,72 +1,108 @@
-import { globalGETRateLimit } from "@/lib/server/requests";
-import { getCurrentSession } from "@/lib/server/session";
 import { redirect } from "next/navigation";
-import { PrismaClient } from "@/generated/prisma";
-const prisma = new PrismaClient();
-export default async function ApiSettings() {
-    if (!await globalGETRateLimit()) {
-    return (
-        <div className="flex items-center justify-center min-h-screen text-red-600">
-        Too many requests
-        </div>
-    );
-    }
-    const { session, user } = await getCurrentSession();
-    if (session === null) {
-    return redirect("/login");
-    }
-    if (user.registered2FA && !session.twoFactorVerified) {
-    return redirect("/2fa");
-    }
+import { getCurrentSession } from "@/lib/server/session";
+import prisma from "@/lib/server/prisma";
+import {
+  createApiKeyAction,
+  deleteApiKeyAction,
+} from "@/app/settings/api/actions";
+import React from "react";
 
-    const apiKeys = await prisma.apiKey.findMany({
-        where: {
-            ownerId: user.id,
-        },
-    });
+export const dynamic = "force-dynamic";
 
-    
+export default async function ApiKeysPage() {
+  const { user } = await getCurrentSession();
+  if (!user) {
+    redirect("/login");
+  }
 
+  const keys = await prisma.apiKey.findMany({
+    where: { ownerId: user.id },
+    orderBy: { createdAt: "desc" },
+  });
 
-    return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-        {/* Titel */}
-        <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Upgrade to Pro
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-            Unlock all premium features for just{' '}
-            <span className="font-medium text-gray-900">$9.99</span>/month
+  return (
+    <main className="p-6 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">API-Key Verwaltung</h1>
+
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-4">Neuen API-Key erstellen</h2>
+        <form action={createApiKeyAction} className="">
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            Neuen Key erstellen
+          </button>
+        </form>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Deine API-Keys</h2>
+        {keys.length === 0 && (
+          <p className="text-gray-600">Du hast noch keine API-Keys.</p>
+        )}
+
+        {keys.map((k) => (
+          <div
+            key={k.id}
+            className="border border-gray-300 rounded-lg p-6 mb-6 shadow-sm"
+          >
+            <p className="mb-2">
+              <span className="font-semibold">ID:</span> {k.id}
             </p>
-        </div>
+            <p className="mb-2">
+              <span className="font-semibold">Key:</span>{' '}
+              <code className="bg-gray-100 px-1 rounded">{k.key}</code>
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold">Credits:</span>{' '}
+              {k.unlimited ? 'Unbegrenzt' : k.credits}
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold">Min. Interval zwischen Anfragen:</span>{' '}
+              {k.minInterval} ms
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold">Erstellt am:</span>{' '}
+              {k.createdAt.toLocaleString()}
+            </p>
+            <p className="mb-4">
+              <span className="font-semibold">Letzte Nutzung:</span>{' '}
+              {k.lastRequest ? new Date(k.lastRequest).toLocaleString() : 'Nie'}
+            </p>
 
-        {/* Features-Liste */}
-        <div className="rounded-lg bg-white shadow p-6">
-            <h3 className="text-xl font-semibold mb-4">What’s included:</h3>
-            <ul className="space-y-2 mb-6">
-            {apiKeys.map((api) => (
-                <li key={api.id} className="flex items-center">
-                <svg
-                    className="h-5 w-5 text-green-500 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+            <div className="flex flex-wrap gap-4">
+              <form action={topUpApiKeyAction} className="flex items-center gap-2">
+                <input type="hidden" name="keyId" value={k.id} />
+                <input
+                  type="number"
+                  name="amount"
+                  min={1}
+                  placeholder="Credits aufladen"
+                  required
+                  className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                />
+                <button
+                  type="submit"
+                  className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
                 >
-                    <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                    />
-                </svg>
-                <span className="text-gray-700">{api.description}</span>
-                </li>
-            ))}
-            </ul>
-        </div>
-        </div>
-    </div>
-    )
+                  Aufladen
+                </button>
+              </form>
+
+              <form action={deleteApiKeyAction} className="">
+                <input type="hidden" name="keyId" value={k.id} />
+                <button
+                  type="submit"
+                  className="px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                >
+                  Löschen
+                </button>
+              </form>
+            </div>
+          </div>
+        ))}
+      </section>
+    </main>
+  );
 }

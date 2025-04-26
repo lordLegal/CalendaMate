@@ -19,12 +19,14 @@ model User {
   recoveryCode  Bytes   @map("recovery_code")
 
   // Beziehungen
-  sessions           Session[]
-  emailVerifications EmailVerificationRequest[]
-  passwordResets     PasswordResetSession[]
-  apiKeys            ApiKey[]                   @relation("UserApiKeys")
-  calendarAccounts   CalendarAccount[]
-  subscriptions      Subscription[]
+  sessions            Session[]
+  emailVerifications  EmailVerificationRequest[]
+  passwordResets      PasswordResetSession[]
+  apiKeys             ApiKey[]                   @relation("UserApiKeys")
+  calendarAccounts    CalendarAccount[]
+  subscriptions       Subscription[]
+  apiCreditsPurchases ApiCreditsPurchase[]
+  apiCreditsUsages    ApiCreditsUsage[]
 
   @@index([email], name: "email_index")
   @@map("user")
@@ -91,20 +93,50 @@ model PasswordResetSession {
 model ApiKey {
   id          String  @id @default(uuid())
   key         String  @unique
-  credits     Int
   unlimited   Boolean
   minInterval Int     @default(0)
 
   // Verknüpfung zum Owner-User
-  ownerId Int?  @map("owner_id")
-  owner   User? @relation("UserApiKeys", fields: [ownerId], references: [id])
-
-  description String?
-  createdAt   DateTime      @default(now())
-  lastRequest DateTime?
-  usageLogs   ApiUsageLog[]
+  ownerId           Int?               @map("owner_id")
+  owner             User?              @relation("UserApiKeys", fields: [ownerId], references: [id])
+  name              String
+  description       String?
+  createdAt         DateTime           @default(now())
+  lastRequest       DateTime?
+  usageLogs         ApiUsageLog[]
+  apiKeyPermissions ApiKeyPermission[]
 
   @@map("api_key")
+}
+
+model ApiKeyPermission {
+  id         String @id @default(uuid())
+  apiKeyId   String @map("api_key_id")
+  permission String
+  apiKey     ApiKey @relation(fields: [apiKeyId], references: [id])
+
+  @@map("api_key_permission")
+}
+
+model ApiCreditsPurchase {
+  id           String   @id @default(uuid())
+  credits      Int
+  purchaseDate DateTime @default(now())
+  userId       Int?     @map("user_id")
+  user         User?    @relation(fields: [userId], references: [id])
+
+  @@map("api_credits_purchase")
+}
+
+model ApiCreditsUsage {
+  id        String   @id @default(uuid())
+  apiKeyId  String   @map("api_key_id")
+  credits   Int
+  usageDate DateTime @default(now())
+  userId    Int?     @map("user_id")
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@map("api_credits_usage")
 }
 
 model ApiUsageLog {

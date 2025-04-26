@@ -167,13 +167,35 @@ exports.Prisma.PasswordResetSessionScalarFieldEnum = {
 exports.Prisma.ApiKeyScalarFieldEnum = {
   id: 'id',
   key: 'key',
-  credits: 'credits',
   unlimited: 'unlimited',
   minInterval: 'minInterval',
   ownerId: 'ownerId',
+  name: 'name',
   description: 'description',
   createdAt: 'createdAt',
   lastRequest: 'lastRequest'
+};
+
+exports.Prisma.ApiKeyPermissionScalarFieldEnum = {
+  id: 'id',
+  apiKeyId: 'apiKeyId',
+  permission: 'permission'
+};
+
+exports.Prisma.ApiCreditsPurchaseScalarFieldEnum = {
+  id: 'id',
+  apiKeyId: 'apiKeyId',
+  credits: 'credits',
+  purchaseDate: 'purchaseDate',
+  userId: 'userId'
+};
+
+exports.Prisma.ApiCreditsUsageScalarFieldEnum = {
+  id: 'id',
+  apiKeyId: 'apiKeyId',
+  credits: 'credits',
+  usageDate: 'usageDate',
+  userId: 'userId'
 };
 
 exports.Prisma.ApiUsageLogScalarFieldEnum = {
@@ -247,6 +269,9 @@ exports.Prisma.ModelName = {
   EmailVerificationRequest: 'EmailVerificationRequest',
   PasswordResetSession: 'PasswordResetSession',
   ApiKey: 'ApiKey',
+  ApiKeyPermission: 'ApiKeyPermission',
+  ApiCreditsPurchase: 'ApiCreditsPurchase',
+  ApiCreditsUsage: 'ApiCreditsUsage',
   ApiUsageLog: 'ApiUsageLog',
   TimetableCache: 'TimetableCache',
   CalendarAccount: 'CalendarAccount'

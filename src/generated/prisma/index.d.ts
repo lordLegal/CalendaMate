@@ -44,6 +44,21 @@ export type PasswordResetSession = $Result.DefaultSelection<Prisma.$PasswordRese
  */
 export type ApiKey = $Result.DefaultSelection<Prisma.$ApiKeyPayload>
 /**
+ * Model ApiKeyPermission
+ * 
+ */
+export type ApiKeyPermission = $Result.DefaultSelection<Prisma.$ApiKeyPermissionPayload>
+/**
+ * Model ApiCreditsPurchase
+ * 
+ */
+export type ApiCreditsPurchase = $Result.DefaultSelection<Prisma.$ApiCreditsPurchasePayload>
+/**
+ * Model ApiCreditsUsage
+ * 
+ */
+export type ApiCreditsUsage = $Result.DefaultSelection<Prisma.$ApiCreditsUsagePayload>
+/**
  * Model ApiUsageLog
  * 
  */
@@ -261,6 +276,36 @@ export class PrismaClient<
     * ```
     */
   get apiKey(): Prisma.ApiKeyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apiKeyPermission`: Exposes CRUD operations for the **ApiKeyPermission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApiKeyPermissions
+    * const apiKeyPermissions = await prisma.apiKeyPermission.findMany()
+    * ```
+    */
+  get apiKeyPermission(): Prisma.ApiKeyPermissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apiCreditsPurchase`: Exposes CRUD operations for the **ApiCreditsPurchase** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApiCreditsPurchases
+    * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany()
+    * ```
+    */
+  get apiCreditsPurchase(): Prisma.ApiCreditsPurchaseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apiCreditsUsage`: Exposes CRUD operations for the **ApiCreditsUsage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApiCreditsUsages
+    * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany()
+    * ```
+    */
+  get apiCreditsUsage(): Prisma.ApiCreditsUsageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.apiUsageLog`: Exposes CRUD operations for the **ApiUsageLog** model.
@@ -737,6 +782,9 @@ export namespace Prisma {
     EmailVerificationRequest: 'EmailVerificationRequest',
     PasswordResetSession: 'PasswordResetSession',
     ApiKey: 'ApiKey',
+    ApiKeyPermission: 'ApiKeyPermission',
+    ApiCreditsPurchase: 'ApiCreditsPurchase',
+    ApiCreditsUsage: 'ApiCreditsUsage',
     ApiUsageLog: 'ApiUsageLog',
     TimetableCache: 'TimetableCache',
     CalendarAccount: 'CalendarAccount'
@@ -758,7 +806,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount"
+      modelProps: "user" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiKeyPermission" | "apiCreditsPurchase" | "apiCreditsUsage" | "apiUsageLog" | "timetableCache" | "calendarAccount"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1206,6 +1254,228 @@ export namespace Prisma {
           }
         }
       }
+      ApiKeyPermission: {
+        payload: Prisma.$ApiKeyPermissionPayload<ExtArgs>
+        fields: Prisma.ApiKeyPermissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApiKeyPermissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          findFirst: {
+            args: Prisma.ApiKeyPermissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          findMany: {
+            args: Prisma.ApiKeyPermissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
+          }
+          create: {
+            args: Prisma.ApiKeyPermissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          createMany: {
+            args: Prisma.ApiKeyPermissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
+          }
+          delete: {
+            args: Prisma.ApiKeyPermissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          update: {
+            args: Prisma.ApiKeyPermissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ApiKeyPermissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApiKeyPermissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.ApiKeyPermissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
+          }
+          aggregate: {
+            args: Prisma.ApiKeyPermissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiKeyPermission>
+          }
+          groupBy: {
+            args: Prisma.ApiKeyPermissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyPermissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApiKeyPermissionCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyPermissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApiCreditsPurchase: {
+        payload: Prisma.$ApiCreditsPurchasePayload<ExtArgs>
+        fields: Prisma.ApiCreditsPurchaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApiCreditsPurchaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          findFirst: {
+            args: Prisma.ApiCreditsPurchaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          findMany: {
+            args: Prisma.ApiCreditsPurchaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
+          }
+          create: {
+            args: Prisma.ApiCreditsPurchaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          createMany: {
+            args: Prisma.ApiCreditsPurchaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
+          }
+          delete: {
+            args: Prisma.ApiCreditsPurchaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          update: {
+            args: Prisma.ApiCreditsPurchaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          deleteMany: {
+            args: Prisma.ApiCreditsPurchaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApiCreditsPurchaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
+          }
+          upsert: {
+            args: Prisma.ApiCreditsPurchaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
+          }
+          aggregate: {
+            args: Prisma.ApiCreditsPurchaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiCreditsPurchase>
+          }
+          groupBy: {
+            args: Prisma.ApiCreditsPurchaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiCreditsPurchaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApiCreditsPurchaseCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiCreditsPurchaseCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApiCreditsUsage: {
+        payload: Prisma.$ApiCreditsUsagePayload<ExtArgs>
+        fields: Prisma.ApiCreditsUsageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApiCreditsUsageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          findFirst: {
+            args: Prisma.ApiCreditsUsageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          findMany: {
+            args: Prisma.ApiCreditsUsageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
+          }
+          create: {
+            args: Prisma.ApiCreditsUsageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          createMany: {
+            args: Prisma.ApiCreditsUsageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
+          }
+          delete: {
+            args: Prisma.ApiCreditsUsageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          update: {
+            args: Prisma.ApiCreditsUsageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ApiCreditsUsageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApiCreditsUsageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ApiCreditsUsageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
+          }
+          aggregate: {
+            args: Prisma.ApiCreditsUsageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiCreditsUsage>
+          }
+          groupBy: {
+            args: Prisma.ApiCreditsUsageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiCreditsUsageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApiCreditsUsageCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiCreditsUsageCountAggregateOutputType> | number
+          }
+        }
+      }
       ApiUsageLog: {
         payload: Prisma.$ApiUsageLogPayload<ExtArgs>
         fields: Prisma.ApiUsageLogFieldRefs
@@ -1518,6 +1788,9 @@ export namespace Prisma {
     emailVerificationRequest?: EmailVerificationRequestOmit
     passwordResetSession?: PasswordResetSessionOmit
     apiKey?: ApiKeyOmit
+    apiKeyPermission?: ApiKeyPermissionOmit
+    apiCreditsPurchase?: ApiCreditsPurchaseOmit
+    apiCreditsUsage?: ApiCreditsUsageOmit
     apiUsageLog?: ApiUsageLogOmit
     timetableCache?: TimetableCacheOmit
     calendarAccount?: CalendarAccountOmit
@@ -1621,6 +1894,8 @@ export namespace Prisma {
     apiKeys: number
     calendarAccounts: number
     subscriptions: number
+    apiCreditsPurchases: number
+    apiCreditsUsages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1630,6 +1905,8 @@ export namespace Prisma {
     apiKeys?: boolean | UserCountOutputTypeCountApiKeysArgs
     calendarAccounts?: boolean | UserCountOutputTypeCountCalendarAccountsArgs
     subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
+    apiCreditsPurchases?: boolean | UserCountOutputTypeCountApiCreditsPurchasesArgs
+    apiCreditsUsages?: boolean | UserCountOutputTypeCountApiCreditsUsagesArgs
   }
 
   // Custom InputTypes
@@ -1685,6 +1962,20 @@ export namespace Prisma {
     where?: SubscriptionWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountApiCreditsPurchasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiCreditsPurchaseWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountApiCreditsUsagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiCreditsUsageWhereInput
+  }
+
 
   /**
    * Count Type ApiKeyCountOutputType
@@ -1692,10 +1983,12 @@ export namespace Prisma {
 
   export type ApiKeyCountOutputType = {
     usageLogs: number
+    apiKeyPermissions: number
   }
 
   export type ApiKeyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usageLogs?: boolean | ApiKeyCountOutputTypeCountUsageLogsArgs
+    apiKeyPermissions?: boolean | ApiKeyCountOutputTypeCountApiKeyPermissionsArgs
   }
 
   // Custom InputTypes
@@ -1714,6 +2007,13 @@ export namespace Prisma {
    */
   export type ApiKeyCountOutputTypeCountUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ApiUsageLogWhereInput
+  }
+
+  /**
+   * ApiKeyCountOutputType without action
+   */
+  export type ApiKeyCountOutputTypeCountApiKeyPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyPermissionWhereInput
   }
 
 
@@ -1941,6 +2241,8 @@ export namespace Prisma {
     apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     calendarAccounts?: boolean | User$calendarAccountsArgs<ExtArgs>
     subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
+    apiCreditsPurchases?: boolean | User$apiCreditsPurchasesArgs<ExtArgs>
+    apiCreditsUsages?: boolean | User$apiCreditsUsagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1982,6 +2284,8 @@ export namespace Prisma {
     apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     calendarAccounts?: boolean | User$calendarAccountsArgs<ExtArgs>
     subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
+    apiCreditsPurchases?: boolean | User$apiCreditsPurchasesArgs<ExtArgs>
+    apiCreditsUsages?: boolean | User$apiCreditsUsagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1996,6 +2300,8 @@ export namespace Prisma {
       apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
       calendarAccounts: Prisma.$CalendarAccountPayload<ExtArgs>[]
       subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+      apiCreditsPurchases: Prisma.$ApiCreditsPurchasePayload<ExtArgs>[]
+      apiCreditsUsages: Prisma.$ApiCreditsUsagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2405,6 +2711,8 @@ export namespace Prisma {
     apiKeys<T extends User$apiKeysArgs<ExtArgs> = {}>(args?: Subset<T, User$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     calendarAccounts<T extends User$calendarAccountsArgs<ExtArgs> = {}>(args?: Subset<T, User$calendarAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CalendarAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subscriptions<T extends User$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    apiCreditsPurchases<T extends User$apiCreditsPurchasesArgs<ExtArgs> = {}>(args?: Subset<T, User$apiCreditsPurchasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    apiCreditsUsages<T extends User$apiCreditsUsagesArgs<ExtArgs> = {}>(args?: Subset<T, User$apiCreditsUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2970,6 +3278,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * User.apiCreditsPurchases
+   */
+  export type User$apiCreditsPurchasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    where?: ApiCreditsPurchaseWhereInput
+    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
+    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
+  }
+
+  /**
+   * User.apiCreditsUsages
+   */
+  export type User$apiCreditsUsagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    where?: ApiCreditsUsageWhereInput
+    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
+    cursor?: ApiCreditsUsageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
   }
 
   /**
@@ -7437,13 +7793,11 @@ export namespace Prisma {
   }
 
   export type ApiKeyAvgAggregateOutputType = {
-    credits: number | null
     minInterval: number | null
     ownerId: number | null
   }
 
   export type ApiKeySumAggregateOutputType = {
-    credits: number | null
     minInterval: number | null
     ownerId: number | null
   }
@@ -7451,10 +7805,10 @@ export namespace Prisma {
   export type ApiKeyMinAggregateOutputType = {
     id: string | null
     key: string | null
-    credits: number | null
     unlimited: boolean | null
     minInterval: number | null
     ownerId: number | null
+    name: string | null
     description: string | null
     createdAt: Date | null
     lastRequest: Date | null
@@ -7463,10 +7817,10 @@ export namespace Prisma {
   export type ApiKeyMaxAggregateOutputType = {
     id: string | null
     key: string | null
-    credits: number | null
     unlimited: boolean | null
     minInterval: number | null
     ownerId: number | null
+    name: string | null
     description: string | null
     createdAt: Date | null
     lastRequest: Date | null
@@ -7475,10 +7829,10 @@ export namespace Prisma {
   export type ApiKeyCountAggregateOutputType = {
     id: number
     key: number
-    credits: number
     unlimited: number
     minInterval: number
     ownerId: number
+    name: number
     description: number
     createdAt: number
     lastRequest: number
@@ -7487,13 +7841,11 @@ export namespace Prisma {
 
 
   export type ApiKeyAvgAggregateInputType = {
-    credits?: true
     minInterval?: true
     ownerId?: true
   }
 
   export type ApiKeySumAggregateInputType = {
-    credits?: true
     minInterval?: true
     ownerId?: true
   }
@@ -7501,10 +7853,10 @@ export namespace Prisma {
   export type ApiKeyMinAggregateInputType = {
     id?: true
     key?: true
-    credits?: true
     unlimited?: true
     minInterval?: true
     ownerId?: true
+    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
@@ -7513,10 +7865,10 @@ export namespace Prisma {
   export type ApiKeyMaxAggregateInputType = {
     id?: true
     key?: true
-    credits?: true
     unlimited?: true
     minInterval?: true
     ownerId?: true
+    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
@@ -7525,10 +7877,10 @@ export namespace Prisma {
   export type ApiKeyCountAggregateInputType = {
     id?: true
     key?: true
-    credits?: true
     unlimited?: true
     minInterval?: true
     ownerId?: true
+    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
@@ -7624,10 +7976,10 @@ export namespace Prisma {
   export type ApiKeyGroupByOutputType = {
     id: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval: number
     ownerId: number | null
+    name: string
     description: string | null
     createdAt: Date
     lastRequest: Date | null
@@ -7655,25 +8007,26 @@ export namespace Prisma {
   export type ApiKeySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     key?: boolean
-    credits?: boolean
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
+    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
     usageLogs?: boolean | ApiKey$usageLogsArgs<ExtArgs>
+    apiKeyPermissions?: boolean | ApiKey$apiKeyPermissionsArgs<ExtArgs>
     _count?: boolean | ApiKeyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["apiKey"]>
 
   export type ApiKeySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     key?: boolean
-    credits?: boolean
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
+    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
@@ -7683,10 +8036,10 @@ export namespace Prisma {
   export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     key?: boolean
-    credits?: boolean
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
+    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
@@ -7696,19 +8049,20 @@ export namespace Prisma {
   export type ApiKeySelectScalar = {
     id?: boolean
     key?: boolean
-    credits?: boolean
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
+    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
   }
 
-  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "credits" | "unlimited" | "minInterval" | "ownerId" | "description" | "createdAt" | "lastRequest", ExtArgs["result"]["apiKey"]>
+  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "unlimited" | "minInterval" | "ownerId" | "name" | "description" | "createdAt" | "lastRequest", ExtArgs["result"]["apiKey"]>
   export type ApiKeyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
     usageLogs?: boolean | ApiKey$usageLogsArgs<ExtArgs>
+    apiKeyPermissions?: boolean | ApiKey$apiKeyPermissionsArgs<ExtArgs>
     _count?: boolean | ApiKeyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ApiKeyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7723,14 +8077,15 @@ export namespace Prisma {
     objects: {
       owner: Prisma.$UserPayload<ExtArgs> | null
       usageLogs: Prisma.$ApiUsageLogPayload<ExtArgs>[]
+      apiKeyPermissions: Prisma.$ApiKeyPermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       key: string
-      credits: number
       unlimited: boolean
       minInterval: number
       ownerId: number | null
+      name: string
       description: string | null
       createdAt: Date
       lastRequest: Date | null
@@ -8130,6 +8485,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     owner<T extends ApiKey$ownerArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$ownerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     usageLogs<T extends ApiKey$usageLogsArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$usageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    apiKeyPermissions<T extends ApiKey$apiKeyPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$apiKeyPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8161,10 +8517,10 @@ export namespace Prisma {
   interface ApiKeyFieldRefs {
     readonly id: FieldRef<"ApiKey", 'String'>
     readonly key: FieldRef<"ApiKey", 'String'>
-    readonly credits: FieldRef<"ApiKey", 'Int'>
     readonly unlimited: FieldRef<"ApiKey", 'Boolean'>
     readonly minInterval: FieldRef<"ApiKey", 'Int'>
     readonly ownerId: FieldRef<"ApiKey", 'Int'>
+    readonly name: FieldRef<"ApiKey", 'String'>
     readonly description: FieldRef<"ApiKey", 'String'>
     readonly createdAt: FieldRef<"ApiKey", 'DateTime'>
     readonly lastRequest: FieldRef<"ApiKey", 'DateTime'>
@@ -8607,6 +8963,30 @@ export namespace Prisma {
   }
 
   /**
+   * ApiKey.apiKeyPermissions
+   */
+  export type ApiKey$apiKeyPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    where?: ApiKeyPermissionWhereInput
+    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
+    cursor?: ApiKeyPermissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
+  }
+
+  /**
    * ApiKey without action
    */
   export type ApiKeyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8622,6 +9002,3268 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ApiKeyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApiKeyPermission
+   */
+
+  export type AggregateApiKeyPermission = {
+    _count: ApiKeyPermissionCountAggregateOutputType | null
+    _min: ApiKeyPermissionMinAggregateOutputType | null
+    _max: ApiKeyPermissionMaxAggregateOutputType | null
+  }
+
+  export type ApiKeyPermissionMinAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    permission: string | null
+  }
+
+  export type ApiKeyPermissionMaxAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    permission: string | null
+  }
+
+  export type ApiKeyPermissionCountAggregateOutputType = {
+    id: number
+    apiKeyId: number
+    permission: number
+    _all: number
+  }
+
+
+  export type ApiKeyPermissionMinAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    permission?: true
+  }
+
+  export type ApiKeyPermissionMaxAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    permission?: true
+  }
+
+  export type ApiKeyPermissionCountAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    permission?: true
+    _all?: true
+  }
+
+  export type ApiKeyPermissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiKeyPermission to aggregate.
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyPermissions to fetch.
+     */
+    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApiKeyPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApiKeyPermissions
+    **/
+    _count?: true | ApiKeyPermissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApiKeyPermissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApiKeyPermissionMaxAggregateInputType
+  }
+
+  export type GetApiKeyPermissionAggregateType<T extends ApiKeyPermissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiKeyPermission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApiKeyPermission[P]>
+      : GetScalarType<T[P], AggregateApiKeyPermission[P]>
+  }
+
+
+
+
+  export type ApiKeyPermissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyPermissionWhereInput
+    orderBy?: ApiKeyPermissionOrderByWithAggregationInput | ApiKeyPermissionOrderByWithAggregationInput[]
+    by: ApiKeyPermissionScalarFieldEnum[] | ApiKeyPermissionScalarFieldEnum
+    having?: ApiKeyPermissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApiKeyPermissionCountAggregateInputType | true
+    _min?: ApiKeyPermissionMinAggregateInputType
+    _max?: ApiKeyPermissionMaxAggregateInputType
+  }
+
+  export type ApiKeyPermissionGroupByOutputType = {
+    id: string
+    apiKeyId: string
+    permission: string
+    _count: ApiKeyPermissionCountAggregateOutputType | null
+    _min: ApiKeyPermissionMinAggregateOutputType | null
+    _max: ApiKeyPermissionMaxAggregateOutputType | null
+  }
+
+  type GetApiKeyPermissionGroupByPayload<T extends ApiKeyPermissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApiKeyPermissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApiKeyPermissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApiKeyPermissionGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiKeyPermissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApiKeyPermissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    permission?: boolean
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyPermission"]>
+
+  export type ApiKeyPermissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    permission?: boolean
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyPermission"]>
+
+  export type ApiKeyPermissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    permission?: boolean
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyPermission"]>
+
+  export type ApiKeyPermissionSelectScalar = {
+    id?: boolean
+    apiKeyId?: boolean
+    permission?: boolean
+  }
+
+  export type ApiKeyPermissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "permission", ExtArgs["result"]["apiKeyPermission"]>
+  export type ApiKeyPermissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+  export type ApiKeyPermissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+  export type ApiKeyPermissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+
+  export type $ApiKeyPermissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApiKeyPermission"
+    objects: {
+      apiKey: Prisma.$ApiKeyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      apiKeyId: string
+      permission: string
+    }, ExtArgs["result"]["apiKeyPermission"]>
+    composites: {}
+  }
+
+  type ApiKeyPermissionGetPayload<S extends boolean | null | undefined | ApiKeyPermissionDefaultArgs> = $Result.GetResult<Prisma.$ApiKeyPermissionPayload, S>
+
+  type ApiKeyPermissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApiKeyPermissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiKeyPermissionCountAggregateInputType | true
+    }
+
+  export interface ApiKeyPermissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiKeyPermission'], meta: { name: 'ApiKeyPermission' } }
+    /**
+     * Find zero or one ApiKeyPermission that matches the filter.
+     * @param {ApiKeyPermissionFindUniqueArgs} args - Arguments to find a ApiKeyPermission
+     * @example
+     * // Get one ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApiKeyPermissionFindUniqueArgs>(args: SelectSubset<T, ApiKeyPermissionFindUniqueArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApiKeyPermission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApiKeyPermissionFindUniqueOrThrowArgs} args - Arguments to find a ApiKeyPermission
+     * @example
+     * // Get one ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApiKeyPermissionFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiKeyPermission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionFindFirstArgs} args - Arguments to find a ApiKeyPermission
+     * @example
+     * // Get one ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApiKeyPermissionFindFirstArgs>(args?: SelectSubset<T, ApiKeyPermissionFindFirstArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiKeyPermission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionFindFirstOrThrowArgs} args - Arguments to find a ApiKeyPermission
+     * @example
+     * // Get one ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApiKeyPermissionFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApiKeyPermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApiKeyPermissions
+     * const apiKeyPermissions = await prisma.apiKeyPermission.findMany()
+     * 
+     * // Get first 10 ApiKeyPermissions
+     * const apiKeyPermissions = await prisma.apiKeyPermission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApiKeyPermissionFindManyArgs>(args?: SelectSubset<T, ApiKeyPermissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApiKeyPermission.
+     * @param {ApiKeyPermissionCreateArgs} args - Arguments to create a ApiKeyPermission.
+     * @example
+     * // Create one ApiKeyPermission
+     * const ApiKeyPermission = await prisma.apiKeyPermission.create({
+     *   data: {
+     *     // ... data to create a ApiKeyPermission
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApiKeyPermissionCreateArgs>(args: SelectSubset<T, ApiKeyPermissionCreateArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApiKeyPermissions.
+     * @param {ApiKeyPermissionCreateManyArgs} args - Arguments to create many ApiKeyPermissions.
+     * @example
+     * // Create many ApiKeyPermissions
+     * const apiKeyPermission = await prisma.apiKeyPermission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApiKeyPermissionCreateManyArgs>(args?: SelectSubset<T, ApiKeyPermissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApiKeyPermissions and returns the data saved in the database.
+     * @param {ApiKeyPermissionCreateManyAndReturnArgs} args - Arguments to create many ApiKeyPermissions.
+     * @example
+     * // Create many ApiKeyPermissions
+     * const apiKeyPermission = await prisma.apiKeyPermission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApiKeyPermissions and only return the `id`
+     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApiKeyPermissionCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApiKeyPermission.
+     * @param {ApiKeyPermissionDeleteArgs} args - Arguments to delete one ApiKeyPermission.
+     * @example
+     * // Delete one ApiKeyPermission
+     * const ApiKeyPermission = await prisma.apiKeyPermission.delete({
+     *   where: {
+     *     // ... filter to delete one ApiKeyPermission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApiKeyPermissionDeleteArgs>(args: SelectSubset<T, ApiKeyPermissionDeleteArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApiKeyPermission.
+     * @param {ApiKeyPermissionUpdateArgs} args - Arguments to update one ApiKeyPermission.
+     * @example
+     * // Update one ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApiKeyPermissionUpdateArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApiKeyPermissions.
+     * @param {ApiKeyPermissionDeleteManyArgs} args - Arguments to filter ApiKeyPermissions to delete.
+     * @example
+     * // Delete a few ApiKeyPermissions
+     * const { count } = await prisma.apiKeyPermission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApiKeyPermissionDeleteManyArgs>(args?: SelectSubset<T, ApiKeyPermissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiKeyPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApiKeyPermissions
+     * const apiKeyPermission = await prisma.apiKeyPermission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApiKeyPermissionUpdateManyArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiKeyPermissions and returns the data updated in the database.
+     * @param {ApiKeyPermissionUpdateManyAndReturnArgs} args - Arguments to update many ApiKeyPermissions.
+     * @example
+     * // Update many ApiKeyPermissions
+     * const apiKeyPermission = await prisma.apiKeyPermission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApiKeyPermissions and only return the `id`
+     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApiKeyPermissionUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApiKeyPermission.
+     * @param {ApiKeyPermissionUpsertArgs} args - Arguments to update or create a ApiKeyPermission.
+     * @example
+     * // Update or create a ApiKeyPermission
+     * const apiKeyPermission = await prisma.apiKeyPermission.upsert({
+     *   create: {
+     *     // ... data to create a ApiKeyPermission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApiKeyPermission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApiKeyPermissionUpsertArgs>(args: SelectSubset<T, ApiKeyPermissionUpsertArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApiKeyPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionCountArgs} args - Arguments to filter ApiKeyPermissions to count.
+     * @example
+     * // Count the number of ApiKeyPermissions
+     * const count = await prisma.apiKeyPermission.count({
+     *   where: {
+     *     // ... the filter for the ApiKeyPermissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApiKeyPermissionCountArgs>(
+      args?: Subset<T, ApiKeyPermissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApiKeyPermissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApiKeyPermission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApiKeyPermissionAggregateArgs>(args: Subset<T, ApiKeyPermissionAggregateArgs>): Prisma.PrismaPromise<GetApiKeyPermissionAggregateType<T>>
+
+    /**
+     * Group by ApiKeyPermission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyPermissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApiKeyPermissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApiKeyPermissionGroupByArgs['orderBy'] }
+        : { orderBy?: ApiKeyPermissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApiKeyPermissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiKeyPermissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApiKeyPermission model
+   */
+  readonly fields: ApiKeyPermissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApiKeyPermission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApiKeyPermissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    apiKey<T extends ApiKeyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ApiKeyDefaultArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApiKeyPermission model
+   */
+  interface ApiKeyPermissionFieldRefs {
+    readonly id: FieldRef<"ApiKeyPermission", 'String'>
+    readonly apiKeyId: FieldRef<"ApiKeyPermission", 'String'>
+    readonly permission: FieldRef<"ApiKeyPermission", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApiKeyPermission findUnique
+   */
+  export type ApiKeyPermissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyPermission to fetch.
+     */
+    where: ApiKeyPermissionWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyPermission findUniqueOrThrow
+   */
+  export type ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyPermission to fetch.
+     */
+    where: ApiKeyPermissionWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyPermission findFirst
+   */
+  export type ApiKeyPermissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyPermission to fetch.
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyPermissions to fetch.
+     */
+    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiKeyPermissions.
+     */
+    cursor?: ApiKeyPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiKeyPermissions.
+     */
+    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyPermission findFirstOrThrow
+   */
+  export type ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyPermission to fetch.
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyPermissions to fetch.
+     */
+    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiKeyPermissions.
+     */
+    cursor?: ApiKeyPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiKeyPermissions.
+     */
+    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyPermission findMany
+   */
+  export type ApiKeyPermissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyPermissions to fetch.
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyPermissions to fetch.
+     */
+    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApiKeyPermissions.
+     */
+    cursor?: ApiKeyPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyPermissions.
+     */
+    skip?: number
+    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyPermission create
+   */
+  export type ApiKeyPermissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApiKeyPermission.
+     */
+    data: XOR<ApiKeyPermissionCreateInput, ApiKeyPermissionUncheckedCreateInput>
+  }
+
+  /**
+   * ApiKeyPermission createMany
+   */
+  export type ApiKeyPermissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApiKeyPermissions.
+     */
+    data: ApiKeyPermissionCreateManyInput | ApiKeyPermissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApiKeyPermission createManyAndReturn
+   */
+  export type ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApiKeyPermissions.
+     */
+    data: ApiKeyPermissionCreateManyInput | ApiKeyPermissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiKeyPermission update
+   */
+  export type ApiKeyPermissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApiKeyPermission.
+     */
+    data: XOR<ApiKeyPermissionUpdateInput, ApiKeyPermissionUncheckedUpdateInput>
+    /**
+     * Choose, which ApiKeyPermission to update.
+     */
+    where: ApiKeyPermissionWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyPermission updateMany
+   */
+  export type ApiKeyPermissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApiKeyPermissions.
+     */
+    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiKeyPermissions to update
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * Limit how many ApiKeyPermissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiKeyPermission updateManyAndReturn
+   */
+  export type ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * The data used to update ApiKeyPermissions.
+     */
+    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiKeyPermissions to update
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * Limit how many ApiKeyPermissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiKeyPermission upsert
+   */
+  export type ApiKeyPermissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApiKeyPermission to update in case it exists.
+     */
+    where: ApiKeyPermissionWhereUniqueInput
+    /**
+     * In case the ApiKeyPermission found by the `where` argument doesn't exist, create a new ApiKeyPermission with this data.
+     */
+    create: XOR<ApiKeyPermissionCreateInput, ApiKeyPermissionUncheckedCreateInput>
+    /**
+     * In case the ApiKeyPermission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApiKeyPermissionUpdateInput, ApiKeyPermissionUncheckedUpdateInput>
+  }
+
+  /**
+   * ApiKeyPermission delete
+   */
+  export type ApiKeyPermissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+    /**
+     * Filter which ApiKeyPermission to delete.
+     */
+    where: ApiKeyPermissionWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyPermission deleteMany
+   */
+  export type ApiKeyPermissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiKeyPermissions to delete
+     */
+    where?: ApiKeyPermissionWhereInput
+    /**
+     * Limit how many ApiKeyPermissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiKeyPermission without action
+   */
+  export type ApiKeyPermissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyPermission
+     */
+    select?: ApiKeyPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyPermission
+     */
+    omit?: ApiKeyPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyPermissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApiCreditsPurchase
+   */
+
+  export type AggregateApiCreditsPurchase = {
+    _count: ApiCreditsPurchaseCountAggregateOutputType | null
+    _avg: ApiCreditsPurchaseAvgAggregateOutputType | null
+    _sum: ApiCreditsPurchaseSumAggregateOutputType | null
+    _min: ApiCreditsPurchaseMinAggregateOutputType | null
+    _max: ApiCreditsPurchaseMaxAggregateOutputType | null
+  }
+
+  export type ApiCreditsPurchaseAvgAggregateOutputType = {
+    credits: number | null
+    userId: number | null
+  }
+
+  export type ApiCreditsPurchaseSumAggregateOutputType = {
+    credits: number | null
+    userId: number | null
+  }
+
+  export type ApiCreditsPurchaseMinAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    credits: number | null
+    purchaseDate: Date | null
+    userId: number | null
+  }
+
+  export type ApiCreditsPurchaseMaxAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    credits: number | null
+    purchaseDate: Date | null
+    userId: number | null
+  }
+
+  export type ApiCreditsPurchaseCountAggregateOutputType = {
+    id: number
+    apiKeyId: number
+    credits: number
+    purchaseDate: number
+    userId: number
+    _all: number
+  }
+
+
+  export type ApiCreditsPurchaseAvgAggregateInputType = {
+    credits?: true
+    userId?: true
+  }
+
+  export type ApiCreditsPurchaseSumAggregateInputType = {
+    credits?: true
+    userId?: true
+  }
+
+  export type ApiCreditsPurchaseMinAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    purchaseDate?: true
+    userId?: true
+  }
+
+  export type ApiCreditsPurchaseMaxAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    purchaseDate?: true
+    userId?: true
+  }
+
+  export type ApiCreditsPurchaseCountAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    purchaseDate?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type ApiCreditsPurchaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiCreditsPurchase to aggregate.
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsPurchases to fetch.
+     */
+    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsPurchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsPurchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApiCreditsPurchases
+    **/
+    _count?: true | ApiCreditsPurchaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApiCreditsPurchaseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApiCreditsPurchaseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApiCreditsPurchaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApiCreditsPurchaseMaxAggregateInputType
+  }
+
+  export type GetApiCreditsPurchaseAggregateType<T extends ApiCreditsPurchaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiCreditsPurchase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApiCreditsPurchase[P]>
+      : GetScalarType<T[P], AggregateApiCreditsPurchase[P]>
+  }
+
+
+
+
+  export type ApiCreditsPurchaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiCreditsPurchaseWhereInput
+    orderBy?: ApiCreditsPurchaseOrderByWithAggregationInput | ApiCreditsPurchaseOrderByWithAggregationInput[]
+    by: ApiCreditsPurchaseScalarFieldEnum[] | ApiCreditsPurchaseScalarFieldEnum
+    having?: ApiCreditsPurchaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApiCreditsPurchaseCountAggregateInputType | true
+    _avg?: ApiCreditsPurchaseAvgAggregateInputType
+    _sum?: ApiCreditsPurchaseSumAggregateInputType
+    _min?: ApiCreditsPurchaseMinAggregateInputType
+    _max?: ApiCreditsPurchaseMaxAggregateInputType
+  }
+
+  export type ApiCreditsPurchaseGroupByOutputType = {
+    id: string
+    apiKeyId: string
+    credits: number
+    purchaseDate: Date
+    userId: number | null
+    _count: ApiCreditsPurchaseCountAggregateOutputType | null
+    _avg: ApiCreditsPurchaseAvgAggregateOutputType | null
+    _sum: ApiCreditsPurchaseSumAggregateOutputType | null
+    _min: ApiCreditsPurchaseMinAggregateOutputType | null
+    _max: ApiCreditsPurchaseMaxAggregateOutputType | null
+  }
+
+  type GetApiCreditsPurchaseGroupByPayload<T extends ApiCreditsPurchaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApiCreditsPurchaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApiCreditsPurchaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApiCreditsPurchaseGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiCreditsPurchaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApiCreditsPurchaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsPurchase"]>
+
+  export type ApiCreditsPurchaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsPurchase"]>
+
+  export type ApiCreditsPurchaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsPurchase"]>
+
+  export type ApiCreditsPurchaseSelectScalar = {
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    userId?: boolean
+  }
+
+  export type ApiCreditsPurchaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "credits" | "purchaseDate" | "userId", ExtArgs["result"]["apiCreditsPurchase"]>
+  export type ApiCreditsPurchaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }
+  export type ApiCreditsPurchaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }
+  export type ApiCreditsPurchaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
+  }
+
+  export type $ApiCreditsPurchasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApiCreditsPurchase"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      apiKeyId: string
+      credits: number
+      purchaseDate: Date
+      userId: number | null
+    }, ExtArgs["result"]["apiCreditsPurchase"]>
+    composites: {}
+  }
+
+  type ApiCreditsPurchaseGetPayload<S extends boolean | null | undefined | ApiCreditsPurchaseDefaultArgs> = $Result.GetResult<Prisma.$ApiCreditsPurchasePayload, S>
+
+  type ApiCreditsPurchaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApiCreditsPurchaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiCreditsPurchaseCountAggregateInputType | true
+    }
+
+  export interface ApiCreditsPurchaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiCreditsPurchase'], meta: { name: 'ApiCreditsPurchase' } }
+    /**
+     * Find zero or one ApiCreditsPurchase that matches the filter.
+     * @param {ApiCreditsPurchaseFindUniqueArgs} args - Arguments to find a ApiCreditsPurchase
+     * @example
+     * // Get one ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApiCreditsPurchaseFindUniqueArgs>(args: SelectSubset<T, ApiCreditsPurchaseFindUniqueArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApiCreditsPurchase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApiCreditsPurchaseFindUniqueOrThrowArgs} args - Arguments to find a ApiCreditsPurchase
+     * @example
+     * // Get one ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApiCreditsPurchaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiCreditsPurchase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseFindFirstArgs} args - Arguments to find a ApiCreditsPurchase
+     * @example
+     * // Get one ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApiCreditsPurchaseFindFirstArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindFirstArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiCreditsPurchase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseFindFirstOrThrowArgs} args - Arguments to find a ApiCreditsPurchase
+     * @example
+     * // Get one ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApiCreditsPurchaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApiCreditsPurchases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApiCreditsPurchases
+     * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany()
+     * 
+     * // Get first 10 ApiCreditsPurchases
+     * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApiCreditsPurchaseFindManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApiCreditsPurchase.
+     * @param {ApiCreditsPurchaseCreateArgs} args - Arguments to create a ApiCreditsPurchase.
+     * @example
+     * // Create one ApiCreditsPurchase
+     * const ApiCreditsPurchase = await prisma.apiCreditsPurchase.create({
+     *   data: {
+     *     // ... data to create a ApiCreditsPurchase
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApiCreditsPurchaseCreateArgs>(args: SelectSubset<T, ApiCreditsPurchaseCreateArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApiCreditsPurchases.
+     * @param {ApiCreditsPurchaseCreateManyArgs} args - Arguments to create many ApiCreditsPurchases.
+     * @example
+     * // Create many ApiCreditsPurchases
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApiCreditsPurchaseCreateManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApiCreditsPurchases and returns the data saved in the database.
+     * @param {ApiCreditsPurchaseCreateManyAndReturnArgs} args - Arguments to create many ApiCreditsPurchases.
+     * @example
+     * // Create many ApiCreditsPurchases
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApiCreditsPurchases and only return the `id`
+     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApiCreditsPurchaseCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApiCreditsPurchase.
+     * @param {ApiCreditsPurchaseDeleteArgs} args - Arguments to delete one ApiCreditsPurchase.
+     * @example
+     * // Delete one ApiCreditsPurchase
+     * const ApiCreditsPurchase = await prisma.apiCreditsPurchase.delete({
+     *   where: {
+     *     // ... filter to delete one ApiCreditsPurchase
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApiCreditsPurchaseDeleteArgs>(args: SelectSubset<T, ApiCreditsPurchaseDeleteArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApiCreditsPurchase.
+     * @param {ApiCreditsPurchaseUpdateArgs} args - Arguments to update one ApiCreditsPurchase.
+     * @example
+     * // Update one ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApiCreditsPurchaseUpdateArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApiCreditsPurchases.
+     * @param {ApiCreditsPurchaseDeleteManyArgs} args - Arguments to filter ApiCreditsPurchases to delete.
+     * @example
+     * // Delete a few ApiCreditsPurchases
+     * const { count } = await prisma.apiCreditsPurchase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApiCreditsPurchaseDeleteManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiCreditsPurchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApiCreditsPurchases
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApiCreditsPurchaseUpdateManyArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiCreditsPurchases and returns the data updated in the database.
+     * @param {ApiCreditsPurchaseUpdateManyAndReturnArgs} args - Arguments to update many ApiCreditsPurchases.
+     * @example
+     * // Update many ApiCreditsPurchases
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApiCreditsPurchases and only return the `id`
+     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApiCreditsPurchaseUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApiCreditsPurchase.
+     * @param {ApiCreditsPurchaseUpsertArgs} args - Arguments to update or create a ApiCreditsPurchase.
+     * @example
+     * // Update or create a ApiCreditsPurchase
+     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.upsert({
+     *   create: {
+     *     // ... data to create a ApiCreditsPurchase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApiCreditsPurchase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApiCreditsPurchaseUpsertArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpsertArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApiCreditsPurchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseCountArgs} args - Arguments to filter ApiCreditsPurchases to count.
+     * @example
+     * // Count the number of ApiCreditsPurchases
+     * const count = await prisma.apiCreditsPurchase.count({
+     *   where: {
+     *     // ... the filter for the ApiCreditsPurchases we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApiCreditsPurchaseCountArgs>(
+      args?: Subset<T, ApiCreditsPurchaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApiCreditsPurchaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApiCreditsPurchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApiCreditsPurchaseAggregateArgs>(args: Subset<T, ApiCreditsPurchaseAggregateArgs>): Prisma.PrismaPromise<GetApiCreditsPurchaseAggregateType<T>>
+
+    /**
+     * Group by ApiCreditsPurchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsPurchaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApiCreditsPurchaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApiCreditsPurchaseGroupByArgs['orderBy'] }
+        : { orderBy?: ApiCreditsPurchaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApiCreditsPurchaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiCreditsPurchaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApiCreditsPurchase model
+   */
+  readonly fields: ApiCreditsPurchaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApiCreditsPurchase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApiCreditsPurchaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends ApiCreditsPurchase$userArgs<ExtArgs> = {}>(args?: Subset<T, ApiCreditsPurchase$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApiCreditsPurchase model
+   */
+  interface ApiCreditsPurchaseFieldRefs {
+    readonly id: FieldRef<"ApiCreditsPurchase", 'String'>
+    readonly apiKeyId: FieldRef<"ApiCreditsPurchase", 'String'>
+    readonly credits: FieldRef<"ApiCreditsPurchase", 'Int'>
+    readonly purchaseDate: FieldRef<"ApiCreditsPurchase", 'DateTime'>
+    readonly userId: FieldRef<"ApiCreditsPurchase", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApiCreditsPurchase findUnique
+   */
+  export type ApiCreditsPurchaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsPurchase to fetch.
+     */
+    where: ApiCreditsPurchaseWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsPurchase findUniqueOrThrow
+   */
+  export type ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsPurchase to fetch.
+     */
+    where: ApiCreditsPurchaseWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsPurchase findFirst
+   */
+  export type ApiCreditsPurchaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsPurchase to fetch.
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsPurchases to fetch.
+     */
+    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiCreditsPurchases.
+     */
+    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsPurchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsPurchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiCreditsPurchases.
+     */
+    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsPurchase findFirstOrThrow
+   */
+  export type ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsPurchase to fetch.
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsPurchases to fetch.
+     */
+    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiCreditsPurchases.
+     */
+    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsPurchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsPurchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiCreditsPurchases.
+     */
+    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsPurchase findMany
+   */
+  export type ApiCreditsPurchaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsPurchases to fetch.
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsPurchases to fetch.
+     */
+    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApiCreditsPurchases.
+     */
+    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsPurchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsPurchases.
+     */
+    skip?: number
+    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsPurchase create
+   */
+  export type ApiCreditsPurchaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApiCreditsPurchase.
+     */
+    data: XOR<ApiCreditsPurchaseCreateInput, ApiCreditsPurchaseUncheckedCreateInput>
+  }
+
+  /**
+   * ApiCreditsPurchase createMany
+   */
+  export type ApiCreditsPurchaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApiCreditsPurchases.
+     */
+    data: ApiCreditsPurchaseCreateManyInput | ApiCreditsPurchaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApiCreditsPurchase createManyAndReturn
+   */
+  export type ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApiCreditsPurchases.
+     */
+    data: ApiCreditsPurchaseCreateManyInput | ApiCreditsPurchaseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiCreditsPurchase update
+   */
+  export type ApiCreditsPurchaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApiCreditsPurchase.
+     */
+    data: XOR<ApiCreditsPurchaseUpdateInput, ApiCreditsPurchaseUncheckedUpdateInput>
+    /**
+     * Choose, which ApiCreditsPurchase to update.
+     */
+    where: ApiCreditsPurchaseWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsPurchase updateMany
+   */
+  export type ApiCreditsPurchaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApiCreditsPurchases.
+     */
+    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiCreditsPurchases to update
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * Limit how many ApiCreditsPurchases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiCreditsPurchase updateManyAndReturn
+   */
+  export type ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * The data used to update ApiCreditsPurchases.
+     */
+    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiCreditsPurchases to update
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * Limit how many ApiCreditsPurchases to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiCreditsPurchase upsert
+   */
+  export type ApiCreditsPurchaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApiCreditsPurchase to update in case it exists.
+     */
+    where: ApiCreditsPurchaseWhereUniqueInput
+    /**
+     * In case the ApiCreditsPurchase found by the `where` argument doesn't exist, create a new ApiCreditsPurchase with this data.
+     */
+    create: XOR<ApiCreditsPurchaseCreateInput, ApiCreditsPurchaseUncheckedCreateInput>
+    /**
+     * In case the ApiCreditsPurchase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApiCreditsPurchaseUpdateInput, ApiCreditsPurchaseUncheckedUpdateInput>
+  }
+
+  /**
+   * ApiCreditsPurchase delete
+   */
+  export type ApiCreditsPurchaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+    /**
+     * Filter which ApiCreditsPurchase to delete.
+     */
+    where: ApiCreditsPurchaseWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsPurchase deleteMany
+   */
+  export type ApiCreditsPurchaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiCreditsPurchases to delete
+     */
+    where?: ApiCreditsPurchaseWhereInput
+    /**
+     * Limit how many ApiCreditsPurchases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiCreditsPurchase.user
+   */
+  export type ApiCreditsPurchase$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * ApiCreditsPurchase without action
+   */
+  export type ApiCreditsPurchaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsPurchase
+     */
+    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsPurchase
+     */
+    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApiCreditsUsage
+   */
+
+  export type AggregateApiCreditsUsage = {
+    _count: ApiCreditsUsageCountAggregateOutputType | null
+    _avg: ApiCreditsUsageAvgAggregateOutputType | null
+    _sum: ApiCreditsUsageSumAggregateOutputType | null
+    _min: ApiCreditsUsageMinAggregateOutputType | null
+    _max: ApiCreditsUsageMaxAggregateOutputType | null
+  }
+
+  export type ApiCreditsUsageAvgAggregateOutputType = {
+    credits: number | null
+    userId: number | null
+  }
+
+  export type ApiCreditsUsageSumAggregateOutputType = {
+    credits: number | null
+    userId: number | null
+  }
+
+  export type ApiCreditsUsageMinAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    credits: number | null
+    usageDate: Date | null
+    userId: number | null
+  }
+
+  export type ApiCreditsUsageMaxAggregateOutputType = {
+    id: string | null
+    apiKeyId: string | null
+    credits: number | null
+    usageDate: Date | null
+    userId: number | null
+  }
+
+  export type ApiCreditsUsageCountAggregateOutputType = {
+    id: number
+    apiKeyId: number
+    credits: number
+    usageDate: number
+    userId: number
+    _all: number
+  }
+
+
+  export type ApiCreditsUsageAvgAggregateInputType = {
+    credits?: true
+    userId?: true
+  }
+
+  export type ApiCreditsUsageSumAggregateInputType = {
+    credits?: true
+    userId?: true
+  }
+
+  export type ApiCreditsUsageMinAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    usageDate?: true
+    userId?: true
+  }
+
+  export type ApiCreditsUsageMaxAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    usageDate?: true
+    userId?: true
+  }
+
+  export type ApiCreditsUsageCountAggregateInputType = {
+    id?: true
+    apiKeyId?: true
+    credits?: true
+    usageDate?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type ApiCreditsUsageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiCreditsUsage to aggregate.
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsUsages to fetch.
+     */
+    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApiCreditsUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApiCreditsUsages
+    **/
+    _count?: true | ApiCreditsUsageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApiCreditsUsageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApiCreditsUsageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApiCreditsUsageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApiCreditsUsageMaxAggregateInputType
+  }
+
+  export type GetApiCreditsUsageAggregateType<T extends ApiCreditsUsageAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiCreditsUsage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApiCreditsUsage[P]>
+      : GetScalarType<T[P], AggregateApiCreditsUsage[P]>
+  }
+
+
+
+
+  export type ApiCreditsUsageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiCreditsUsageWhereInput
+    orderBy?: ApiCreditsUsageOrderByWithAggregationInput | ApiCreditsUsageOrderByWithAggregationInput[]
+    by: ApiCreditsUsageScalarFieldEnum[] | ApiCreditsUsageScalarFieldEnum
+    having?: ApiCreditsUsageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApiCreditsUsageCountAggregateInputType | true
+    _avg?: ApiCreditsUsageAvgAggregateInputType
+    _sum?: ApiCreditsUsageSumAggregateInputType
+    _min?: ApiCreditsUsageMinAggregateInputType
+    _max?: ApiCreditsUsageMaxAggregateInputType
+  }
+
+  export type ApiCreditsUsageGroupByOutputType = {
+    id: string
+    apiKeyId: string
+    credits: number
+    usageDate: Date
+    userId: number | null
+    _count: ApiCreditsUsageCountAggregateOutputType | null
+    _avg: ApiCreditsUsageAvgAggregateOutputType | null
+    _sum: ApiCreditsUsageSumAggregateOutputType | null
+    _min: ApiCreditsUsageMinAggregateOutputType | null
+    _max: ApiCreditsUsageMaxAggregateOutputType | null
+  }
+
+  type GetApiCreditsUsageGroupByPayload<T extends ApiCreditsUsageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApiCreditsUsageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApiCreditsUsageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApiCreditsUsageGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiCreditsUsageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApiCreditsUsageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsUsage"]>
+
+  export type ApiCreditsUsageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsUsage"]>
+
+  export type ApiCreditsUsageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    userId?: boolean
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["apiCreditsUsage"]>
+
+  export type ApiCreditsUsageSelectScalar = {
+    id?: boolean
+    apiKeyId?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    userId?: boolean
+  }
+
+  export type ApiCreditsUsageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "credits" | "usageDate" | "userId", ExtArgs["result"]["apiCreditsUsage"]>
+  export type ApiCreditsUsageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }
+  export type ApiCreditsUsageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }
+  export type ApiCreditsUsageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
+  }
+
+  export type $ApiCreditsUsagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApiCreditsUsage"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      apiKeyId: string
+      credits: number
+      usageDate: Date
+      userId: number | null
+    }, ExtArgs["result"]["apiCreditsUsage"]>
+    composites: {}
+  }
+
+  type ApiCreditsUsageGetPayload<S extends boolean | null | undefined | ApiCreditsUsageDefaultArgs> = $Result.GetResult<Prisma.$ApiCreditsUsagePayload, S>
+
+  type ApiCreditsUsageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApiCreditsUsageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiCreditsUsageCountAggregateInputType | true
+    }
+
+  export interface ApiCreditsUsageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiCreditsUsage'], meta: { name: 'ApiCreditsUsage' } }
+    /**
+     * Find zero or one ApiCreditsUsage that matches the filter.
+     * @param {ApiCreditsUsageFindUniqueArgs} args - Arguments to find a ApiCreditsUsage
+     * @example
+     * // Get one ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApiCreditsUsageFindUniqueArgs>(args: SelectSubset<T, ApiCreditsUsageFindUniqueArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApiCreditsUsage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApiCreditsUsageFindUniqueOrThrowArgs} args - Arguments to find a ApiCreditsUsage
+     * @example
+     * // Get one ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApiCreditsUsageFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiCreditsUsage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageFindFirstArgs} args - Arguments to find a ApiCreditsUsage
+     * @example
+     * // Get one ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApiCreditsUsageFindFirstArgs>(args?: SelectSubset<T, ApiCreditsUsageFindFirstArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiCreditsUsage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageFindFirstOrThrowArgs} args - Arguments to find a ApiCreditsUsage
+     * @example
+     * // Get one ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApiCreditsUsageFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApiCreditsUsages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApiCreditsUsages
+     * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany()
+     * 
+     * // Get first 10 ApiCreditsUsages
+     * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApiCreditsUsageFindManyArgs>(args?: SelectSubset<T, ApiCreditsUsageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApiCreditsUsage.
+     * @param {ApiCreditsUsageCreateArgs} args - Arguments to create a ApiCreditsUsage.
+     * @example
+     * // Create one ApiCreditsUsage
+     * const ApiCreditsUsage = await prisma.apiCreditsUsage.create({
+     *   data: {
+     *     // ... data to create a ApiCreditsUsage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApiCreditsUsageCreateArgs>(args: SelectSubset<T, ApiCreditsUsageCreateArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApiCreditsUsages.
+     * @param {ApiCreditsUsageCreateManyArgs} args - Arguments to create many ApiCreditsUsages.
+     * @example
+     * // Create many ApiCreditsUsages
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApiCreditsUsageCreateManyArgs>(args?: SelectSubset<T, ApiCreditsUsageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApiCreditsUsages and returns the data saved in the database.
+     * @param {ApiCreditsUsageCreateManyAndReturnArgs} args - Arguments to create many ApiCreditsUsages.
+     * @example
+     * // Create many ApiCreditsUsages
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApiCreditsUsages and only return the `id`
+     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApiCreditsUsageCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApiCreditsUsage.
+     * @param {ApiCreditsUsageDeleteArgs} args - Arguments to delete one ApiCreditsUsage.
+     * @example
+     * // Delete one ApiCreditsUsage
+     * const ApiCreditsUsage = await prisma.apiCreditsUsage.delete({
+     *   where: {
+     *     // ... filter to delete one ApiCreditsUsage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApiCreditsUsageDeleteArgs>(args: SelectSubset<T, ApiCreditsUsageDeleteArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApiCreditsUsage.
+     * @param {ApiCreditsUsageUpdateArgs} args - Arguments to update one ApiCreditsUsage.
+     * @example
+     * // Update one ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApiCreditsUsageUpdateArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApiCreditsUsages.
+     * @param {ApiCreditsUsageDeleteManyArgs} args - Arguments to filter ApiCreditsUsages to delete.
+     * @example
+     * // Delete a few ApiCreditsUsages
+     * const { count } = await prisma.apiCreditsUsage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApiCreditsUsageDeleteManyArgs>(args?: SelectSubset<T, ApiCreditsUsageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiCreditsUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApiCreditsUsages
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApiCreditsUsageUpdateManyArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiCreditsUsages and returns the data updated in the database.
+     * @param {ApiCreditsUsageUpdateManyAndReturnArgs} args - Arguments to update many ApiCreditsUsages.
+     * @example
+     * // Update many ApiCreditsUsages
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApiCreditsUsages and only return the `id`
+     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApiCreditsUsageUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApiCreditsUsage.
+     * @param {ApiCreditsUsageUpsertArgs} args - Arguments to update or create a ApiCreditsUsage.
+     * @example
+     * // Update or create a ApiCreditsUsage
+     * const apiCreditsUsage = await prisma.apiCreditsUsage.upsert({
+     *   create: {
+     *     // ... data to create a ApiCreditsUsage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApiCreditsUsage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApiCreditsUsageUpsertArgs>(args: SelectSubset<T, ApiCreditsUsageUpsertArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApiCreditsUsages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageCountArgs} args - Arguments to filter ApiCreditsUsages to count.
+     * @example
+     * // Count the number of ApiCreditsUsages
+     * const count = await prisma.apiCreditsUsage.count({
+     *   where: {
+     *     // ... the filter for the ApiCreditsUsages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApiCreditsUsageCountArgs>(
+      args?: Subset<T, ApiCreditsUsageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApiCreditsUsageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApiCreditsUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApiCreditsUsageAggregateArgs>(args: Subset<T, ApiCreditsUsageAggregateArgs>): Prisma.PrismaPromise<GetApiCreditsUsageAggregateType<T>>
+
+    /**
+     * Group by ApiCreditsUsage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiCreditsUsageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApiCreditsUsageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApiCreditsUsageGroupByArgs['orderBy'] }
+        : { orderBy?: ApiCreditsUsageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApiCreditsUsageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiCreditsUsageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApiCreditsUsage model
+   */
+  readonly fields: ApiCreditsUsageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApiCreditsUsage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApiCreditsUsageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends ApiCreditsUsage$userArgs<ExtArgs> = {}>(args?: Subset<T, ApiCreditsUsage$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApiCreditsUsage model
+   */
+  interface ApiCreditsUsageFieldRefs {
+    readonly id: FieldRef<"ApiCreditsUsage", 'String'>
+    readonly apiKeyId: FieldRef<"ApiCreditsUsage", 'String'>
+    readonly credits: FieldRef<"ApiCreditsUsage", 'Int'>
+    readonly usageDate: FieldRef<"ApiCreditsUsage", 'DateTime'>
+    readonly userId: FieldRef<"ApiCreditsUsage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApiCreditsUsage findUnique
+   */
+  export type ApiCreditsUsageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsUsage to fetch.
+     */
+    where: ApiCreditsUsageWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsUsage findUniqueOrThrow
+   */
+  export type ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsUsage to fetch.
+     */
+    where: ApiCreditsUsageWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsUsage findFirst
+   */
+  export type ApiCreditsUsageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsUsage to fetch.
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsUsages to fetch.
+     */
+    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiCreditsUsages.
+     */
+    cursor?: ApiCreditsUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiCreditsUsages.
+     */
+    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsUsage findFirstOrThrow
+   */
+  export type ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsUsage to fetch.
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsUsages to fetch.
+     */
+    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiCreditsUsages.
+     */
+    cursor?: ApiCreditsUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsUsages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiCreditsUsages.
+     */
+    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsUsage findMany
+   */
+  export type ApiCreditsUsageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiCreditsUsages to fetch.
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiCreditsUsages to fetch.
+     */
+    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApiCreditsUsages.
+     */
+    cursor?: ApiCreditsUsageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiCreditsUsages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiCreditsUsages.
+     */
+    skip?: number
+    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
+  }
+
+  /**
+   * ApiCreditsUsage create
+   */
+  export type ApiCreditsUsageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApiCreditsUsage.
+     */
+    data: XOR<ApiCreditsUsageCreateInput, ApiCreditsUsageUncheckedCreateInput>
+  }
+
+  /**
+   * ApiCreditsUsage createMany
+   */
+  export type ApiCreditsUsageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApiCreditsUsages.
+     */
+    data: ApiCreditsUsageCreateManyInput | ApiCreditsUsageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApiCreditsUsage createManyAndReturn
+   */
+  export type ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApiCreditsUsages.
+     */
+    data: ApiCreditsUsageCreateManyInput | ApiCreditsUsageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiCreditsUsage update
+   */
+  export type ApiCreditsUsageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApiCreditsUsage.
+     */
+    data: XOR<ApiCreditsUsageUpdateInput, ApiCreditsUsageUncheckedUpdateInput>
+    /**
+     * Choose, which ApiCreditsUsage to update.
+     */
+    where: ApiCreditsUsageWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsUsage updateMany
+   */
+  export type ApiCreditsUsageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApiCreditsUsages.
+     */
+    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiCreditsUsages to update
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * Limit how many ApiCreditsUsages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiCreditsUsage updateManyAndReturn
+   */
+  export type ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * The data used to update ApiCreditsUsages.
+     */
+    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiCreditsUsages to update
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * Limit how many ApiCreditsUsages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiCreditsUsage upsert
+   */
+  export type ApiCreditsUsageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApiCreditsUsage to update in case it exists.
+     */
+    where: ApiCreditsUsageWhereUniqueInput
+    /**
+     * In case the ApiCreditsUsage found by the `where` argument doesn't exist, create a new ApiCreditsUsage with this data.
+     */
+    create: XOR<ApiCreditsUsageCreateInput, ApiCreditsUsageUncheckedCreateInput>
+    /**
+     * In case the ApiCreditsUsage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApiCreditsUsageUpdateInput, ApiCreditsUsageUncheckedUpdateInput>
+  }
+
+  /**
+   * ApiCreditsUsage delete
+   */
+  export type ApiCreditsUsageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
+    /**
+     * Filter which ApiCreditsUsage to delete.
+     */
+    where: ApiCreditsUsageWhereUniqueInput
+  }
+
+  /**
+   * ApiCreditsUsage deleteMany
+   */
+  export type ApiCreditsUsageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiCreditsUsages to delete
+     */
+    where?: ApiCreditsUsageWhereInput
+    /**
+     * Limit how many ApiCreditsUsages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiCreditsUsage.user
+   */
+  export type ApiCreditsUsage$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * ApiCreditsUsage without action
+   */
+  export type ApiCreditsUsageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiCreditsUsage
+     */
+    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiCreditsUsage
+     */
+    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiCreditsUsageInclude<ExtArgs> | null
   }
 
 
@@ -12009,16 +15651,47 @@ export namespace Prisma {
   export const ApiKeyScalarFieldEnum: {
     id: 'id',
     key: 'key',
-    credits: 'credits',
     unlimited: 'unlimited',
     minInterval: 'minInterval',
     ownerId: 'ownerId',
+    name: 'name',
     description: 'description',
     createdAt: 'createdAt',
     lastRequest: 'lastRequest'
   };
 
   export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
+
+
+  export const ApiKeyPermissionScalarFieldEnum: {
+    id: 'id',
+    apiKeyId: 'apiKeyId',
+    permission: 'permission'
+  };
+
+  export type ApiKeyPermissionScalarFieldEnum = (typeof ApiKeyPermissionScalarFieldEnum)[keyof typeof ApiKeyPermissionScalarFieldEnum]
+
+
+  export const ApiCreditsPurchaseScalarFieldEnum: {
+    id: 'id',
+    apiKeyId: 'apiKeyId',
+    credits: 'credits',
+    purchaseDate: 'purchaseDate',
+    userId: 'userId'
+  };
+
+  export type ApiCreditsPurchaseScalarFieldEnum = (typeof ApiCreditsPurchaseScalarFieldEnum)[keyof typeof ApiCreditsPurchaseScalarFieldEnum]
+
+
+  export const ApiCreditsUsageScalarFieldEnum: {
+    id: 'id',
+    apiKeyId: 'apiKeyId',
+    credits: 'credits',
+    usageDate: 'usageDate',
+    userId: 'userId'
+  };
+
+  export type ApiCreditsUsageScalarFieldEnum = (typeof ApiCreditsUsageScalarFieldEnum)[keyof typeof ApiCreditsUsageScalarFieldEnum]
 
 
   export const ApiUsageLogScalarFieldEnum: {
@@ -12234,6 +15907,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyListRelationFilter
     calendarAccounts?: CalendarAccountListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
+    apiCreditsPurchases?: ApiCreditsPurchaseListRelationFilter
+    apiCreditsUsages?: ApiCreditsUsageListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12250,6 +15925,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyOrderByRelationAggregateInput
     calendarAccounts?: CalendarAccountOrderByRelationAggregateInput
     subscriptions?: SubscriptionOrderByRelationAggregateInput
+    apiCreditsPurchases?: ApiCreditsPurchaseOrderByRelationAggregateInput
+    apiCreditsUsages?: ApiCreditsUsageOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12269,6 +15946,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyListRelationFilter
     calendarAccounts?: CalendarAccountListRelationFilter
     subscriptions?: SubscriptionListRelationFilter
+    apiCreditsPurchases?: ApiCreditsPurchaseListRelationFilter
+    apiCreditsUsages?: ApiCreditsUsageListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -12558,29 +16237,31 @@ export namespace Prisma {
     NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
     id?: StringFilter<"ApiKey"> | string
     key?: StringFilter<"ApiKey"> | string
-    credits?: IntFilter<"ApiKey"> | number
     unlimited?: BoolFilter<"ApiKey"> | boolean
     minInterval?: IntFilter<"ApiKey"> | number
     ownerId?: IntNullableFilter<"ApiKey"> | number | null
+    name?: StringFilter<"ApiKey"> | string
     description?: StringNullableFilter<"ApiKey"> | string | null
     createdAt?: DateTimeFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
     owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     usageLogs?: ApiUsageLogListRelationFilter
+    apiKeyPermissions?: ApiKeyPermissionListRelationFilter
   }
 
   export type ApiKeyOrderByWithRelationInput = {
     id?: SortOrder
     key?: SortOrder
-    credits?: SortOrder
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrderInput | SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrderInput | SortOrder
     owner?: UserOrderByWithRelationInput
     usageLogs?: ApiUsageLogOrderByRelationAggregateInput
+    apiKeyPermissions?: ApiKeyPermissionOrderByRelationAggregateInput
   }
 
   export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
@@ -12589,24 +16270,25 @@ export namespace Prisma {
     AND?: ApiKeyWhereInput | ApiKeyWhereInput[]
     OR?: ApiKeyWhereInput[]
     NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
-    credits?: IntFilter<"ApiKey"> | number
     unlimited?: BoolFilter<"ApiKey"> | boolean
     minInterval?: IntFilter<"ApiKey"> | number
     ownerId?: IntNullableFilter<"ApiKey"> | number | null
+    name?: StringFilter<"ApiKey"> | string
     description?: StringNullableFilter<"ApiKey"> | string | null
     createdAt?: DateTimeFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
     owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     usageLogs?: ApiUsageLogListRelationFilter
+    apiKeyPermissions?: ApiKeyPermissionListRelationFilter
   }, "id" | "key">
 
   export type ApiKeyOrderByWithAggregationInput = {
     id?: SortOrder
     key?: SortOrder
-    credits?: SortOrder
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrderInput | SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrderInput | SortOrder
@@ -12623,13 +16305,172 @@ export namespace Prisma {
     NOT?: ApiKeyScalarWhereWithAggregatesInput | ApiKeyScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ApiKey"> | string
     key?: StringWithAggregatesFilter<"ApiKey"> | string
-    credits?: IntWithAggregatesFilter<"ApiKey"> | number
     unlimited?: BoolWithAggregatesFilter<"ApiKey"> | boolean
     minInterval?: IntWithAggregatesFilter<"ApiKey"> | number
     ownerId?: IntNullableWithAggregatesFilter<"ApiKey"> | number | null
+    name?: StringWithAggregatesFilter<"ApiKey"> | string
     description?: StringNullableWithAggregatesFilter<"ApiKey"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableWithAggregatesFilter<"ApiKey"> | Date | string | null
+  }
+
+  export type ApiKeyPermissionWhereInput = {
+    AND?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
+    OR?: ApiKeyPermissionWhereInput[]
+    NOT?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
+    id?: StringFilter<"ApiKeyPermission"> | string
+    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
+    permission?: StringFilter<"ApiKeyPermission"> | string
+    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+  }
+
+  export type ApiKeyPermissionOrderByWithRelationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    permission?: SortOrder
+    apiKey?: ApiKeyOrderByWithRelationInput
+  }
+
+  export type ApiKeyPermissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
+    OR?: ApiKeyPermissionWhereInput[]
+    NOT?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
+    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
+    permission?: StringFilter<"ApiKeyPermission"> | string
+    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+  }, "id">
+
+  export type ApiKeyPermissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    permission?: SortOrder
+    _count?: ApiKeyPermissionCountOrderByAggregateInput
+    _max?: ApiKeyPermissionMaxOrderByAggregateInput
+    _min?: ApiKeyPermissionMinOrderByAggregateInput
+  }
+
+  export type ApiKeyPermissionScalarWhereWithAggregatesInput = {
+    AND?: ApiKeyPermissionScalarWhereWithAggregatesInput | ApiKeyPermissionScalarWhereWithAggregatesInput[]
+    OR?: ApiKeyPermissionScalarWhereWithAggregatesInput[]
+    NOT?: ApiKeyPermissionScalarWhereWithAggregatesInput | ApiKeyPermissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
+    apiKeyId?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
+    permission?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
+  }
+
+  export type ApiCreditsPurchaseWhereInput = {
+    AND?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
+    OR?: ApiCreditsPurchaseWhereInput[]
+    NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
+    id?: StringFilter<"ApiCreditsPurchase"> | string
+    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
+    credits?: IntFilter<"ApiCreditsPurchase"> | number
+    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type ApiCreditsPurchaseOrderByWithRelationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ApiCreditsPurchaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
+    OR?: ApiCreditsPurchaseWhereInput[]
+    NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
+    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
+    credits?: IntFilter<"ApiCreditsPurchase"> | number
+    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type ApiCreditsPurchaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    _count?: ApiCreditsPurchaseCountOrderByAggregateInput
+    _avg?: ApiCreditsPurchaseAvgOrderByAggregateInput
+    _max?: ApiCreditsPurchaseMaxOrderByAggregateInput
+    _min?: ApiCreditsPurchaseMinOrderByAggregateInput
+    _sum?: ApiCreditsPurchaseSumOrderByAggregateInput
+  }
+
+  export type ApiCreditsPurchaseScalarWhereWithAggregatesInput = {
+    AND?: ApiCreditsPurchaseScalarWhereWithAggregatesInput | ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
+    OR?: ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
+    NOT?: ApiCreditsPurchaseScalarWhereWithAggregatesInput | ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ApiCreditsPurchase"> | string
+    apiKeyId?: StringWithAggregatesFilter<"ApiCreditsPurchase"> | string
+    credits?: IntWithAggregatesFilter<"ApiCreditsPurchase"> | number
+    purchaseDate?: DateTimeWithAggregatesFilter<"ApiCreditsPurchase"> | Date | string
+    userId?: IntNullableWithAggregatesFilter<"ApiCreditsPurchase"> | number | null
+  }
+
+  export type ApiCreditsUsageWhereInput = {
+    AND?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
+    OR?: ApiCreditsUsageWhereInput[]
+    NOT?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
+    id?: StringFilter<"ApiCreditsUsage"> | string
+    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
+    credits?: IntFilter<"ApiCreditsUsage"> | number
+    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type ApiCreditsUsageOrderByWithRelationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ApiCreditsUsageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
+    OR?: ApiCreditsUsageWhereInput[]
+    NOT?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
+    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
+    credits?: IntFilter<"ApiCreditsUsage"> | number
+    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type ApiCreditsUsageOrderByWithAggregationInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    _count?: ApiCreditsUsageCountOrderByAggregateInput
+    _avg?: ApiCreditsUsageAvgOrderByAggregateInput
+    _max?: ApiCreditsUsageMaxOrderByAggregateInput
+    _min?: ApiCreditsUsageMinOrderByAggregateInput
+    _sum?: ApiCreditsUsageSumOrderByAggregateInput
+  }
+
+  export type ApiCreditsUsageScalarWhereWithAggregatesInput = {
+    AND?: ApiCreditsUsageScalarWhereWithAggregatesInput | ApiCreditsUsageScalarWhereWithAggregatesInput[]
+    OR?: ApiCreditsUsageScalarWhereWithAggregatesInput[]
+    NOT?: ApiCreditsUsageScalarWhereWithAggregatesInput | ApiCreditsUsageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ApiCreditsUsage"> | string
+    apiKeyId?: StringWithAggregatesFilter<"ApiCreditsUsage"> | string
+    credits?: IntWithAggregatesFilter<"ApiCreditsUsage"> | number
+    usageDate?: DateTimeWithAggregatesFilter<"ApiCreditsUsage"> | Date | string
+    userId?: IntNullableWithAggregatesFilter<"ApiCreditsUsage"> | number | null
   }
 
   export type ApiUsageLogWhereInput = {
@@ -12862,6 +16703,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12878,6 +16721,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12893,6 +16738,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12909,6 +16756,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13198,62 +17047,66 @@ export namespace Prisma {
   export type ApiKeyCreateInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
     owner?: UserCreateNestedOneWithoutApiKeysInput
     usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
+    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUncheckedCreateInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
     usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
+    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneWithoutApiKeysNestedInput
     usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
+    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
+    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyCreateManyInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
@@ -13262,9 +17115,9 @@ export namespace Prisma {
   export type ApiKeyUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13273,13 +17126,164 @@ export namespace Prisma {
   export type ApiKeyUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ApiKeyPermissionCreateInput = {
+    id?: string
+    permission: string
+    apiKey: ApiKeyCreateNestedOneWithoutApiKeyPermissionsInput
+  }
+
+  export type ApiKeyPermissionUncheckedCreateInput = {
+    id?: string
+    apiKeyId: string
+    permission: string
+  }
+
+  export type ApiKeyPermissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+    apiKey?: ApiKeyUpdateOneRequiredWithoutApiKeyPermissionsNestedInput
+  }
+
+  export type ApiKeyPermissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApiKeyPermissionCreateManyInput = {
+    id?: string
+    apiKeyId: string
+    permission: string
+  }
+
+  export type ApiKeyPermissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApiKeyPermissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApiCreditsPurchaseCreateInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+    user?: UserCreateNestedOneWithoutApiCreditsPurchasesInput
+  }
+
+  export type ApiCreditsPurchaseUncheckedCreateInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+    userId?: number | null
+  }
+
+  export type ApiCreditsPurchaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutApiCreditsPurchasesNestedInput
+  }
+
+  export type ApiCreditsPurchaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ApiCreditsPurchaseCreateManyInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+    userId?: number | null
+  }
+
+  export type ApiCreditsPurchaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsPurchaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ApiCreditsUsageCreateInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
+    user?: UserCreateNestedOneWithoutApiCreditsUsagesInput
+  }
+
+  export type ApiCreditsUsageUncheckedCreateInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
+    userId?: number | null
+  }
+
+  export type ApiCreditsUsageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutApiCreditsUsagesNestedInput
+  }
+
+  export type ApiCreditsUsageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ApiCreditsUsageCreateManyInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
+    userId?: number | null
+  }
+
+  export type ApiCreditsUsageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsUsageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ApiUsageLogCreateInput = {
@@ -13596,6 +17600,18 @@ export namespace Prisma {
     none?: SubscriptionWhereInput
   }
 
+  export type ApiCreditsPurchaseListRelationFilter = {
+    every?: ApiCreditsPurchaseWhereInput
+    some?: ApiCreditsPurchaseWhereInput
+    none?: ApiCreditsPurchaseWhereInput
+  }
+
+  export type ApiCreditsUsageListRelationFilter = {
+    every?: ApiCreditsUsageWhereInput
+    some?: ApiCreditsUsageWhereInput
+    none?: ApiCreditsUsageWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13622,6 +17638,14 @@ export namespace Prisma {
   }
 
   export type SubscriptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApiCreditsUsageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13946,24 +17970,33 @@ export namespace Prisma {
     none?: ApiUsageLogWhereInput
   }
 
+  export type ApiKeyPermissionListRelationFilter = {
+    every?: ApiKeyPermissionWhereInput
+    some?: ApiKeyPermissionWhereInput
+    none?: ApiKeyPermissionWhereInput
+  }
+
   export type ApiUsageLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApiKeyPermissionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ApiKeyCountOrderByAggregateInput = {
     id?: SortOrder
     key?: SortOrder
-    credits?: SortOrder
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
   }
 
   export type ApiKeyAvgOrderByAggregateInput = {
-    credits?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
   }
@@ -13971,10 +18004,10 @@ export namespace Prisma {
   export type ApiKeyMaxOrderByAggregateInput = {
     id?: SortOrder
     key?: SortOrder
-    credits?: SortOrder
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
@@ -13983,17 +18016,16 @@ export namespace Prisma {
   export type ApiKeyMinOrderByAggregateInput = {
     id?: SortOrder
     key?: SortOrder
-    credits?: SortOrder
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
+    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
   }
 
   export type ApiKeySumOrderByAggregateInput = {
-    credits?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
   }
@@ -14045,6 +18077,97 @@ export namespace Prisma {
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
+
+  export type ApiKeyScalarRelationFilter = {
+    is?: ApiKeyWhereInput
+    isNot?: ApiKeyWhereInput
+  }
+
+  export type ApiKeyPermissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type ApiKeyPermissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type ApiKeyPermissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseAvgOrderByAggregateInput = {
+    credits?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsPurchaseSumOrderByAggregateInput = {
+    credits?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsUsageCountOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsUsageAvgOrderByAggregateInput = {
+    credits?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsUsageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsUsageMinOrderByAggregateInput = {
+    id?: SortOrder
+    apiKeyId?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiCreditsUsageSumOrderByAggregateInput = {
+    credits?: SortOrder
+    userId?: SortOrder
+  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -14067,11 +18190,6 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type ApiKeyScalarRelationFilter = {
-    is?: ApiKeyWhereInput
-    isNot?: ApiKeyWhereInput
   }
 
   export type ApiUsageLogCountOrderByAggregateInput = {
@@ -14280,6 +18398,20 @@ export namespace Prisma {
     connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
   }
 
+  export type ApiCreditsPurchaseCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
+    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
+    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+  }
+
+  export type ApiCreditsUsageCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
+    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
+    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -14320,6 +18452,20 @@ export namespace Prisma {
     connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput | SubscriptionCreateOrConnectWithoutUserInput[]
     createMany?: SubscriptionCreateManyUserInputEnvelope
     connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  }
+
+  export type ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
+    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
+    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+  }
+
+  export type ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
+    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
+    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -14422,6 +18568,34 @@ export namespace Prisma {
     deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
   }
 
+  export type ApiCreditsPurchaseUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
+    upsert?: ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
+    set?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    disconnect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    delete?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    update?: ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput | ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
+  }
+
+  export type ApiCreditsUsageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
+    upsert?: ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
+    set?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    disconnect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    delete?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    update?: ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiCreditsUsageUpdateManyWithWhereWithoutUserInput | ApiCreditsUsageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -14514,6 +18688,34 @@ export namespace Prisma {
     deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
   }
 
+  export type ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
+    upsert?: ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
+    set?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    disconnect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    delete?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+    update?: ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput | ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
+  }
+
+  export type ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
+    upsert?: ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
+    set?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    disconnect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    delete?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+    update?: ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiCreditsUsageUpdateManyWithWhereWithoutUserInput | ApiCreditsUsageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutSubscriptionsInput = {
     create?: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSubscriptionsInput
@@ -14587,11 +18789,25 @@ export namespace Prisma {
     connect?: ApiUsageLogWhereUniqueInput | ApiUsageLogWhereUniqueInput[]
   }
 
+  export type ApiKeyPermissionCreateNestedManyWithoutApiKeyInput = {
+    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
+    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
+    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
+    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+  }
+
   export type ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput = {
     create?: XOR<ApiUsageLogCreateWithoutApiKeyInput, ApiUsageLogUncheckedCreateWithoutApiKeyInput> | ApiUsageLogCreateWithoutApiKeyInput[] | ApiUsageLogUncheckedCreateWithoutApiKeyInput[]
     connectOrCreate?: ApiUsageLogCreateOrConnectWithoutApiKeyInput | ApiUsageLogCreateOrConnectWithoutApiKeyInput[]
     createMany?: ApiUsageLogCreateManyApiKeyInputEnvelope
     connect?: ApiUsageLogWhereUniqueInput | ApiUsageLogWhereUniqueInput[]
+  }
+
+  export type ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput = {
+    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
+    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
+    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
+    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -14626,6 +18842,20 @@ export namespace Prisma {
     deleteMany?: ApiUsageLogScalarWhereInput | ApiUsageLogScalarWhereInput[]
   }
 
+  export type ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput = {
+    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
+    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
+    upsert?: ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput[]
+    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
+    set?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    disconnect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    delete?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    update?: ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput[]
+    updateMany?: ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput | ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput[]
+    deleteMany?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -14646,6 +18876,66 @@ export namespace Prisma {
     update?: ApiUsageLogUpdateWithWhereUniqueWithoutApiKeyInput | ApiUsageLogUpdateWithWhereUniqueWithoutApiKeyInput[]
     updateMany?: ApiUsageLogUpdateManyWithWhereWithoutApiKeyInput | ApiUsageLogUpdateManyWithWhereWithoutApiKeyInput[]
     deleteMany?: ApiUsageLogScalarWhereInput | ApiUsageLogScalarWhereInput[]
+  }
+
+  export type ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput = {
+    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
+    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
+    upsert?: ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput[]
+    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
+    set?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    disconnect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    delete?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+    update?: ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput[]
+    updateMany?: ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput | ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput[]
+    deleteMany?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
+  }
+
+  export type ApiKeyCreateNestedOneWithoutApiKeyPermissionsInput = {
+    create?: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput
+    connect?: ApiKeyWhereUniqueInput
+  }
+
+  export type ApiKeyUpdateOneRequiredWithoutApiKeyPermissionsNestedInput = {
+    create?: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput
+    upsert?: ApiKeyUpsertWithoutApiKeyPermissionsInput
+    connect?: ApiKeyWhereUniqueInput
+    update?: XOR<XOR<ApiKeyUpdateToOneWithWhereWithoutApiKeyPermissionsInput, ApiKeyUpdateWithoutApiKeyPermissionsInput>, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutApiCreditsPurchasesInput = {
+    create?: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsPurchasesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutApiCreditsPurchasesNestedInput = {
+    create?: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsPurchasesInput
+    upsert?: UserUpsertWithoutApiCreditsPurchasesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiCreditsPurchasesInput, UserUpdateWithoutApiCreditsPurchasesInput>, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
+  }
+
+  export type UserCreateNestedOneWithoutApiCreditsUsagesInput = {
+    create?: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsUsagesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutApiCreditsUsagesNestedInput = {
+    create?: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsUsagesInput
+    upsert?: UserUpsertWithoutApiCreditsUsagesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiCreditsUsagesInput, UserUpdateWithoutApiCreditsUsagesInput>, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
   }
 
   export type ApiKeyCreateNestedOneWithoutUsageLogsInput = {
@@ -15032,25 +19322,27 @@ export namespace Prisma {
   export type ApiKeyCreateWithoutOwnerInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
     usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
+    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUncheckedCreateWithoutOwnerInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
     usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
+    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyCreateOrConnectWithoutOwnerInput = {
@@ -15127,6 +19419,54 @@ export namespace Prisma {
 
   export type SubscriptionCreateManyUserInputEnvelope = {
     data: SubscriptionCreateManyUserInput | SubscriptionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApiCreditsPurchaseCreateWithoutUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type ApiCreditsPurchaseUncheckedCreateWithoutUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type ApiCreditsPurchaseCreateOrConnectWithoutUserInput = {
+    where: ApiCreditsPurchaseWhereUniqueInput
+    create: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiCreditsPurchaseCreateManyUserInputEnvelope = {
+    data: ApiCreditsPurchaseCreateManyUserInput | ApiCreditsPurchaseCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApiCreditsUsageCreateWithoutUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
+  }
+
+  export type ApiCreditsUsageUncheckedCreateWithoutUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
+  }
+
+  export type ApiCreditsUsageCreateOrConnectWithoutUserInput = {
+    where: ApiCreditsUsageWhereUniqueInput
+    create: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiCreditsUsageCreateManyUserInputEnvelope = {
+    data: ApiCreditsUsageCreateManyUserInput | ApiCreditsUsageCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -15234,10 +19574,10 @@ export namespace Prisma {
     NOT?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
     id?: StringFilter<"ApiKey"> | string
     key?: StringFilter<"ApiKey"> | string
-    credits?: IntFilter<"ApiKey"> | number
     unlimited?: BoolFilter<"ApiKey"> | boolean
     minInterval?: IntFilter<"ApiKey"> | number
     ownerId?: IntNullableFilter<"ApiKey"> | number | null
+    name?: StringFilter<"ApiKey"> | string
     description?: StringNullableFilter<"ApiKey"> | string | null
     createdAt?: DateTimeFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
@@ -15307,6 +19647,60 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Subscription"> | Date | string
   }
 
+  export type ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput = {
+    where: ApiCreditsPurchaseWhereUniqueInput
+    update: XOR<ApiCreditsPurchaseUpdateWithoutUserInput, ApiCreditsPurchaseUncheckedUpdateWithoutUserInput>
+    create: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput = {
+    where: ApiCreditsPurchaseWhereUniqueInput
+    data: XOR<ApiCreditsPurchaseUpdateWithoutUserInput, ApiCreditsPurchaseUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput = {
+    where: ApiCreditsPurchaseScalarWhereInput
+    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ApiCreditsPurchaseScalarWhereInput = {
+    AND?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
+    OR?: ApiCreditsPurchaseScalarWhereInput[]
+    NOT?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
+    id?: StringFilter<"ApiCreditsPurchase"> | string
+    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
+    credits?: IntFilter<"ApiCreditsPurchase"> | number
+    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
+  }
+
+  export type ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput = {
+    where: ApiCreditsUsageWhereUniqueInput
+    update: XOR<ApiCreditsUsageUpdateWithoutUserInput, ApiCreditsUsageUncheckedUpdateWithoutUserInput>
+    create: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput = {
+    where: ApiCreditsUsageWhereUniqueInput
+    data: XOR<ApiCreditsUsageUpdateWithoutUserInput, ApiCreditsUsageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ApiCreditsUsageUpdateManyWithWhereWithoutUserInput = {
+    where: ApiCreditsUsageScalarWhereInput
+    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ApiCreditsUsageScalarWhereInput = {
+    AND?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
+    OR?: ApiCreditsUsageScalarWhereInput[]
+    NOT?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
+    id?: StringFilter<"ApiCreditsUsage"> | string
+    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
+    credits?: IntFilter<"ApiCreditsUsage"> | number
+    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
+    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
+  }
+
   export type UserCreateWithoutSubscriptionsInput = {
     email: string
     username: string
@@ -15319,6 +19713,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -15334,6 +19730,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -15364,6 +19762,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -15379,6 +19779,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -15393,6 +19795,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -15408,6 +19812,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -15438,6 +19844,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -15453,6 +19861,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailVerificationsInput = {
@@ -15467,6 +19877,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailVerificationsInput = {
@@ -15482,6 +19894,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailVerificationsInput = {
@@ -15512,6 +19926,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailVerificationsInput = {
@@ -15527,6 +19943,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasswordResetsInput = {
@@ -15541,6 +19959,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetsInput = {
@@ -15556,6 +19976,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -15586,6 +20008,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetsInput = {
@@ -15601,6 +20025,8 @@ export namespace Prisma {
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApiKeysInput = {
@@ -15615,6 +20041,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApiKeysInput = {
@@ -15630,6 +20058,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApiKeysInput = {
@@ -15667,6 +20097,26 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ApiKeyPermissionCreateWithoutApiKeyInput = {
+    id?: string
+    permission: string
+  }
+
+  export type ApiKeyPermissionUncheckedCreateWithoutApiKeyInput = {
+    id?: string
+    permission: string
+  }
+
+  export type ApiKeyPermissionCreateOrConnectWithoutApiKeyInput = {
+    where: ApiKeyPermissionWhereUniqueInput
+    create: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput>
+  }
+
+  export type ApiKeyPermissionCreateManyApiKeyInputEnvelope = {
+    data: ApiKeyPermissionCreateManyApiKeyInput | ApiKeyPermissionCreateManyApiKeyInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutApiKeysInput = {
     update: XOR<UserUpdateWithoutApiKeysInput, UserUncheckedUpdateWithoutApiKeysInput>
     create: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
@@ -15690,6 +20140,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApiKeysInput = {
@@ -15705,6 +20157,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ApiUsageLogUpsertWithWhereUniqueWithoutApiKeyInput = {
@@ -15737,28 +20191,287 @@ export namespace Prisma {
     apiKeyId?: StringFilter<"ApiUsageLog"> | string
   }
 
-  export type ApiKeyCreateWithoutUsageLogsInput = {
+  export type ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput = {
+    where: ApiKeyPermissionWhereUniqueInput
+    update: XOR<ApiKeyPermissionUpdateWithoutApiKeyInput, ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput>
+    create: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput>
+  }
+
+  export type ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput = {
+    where: ApiKeyPermissionWhereUniqueInput
+    data: XOR<ApiKeyPermissionUpdateWithoutApiKeyInput, ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput>
+  }
+
+  export type ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput = {
+    where: ApiKeyPermissionScalarWhereInput
+    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyInput>
+  }
+
+  export type ApiKeyPermissionScalarWhereInput = {
+    AND?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
+    OR?: ApiKeyPermissionScalarWhereInput[]
+    NOT?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
+    id?: StringFilter<"ApiKeyPermission"> | string
+    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
+    permission?: StringFilter<"ApiKeyPermission"> | string
+  }
+
+  export type ApiKeyCreateWithoutApiKeyPermissionsInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
     owner?: UserCreateNestedOneWithoutApiKeysInput
+    usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    ownerId?: number | null
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput = {
+    where: ApiKeyWhereUniqueInput
+    create: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
+  }
+
+  export type ApiKeyUpsertWithoutApiKeyPermissionsInput = {
+    update: XOR<ApiKeyUpdateWithoutApiKeyPermissionsInput, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
+    create: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
+    where?: ApiKeyWhereInput
+  }
+
+  export type ApiKeyUpdateToOneWithWhereWithoutApiKeyPermissionsInput = {
+    where?: ApiKeyWhereInput
+    data: XOR<ApiKeyUpdateWithoutApiKeyPermissionsInput, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
+  }
+
+  export type ApiKeyUpdateWithoutApiKeyPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneWithoutApiKeysNestedInput
+    usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    ownerId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type UserCreateWithoutApiCreditsPurchasesInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutApiCreditsPurchasesInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutApiCreditsPurchasesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
+  }
+
+  export type UserUpsertWithoutApiCreditsPurchasesInput = {
+    update: XOR<UserUpdateWithoutApiCreditsPurchasesInput, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
+    create: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutApiCreditsPurchasesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutApiCreditsPurchasesInput, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
+  }
+
+  export type UserUpdateWithoutApiCreditsPurchasesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutApiCreditsPurchasesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutApiCreditsUsagesInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutApiCreditsUsagesInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutApiCreditsUsagesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
+  }
+
+  export type UserUpsertWithoutApiCreditsUsagesInput = {
+    update: XOR<UserUpdateWithoutApiCreditsUsagesInput, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
+    create: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutApiCreditsUsagesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutApiCreditsUsagesInput, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
+  }
+
+  export type UserUpdateWithoutApiCreditsUsagesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutApiCreditsUsagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ApiKeyCreateWithoutUsageLogsInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    owner?: UserCreateNestedOneWithoutApiKeysInput
+    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUncheckedCreateWithoutUsageLogsInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
+    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyCreateOrConnectWithoutUsageLogsInput = {
@@ -15780,25 +20493,27 @@ export namespace Prisma {
   export type ApiKeyUpdateWithoutUsageLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneWithoutApiKeysNestedInput
+    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateWithoutUsageLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
   }
 
   export type UserCreateWithoutCalendarAccountsInput = {
@@ -15813,6 +20528,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCalendarAccountsInput = {
@@ -15828,6 +20545,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCalendarAccountsInput = {
@@ -15858,6 +20577,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarAccountsInput = {
@@ -15873,6 +20594,8 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -15900,9 +20623,9 @@ export namespace Prisma {
   export type ApiKeyCreateManyOwnerInput = {
     id?: string
     key: string
-    credits: number
     unlimited: boolean
     minInterval?: number
+    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
@@ -15930,6 +20653,20 @@ export namespace Prisma {
     currentPeriodEnd: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ApiCreditsPurchaseCreateManyUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type ApiCreditsUsageCreateManyUserInput = {
+    id?: string
+    apiKeyId: string
+    credits: number
+    usageDate?: Date | string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -16001,33 +20738,35 @@ export namespace Prisma {
   export type ApiKeyUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
+    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
+    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateManyWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     key?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16104,6 +20843,48 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ApiCreditsPurchaseUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsPurchaseUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsPurchaseUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsUsageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsUsageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiCreditsUsageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ApiUsageLogCreateManyApiKeyInput = {
     id?: string
     timestamp?: Date | string
@@ -16112,6 +20893,11 @@ export namespace Prisma {
     statusCode: number
     ipAddress?: string | null
     userAgent?: string | null
+  }
+
+  export type ApiKeyPermissionCreateManyApiKeyInput = {
+    id?: string
+    permission: string
   }
 
   export type ApiUsageLogUpdateWithoutApiKeyInput = {
@@ -16142,6 +20928,21 @@ export namespace Prisma {
     statusCode?: IntFieldUpdateOperationsInput | number
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ApiKeyPermissionUpdateWithoutApiKeyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
   }
 
 
