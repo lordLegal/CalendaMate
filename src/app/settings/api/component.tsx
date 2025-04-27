@@ -11,203 +11,158 @@ import {
   topUpApiKeyAction,
 } from "@/app/settings/api/actions";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-
-import {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from "@/components/ui/alert-dialog";
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/ui/select';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 import { FiClipboard, FiCheckCircle } from "react-icons/fi";
 
 interface Props {
   keys: ApiKey[];
 }
+import { Euro } from 'lucide-react';
+import prisma from "@/lib/server/prisma";
 
-export default function ApiKeysClient({ keys: initialKeys }: Props) {
-  const [keys, setKeys] = useState<ApiKey[]>(initialKeys);
-  const [createdKey, setCreatedKey] = useState<{ rawKey: string } | null>(null);
-  const [showCreateDialog, setShowCreateDialog] = useState(false);
+interface UsagePoint {
+  date: string;
+  requests: number;
+  tokens: number;
+}
 
-  const [stateCreate, createApiKey, createPending] = useActionState(
-    createApiKeyAction,
-    { success: false, message: "", apiKey: undefined }
-  );
-  const [, topUpApiKey, topUpPending] = useActionState(
-    topUpApiKeyAction,
-    { success: false, message: "" }
-  );
-  const [stateDelete, deleteApiKey, deletePending] = useActionState(
-    deleteApiKeyAction,
-    { success: false, message: "", deletedKeyId: undefined }
-  );
+interface KeyStats {
+  id: string;
+  name: string;
+  creditsRemaining: number;
+}
 
-  // Neue API-Key hinzufügen → lokale Liste & Dialog
+export default function ApiDashboard() {
+  const [period, setPeriod] = useState<'7d' | '30d' | '90d'>('30d');
+  const [usageData, setUsageData] = useState<UsagePoint[]>([]);
+  const [keyStats, setKeyStats] = useState<KeyStats[]>([]);
+  const [exchangeRate, setExchangeRate] = useState<number>(0.0002); // credits to EUR
+
   useEffect(() => {
-    const newApiKey = stateCreate.apiKey;
-    if (newApiKey) {
-      const entry: ApiKey = {
-        id: newApiKey.id,
-        name: newApiKey.name,
-        key: newApiKey.rawKey,
-        unlimited: false,
-        minInterval: 0,
-        ownerId: newApiKey.ownerId ?? null,
-        description: null,
-        createdAt: newApiKey.createdAt,
-        lastRequest: null,
-      };
-      setKeys((prev) => [entry, ...prev]);
-      setCreatedKey({ rawKey: newApiKey.rawKey });
-      setShowCreateDialog(true);
+    async function fetchData() {
+      const u = await prisma.apiUsageLog.findMany({
+        where: { timestamp: { gte: new Date(Date.now() - (period === '7d' ? 7 : period === '30d' ? 30 : 90) * 24 * 60 * 60 * 1000) } },
+        orderBy: { timestamp: 'asc' },
+        });
+      // Aggregate or map the logs to UsagePoint[]
+      const usagePoints: UsagePoint[] = u.map(log => ({
+        date: log.timestamp.toISOString().split('T')[0],
+        requests: 1, // or aggregate if needed
+        tokens: (log as any).tokens ?? 0 // replace with actual tokens field if available
+      }));
+      setUsageData(usagePoints);
     }
-  }, [stateCreate.apiKey]);
+    fetchData();
+  }, [period]);
 
-  // API-Key löschen → lokale Liste
-  useEffect(() => {
-    if (stateDelete.deletedKeyId) {
-      setKeys((prev) => prev.filter((k) => k.id !== stateDelete.deletedKeyId));
-    }
-  }, [stateDelete.deletedKeyId]);
-
-  const [copied, setCopied] = useState(false);
+  const totalCredits = keyStats.reduce((sum, k) => sum + k.creditsRemaining, 0);
+  const euroValue = totalCredits * exchangeRate;
 
   return (
-    <div className="space-y-8">
-      {/* Popup nach Create */}
-      <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>API-Key erstellt</DialogTitle>
-            <DialogDescription>
-              Speichere diesen Schlüssel sicher – er wird nur einmal angezeigt.
-            </DialogDescription>
-          </DialogHeader>
-          <pre className="p-4 bg-gray-100 rounded font-mono break-all">
-            {createdKey?.rawKey}
-          </pre>
-          <Button
-            className="mt-2 flex items-center gap-2 relative"
-            onClick={() => {
-              if (createdKey?.rawKey) {
-                navigator.clipboard.writeText(createdKey.rawKey);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-              }
-            }}
-          >
-            {copied ? (
-              <span className="flex items-center gap-1 animate-fade-in">
-                <FiCheckCircle /> Kopiert!
-              </span>
-            ) : (
-              <>
-                <FiClipboard /> Kopieren
-              </>
-            )}
-          </Button>
-          <DialogFooter>
-            <Button onClick={() => setShowCreateDialog(false)}>
-              Schließen
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+    <div className="flex h-full">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 text-white p-6">
+        <h2 className="text-xl font-bold mb-6">API Dashboard</h2>
+        <nav className="space-y-4">
+          <a className="block hover:text-blue-400">Usage</a>
+          <a className="block hover:text-blue-400">Keys</a>
+          <a className="block hover:text-blue-400">Settings</a>
+        </nav>
+      </aside>
 
-      {/* Form für neuen API-Key */}
-      <Card>
-        <form action={createApiKey} className="w-full">
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="name">Name</Label>
-              <Input name="name" id="name" required />
-            </div>
-            <div>
-              <Label htmlFor="description">Beschreibung</Label>
-              <Input name="description" id="description" required />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" disabled={createPending}>
-              {createPending ? "Erstelle..." : "API-Key erstellen"}
-            </Button>
-          </CardFooter>
-        </form>
-      </Card>
-
-      {/* Liste der API-Keys */}
-      <div className="space-y-6">
-        {keys.length === 0 && <p className="text-gray-600">Keine API-Keys vorhanden.</p>}
-
-        {keys.map((k) => (
-          <Card key={k.id}>
-            <CardContent className="space-y-2">
-              <p className="font-semibold text-lg">{k.name}</p>
-              <p className="text-sm text-gray-500">ID: {k.id}</p>
-              <p>
-                <span className="font-medium">Min. Intervall:</span> {k.minInterval} ms
-              </p>
-              <p>
-                <span className="font-medium">Erstellt am:</span> {new Date(k.createdAt).toLocaleDateString()}
-              </p>
-              <p>
-                <span className="font-medium">Letzte Nutzung:</span> {k.lastRequest ? new Date(k.lastRequest).toLocaleString() : "Nie"}
-              </p>
+      {/* Main Content */}
+      <main className="flex-1 p-6 space-y-8">
+        {/* Top Stats */}
+        <div className="grid grid-cols-3 gap-4">
+          <Card>
+            <CardHeader>
+              <h3 className="text-lg font-semibold">Total Credits</h3>
+            </CardHeader>
+            <CardContent className="flex items-center gap-2">
+              <span className="text-3xl font-bold">{totalCredits}</span>
+              <Euro className="w-6 h-6" />
             </CardContent>
-            <CardFooter className="flex gap-2">
-              {/* Credits aufladen */}
-              <form action={topUpApiKey} className="flex items-center gap-2">
-                <input type="hidden" name="keyId" value={k.id} />
-                <Input name="amount" type="number" min={1} placeholder="Credits" className="w-24" required />
-                <Button type="submit" disabled={topUpPending}>
-                  {topUpPending ? "Lädt..." : "Aufladen"}
-                </Button>
-              </form>
-
-              {/* Delete mit Bestätigung */}
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="destructive" disabled={deletePending}>Löschen</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>API-Key löschen?</AlertDialogTitle>
-                    <AlertDialogDescription>Möchtest du den Key &quot;{k.name}&quot; wirklich löschen? Dies kann nicht rückgängig gemacht werden.</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter className="flex gap-2">
-                    <AlertDialogCancel>Abbrechen</AlertDialogCancel>
-                    <AlertDialogAction asChild>
-                      <form action={deleteApiKey}>
-                        <input type="hidden" name="keyId" value={k.id} />
-                        <Button type="submit" variant="destructive">Ja, löschen</Button>
-                      </form>
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </CardFooter>
           </Card>
-        ))}
-      </div>
+          <Card>
+            <CardHeader>
+              <h3 className="text-lg font-semibold">Value in EUR</h3>
+            </CardHeader>
+            <CardContent>
+              <span className="text-3xl font-bold">€{euroValue.toFixed(2)}</span>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <h3 className="text-lg font-semibold">Period</h3>
+            </CardHeader>
+            <CardContent>
+              <Select onValueChange={(v) => setPeriod(v as any)}>
+                <SelectTrigger className="w-full">
+                  <span>{period === '7d' ? 'Last 7 days' : period === '30d' ? 'Last 30 days' : 'Last 90 days'}</span>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="7d">Last 7 days</SelectItem>
+                  <SelectItem value="30d">Last 30 days</SelectItem>
+                  <SelectItem value="90d">Last 90 days</SelectItem>
+                </SelectContent>
+              </Select>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Usage Chart */}
+        <Card>
+          <CardHeader>
+            <h3 className="text-lg font-semibold">API Usage</h3>
+          </CardHeader>
+          <CardContent style={{ height: 300 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={usageData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="requests" stroke="#38bdf8" name="Requests" />
+                <Line type="monotone" dataKey="tokens" stroke="#34d399" name="Tokens" />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Keys Table */}
+        <Card>
+          <CardHeader>
+            <h3 className="text-lg font-semibold">API Keys</h3>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Credits Left</TableHead>
+                  <TableHead>Value (€)</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {keyStats.map((k) => (
+                  <TableRow key={k.id}>
+                    <TableCell>{k.name}</TableCell>
+                    <TableCell>{k.creditsRemaining}</TableCell>
+                    <TableCell>€{(k.creditsRemaining * exchangeRate).toFixed(2)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </main>
     </div>
   );
 }

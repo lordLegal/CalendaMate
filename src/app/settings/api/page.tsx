@@ -15,5 +15,5 @@ export default async function ApiKeysPage() {
     orderBy: { createdAt: 'desc' },
   });
 
-  return <ApiKeysClient keys={keys} />;
+  return <ApiKeysClient />;
 }
