@@ -10061,7 +10061,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMinAggregateOutputType = {
     id: string | null
-    apiKeyId: string | null
     credits: number | null
     purchaseDate: Date | null
     userId: number | null
@@ -10069,7 +10068,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMaxAggregateOutputType = {
     id: string | null
-    apiKeyId: string | null
     credits: number | null
     purchaseDate: Date | null
     userId: number | null
@@ -10077,7 +10075,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCountAggregateOutputType = {
     id: number
-    apiKeyId: number
     credits: number
     purchaseDate: number
     userId: number
@@ -10097,7 +10094,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMinAggregateInputType = {
     id?: true
-    apiKeyId?: true
     credits?: true
     purchaseDate?: true
     userId?: true
@@ -10105,7 +10101,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMaxAggregateInputType = {
     id?: true
-    apiKeyId?: true
     credits?: true
     purchaseDate?: true
     userId?: true
@@ -10113,7 +10108,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCountAggregateInputType = {
     id?: true
-    apiKeyId?: true
     credits?: true
     purchaseDate?: true
     userId?: true
@@ -10208,7 +10202,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseGroupByOutputType = {
     id: string
-    apiKeyId: string
     credits: number
     purchaseDate: Date
     userId: number | null
@@ -10235,7 +10228,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    apiKeyId?: boolean
     credits?: boolean
     purchaseDate?: boolean
     userId?: boolean
@@ -10244,7 +10236,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    apiKeyId?: boolean
     credits?: boolean
     purchaseDate?: boolean
     userId?: boolean
@@ -10253,7 +10244,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    apiKeyId?: boolean
     credits?: boolean
     purchaseDate?: boolean
     userId?: boolean
@@ -10262,13 +10252,12 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseSelectScalar = {
     id?: boolean
-    apiKeyId?: boolean
     credits?: boolean
     purchaseDate?: boolean
     userId?: boolean
   }
 
-  export type ApiCreditsPurchaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "credits" | "purchaseDate" | "userId", ExtArgs["result"]["apiCreditsPurchase"]>
+  export type ApiCreditsPurchaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "credits" | "purchaseDate" | "userId", ExtArgs["result"]["apiCreditsPurchase"]>
   export type ApiCreditsPurchaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
   }
@@ -10286,7 +10275,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      apiKeyId: string
       credits: number
       purchaseDate: Date
       userId: number | null
@@ -10715,7 +10703,6 @@ export namespace Prisma {
    */
   interface ApiCreditsPurchaseFieldRefs {
     readonly id: FieldRef<"ApiCreditsPurchase", 'String'>
-    readonly apiKeyId: FieldRef<"ApiCreditsPurchase", 'String'>
     readonly credits: FieldRef<"ApiCreditsPurchase", 'Int'>
     readonly purchaseDate: FieldRef<"ApiCreditsPurchase", 'DateTime'>
     readonly userId: FieldRef<"ApiCreditsPurchase", 'Int'>
@@ -15674,7 +15661,6 @@ export namespace Prisma {
 
   export const ApiCreditsPurchaseScalarFieldEnum: {
     id: 'id',
-    apiKeyId: 'apiKeyId',
     credits: 'credits',
     purchaseDate: 'purchaseDate',
     userId: 'userId'
@@ -16364,7 +16350,6 @@ export namespace Prisma {
     OR?: ApiCreditsPurchaseWhereInput[]
     NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
     id?: StringFilter<"ApiCreditsPurchase"> | string
-    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
     credits?: IntFilter<"ApiCreditsPurchase"> | number
     purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
     userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
@@ -16373,7 +16358,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseOrderByWithRelationInput = {
     id?: SortOrder
-    apiKeyId?: SortOrder
     credits?: SortOrder
     purchaseDate?: SortOrder
     userId?: SortOrderInput | SortOrder
@@ -16385,7 +16369,6 @@ export namespace Prisma {
     AND?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
     OR?: ApiCreditsPurchaseWhereInput[]
     NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
-    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
     credits?: IntFilter<"ApiCreditsPurchase"> | number
     purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
     userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
@@ -16394,7 +16377,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseOrderByWithAggregationInput = {
     id?: SortOrder
-    apiKeyId?: SortOrder
     credits?: SortOrder
     purchaseDate?: SortOrder
     userId?: SortOrderInput | SortOrder
@@ -16410,7 +16392,6 @@ export namespace Prisma {
     OR?: ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
     NOT?: ApiCreditsPurchaseScalarWhereWithAggregatesInput | ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ApiCreditsPurchase"> | string
-    apiKeyId?: StringWithAggregatesFilter<"ApiCreditsPurchase"> | string
     credits?: IntWithAggregatesFilter<"ApiCreditsPurchase"> | number
     purchaseDate?: DateTimeWithAggregatesFilter<"ApiCreditsPurchase"> | Date | string
     userId?: IntNullableWithAggregatesFilter<"ApiCreditsPurchase"> | number | null
@@ -17178,7 +17159,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCreateInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
     user?: UserCreateNestedOneWithoutApiCreditsPurchasesInput
@@ -17186,7 +17166,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseUncheckedCreateInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
     userId?: number | null
@@ -17194,7 +17173,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutApiCreditsPurchasesNestedInput
@@ -17202,7 +17180,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -17210,7 +17187,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCreateManyInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
     userId?: number | null
@@ -17218,14 +17194,12 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiCreditsPurchaseUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -18103,7 +18077,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCountOrderByAggregateInput = {
     id?: SortOrder
-    apiKeyId?: SortOrder
     credits?: SortOrder
     purchaseDate?: SortOrder
     userId?: SortOrder
@@ -18116,7 +18089,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMaxOrderByAggregateInput = {
     id?: SortOrder
-    apiKeyId?: SortOrder
     credits?: SortOrder
     purchaseDate?: SortOrder
     userId?: SortOrder
@@ -18124,7 +18096,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseMinOrderByAggregateInput = {
     id?: SortOrder
-    apiKeyId?: SortOrder
     credits?: SortOrder
     purchaseDate?: SortOrder
     userId?: SortOrder
@@ -19424,14 +19395,12 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCreateWithoutUserInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
   }
 
   export type ApiCreditsPurchaseUncheckedCreateWithoutUserInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
   }
@@ -19668,7 +19637,6 @@ export namespace Prisma {
     OR?: ApiCreditsPurchaseScalarWhereInput[]
     NOT?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
     id?: StringFilter<"ApiCreditsPurchase"> | string
-    apiKeyId?: StringFilter<"ApiCreditsPurchase"> | string
     credits?: IntFilter<"ApiCreditsPurchase"> | number
     purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
     userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
@@ -20657,7 +20625,6 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseCreateManyUserInput = {
     id?: string
-    apiKeyId: string
     credits: number
     purchaseDate?: Date | string
   }
@@ -20845,21 +20812,18 @@ export namespace Prisma {
 
   export type ApiCreditsPurchaseUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiCreditsPurchaseUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiCreditsPurchaseUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
     purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -1,81 +1,173 @@
 "use server";
 import { getCurrentSession } from "@/lib/server/session";
 import prisma from "@/lib/server/prisma";
+import { revalidatePath } from "next/cache";
+import crypto from "crypto";
 
-export async function deleteApiKeyAction(
-    _prev: unknown  ,
-    formData: FormData
-): Promise<{ success: true } | { error: string }> {
-    const { user } = await getCurrentSession();
-    if (!user) {
-        return { error: "Not authenticated" };
-    }
-    const keyId = formData.get("keyId");
-    if (typeof keyId !== "string") {
-        return { error: "Invalid input" };
-    }
-    const existing = await prisma.apiKey.findUnique({ where: { id: keyId } });
-    if (!existing || existing.ownerId !== user.id) {
-        return { error: "API key not found" };
-    }
-    await prisma.apiKey.delete({ where: { id: keyId } });
-    return { success: true };
+// Verschlüsselungs-Konfiguration
+const ALGO = "aes-256-gcm";
+const ENC_KEY = Buffer.from(process.env.API_KEY_ENCRYPTION_KEY!, "hex"); // 32-Byte hex-String in .env
+
+/**
+ * Basis-Interface für alle Server-Actions.
+ * actionResult kann optional apiKey oder deletedKeyId enthalten.
+ */
+export interface ActionResult {
+  success: boolean;
+  message: string;
+  /**
+   * Für createApiKeyAction: Rückgabe des neu erstellten API-Key-Objekts inkl. rawKey.
+   */
+  apiKey?: {
+    id: string;
+    name: string;
+    rawKey: string;
+    createdAt: Date;
+    ownerId: number | null;
+  };
+  /**
+   * Für deleteApiKeyAction: Rückgabe der gelöschten Key-ID.
+   */
+  deletedKeyId?: string;
 }
 
-
+/**
+ * Erstellt einen neuen API-Key, verschlüsselt in der DB, zeigt rawKey im Popup.
+ */
 export async function createApiKeyAction(
-    _prev: unknown  ,
-    formData: FormData
-): Promise<{ success: true } | { error: string }> {
-    const { user } = await getCurrentSession();
-    if (!user) {
-        return { error: "Not authenticated" };
-    }
+  _prev: unknown,
+  formData: FormData
+): Promise<ActionResult> {
+  const { user } = await getCurrentSession();
+  if (!user) {
+    return { success: false, message: "Nicht authentifiziert" };
+  }
 
-    const description = formData.get("description");
-    const name = formData.get("name");
-    if (typeof description !== "string") {
-        return { error: "Invalid input" };
-    }
-    if (description.length < 3 || description.length > 50) {
-        return { error: "Description must be between 3 and 50 characters" };
-    }
-    if (description.trim() === "") {
-        return { error: "Description cannot be empty" };
-    }
-    if (typeof name !== "string") {
-        return { error: "Invalid input" };
-    }
-    if (name.length < 3 || name.length > 50) {
-        return { error: "Name must be between 3 and 50 characters" };
-    }
-    if (name.trim() === "") {
-        return { error: "Name cannot be empty" };
-    }
-    if (name.includes(" ")) {
-        return { error: "Name cannot contain spaces" };
-    }
+  const nameRaw = formData.get("name");
+  if (typeof nameRaw !== "string" || nameRaw.trim().length < 3) {
+    return { success: false, message: "Ungültiger Name" };
+  }
+  const name = nameRaw.trim();
 
-    const existing = await prisma.apiKey.findFirst({
-        where: { description, ownerId: user.id, name },
-    });
-    if (existing) {
-        return { error: "API key with this name already exists" };
-    }
-    const key = await prisma.apiKey.create({
-        data: {
-            name: name,
-            description: description,
-            ownerId: user.id,
-            key: crypto.randomUUID(),
-            unlimited: false,
-        },
-    });
-    if (!key) {
-        return { error: "Failed to create API key" };
-    }
-    return { success: true };
+  const descRaw = formData.get("description");
+  let description: string | null = null;
+  if (typeof descRaw === "string") {
+    description = descRaw.trim() || null;
+  }
 
-    
+  // Duplikat prüfen
+  const exists = await prisma.apiKey.findFirst({
+    where: { ownerId: user.id, name }
+  });
+  if (exists) {
+    return { success: false, message: "Ein API-Key mit diesem Namen existiert bereits" };
+  }
+
+  // Roh-Key generieren
+  const rawKey = crypto.randomUUID();
+
+  // Verschlüsseln mit AES-GCM
+  const iv = crypto.randomBytes(12);
+  const cipher = crypto.createCipheriv(ALGO, ENC_KEY, iv);
+  let encrypted = cipher.update(rawKey, "utf8", "hex");
+  encrypted += cipher.final("hex");
+  const tag = cipher.getAuthTag().toString("hex");
+  const encryptedKey = `${iv.toString("hex")}:${encrypted}:${tag}`;
+
+  // Speichern
+  const newKey = await prisma.apiKey.create({
+    data: {
+      owner: { connect: { id: user.id } },
+      name,
+      description,
+      key: encryptedKey,
+      unlimited: false,
+    }
+  });
+
+  // Cache invalidieren
+  revalidatePath("/settings/api");
+
+  // Rückgabe des Roh-Keys
+  return {
+    success: true,
+    message: "API-Key erfolgreich erstellt",
+    apiKey: {
+      id: newKey.id,
+      name: newKey.name,
+      rawKey,
+      createdAt: newKey.createdAt,
+      ownerId: user.id,
+    }
+  };
 }
 
+/**
+ * Löscht einen API-Key und gibt die gelöschte ID zurück.
+ */
+export async function deleteApiKeyAction(
+  _prev: unknown,
+  formData: FormData
+): Promise<ActionResult> {
+  const { user } = await getCurrentSession();
+  if (!user) {
+    return { success: false, message: "Nicht authentifiziert" };
+  }
+  const idRaw = formData.get("keyId");
+  if (typeof idRaw !== "string") {
+    return { success: false, message: "Ungültige Eingabe" };
+  }
+  const apiKey = await prisma.apiKey.findUnique({ where: { id: idRaw } });
+  if (!apiKey || apiKey.ownerId !== user.id) {
+    return { success: false, message: "API-Key nicht gefunden" };
+  }
+
+  await prisma.apiKey.delete({ where: { id: idRaw } });
+  revalidatePath("/settings/api");
+
+  return {
+    success: true,
+    message: "API-Key gelöscht",
+    deletedKeyId: idRaw,
+  };
+}
+
+/**
+ * Lädt Credits auf einen limitierten API-Key auf und gibt nur Message zurück.
+ */
+export async function topUpApiKeyAction(
+  _prev: unknown,
+  formData: FormData
+): Promise<ActionResult> {
+  const { user } = await getCurrentSession();
+  if (!user) {
+    return { success: false, message: "Nicht authentifiziert" };
+  }
+  const keyId = formData.get("keyId");
+  const amountRaw = formData.get("amount");
+  if (typeof keyId !== "string" || typeof amountRaw !== "string") {
+    return { success: false, message: "Ungültige Eingabe" };
+  }
+  const amount = parseInt(amountRaw, 10);
+  if (isNaN(amount) || amount < 1) {
+    return { success: false, message: "Betrag muss größer 0 sein" };
+  }
+  const existing = await prisma.apiKey.findUnique({ where: { id: keyId } });
+  if (!existing || existing.ownerId !== user.id) {
+    return { success: false, message: "API-Key nicht gefunden" };
+  }
+  if (existing.unlimited) {
+    return { success: false, message: "Unlimitierte Keys können nicht aufgeladen werden" };
+  }
+
+  // Purchase-Record anlegen
+  await prisma.apiCreditsPurchase.create({
+    data: {
+      user: { connect: { id: user.id } },
+      credits: amount,
+    }
+  });
+
+  revalidatePath("/settings/api");
+  return { success: true, message: `Guthaben um ${amount} Credits erhöht` };
+}

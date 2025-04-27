@@ -120,7 +120,6 @@ model ApiKeyPermission {
 
 model ApiCreditsPurchase {
   id           String   @id @default(uuid())
-  apiKeyId     String   @map("api_key_id")
   credits      Int
   purchaseDate DateTime @default(now())
   userId       Int?     @map("user_id")

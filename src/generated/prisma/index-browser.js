@@ -184,7 +184,6 @@ exports.Prisma.ApiKeyPermissionScalarFieldEnum = {
 
 exports.Prisma.ApiCreditsPurchaseScalarFieldEnum = {
   id: 'id',
-  apiKeyId: 'apiKeyId',
   credits: 'credits',
   purchaseDate: 'purchaseDate',
   userId: 'userId'
