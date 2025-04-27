@@ -70,15 +70,9 @@ export async function POST(req: NextRequest) {
       try {
         await prisma.apiCreditsPurchase.create({
             data: {
-                apiKeyId,
                 credits,
                 userId: await prisma.user.findUnique({ where: { id: parseInt(meta.userId, 10) } }).then(user => user?.id),
                 },
-        });
-        await prisma.apiCreditsUsage.upsert({
-            where: { apiKeyId },
-            update: { credits: { increment: credits } },
-            create: { apiKeyId, credits },
         });
       } catch (e) {
         console.error('Error updating API key credits:', e);

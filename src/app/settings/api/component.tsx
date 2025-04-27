@@ -37,7 +37,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 
-import { FiClipboard } from "react-icons/fi";
+import { FiClipboard, FiCheckCircle } from "react-icons/fi";
 
 interface Props {
   keys: ApiKey[];
@@ -89,6 +89,8 @@ export default function ApiKeysClient({ keys: initialKeys }: Props) {
     }
   }, [stateDelete.deletedKeyId]);
 
+  const [copied, setCopied] = useState(false);
+
   return (
     <div className="space-y-8">
       {/* Popup nach Create */}
@@ -104,10 +106,24 @@ export default function ApiKeysClient({ keys: initialKeys }: Props) {
             {createdKey?.rawKey}
           </pre>
           <Button
-            className="mt-2 flex items-center gap-2"
-            onClick={() => navigator.clipboard.writeText(createdKey?.rawKey || "")}
+            className="mt-2 flex items-center gap-2 relative"
+            onClick={() => {
+              if (createdKey?.rawKey) {
+                navigator.clipboard.writeText(createdKey.rawKey);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }
+            }}
           >
-            <FiClipboard /> Kopieren
+            {copied ? (
+              <span className="flex items-center gap-1 animate-fade-in">
+                <FiCheckCircle /> Kopiert!
+              </span>
+            ) : (
+              <>
+                <FiClipboard /> Kopieren
+              </>
+            )}
           </Button>
           <DialogFooter>
             <Button onClick={() => setShowCreateDialog(false)}>

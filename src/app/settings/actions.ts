@@ -19,8 +19,6 @@ import {
 import { checkEmailAvailability, verifyEmailInput } from "@/lib/server/email";
 import { redirect } from "next/navigation";
 import { globalPOSTRateLimit } from "@/lib/server/requests";
-import { PrismaClient } from '@/generated/prisma';
-import { randomBytes } from 'crypto';
 
 import type { SessionFlags } from "@/lib/server/session";
 
@@ -189,60 +187,3 @@ type RegenerateRecoveryCodeActionResult =
 			error: null;
 			recoveryCode: string;
 	  };
-
-// --- API Key Management Actions ---
-
-const prisma = new PrismaClient();
-
-/**
- * Server Action: Create a new API key for the current user.
- */
-export async function createApiKeyAction(): Promise<{ id: string; key: string } | { error: string }> {
-  const { user } = await getCurrentSession();
-  if (!user) {
-    return { error: 'Not authenticated' };
-  }
-  // Generate random 256-bit key
-  const key = randomBytes(32).toString('hex');
-  const apiKey = await prisma.apiKey.create({
-    data: {
-      key,
-      owner: { connect: { id: user.id } },
-      credits: 0,
-      unlimited: false,
-      minInterval: 0,
-    },
-  });
-  return { id: apiKey.id, key: apiKey.key };
-}
-
-/**
- * Server Action: Top up credits for an API key.
- */
-export async function topUpApiKeyAction(
-  _prev: any,
-  formData: FormData
-): Promise<{ credits: number } | { error: string }> {
-  const { user } = await getCurrentSession();
-  if (!user) {
-    return { error: 'Not authenticated' };
-  }
-  const keyId = formData.get('keyId');
-  const amountRaw = formData.get('amount');
-  if (typeof keyId !== 'string' || typeof amountRaw !== 'string') {
-    return { error: 'Invalid input' };
-  }
-  const amount = parseInt(amountRaw, 10);
-  if (isNaN(amount) || amount <= 0) {
-    return { error: 'Invalid amount' };
-  }
-  const existing = await prisma.apiKey.findUnique({ where: { id: keyId } });
-  if (!existing || existing.ownerId !== user.id) {
-    return { error: 'API key not found' };
-  }
-  const updated = await prisma.apiKey.update({
-    where: { id: keyId },
-    data: { credits: { increment: amount } },
-  });
-  return { credits: updated.credits };
-}

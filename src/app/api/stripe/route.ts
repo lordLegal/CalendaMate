@@ -6,7 +6,7 @@ import { PrismaClient } from '@/generated/prisma';
 // Node.js runtime for raw body parsing, if needed
 export const runtime = 'nodejs';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2022-11-15' });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2025-03-31.basil' });
 const prisma = new PrismaClient();
 
 // Conversion rate: 1 credit = €0.01 (1 cent)
@@ -24,13 +24,22 @@ export async function POST(req: Request) {
   if (!user) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
-  let body: any;
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
-  const { apiKeyId, credits } = body;
+  // Type guard to ensure body has the correct shape
+  if (
+    typeof body !== 'object' ||
+    body === null ||
+    !('apiKeyId' in body) ||
+    !('credits' in body)
+  ) {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+  const { apiKeyId, credits } = body as { apiKeyId: string; credits: number };
   if (typeof apiKeyId !== 'string' || !Number.isInteger(credits) || credits < MIN_CREDITS) {
     return NextResponse.json({ error: 'Invalid apiKeyId or credits (min ' + MIN_CREDITS + ')' }, { status: 400 });
   }
