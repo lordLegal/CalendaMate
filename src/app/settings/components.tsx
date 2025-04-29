@@ -34,36 +34,51 @@ import { useActionState } from "react";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { cancelSubscriptionAction, resumeSubscriptionAction } from "./actions";
 
-interface Subscription {
-  id: string;
-  status: string;
-  priceId: string;
-  currentPeriodEnd: string; // ISO
-}
-
+import { Subscription } from "@/generated/prisma";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
+import stripe from "@/lib/server/stripe";
 interface Props {
   subscription: Subscription | null;
 }
 
 export default function SubscriptionSection({ subscription }: Props) {
-  const [stateCancel, cancelSubscription, cancelPending] = useActionState(
-    cancelSubscriptionAction,
-    { success: false, message: "" }
-  );
-  const [stateResume, resumeSubscription, resumePending] = useActionState(
-    resumeSubscriptionAction,
-    { success: false, message: "" }
-  );
+  
   const [feedback, setFeedback] = useState<string>("");
 
+  async function handelManageSubscription() {
+    if (subscription) {
+      const stripe_portal = await fetch("/api/stripe/create-portal-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+
+      const data = await stripe_portal.json();
+      if (data.url) {
+        redirect(data.url); // Redirect to the Stripe portal URL
+      } else {
+        setFeedback("Failed to create portal session.");
+      }
+    } else {
+      setFeedback("No subscription found.");
+    }
+  }
+
+  // get the price from the price id 
+  const [price, setPrice] = useState<Stripe.Price | null>(null);
+
   useEffect(() => {
-    if (stateCancel.success) setFeedback(stateCancel.message);
-  }, [stateCancel.success, stateCancel.message]);
-  useEffect(() => {
-    if (stateResume.success) setFeedback(stateResume.message);
-  }, [stateResume.success, stateResume.message]);
+    async function fetchPrice() {
+      if (subscription?.priceId) {
+        const fetchedPrice = await stripe.prices.retrieve(subscription.priceId);
+        setPrice(fetchedPrice);
+      }
+    }
+    fetchPrice();
+  }, [subscription?.priceId]);
 
   if (!subscription) {
     return (
@@ -83,7 +98,7 @@ export default function SubscriptionSection({ subscription }: Props) {
     );
   }
 
-  const nextPayment = (new Date(subscription.currentPeriodEnd), "PPP");
+  const nextPayment = (new Date(subscription.currentPeriodEnd)).toISOString().split("T")[0];
 
   return (
     <Card>
@@ -110,19 +125,9 @@ export default function SubscriptionSection({ subscription }: Props) {
         )}
       </CardContent>
       <CardFooter className="flex gap-2">
-        {subscription.status === 'active' ? (
-          <form action={cancelSubscription} className="inline">
-            <Button type="submit" variant="destructive" disabled={cancelPending}>
-              {cancelPending ? 'Wird gekündigt…' : 'Abonnement kündigen'}
+            <Button onClick={handelManageSubscription}  >
+              Abonnement Managen
             </Button>
-          </form>
-        ) : (
-          <form action={resumeSubscription} className="inline">
-            <Button type="submit" disabled={resumePending}>
-              {resumePending ? 'Wird aktiviert…' : 'Abonnement reaktivieren'}
-            </Button>
-          </form>
-        )}
       </CardFooter>
     </Card>
   );

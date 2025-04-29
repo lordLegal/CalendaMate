@@ -75,13 +75,10 @@ export const getCurrentSession = cache(async (): Promise<SessionValidationResult
 	const cookieStore = await cookies();
   	// Use __Host- prefix for session cookie to enforce Secure, Path='/'
   	const token = cookieStore.get(SESSION_COOKIE_NAME)?.value ?? null;
-	console.log("Session cookie:", SESSION_COOKIE_NAME, token);
-	console.log("Cookie store:", cookieStore.get(SESSION_COOKIE_NAME));
 	if (token === null) {
 		return { session: null, user: null };
 	}
 	const result = await validateSessionToken(token);
-	console.log("Session validation result:", result);
 	return result;
 });
 
@@ -107,9 +104,6 @@ export async function setSessionTokenCookie(token: string, expiresAt: Date): Pro
 		sameSite: "lax",
 		expires: expiresAt
 	});
-	console.log("Set session cookie:", SESSION_COOKIE_NAME, token, expiresAt);
-	console.log("Cookie store:", cookieStore.get(SESSION_COOKIE_NAME));
-	console.log("Cookie store all:", cookieStore.getAll());
 }
 
 export async function deleteSessionTokenCookie(): Promise<void> {

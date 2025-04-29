@@ -1,4 +1,4 @@
-import { CalendarConnections } from "./components";
+import SubscriptionSection, { CalendarConnections } from "./components";
 import { getCurrentSession } from "@/lib/server/session";
 import { redirect } from "next/navigation";
 import { globalGETRateLimit } from "@/lib/server/requests";
@@ -28,13 +28,14 @@ export default async function Page() {
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-3xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-8">Settings</h1>
+        
         {/* Calendar connections */}
         <section className="mb-8 p-6 bg-white shadow rounded">
           <CalendarConnections />
         </section>
         <section className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Subscription</h2>
-          <ManageSubscriptionButton isActive={isActive} />
+          <SubscriptionSection subscription={sub} />
         </section>
       </main>
     </div>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react';
+import { Settings, User } from 'lucide-react';
 import {
   Sidebar,
   SidebarProvider,
@@ -13,14 +13,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { IconDashboard } from '@tabler/icons-react';
 
 // Menu items.
 const items = [
-  { title: 'Home', url: '/settings/home', icon: Home },
-  { title: 'Profile', url: '/settings/profile', icon: Settings },
-  { title: 'Billing', url: '/settings/billing', icon: Inbox },
-  { title: 'API Keys', url: '/settings/api', icon: Calendar },
-  { title: 'Dashboard', url: '/settings/dashboard', icon: Search },
+  { title: 'General', url: '/settings/', icon: Settings},
+  { title: 'Profile', url: '/settings/profile', icon: User },
+  { title: 'API Keys', url: '/settings/api', icon: IconDashboard },
 ];
 
 export const metadata = {
