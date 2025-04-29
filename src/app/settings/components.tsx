@@ -1,51 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { regenerateRecoveryCodeAction, updateEmailAction, updatePasswordAction } from "./actions";
-import { useFormState } from "react-dom";
-
-const initialUpdatePasswordState = { message: "" };
-
-export function UpdatePasswordForm() {
-  const [state, action] = useFormState(updatePasswordAction, initialUpdatePasswordState);
-
-  return (
-    <form action={action} className="space-y-4">
-      <div>
-        <label htmlFor="form-password.password" className="block text-gray-700 font-medium mb-1">
-          Current password
-        </label>
-        <input
-          type="password"
-          id="form-password.password"
-          name="password"
-          autoComplete="current-password"
-          required
-          placeholder="Enter your current password"
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <label htmlFor="form-password.new-password" className="block text-gray-700 font-medium mb-1">
-          New password
-        </label>
-        <input
-          type="password"
-          id="form-password.new-password"
-          name="new_password"
-          autoComplete="new-password"
-          required
-          placeholder="Enter your new password"
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
-        Update
-      </button>
-      {state.message && <p className="text-center text-red-500 text-sm">{state.message}</p>}
-    </form>
-  );
-}
+//import { regenerateRecoveryCodeAction} from "./actions";
 // Calendar connections (Google & Microsoft)
 export function CalendarConnections() {
   return (
@@ -69,56 +25,105 @@ export function CalendarConnections() {
   );
 }
 
-const initialUpdateFormState = { message: "" };
 
-export function UpdateEmailForm() {
-  const [state, action] = useFormState(updateEmailAction, initialUpdateFormState);
 
-  return (
-    <form action={action} className="space-y-4">
-      <div>
-        <label htmlFor="form-email.email" className="block text-gray-700 font-medium mb-1">
-          New email
-        </label>
-        <input
-          type="email"
-          id="form-email.email"
-          name="email"
-          required
-          placeholder="Enter your new email"
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
-        Update
-      </button>
-      {state.message && <p className="text-center text-red-500 text-sm">{state.message}</p>}
-    </form>
-  );
+
+
+import React, { useEffect } from "react";
+import { useActionState } from "react";
+import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { cancelSubscriptionAction, resumeSubscriptionAction } from "./actions";
+
+interface Subscription {
+  id: string;
+  status: string;
+  priceId: string;
+  currentPeriodEnd: string; // ISO
 }
 
-export function RecoveryCodeSection({ recoveryCode }: { recoveryCode: string }) {
-  const [code, setCode] = useState(recoveryCode);
+interface Props {
+  subscription: Subscription | null;
+}
+
+export default function SubscriptionSection({ subscription }: Props) {
+  const [stateCancel, cancelSubscription, cancelPending] = useActionState(
+    cancelSubscriptionAction,
+    { success: false, message: "" }
+  );
+  const [stateResume, resumeSubscription, resumePending] = useActionState(
+    resumeSubscriptionAction,
+    { success: false, message: "" }
+  );
+  const [feedback, setFeedback] = useState<string>("");
+
+  useEffect(() => {
+    if (stateCancel.success) setFeedback(stateCancel.message);
+  }, [stateCancel.success, stateCancel.message]);
+  useEffect(() => {
+    if (stateResume.success) setFeedback(stateResume.message);
+  }, [stateResume.success, stateResume.message]);
+
+  if (!subscription) {
+    return (
+      <Card>
+        <CardHeader>
+          <h2 className="text-xl font-semibold">Abonnement</h2>
+        </CardHeader>
+        <CardContent>
+          <p>Du hast aktuell kein aktives Abonnement.</p>
+        </CardContent>
+        <CardFooter>
+          <Button asChild>
+            <a href="/pricing">Jetzt abonnieren</a>
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
+
+  const nextPayment = (new Date(subscription.currentPeriodEnd), "PPP");
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-semibold text-center mb-4">Recovery Code</h2>
-      <div className="bg-gray-100 border border-gray-300 rounded p-4 text-center font-mono text-xl">
-        {code}
-      </div>
-      <div className="text-center">
-        <button
-          onClick={async () => {
-            const result = await regenerateRecoveryCodeAction();
-            if (result.recoveryCode !== null) {
-              setCode(result.recoveryCode);
-            }
-          }}
-          className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
-        >
-          Generate new code
-        </button>
-      </div>
-    </div>
+    <Card>
+      <CardHeader>
+        <h2 className="text-xl font-semibold">Dein Abonnement</h2>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <div>
+          <Label>Status:</Label>{" "}
+          <span className="font-medium capitalize">{subscription.status}</span>
+        </div>
+        <div>
+          <Label>Plan ID:</Label>{" "}
+          <span className="font-medium">{subscription.priceId}</span>
+        </div>
+        <div>
+          <Label>Nächste Zahlung:</Label>{" "}
+          <span className="font-medium">{nextPayment}</span>
+        </div>
+        {feedback && (
+          <div className="p-2 bg-blue-50 text-blue-800 rounded">
+            {feedback}
+          </div>
+        )}
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        {subscription.status === 'active' ? (
+          <form action={cancelSubscription} className="inline">
+            <Button type="submit" variant="destructive" disabled={cancelPending}>
+              {cancelPending ? 'Wird gekündigt…' : 'Abonnement kündigen'}
+            </Button>
+          </form>
+        ) : (
+          <form action={resumeSubscription} className="inline">
+            <Button type="submit" disabled={resumePending}>
+              {resumePending ? 'Wird aktiviert…' : 'Abonnement reaktivieren'}
+            </Button>
+          </form>
+        )}
+      </CardFooter>
+    </Card>
   );
 }

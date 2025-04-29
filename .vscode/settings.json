@@ -1,3 +1,17 @@
 {
-    "nuxt.isNuxtApp": false
+  "nuxt.isNuxtApp": false,
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "previewLimit": 50,
+      "server": "ep-gentle-mouse-a27l1p2t-pooler.eu-central-1.aws.neon.tech",
+      "driver": "PostgreSQL",
+      "connectString": "postgres://neondb_owner:npg_hM1ENP6pRnqD@ep-gentle-mouse-a27l1p2t-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require",
+      "name": "postgresql-calendamate"
+    }
+  ]
 }
