@@ -1,9 +1,5 @@
 "use server";
 
-import {
-	getCurrentSession
-} from "@/lib/server/session";
-import {  resetUserRecoveryCode } from "@/lib/server/user";
 import { globalPOSTRateLimit } from "@/lib/server/requests";
 
 
@@ -33,14 +29,3 @@ export async function resumeSubscriptionAction(_prev: ActionResult): Promise<Act
 	};
 }
 
-
-
-type RegenerateRecoveryCodeActionResult =
-	| {
-			error: string;
-			recoveryCode: null;
-	  }
-	| {
-			error: null;
-			recoveryCode: string;
-	  };

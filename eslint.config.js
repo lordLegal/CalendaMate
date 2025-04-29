@@ -9,6 +9,7 @@ export default [
   {
     ignores: [
       "src/generated/**",        // Prisma-Client u. Ä.
+      "src/components/**"
     ],
   },
   // Anschließend deine regulären Regeln

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { UpdateEmailForm, UpdatePasswordForm } from "./component";
 import { getCurrentSession } from "@/lib/server/session";
-import { getUserRecoverCode } from "@/lib/server/user";
 import { redirect } from "next/navigation";
 import { globalGETRateLimit } from "@/lib/server/requests";
 import prisma from "@/lib/server/prisma";
@@ -22,10 +21,7 @@ export default async function Page() {
   if (user.registered2FA && !session.twoFactorVerified) {
     return redirect("/2fa");
   }
-  let recoveryCode: string | null = null;
-  if (user.registered2FA) {
-    recoveryCode = await getUserRecoverCode(user.id);
-  }
+
   const sub = user
     ? await prisma.subscription.findUnique({ where: { userId: user.id } })
     : null
