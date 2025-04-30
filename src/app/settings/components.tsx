@@ -37,17 +37,18 @@ import { Label } from "@/components/ui/label";
 
 import { Subscription } from "@/generated/prisma";
 import { redirect } from "next/navigation";
-import Stripe from "stripe";
 import stripe from "@/lib/server/stripe";
 interface Props {
   subscription: Subscription | null;
 }
 
 export default function SubscriptionSection({ subscription }: Props) {
-  
+  "use client";
   const [feedback, setFeedback] = useState<string>("");
 
   async function handelManageSubscription() {
+    console.log("Manage Subscription clicked");
+    console.log("Subscription ID:", subscription);
     if (subscription) {
       const stripe_portal = await fetch("/api/stripe/create-portal-session", {
         method: "POST",
@@ -61,24 +62,18 @@ export default function SubscriptionSection({ subscription }: Props) {
         redirect(data.url); // Redirect to the Stripe portal URL
       } else {
         setFeedback("Failed to create portal session.");
+        console.error("Failed to create portal session:", data.error);
       }
     } else {
       setFeedback("No subscription found.");
+      console.error("No subscription found.");
     }
   }
 
-  // get the price from the price id 
-  const [price, setPrice] = useState<Stripe.Price | null>(null);
-
-  useEffect(() => {
-    async function fetchPrice() {
-      if (subscription?.priceId) {
-        const fetchedPrice = await stripe.prices.retrieve(subscription.priceId);
-        setPrice(fetchedPrice);
-      }
-    }
-    fetchPrice();
-  }, [subscription?.priceId]);
+  async function getLastInvoiceAmount(subscriptionId: string) {
+    
+    return 4.90;
+  }
 
   if (!subscription) {
     return (
@@ -112,7 +107,7 @@ export default function SubscriptionSection({ subscription }: Props) {
         </div>
         <div>
           <Label>Plan ID:</Label>{" "}
-          <span className="font-medium">{subscription.priceId}</span>
+          <span className="font-medium">{getLastInvoiceAmount(subscription.id)}</span>
         </div>
         <div>
           <Label>Nächste Zahlung:</Label>{" "}

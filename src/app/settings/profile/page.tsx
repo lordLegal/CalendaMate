@@ -22,7 +22,7 @@ export default async function Page() {
   }
 
   const sub = user
-    ? await prisma.subscription.findUnique({ where: { userId: user.id } })
+    ? await prisma.subscription.findFirst({ where: { userId: user.id } })
     : null
   const isActive = sub?.status === 'active'
   return (

@@ -5,12 +5,29 @@ import { getCurrentSession } from "@/lib/server/session";
 import { ApiKeysDashboard } from "./component";
 export const dynamic = "force-dynamic";
 import { redirect } from "next/navigation";
+import { globalGETRateLimit } from "@/lib/server/requests";
 
 export default async function ApiKeysPage() {
-  const { user } = await getCurrentSession();
-  if (!user) {
-    redirect('/login');
-  }
+  if (!await globalGETRateLimit()) {
+      return (
+        <div className="flex items-center justify-center min-h-screen text-red-600">
+          Too many requests
+        </div>
+      );
+    }
+    const { session, user } = await getCurrentSession();
+    if (session !== null) {
+      if (!user.emailVerified) {
+        return redirect("/verify-email");
+      }
+      if (!user.registered2FA) {
+        return redirect("/2fa/setup");
+      }
+      if (!session.twoFactorVerified) {
+        return redirect("/2fa");
+      }
+      return redirect("/");
+    }
   // Fetch API keys for the user
   const keys = await prisma.apiKey.findMany({
     where: { ownerId: user.id },

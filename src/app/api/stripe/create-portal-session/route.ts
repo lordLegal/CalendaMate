@@ -9,7 +9,7 @@ export async function POST() {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
     }
 
-    const sub = await prisma.subscription.findUnique({ where: { userId: user.id } })
+    const sub = await prisma.subscription.findFirst({ where: { userId: user.id } })
     if (!sub?.stripeCustomerId) {
     return NextResponse.json({ error: 'No subscription on record' }, { status: 400 })
     }

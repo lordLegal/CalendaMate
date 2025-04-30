@@ -11,7 +11,7 @@ export async function POST() {
 
   let customerId: string
   // find or create Stripe customer
-  const existing = await prisma.subscription.findUnique({ where: { userId: user.id } })
+  const existing = await prisma.subscription.findFirst({ where: { userId: user.id } })
   if (existing?.stripeCustomerId) {
     customerId = existing.stripeCustomerId
   } else {
@@ -21,7 +21,7 @@ export async function POST() {
     })
     customerId = customer.id
     await prisma.subscription.upsert({
-      where: { userId: user.id },
+      where: { id: existing?.id, stripeSubscriptionId: existing?.stripeSubscriptionId },
       update: { stripeCustomerId: customerId },
       create: {
         userId: user.id,
@@ -42,6 +42,8 @@ export async function POST() {
     mode: 'subscription',
     success_url: `${process.env.NEXT_PUBLIC_APP_URL}/subscription/success`,
     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/subscription/cancel`,
+    metadata: { userId: user.id },
+    allow_promotion_codes: true,
   })
 
   return NextResponse.json({ url: session.url })
