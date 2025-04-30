@@ -29,15 +29,13 @@ export function CalendarConnections() {
 
 
 
-import React, { useEffect } from "react";
-import { useActionState } from "react";
+import React from "react";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
 import { Subscription } from "@/generated/prisma";
 import { redirect } from "next/navigation";
-import stripe from "@/lib/server/stripe";
 interface Props {
   subscription: Subscription | null;
 }
@@ -72,7 +70,7 @@ export default function SubscriptionSection({ subscription }: Props) {
 
   async function getLastInvoiceAmount(subscriptionId: string) {
     
-    return 4.90;
+    return 4.90 + "€" + subscriptionId; // Placeholder for the last invoice amount
   }
 
   if (!subscription) {

@@ -23,8 +23,8 @@ export default async function Page() {
 
   const sub = user
     ? await prisma.subscription.findFirst({ where: { userId: user.id } })
-    : null
-  const isActive = sub?.status === 'active'
+    : null;
+    console.log("sub", sub)
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-3xl mx-auto p-6">

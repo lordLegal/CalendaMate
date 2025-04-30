@@ -3,7 +3,6 @@ import { getCurrentSession } from "@/lib/server/session";
 import { redirect } from "next/navigation";
 import { globalGETRateLimit } from "@/lib/server/requests";
 import prisma from "@/lib/server/prisma";
-import ManageSubscriptionButton from "@/app/components/ManageSubscriptionButton";
 
 export default async function Page() {
   if (!await globalGETRateLimit()) {
@@ -24,6 +23,7 @@ export default async function Page() {
     ? await prisma.subscription.findFirst({ where: { userId: user.id } })
     : null
   const isActive = sub?.status === 'active'
+  console.log("isActive", isActive)
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-3xl mx-auto p-6">

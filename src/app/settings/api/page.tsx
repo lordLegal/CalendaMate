@@ -3,10 +3,10 @@ import prisma from "@/lib/server/prisma";
 // ******** Begin modifications for API dashboard ********
 import { getCurrentSession } from "@/lib/server/session";
 import { ApiKeysDashboard } from "./component";
-export const dynamic = "force-dynamic";
 import { redirect } from "next/navigation";
 import { globalGETRateLimit } from "@/lib/server/requests";
-
+import type { User } from "@/lib/server/user";
+import type { Session } from "@/lib/server/session";
 export default async function ApiKeysPage() {
   if (!await globalGETRateLimit()) {
       return (
@@ -15,8 +15,14 @@ export default async function ApiKeysPage() {
         </div>
       );
     }
-    const { session, user } = await getCurrentSession();
-    if (session !== null) {
+    const { session, user }: { session: Session | null; user: User | null } = await getCurrentSession();
+    if (session === null) {
+      return redirect("/login");
+    }
+    if (user === null) {
+      return redirect("/login");
+    }
+    if (session !== null ) {
       if (!user.emailVerified) {
         return redirect("/verify-email");
       }
@@ -28,6 +34,8 @@ export default async function ApiKeysPage() {
       }
       return redirect("/");
     }
+
+
   // Fetch API keys for the user
   const keys = await prisma.apiKey.findMany({
     where: { ownerId: user.id },
