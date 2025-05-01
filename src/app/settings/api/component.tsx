@@ -1,10 +1,9 @@
 // src/app/settings/api/ApiKeysDashboard.tsx
 "use client";
 
-import React, { useState, FormEvent } from "react";
-import { createApiKeyAction, deleteApiKeyAction, ActionResult } from "./actions";
+import React, { useState, FormEvent, useCallback } from "react";
+import { createApiKeyAction, deleteApiKeyAction, ActionResult, createCreditPurchaseSessionAction } from "./actions";
 import type { ApiKey } from "@/generated/prisma";
-
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,8 +11,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner"
-
+import { toast } from "sonner";
+import { FiClipboard, FiCheck } from "react-icons/fi";
 
 import {
   AreaChart,
@@ -23,6 +22,17 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+
+import { redirect } from "next/navigation";
 
 interface Props {
   keys: ApiKey[];
@@ -34,73 +44,113 @@ interface Props {
 
 export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining, chartData }: Props) {
   const [loading, setLoading] = useState(false);
+  const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [createdKey, setCreatedKey] = useState<string | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false);
 
-  const handleCreate = async (e: FormEvent<HTMLFormElement>) => {
+  const handleCreate = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
-    const result: ActionResult = await createApiKeyAction(undefined, formData);
+    const result: ActionResult = await createApiKeyAction(formData);
     setLoading(false);
-    toast(result.success ? "Deleted" : "Error",{
-      description: result.message,
-      closeButton: true,
-    });
-    if (result.success) {
-      // Optionally refresh data or revalidate
-      window.location.reload();
-    }
-  };
 
-  const handleDelete = async (keyId: string) => {
+    if (result.success && result.apiKey) {
+      setCreatedKey(result.apiKey.rawKey);
+      toast("Created", { description: result.message, closeButton: true });
+      setShowCreateDialog(true);
+    } else {
+      toast("Error", { description: result.message, closeButton: true });
+    }
+  }, []);
+
+  const handleCopy = useCallback(() => {
+    if (!createdKey) return;
+    navigator.clipboard.writeText(createdKey).catch(() => {
+      toast("Error", { description: "Clipboard access denied.", closeButton: true });
+    });
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 1500);
+  }, [createdKey]);
+
+  const handleDelete = useCallback(async (keyId: string) => {
     setLoading(true);
     const formData = new FormData();
     formData.set("keyId", keyId);
-    const result: ActionResult = await deleteApiKeyAction(undefined, formData);
+    const result = await deleteApiKeyAction(formData);
     setLoading(false);
-    toast(result.success ? "Deleted" : "Error",{
-      description: result.message,
-      closeButton: true,
-    });
-    if (result.success) {
-      window.location.reload();
-    }
-  };
+    toast(result.success ? "Deleted" : "Error", { description: result.message, closeButton: true });
+  }, []);
+
+  const handlePurchase = useCallback(async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const result = await createCreditPurchaseSessionAction(formData);
+    setLoading(false);
+    toast(result.success ? "Purchased" : "Error", { description: result.message, closeButton: true });
+    return redirect(result.url || "/settings/api");
+  }, []);
 
   return (
     <div className="flex h-screen w-full bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+      <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>API-Key erstellt</DialogTitle>
+            <DialogDescription>
+              Speichere diesen Schlüssel sicher – er wird nur einmal angezeigt.
+            </DialogDescription>
+          </DialogHeader>
+          <pre className="p-4 bg-gray-100 rounded font-mono break-all">{createdKey}</pre>
+          <Button
+            className={
+              `mt-2 flex items-center gap-2 transition-all ${
+                copySuccess ? "text-green-500" : "text-white dark:text-gray-100"
+              }`
+            }
+            onClick={handleCopy}
+          >
+            {copySuccess ? <FiCheck /> : <FiClipboard />} {copySuccess ? "Copied" : "Kopieren"}
+          </Button>
+          <DialogFooter>
+            <Button onClick={() => setShowCreateDialog(false)}>Schließen</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      {/* Main content */}
       <main className="flex-1 w-full p-6">
         <div className="space-y-6">
-          {/* Header cards */}
           <div className="grid grid-cols-3 gap-4">
             <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">Total Purchased</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">{purchaseSum}</p>
-              </CardContent>
+              <CardHeader><CardTitle className="text-sm">Total Purchased</CardTitle></CardHeader>
+              <CardContent><p className="text-2xl font-semibold">{purchaseSum}</p></CardContent>
             </Card>
             <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">Total Used</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">{usageSum}</p>
-              </CardContent>
+              <CardHeader><CardTitle className="text-sm">Total Used</CardTitle></CardHeader>
+              <CardContent><p className="text-2xl font-semibold">{usageSum}</p></CardContent>
             </Card>
             <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">Remaining</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">{creditsRemaining}</p>
-              </CardContent>
+              <CardHeader><CardTitle className="text-sm">Remaining</CardTitle></CardHeader>
+              <CardContent><p className="text-2xl font-semibold">{creditsRemaining}</p></CardContent>
             </Card>
           </div>
 
-          {/* Usage chart */}
+          <Card className="mb-4">
+            <CardHeader><CardTitle>Credits aufladen</CardTitle></CardHeader>
+            <CardContent>
+              <form onSubmit={handlePurchase} className="grid grid-cols-3 gap-4 items-end">
+                <div className="col-span-2">
+                  <Label htmlFor="credits">Credits</Label>
+                  <Input id="credits" name="credits" type="number" min={1} placeholder="Anzahl Credits" required />
+                </div>
+                <div>
+                  <Button type="submit" disabled={loading}>{loading ? "Lädt…" : "Kaufen"}</Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader className="flex justify-between items-center">
               <CardTitle>Credit Usage Over Time</CardTitle>
@@ -135,11 +185,8 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
             </CardContent>
           </Card>
 
-          {/* Create key form */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Create New API Key</CardTitle>
-            </CardHeader>
+            <CardHeader><CardTitle className="text-lg">Create New API Key</CardTitle></CardHeader>
             <CardContent>
               <form onSubmit={handleCreate} className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
@@ -151,19 +198,14 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
                   <Input id="description" name="description" placeholder="Optional description" />
                 </div>
                 <div className="col-span-2 text-right">
-                  <Button type="submit" disabled={loading}>
-                    {loading ? "Processing..." : "Create Key"}
-                  </Button>
+                  <Button type="submit" disabled={loading}>{loading ? "Processing..." : "Create Key"}</Button>
                 </div>
               </form>
             </CardContent>
           </Card>
 
-          {/* Keys table */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Your API Keys</CardTitle>
-            </CardHeader>
+            <CardHeader><CardTitle className="text-lg">Your API Keys</CardTitle></CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>

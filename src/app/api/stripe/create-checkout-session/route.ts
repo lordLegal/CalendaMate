@@ -2,16 +2,35 @@ import { NextResponse } from 'next/server'
 import { getCurrentSession } from '@/lib/server/session'
 import prisma from '@/lib/server/prisma'
 import stripe from '@/lib/server/stripe'
+import { globalGETRateLimit } from '@/lib/server/requests'
 
 export async function POST() {
-  const { user } = await getCurrentSession()
-  if (!user) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
+  if (!globalGETRateLimit()) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
+  const { session, user } = await getCurrentSession();
+
+  if (user === null) {
+    return NextResponse.redirect("/login");
+  }
+
+  if (user.registered2FA && !session?.twoFactorVerified) {
+    return NextResponse.redirect("/2fa");
+  }
+  if (!user.emailVerified) {
+    return NextResponse.redirect("/verify-email");
+  }
+  if (session === null) {
+    return NextResponse.redirect("/login");
   }
 
   let customerId: string
   // find or create Stripe customer
-  const existing = await prisma.subscription.findFirst({ where: { userId: user.id } })
+  const existing = await prisma.subscription.findUnique({ where: { userId: user.id } })
+  if (existing?.stripeSubscriptionId) {
+    return NextResponse.json({ error: 'Already subscribed' }, { status: 400 })
+  }
   if (existing?.stripeCustomerId) {
     customerId = existing.stripeCustomerId
   } else {
@@ -21,7 +40,7 @@ export async function POST() {
     })
     customerId = customer.id
     await prisma.subscription.upsert({
-      where: { id: existing?.id, stripeSubscriptionId: existing?.stripeSubscriptionId },
+      where: { userId: user.id },
       update: { stripeCustomerId: customerId },
       create: {
         userId: user.id,
@@ -35,7 +54,7 @@ export async function POST() {
   }
 
   // Create checkout session
-  const session = await stripe.checkout.sessions.create({
+  const sessionStripe = await stripe.checkout.sessions.create({
     customer: customerId,
     subscription_data: { metadata: { userId: user.id } },
     line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
@@ -46,5 +65,5 @@ export async function POST() {
     allow_promotion_codes: true,
   })
 
-  return NextResponse.json({ url: session.url })
+  return NextResponse.json({ url: sessionStripe.url })
 }

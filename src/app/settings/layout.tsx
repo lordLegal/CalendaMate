@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { IconDashboard } from '@tabler/icons-react';
+import { Toaster } from '@/components/ui/sonner';
 
 // Menu items.
 const items = [
@@ -61,6 +62,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
       <main className="flex-1 bg-gray-50 p-8 overflow-auto">
         <SidebarTrigger />
         {children}
+        <Toaster duration={3000} />
       </main>
     </div>
     </SidebarProvider>

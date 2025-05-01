@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
           fullSession.line_items?.data?.[0]?.price?.id || undefined;
 
         await prisma.subscription.upsert({
-          where: { stripeSubscriptionId: subscriptionId, userId },
+          where: { userId },
           create: {
             userId,
             stripeSubscriptionId: subscriptionId,
@@ -92,7 +92,6 @@ export async function POST(req: NextRequest) {
     if (event.type.startsWith('customer.subscription.')) {
       const sub = event.data.object as Stripe.Subscription;
       const metadata = sub.metadata || {};
-      console.log('Subscription event:', event.type, sub.id, metadata);
       const userId = metadata.userId ? parseInt(metadata.userId, 10) : null;
 
       if (userId) {
@@ -106,7 +105,7 @@ export async function POST(req: NextRequest) {
           currentPeriodEnd: new Date(sub.billing_cycle_anchor * 1000)
         };
         await prisma.subscription.upsert({
-          where: { stripeSubscriptionId: sub.id, userId },
+          where: { userId },
           // Create a new subscription record if it doesn't exist, or update the existing one
           create: { userId, ...record },
           update: record
