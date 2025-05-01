@@ -92,6 +92,16 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
     return redirect(result.url || "/settings/api");
   }, []);
 
+  const [creditCount, setCreditCount] = useState<number>(0);
+
+  const handleCreditsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10) || 0;
+    setCreditCount(value);
+  };
+
+  const convertedAmount = (creditCount * 0.01).toFixed(2);
+
+
   return (
     <div className="flex h-screen w-full bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
@@ -142,7 +152,19 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
               <form onSubmit={handlePurchase} className="grid grid-cols-3 gap-4 items-end">
                 <div className="col-span-2">
                   <Label htmlFor="credits">Credits</Label>
-                  <Input id="credits" name="credits" type="number" min={1} placeholder="Anzahl Credits" required />
+                  <Input 
+                    onChange={handleCreditsChange} 
+                    id="credits" 
+                    name="credits" 
+                    type="number" 
+                    min={1} 
+                    placeholder="Anzahl Credits" 
+                    required 
+                  />
+                </div>
+                <div className="col-span-1">
+                  <Label htmlFor="amount">Betrag</Label>
+                  <span className="block text-gray-500">€ {convertedAmount}</span>
                 </div>
                 <div>
                   <Button type="submit" disabled={loading}>{loading ? "Lädt…" : "Kaufen"}</Button>
