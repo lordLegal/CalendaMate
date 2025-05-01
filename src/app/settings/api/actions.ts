@@ -61,9 +61,11 @@ export async function createCreditPurchaseSessionAction(
     return { success: false, message: "Ungültige Credit-Anzahl" };
   }
 
-  // 50 Credits sind das Minimum
-  if (credits < 500) {
-    return { success: false, message: "Mindestanzahl sind 50 Credits" };
+  console.log("Credits:", credits);
+
+  // 500 Credits sind das Minimum
+  if (credits < 499) {
+    return { success: false, message: "Mindestanzahl sind 500 Credits" };
   }
   // 10000 Credits sind das Maximum
   if (credits > 10000) {

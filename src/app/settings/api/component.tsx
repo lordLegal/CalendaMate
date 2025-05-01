@@ -92,15 +92,14 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
     return redirect(result.url || "/settings/api");
   }, []);
 
-  const [creditCount, setCreditCount] = useState<number>(0);
+  const [euroAmount, setEuroAmount] = useState<number>(0);
 
-  const handleCreditsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10) || 0;
-    setCreditCount(value);
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const amount = parseFloat(e.target.value) || 0;
+    setEuroAmount(amount);
   };
 
-  const convertedAmount = (creditCount * 0.01).toFixed(2);
-
+  const computedCredits = Math.round(euroAmount * 100);
 
   return (
     <div className="flex h-screen w-full bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
@@ -151,20 +150,24 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
             <CardContent>
               <form onSubmit={handlePurchase} className="grid grid-cols-3 gap-4 items-end">
                 <div className="col-span-2">
-                  <Label htmlFor="credits">Credits</Label>
+                  <Label htmlFor="amount">Betrag in €</Label>
                   <Input 
-                    onChange={handleCreditsChange} 
-                    id="credits" 
-                    name="credits" 
+                    onChange={handleAmountChange} 
+                    id="amount" 
+                    name="amount" 
                     type="number" 
-                    min={1} 
-                    placeholder="Anzahl Credits" 
+                    step={5}
+                    min={5}
+                    max={1000}
+                    placeholder="Euro-Betrag" 
                     required 
                   />
                 </div>
                 <div className="col-span-1">
-                  <Label htmlFor="amount">Betrag</Label>
-                  <span className="block text-gray-500">€ {convertedAmount}</span>
+                  <Label htmlFor="credits">Credits</Label>
+                  <span className="block text-gray-500">{computedCredits}</span>
+                  <p className="text-sm text-gray-500">1 Credit = 0.01 €</p>
+                  <Input type="hidden" name="credits" value={computedCredits} />
                 </div>
                 <div>
                   <Button type="submit" disabled={loading}>{loading ? "Lädt…" : "Kaufen"}</Button>

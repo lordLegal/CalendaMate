@@ -62,7 +62,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
       <main className="flex-1 bg-gray-50 p-8 overflow-auto">
         <SidebarTrigger />
         {children}
-        <Toaster duration={3000} />
+        <Toaster duration={3000} className='bg-black' />
       </main>
     </div>
     </SidebarProvider>
