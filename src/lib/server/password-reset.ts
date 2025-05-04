@@ -103,7 +103,7 @@ export async function setPasswordResetSessionAs2FAVerified(sessionId: string): P
 
 export async function invalidateUserPasswordResetSessions(userId: number): Promise<void> {
 	await prisma.passwordResetSession.deleteMany({
-		where: { userId }
+		where: { userId: userId }
 	});
 }
 

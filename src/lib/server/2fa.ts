@@ -33,7 +33,7 @@ export async function resetUser2FAWithRecoveryCode(userId: number, recoveryCode:
     
     // Alle Sitzungen des Benutzers aktualisieren
     await tx.session.updateMany({
-      where: { userId },
+      where: { userId: userId },
       data: { twoFactorVerified: false }
     });
     

@@ -170,31 +170,10 @@ exports.Prisma.ApiKeyScalarFieldEnum = {
   unlimited: 'unlimited',
   minInterval: 'minInterval',
   ownerId: 'ownerId',
-  name: 'name',
   description: 'description',
   createdAt: 'createdAt',
-  lastRequest: 'lastRequest'
-};
-
-exports.Prisma.ApiKeyPermissionScalarFieldEnum = {
-  id: 'id',
-  apiKeyId: 'apiKeyId',
-  permission: 'permission'
-};
-
-exports.Prisma.ApiCreditsPurchaseScalarFieldEnum = {
-  id: 'id',
-  credits: 'credits',
-  purchaseDate: 'purchaseDate',
-  userId: 'userId'
-};
-
-exports.Prisma.ApiCreditsUsageScalarFieldEnum = {
-  id: 'id',
-  apiKeyId: 'apiKeyId',
-  credits: 'credits',
-  usageDate: 'usageDate',
-  userId: 'userId'
+  lastRequest: 'lastRequest',
+  name: 'name'
 };
 
 exports.Prisma.ApiUsageLogScalarFieldEnum = {
@@ -229,6 +208,27 @@ exports.Prisma.CalendarAccountScalarFieldEnum = {
   calendarId: 'calendarId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Api_credits_purchaseScalarFieldEnum = {
+  id: 'id',
+  credits: 'credits',
+  purchaseDate: 'purchaseDate',
+  user_id: 'user_id'
+};
+
+exports.Prisma.Api_credits_usageScalarFieldEnum = {
+  id: 'id',
+  api_key_id: 'api_key_id',
+  credits: 'credits',
+  usageDate: 'usageDate',
+  user_id: 'user_id'
+};
+
+exports.Prisma.Api_key_permissionScalarFieldEnum = {
+  id: 'id',
+  api_key_id: 'api_key_id',
+  permission: 'permission'
 };
 
 exports.Prisma.SortOrder = {
@@ -268,12 +268,12 @@ exports.Prisma.ModelName = {
   EmailVerificationRequest: 'EmailVerificationRequest',
   PasswordResetSession: 'PasswordResetSession',
   ApiKey: 'ApiKey',
-  ApiKeyPermission: 'ApiKeyPermission',
-  ApiCreditsPurchase: 'ApiCreditsPurchase',
-  ApiCreditsUsage: 'ApiCreditsUsage',
   ApiUsageLog: 'ApiUsageLog',
   TimetableCache: 'TimetableCache',
-  CalendarAccount: 'CalendarAccount'
+  CalendarAccount: 'CalendarAccount',
+  api_credits_purchase: 'api_credits_purchase',
+  api_credits_usage: 'api_credits_usage',
+  api_key_permission: 'api_key_permission'
 };
 
 /**

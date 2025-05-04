@@ -90,7 +90,7 @@ export async function invalidateSession(sessionId: string): Promise<void> {
 
 export async function invalidateUserSessions(userId: number): Promise<void> {
 	await prisma.session.deleteMany({
-		where: { userId }
+		where: { userId: userId }
 	});
 }
 

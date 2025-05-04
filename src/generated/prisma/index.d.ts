@@ -44,21 +44,6 @@ export type PasswordResetSession = $Result.DefaultSelection<Prisma.$PasswordRese
  */
 export type ApiKey = $Result.DefaultSelection<Prisma.$ApiKeyPayload>
 /**
- * Model ApiKeyPermission
- * 
- */
-export type ApiKeyPermission = $Result.DefaultSelection<Prisma.$ApiKeyPermissionPayload>
-/**
- * Model ApiCreditsPurchase
- * 
- */
-export type ApiCreditsPurchase = $Result.DefaultSelection<Prisma.$ApiCreditsPurchasePayload>
-/**
- * Model ApiCreditsUsage
- * 
- */
-export type ApiCreditsUsage = $Result.DefaultSelection<Prisma.$ApiCreditsUsagePayload>
-/**
  * Model ApiUsageLog
  * 
  */
@@ -73,6 +58,21 @@ export type TimetableCache = $Result.DefaultSelection<Prisma.$TimetableCachePayl
  * 
  */
 export type CalendarAccount = $Result.DefaultSelection<Prisma.$CalendarAccountPayload>
+/**
+ * Model api_credits_purchase
+ * 
+ */
+export type api_credits_purchase = $Result.DefaultSelection<Prisma.$api_credits_purchasePayload>
+/**
+ * Model api_credits_usage
+ * 
+ */
+export type api_credits_usage = $Result.DefaultSelection<Prisma.$api_credits_usagePayload>
+/**
+ * Model api_key_permission
+ * 
+ */
+export type api_key_permission = $Result.DefaultSelection<Prisma.$api_key_permissionPayload>
 
 /**
  * Enums
@@ -278,36 +278,6 @@ export class PrismaClient<
   get apiKey(): Prisma.ApiKeyDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.apiKeyPermission`: Exposes CRUD operations for the **ApiKeyPermission** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ApiKeyPermissions
-    * const apiKeyPermissions = await prisma.apiKeyPermission.findMany()
-    * ```
-    */
-  get apiKeyPermission(): Prisma.ApiKeyPermissionDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.apiCreditsPurchase`: Exposes CRUD operations for the **ApiCreditsPurchase** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ApiCreditsPurchases
-    * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany()
-    * ```
-    */
-  get apiCreditsPurchase(): Prisma.ApiCreditsPurchaseDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.apiCreditsUsage`: Exposes CRUD operations for the **ApiCreditsUsage** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ApiCreditsUsages
-    * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany()
-    * ```
-    */
-  get apiCreditsUsage(): Prisma.ApiCreditsUsageDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.apiUsageLog`: Exposes CRUD operations for the **ApiUsageLog** model.
     * Example usage:
     * ```ts
@@ -336,6 +306,36 @@ export class PrismaClient<
     * ```
     */
   get calendarAccount(): Prisma.CalendarAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.api_credits_purchase`: Exposes CRUD operations for the **api_credits_purchase** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Api_credits_purchases
+    * const api_credits_purchases = await prisma.api_credits_purchase.findMany()
+    * ```
+    */
+  get api_credits_purchase(): Prisma.api_credits_purchaseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.api_credits_usage`: Exposes CRUD operations for the **api_credits_usage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Api_credits_usages
+    * const api_credits_usages = await prisma.api_credits_usage.findMany()
+    * ```
+    */
+  get api_credits_usage(): Prisma.api_credits_usageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.api_key_permission`: Exposes CRUD operations for the **api_key_permission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Api_key_permissions
+    * const api_key_permissions = await prisma.api_key_permission.findMany()
+    * ```
+    */
+  get api_key_permission(): Prisma.api_key_permissionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -782,12 +782,12 @@ export namespace Prisma {
     EmailVerificationRequest: 'EmailVerificationRequest',
     PasswordResetSession: 'PasswordResetSession',
     ApiKey: 'ApiKey',
-    ApiKeyPermission: 'ApiKeyPermission',
-    ApiCreditsPurchase: 'ApiCreditsPurchase',
-    ApiCreditsUsage: 'ApiCreditsUsage',
     ApiUsageLog: 'ApiUsageLog',
     TimetableCache: 'TimetableCache',
-    CalendarAccount: 'CalendarAccount'
+    CalendarAccount: 'CalendarAccount',
+    api_credits_purchase: 'api_credits_purchase',
+    api_credits_usage: 'api_credits_usage',
+    api_key_permission: 'api_key_permission'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -806,7 +806,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiKeyPermission" | "apiCreditsPurchase" | "apiCreditsUsage" | "apiUsageLog" | "timetableCache" | "calendarAccount"
+      modelProps: "user" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount" | "api_credits_purchase" | "api_credits_usage" | "api_key_permission"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1254,228 +1254,6 @@ export namespace Prisma {
           }
         }
       }
-      ApiKeyPermission: {
-        payload: Prisma.$ApiKeyPermissionPayload<ExtArgs>
-        fields: Prisma.ApiKeyPermissionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ApiKeyPermissionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          findFirst: {
-            args: Prisma.ApiKeyPermissionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          findMany: {
-            args: Prisma.ApiKeyPermissionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
-          }
-          create: {
-            args: Prisma.ApiKeyPermissionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          createMany: {
-            args: Prisma.ApiKeyPermissionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
-          }
-          delete: {
-            args: Prisma.ApiKeyPermissionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          update: {
-            args: Prisma.ApiKeyPermissionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          deleteMany: {
-            args: Prisma.ApiKeyPermissionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ApiKeyPermissionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>[]
-          }
-          upsert: {
-            args: Prisma.ApiKeyPermissionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiKeyPermissionPayload>
-          }
-          aggregate: {
-            args: Prisma.ApiKeyPermissionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateApiKeyPermission>
-          }
-          groupBy: {
-            args: Prisma.ApiKeyPermissionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ApiKeyPermissionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ApiKeyPermissionCountArgs<ExtArgs>
-            result: $Utils.Optional<ApiKeyPermissionCountAggregateOutputType> | number
-          }
-        }
-      }
-      ApiCreditsPurchase: {
-        payload: Prisma.$ApiCreditsPurchasePayload<ExtArgs>
-        fields: Prisma.ApiCreditsPurchaseFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ApiCreditsPurchaseFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          findFirst: {
-            args: Prisma.ApiCreditsPurchaseFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          findMany: {
-            args: Prisma.ApiCreditsPurchaseFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
-          }
-          create: {
-            args: Prisma.ApiCreditsPurchaseCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          createMany: {
-            args: Prisma.ApiCreditsPurchaseCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
-          }
-          delete: {
-            args: Prisma.ApiCreditsPurchaseDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          update: {
-            args: Prisma.ApiCreditsPurchaseUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          deleteMany: {
-            args: Prisma.ApiCreditsPurchaseDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ApiCreditsPurchaseUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>[]
-          }
-          upsert: {
-            args: Prisma.ApiCreditsPurchaseUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsPurchasePayload>
-          }
-          aggregate: {
-            args: Prisma.ApiCreditsPurchaseAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateApiCreditsPurchase>
-          }
-          groupBy: {
-            args: Prisma.ApiCreditsPurchaseGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ApiCreditsPurchaseGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ApiCreditsPurchaseCountArgs<ExtArgs>
-            result: $Utils.Optional<ApiCreditsPurchaseCountAggregateOutputType> | number
-          }
-        }
-      }
-      ApiCreditsUsage: {
-        payload: Prisma.$ApiCreditsUsagePayload<ExtArgs>
-        fields: Prisma.ApiCreditsUsageFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ApiCreditsUsageFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          findFirst: {
-            args: Prisma.ApiCreditsUsageFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          findMany: {
-            args: Prisma.ApiCreditsUsageFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
-          }
-          create: {
-            args: Prisma.ApiCreditsUsageCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          createMany: {
-            args: Prisma.ApiCreditsUsageCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
-          }
-          delete: {
-            args: Prisma.ApiCreditsUsageDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          update: {
-            args: Prisma.ApiCreditsUsageUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          deleteMany: {
-            args: Prisma.ApiCreditsUsageDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ApiCreditsUsageUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>[]
-          }
-          upsert: {
-            args: Prisma.ApiCreditsUsageUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ApiCreditsUsagePayload>
-          }
-          aggregate: {
-            args: Prisma.ApiCreditsUsageAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateApiCreditsUsage>
-          }
-          groupBy: {
-            args: Prisma.ApiCreditsUsageGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ApiCreditsUsageGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ApiCreditsUsageCountArgs<ExtArgs>
-            result: $Utils.Optional<ApiCreditsUsageCountAggregateOutputType> | number
-          }
-        }
-      }
       ApiUsageLog: {
         payload: Prisma.$ApiUsageLogPayload<ExtArgs>
         fields: Prisma.ApiUsageLogFieldRefs
@@ -1698,6 +1476,228 @@ export namespace Prisma {
           }
         }
       }
+      api_credits_purchase: {
+        payload: Prisma.$api_credits_purchasePayload<ExtArgs>
+        fields: Prisma.api_credits_purchaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.api_credits_purchaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.api_credits_purchaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          findFirst: {
+            args: Prisma.api_credits_purchaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.api_credits_purchaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          findMany: {
+            args: Prisma.api_credits_purchaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>[]
+          }
+          create: {
+            args: Prisma.api_credits_purchaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          createMany: {
+            args: Prisma.api_credits_purchaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.api_credits_purchaseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>[]
+          }
+          delete: {
+            args: Prisma.api_credits_purchaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          update: {
+            args: Prisma.api_credits_purchaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          deleteMany: {
+            args: Prisma.api_credits_purchaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.api_credits_purchaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.api_credits_purchaseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>[]
+          }
+          upsert: {
+            args: Prisma.api_credits_purchaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_purchasePayload>
+          }
+          aggregate: {
+            args: Prisma.Api_credits_purchaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApi_credits_purchase>
+          }
+          groupBy: {
+            args: Prisma.api_credits_purchaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Api_credits_purchaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.api_credits_purchaseCountArgs<ExtArgs>
+            result: $Utils.Optional<Api_credits_purchaseCountAggregateOutputType> | number
+          }
+        }
+      }
+      api_credits_usage: {
+        payload: Prisma.$api_credits_usagePayload<ExtArgs>
+        fields: Prisma.api_credits_usageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.api_credits_usageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.api_credits_usageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          findFirst: {
+            args: Prisma.api_credits_usageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.api_credits_usageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          findMany: {
+            args: Prisma.api_credits_usageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>[]
+          }
+          create: {
+            args: Prisma.api_credits_usageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          createMany: {
+            args: Prisma.api_credits_usageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.api_credits_usageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>[]
+          }
+          delete: {
+            args: Prisma.api_credits_usageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          update: {
+            args: Prisma.api_credits_usageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          deleteMany: {
+            args: Prisma.api_credits_usageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.api_credits_usageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.api_credits_usageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>[]
+          }
+          upsert: {
+            args: Prisma.api_credits_usageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_credits_usagePayload>
+          }
+          aggregate: {
+            args: Prisma.Api_credits_usageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApi_credits_usage>
+          }
+          groupBy: {
+            args: Prisma.api_credits_usageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Api_credits_usageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.api_credits_usageCountArgs<ExtArgs>
+            result: $Utils.Optional<Api_credits_usageCountAggregateOutputType> | number
+          }
+        }
+      }
+      api_key_permission: {
+        payload: Prisma.$api_key_permissionPayload<ExtArgs>
+        fields: Prisma.api_key_permissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.api_key_permissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.api_key_permissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          findFirst: {
+            args: Prisma.api_key_permissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.api_key_permissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          findMany: {
+            args: Prisma.api_key_permissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>[]
+          }
+          create: {
+            args: Prisma.api_key_permissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          createMany: {
+            args: Prisma.api_key_permissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.api_key_permissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>[]
+          }
+          delete: {
+            args: Prisma.api_key_permissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          update: {
+            args: Prisma.api_key_permissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.api_key_permissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.api_key_permissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.api_key_permissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.api_key_permissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$api_key_permissionPayload>
+          }
+          aggregate: {
+            args: Prisma.Api_key_permissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApi_key_permission>
+          }
+          groupBy: {
+            args: Prisma.api_key_permissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Api_key_permissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.api_key_permissionCountArgs<ExtArgs>
+            result: $Utils.Optional<Api_key_permissionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1788,12 +1788,12 @@ export namespace Prisma {
     emailVerificationRequest?: EmailVerificationRequestOmit
     passwordResetSession?: PasswordResetSessionOmit
     apiKey?: ApiKeyOmit
-    apiKeyPermission?: ApiKeyPermissionOmit
-    apiCreditsPurchase?: ApiCreditsPurchaseOmit
-    apiCreditsUsage?: ApiCreditsUsageOmit
     apiUsageLog?: ApiUsageLogOmit
     timetableCache?: TimetableCacheOmit
     calendarAccount?: CalendarAccountOmit
+    api_credits_purchase?: api_credits_purchaseOmit
+    api_credits_usage?: api_credits_usageOmit
+    api_key_permission?: api_key_permissionOmit
   }
 
   /* Types for Logging */
@@ -1888,25 +1888,23 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    sessions: number
-    emailVerifications: number
-    passwordResets: number
+    api_credits_purchase: number
+    api_credits_usage: number
     apiKeys: number
     calendarAccounts: number
-    subscriptions: number
-    apiCreditsPurchases: number
-    apiCreditsUsages: number
+    emailVerifications: number
+    passwordResets: number
+    sessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-    emailVerifications?: boolean | UserCountOutputTypeCountEmailVerificationsArgs
-    passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
+    api_credits_purchase?: boolean | UserCountOutputTypeCountApi_credits_purchaseArgs
+    api_credits_usage?: boolean | UserCountOutputTypeCountApi_credits_usageArgs
     apiKeys?: boolean | UserCountOutputTypeCountApiKeysArgs
     calendarAccounts?: boolean | UserCountOutputTypeCountCalendarAccountsArgs
-    subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
-    apiCreditsPurchases?: boolean | UserCountOutputTypeCountApiCreditsPurchasesArgs
-    apiCreditsUsages?: boolean | UserCountOutputTypeCountApiCreditsUsagesArgs
+    emailVerifications?: boolean | UserCountOutputTypeCountEmailVerificationsArgs
+    passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
 
   // Custom InputTypes
@@ -1923,22 +1921,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
+  export type UserCountOutputTypeCountApi_credits_purchaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_credits_purchaseWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountEmailVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EmailVerificationRequestWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPasswordResetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PasswordResetSessionWhereInput
+  export type UserCountOutputTypeCountApi_credits_usageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_credits_usageWhereInput
   }
 
   /**
@@ -1958,22 +1949,22 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SubscriptionWhereInput
+  export type UserCountOutputTypeCountEmailVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailVerificationRequestWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountApiCreditsPurchasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiCreditsPurchaseWhereInput
+  export type UserCountOutputTypeCountPasswordResetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PasswordResetSessionWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountApiCreditsUsagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiCreditsUsageWhereInput
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
 
@@ -1982,13 +1973,13 @@ export namespace Prisma {
    */
 
   export type ApiKeyCountOutputType = {
+    api_key_permission: number
     usageLogs: number
-    apiKeyPermissions: number
   }
 
   export type ApiKeyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    api_key_permission?: boolean | ApiKeyCountOutputTypeCountApi_key_permissionArgs
     usageLogs?: boolean | ApiKeyCountOutputTypeCountUsageLogsArgs
-    apiKeyPermissions?: boolean | ApiKeyCountOutputTypeCountApiKeyPermissionsArgs
   }
 
   // Custom InputTypes
@@ -2005,15 +1996,15 @@ export namespace Prisma {
   /**
    * ApiKeyCountOutputType without action
    */
-  export type ApiKeyCountOutputTypeCountUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiUsageLogWhereInput
+  export type ApiKeyCountOutputTypeCountApi_key_permissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_key_permissionWhereInput
   }
 
   /**
    * ApiKeyCountOutputType without action
    */
-  export type ApiKeyCountOutputTypeCountApiKeyPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiKeyPermissionWhereInput
+  export type ApiKeyCountOutputTypeCountUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiUsageLogWhereInput
   }
 
 
@@ -2235,14 +2226,14 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: boolean
     recoveryCode?: boolean
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
-    passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
+    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
+    api_credits_purchase?: boolean | User$api_credits_purchaseArgs<ExtArgs>
+    api_credits_usage?: boolean | User$api_credits_usageArgs<ExtArgs>
     apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     calendarAccounts?: boolean | User$calendarAccountsArgs<ExtArgs>
-    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
-    apiCreditsPurchases?: boolean | User$apiCreditsPurchasesArgs<ExtArgs>
-    apiCreditsUsages?: boolean | User$apiCreditsUsagesArgs<ExtArgs>
+    emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
+    passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2278,14 +2269,14 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "emailVerified" | "totpKey" | "recoveryCode", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
-    passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
+    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
+    api_credits_purchase?: boolean | User$api_credits_purchaseArgs<ExtArgs>
+    api_credits_usage?: boolean | User$api_credits_usageArgs<ExtArgs>
     apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     calendarAccounts?: boolean | User$calendarAccountsArgs<ExtArgs>
-    subscriptions?: boolean | User$subscriptionsArgs<ExtArgs>
-    apiCreditsPurchases?: boolean | User$apiCreditsPurchasesArgs<ExtArgs>
-    apiCreditsUsages?: boolean | User$apiCreditsUsagesArgs<ExtArgs>
+    emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
+    passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2294,14 +2285,14 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
-      emailVerifications: Prisma.$EmailVerificationRequestPayload<ExtArgs>[]
-      passwordResets: Prisma.$PasswordResetSessionPayload<ExtArgs>[]
+      subscriptions: Prisma.$SubscriptionPayload<ExtArgs> | null
+      api_credits_purchase: Prisma.$api_credits_purchasePayload<ExtArgs>[]
+      api_credits_usage: Prisma.$api_credits_usagePayload<ExtArgs>[]
       apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
       calendarAccounts: Prisma.$CalendarAccountPayload<ExtArgs>[]
-      subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-      apiCreditsPurchases: Prisma.$ApiCreditsPurchasePayload<ExtArgs>[]
-      apiCreditsUsages: Prisma.$ApiCreditsUsagePayload<ExtArgs>[]
+      emailVerifications: Prisma.$EmailVerificationRequestPayload<ExtArgs>[]
+      passwordResets: Prisma.$PasswordResetSessionPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2705,14 +2696,14 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    emailVerifications<T extends User$emailVerificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailVerificationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    passwordResets<T extends User$passwordResetsArgs<ExtArgs> = {}>(args?: Subset<T, User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    subscriptions<T extends User$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionsArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    api_credits_purchase<T extends User$api_credits_purchaseArgs<ExtArgs> = {}>(args?: Subset<T, User$api_credits_purchaseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    api_credits_usage<T extends User$api_credits_usageArgs<ExtArgs> = {}>(args?: Subset<T, User$api_credits_usageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     apiKeys<T extends User$apiKeysArgs<ExtArgs> = {}>(args?: Subset<T, User$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     calendarAccounts<T extends User$calendarAccountsArgs<ExtArgs> = {}>(args?: Subset<T, User$calendarAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CalendarAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    subscriptions<T extends User$subscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    apiCreditsPurchases<T extends User$apiCreditsPurchasesArgs<ExtArgs> = {}>(args?: Subset<T, User$apiCreditsPurchasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    apiCreditsUsages<T extends User$apiCreditsUsagesArgs<ExtArgs> = {}>(args?: Subset<T, User$apiCreditsUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emailVerifications<T extends User$emailVerificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailVerificationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    passwordResets<T extends User$passwordResetsArgs<ExtArgs> = {}>(args?: Subset<T, User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3137,75 +3128,70 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
+   * User.subscriptions
    */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$subscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Session
+     * Select specific fields to fetch from the Subscription
      */
-    select?: SessionSelect<ExtArgs> | null
+    select?: SubscriptionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Session
+     * Omit specific fields from the Subscription
      */
-    omit?: SessionOmit<ExtArgs> | null
+    omit?: SubscriptionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+    include?: SubscriptionInclude<ExtArgs> | null
+    where?: SubscriptionWhereInput
   }
 
   /**
-   * User.emailVerifications
+   * User.api_credits_purchase
    */
-  export type User$emailVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$api_credits_purchaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EmailVerificationRequest
+     * Select specific fields to fetch from the api_credits_purchase
      */
-    select?: EmailVerificationRequestSelect<ExtArgs> | null
+    select?: api_credits_purchaseSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EmailVerificationRequest
+     * Omit specific fields from the api_credits_purchase
      */
-    omit?: EmailVerificationRequestOmit<ExtArgs> | null
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmailVerificationRequestInclude<ExtArgs> | null
-    where?: EmailVerificationRequestWhereInput
-    orderBy?: EmailVerificationRequestOrderByWithRelationInput | EmailVerificationRequestOrderByWithRelationInput[]
-    cursor?: EmailVerificationRequestWhereUniqueInput
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    where?: api_credits_purchaseWhereInput
+    orderBy?: api_credits_purchaseOrderByWithRelationInput | api_credits_purchaseOrderByWithRelationInput[]
+    cursor?: api_credits_purchaseWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: EmailVerificationRequestScalarFieldEnum | EmailVerificationRequestScalarFieldEnum[]
+    distinct?: Api_credits_purchaseScalarFieldEnum | Api_credits_purchaseScalarFieldEnum[]
   }
 
   /**
-   * User.passwordResets
+   * User.api_credits_usage
    */
-  export type User$passwordResetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$api_credits_usageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PasswordResetSession
+     * Select specific fields to fetch from the api_credits_usage
      */
-    select?: PasswordResetSessionSelect<ExtArgs> | null
+    select?: api_credits_usageSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the PasswordResetSession
+     * Omit specific fields from the api_credits_usage
      */
-    omit?: PasswordResetSessionOmit<ExtArgs> | null
+    omit?: api_credits_usageOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PasswordResetSessionInclude<ExtArgs> | null
-    where?: PasswordResetSessionWhereInput
-    orderBy?: PasswordResetSessionOrderByWithRelationInput | PasswordResetSessionOrderByWithRelationInput[]
-    cursor?: PasswordResetSessionWhereUniqueInput
+    include?: api_credits_usageInclude<ExtArgs> | null
+    where?: api_credits_usageWhereInput
+    orderBy?: api_credits_usageOrderByWithRelationInput | api_credits_usageOrderByWithRelationInput[]
+    cursor?: api_credits_usageWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PasswordResetSessionScalarFieldEnum | PasswordResetSessionScalarFieldEnum[]
+    distinct?: Api_credits_usageScalarFieldEnum | Api_credits_usageScalarFieldEnum[]
   }
 
   /**
@@ -3257,75 +3243,75 @@ export namespace Prisma {
   }
 
   /**
-   * User.subscriptions
+   * User.emailVerifications
    */
-  export type User$subscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$emailVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Subscription
+     * Select specific fields to fetch from the EmailVerificationRequest
      */
-    select?: SubscriptionSelect<ExtArgs> | null
+    select?: EmailVerificationRequestSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Subscription
+     * Omit specific fields from the EmailVerificationRequest
      */
-    omit?: SubscriptionOmit<ExtArgs> | null
+    omit?: EmailVerificationRequestOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SubscriptionInclude<ExtArgs> | null
-    where?: SubscriptionWhereInput
-    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
-    cursor?: SubscriptionWhereUniqueInput
+    include?: EmailVerificationRequestInclude<ExtArgs> | null
+    where?: EmailVerificationRequestWhereInput
+    orderBy?: EmailVerificationRequestOrderByWithRelationInput | EmailVerificationRequestOrderByWithRelationInput[]
+    cursor?: EmailVerificationRequestWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+    distinct?: EmailVerificationRequestScalarFieldEnum | EmailVerificationRequestScalarFieldEnum[]
   }
 
   /**
-   * User.apiCreditsPurchases
+   * User.passwordResets
    */
-  export type User$apiCreditsPurchasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$passwordResetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
+     * Select specific fields to fetch from the PasswordResetSession
      */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
+    select?: PasswordResetSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ApiCreditsPurchase
+     * Omit specific fields from the PasswordResetSession
      */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
+    omit?: PasswordResetSessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    where?: ApiCreditsPurchaseWhereInput
-    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
-    cursor?: ApiCreditsPurchaseWhereUniqueInput
+    include?: PasswordResetSessionInclude<ExtArgs> | null
+    where?: PasswordResetSessionWhereInput
+    orderBy?: PasswordResetSessionOrderByWithRelationInput | PasswordResetSessionOrderByWithRelationInput[]
+    cursor?: PasswordResetSessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
+    distinct?: PasswordResetSessionScalarFieldEnum | PasswordResetSessionScalarFieldEnum[]
   }
 
   /**
-   * User.apiCreditsUsages
+   * User.sessions
    */
-  export type User$apiCreditsUsagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ApiCreditsUsage
+     * Select specific fields to fetch from the Session
      */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ApiCreditsUsage
+     * Omit specific fields from the Session
      */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    where?: ApiCreditsUsageWhereInput
-    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
-    cursor?: ApiCreditsUsageWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -7808,10 +7794,10 @@ export namespace Prisma {
     unlimited: boolean | null
     minInterval: number | null
     ownerId: number | null
-    name: string | null
     description: string | null
     createdAt: Date | null
     lastRequest: Date | null
+    name: string | null
   }
 
   export type ApiKeyMaxAggregateOutputType = {
@@ -7820,10 +7806,10 @@ export namespace Prisma {
     unlimited: boolean | null
     minInterval: number | null
     ownerId: number | null
-    name: string | null
     description: string | null
     createdAt: Date | null
     lastRequest: Date | null
+    name: string | null
   }
 
   export type ApiKeyCountAggregateOutputType = {
@@ -7832,10 +7818,10 @@ export namespace Prisma {
     unlimited: number
     minInterval: number
     ownerId: number
-    name: number
     description: number
     createdAt: number
     lastRequest: number
+    name: number
     _all: number
   }
 
@@ -7856,10 +7842,10 @@ export namespace Prisma {
     unlimited?: true
     minInterval?: true
     ownerId?: true
-    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
+    name?: true
   }
 
   export type ApiKeyMaxAggregateInputType = {
@@ -7868,10 +7854,10 @@ export namespace Prisma {
     unlimited?: true
     minInterval?: true
     ownerId?: true
-    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
+    name?: true
   }
 
   export type ApiKeyCountAggregateInputType = {
@@ -7880,10 +7866,10 @@ export namespace Prisma {
     unlimited?: true
     minInterval?: true
     ownerId?: true
-    name?: true
     description?: true
     createdAt?: true
     lastRequest?: true
+    name?: true
     _all?: true
   }
 
@@ -7979,10 +7965,10 @@ export namespace Prisma {
     unlimited: boolean
     minInterval: number
     ownerId: number | null
-    name: string
     description: string | null
     createdAt: Date
     lastRequest: Date | null
+    name: string
     _count: ApiKeyCountAggregateOutputType | null
     _avg: ApiKeyAvgAggregateOutputType | null
     _sum: ApiKeySumAggregateOutputType | null
@@ -8010,13 +7996,13 @@ export namespace Prisma {
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
-    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
+    name?: boolean
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
+    api_key_permission?: boolean | ApiKey$api_key_permissionArgs<ExtArgs>
     usageLogs?: boolean | ApiKey$usageLogsArgs<ExtArgs>
-    apiKeyPermissions?: boolean | ApiKey$apiKeyPermissionsArgs<ExtArgs>
     _count?: boolean | ApiKeyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["apiKey"]>
 
@@ -8026,10 +8012,10 @@ export namespace Prisma {
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
-    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
+    name?: boolean
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
   }, ExtArgs["result"]["apiKey"]>
 
@@ -8039,10 +8025,10 @@ export namespace Prisma {
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
-    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
+    name?: boolean
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
   }, ExtArgs["result"]["apiKey"]>
 
@@ -8052,17 +8038,17 @@ export namespace Prisma {
     unlimited?: boolean
     minInterval?: boolean
     ownerId?: boolean
-    name?: boolean
     description?: boolean
     createdAt?: boolean
     lastRequest?: boolean
+    name?: boolean
   }
 
-  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "unlimited" | "minInterval" | "ownerId" | "name" | "description" | "createdAt" | "lastRequest", ExtArgs["result"]["apiKey"]>
+  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "unlimited" | "minInterval" | "ownerId" | "description" | "createdAt" | "lastRequest" | "name", ExtArgs["result"]["apiKey"]>
   export type ApiKeyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | ApiKey$ownerArgs<ExtArgs>
+    api_key_permission?: boolean | ApiKey$api_key_permissionArgs<ExtArgs>
     usageLogs?: boolean | ApiKey$usageLogsArgs<ExtArgs>
-    apiKeyPermissions?: boolean | ApiKey$apiKeyPermissionsArgs<ExtArgs>
     _count?: boolean | ApiKeyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ApiKeyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8076,8 +8062,8 @@ export namespace Prisma {
     name: "ApiKey"
     objects: {
       owner: Prisma.$UserPayload<ExtArgs> | null
+      api_key_permission: Prisma.$api_key_permissionPayload<ExtArgs>[]
       usageLogs: Prisma.$ApiUsageLogPayload<ExtArgs>[]
-      apiKeyPermissions: Prisma.$ApiKeyPermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8085,10 +8071,10 @@ export namespace Prisma {
       unlimited: boolean
       minInterval: number
       ownerId: number | null
-      name: string
       description: string | null
       createdAt: Date
       lastRequest: Date | null
+      name: string
     }, ExtArgs["result"]["apiKey"]>
     composites: {}
   }
@@ -8484,8 +8470,8 @@ export namespace Prisma {
   export interface Prisma__ApiKeyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     owner<T extends ApiKey$ownerArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$ownerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    api_key_permission<T extends ApiKey$api_key_permissionArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$api_key_permissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     usageLogs<T extends ApiKey$usageLogsArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$usageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    apiKeyPermissions<T extends ApiKey$apiKeyPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, ApiKey$apiKeyPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8520,10 +8506,10 @@ export namespace Prisma {
     readonly unlimited: FieldRef<"ApiKey", 'Boolean'>
     readonly minInterval: FieldRef<"ApiKey", 'Int'>
     readonly ownerId: FieldRef<"ApiKey", 'Int'>
-    readonly name: FieldRef<"ApiKey", 'String'>
     readonly description: FieldRef<"ApiKey", 'String'>
     readonly createdAt: FieldRef<"ApiKey", 'DateTime'>
     readonly lastRequest: FieldRef<"ApiKey", 'DateTime'>
+    readonly name: FieldRef<"ApiKey", 'String'>
   }
     
 
@@ -8939,6 +8925,30 @@ export namespace Prisma {
   }
 
   /**
+   * ApiKey.api_key_permission
+   */
+  export type ApiKey$api_key_permissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    where?: api_key_permissionWhereInput
+    orderBy?: api_key_permissionOrderByWithRelationInput | api_key_permissionOrderByWithRelationInput[]
+    cursor?: api_key_permissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Api_key_permissionScalarFieldEnum | Api_key_permissionScalarFieldEnum[]
+  }
+
+  /**
    * ApiKey.usageLogs
    */
   export type ApiKey$usageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8963,30 +8973,6 @@ export namespace Prisma {
   }
 
   /**
-   * ApiKey.apiKeyPermissions
-   */
-  export type ApiKey$apiKeyPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    where?: ApiKeyPermissionWhereInput
-    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
-    cursor?: ApiKeyPermissionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
-  }
-
-  /**
    * ApiKey without action
    */
   export type ApiKeyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9002,3255 +8988,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ApiKeyInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ApiKeyPermission
-   */
-
-  export type AggregateApiKeyPermission = {
-    _count: ApiKeyPermissionCountAggregateOutputType | null
-    _min: ApiKeyPermissionMinAggregateOutputType | null
-    _max: ApiKeyPermissionMaxAggregateOutputType | null
-  }
-
-  export type ApiKeyPermissionMinAggregateOutputType = {
-    id: string | null
-    apiKeyId: string | null
-    permission: string | null
-  }
-
-  export type ApiKeyPermissionMaxAggregateOutputType = {
-    id: string | null
-    apiKeyId: string | null
-    permission: string | null
-  }
-
-  export type ApiKeyPermissionCountAggregateOutputType = {
-    id: number
-    apiKeyId: number
-    permission: number
-    _all: number
-  }
-
-
-  export type ApiKeyPermissionMinAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    permission?: true
-  }
-
-  export type ApiKeyPermissionMaxAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    permission?: true
-  }
-
-  export type ApiKeyPermissionCountAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    permission?: true
-    _all?: true
-  }
-
-  export type ApiKeyPermissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiKeyPermission to aggregate.
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiKeyPermissions to fetch.
-     */
-    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ApiKeyPermissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiKeyPermissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiKeyPermissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ApiKeyPermissions
-    **/
-    _count?: true | ApiKeyPermissionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ApiKeyPermissionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ApiKeyPermissionMaxAggregateInputType
-  }
-
-  export type GetApiKeyPermissionAggregateType<T extends ApiKeyPermissionAggregateArgs> = {
-        [P in keyof T & keyof AggregateApiKeyPermission]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateApiKeyPermission[P]>
-      : GetScalarType<T[P], AggregateApiKeyPermission[P]>
-  }
-
-
-
-
-  export type ApiKeyPermissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiKeyPermissionWhereInput
-    orderBy?: ApiKeyPermissionOrderByWithAggregationInput | ApiKeyPermissionOrderByWithAggregationInput[]
-    by: ApiKeyPermissionScalarFieldEnum[] | ApiKeyPermissionScalarFieldEnum
-    having?: ApiKeyPermissionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ApiKeyPermissionCountAggregateInputType | true
-    _min?: ApiKeyPermissionMinAggregateInputType
-    _max?: ApiKeyPermissionMaxAggregateInputType
-  }
-
-  export type ApiKeyPermissionGroupByOutputType = {
-    id: string
-    apiKeyId: string
-    permission: string
-    _count: ApiKeyPermissionCountAggregateOutputType | null
-    _min: ApiKeyPermissionMinAggregateOutputType | null
-    _max: ApiKeyPermissionMaxAggregateOutputType | null
-  }
-
-  type GetApiKeyPermissionGroupByPayload<T extends ApiKeyPermissionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ApiKeyPermissionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ApiKeyPermissionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ApiKeyPermissionGroupByOutputType[P]>
-            : GetScalarType<T[P], ApiKeyPermissionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ApiKeyPermissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    permission?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["apiKeyPermission"]>
-
-  export type ApiKeyPermissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    permission?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["apiKeyPermission"]>
-
-  export type ApiKeyPermissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    permission?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["apiKeyPermission"]>
-
-  export type ApiKeyPermissionSelectScalar = {
-    id?: boolean
-    apiKeyId?: boolean
-    permission?: boolean
-  }
-
-  export type ApiKeyPermissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "permission", ExtArgs["result"]["apiKeyPermission"]>
-  export type ApiKeyPermissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }
-  export type ApiKeyPermissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }
-  export type ApiKeyPermissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
-  }
-
-  export type $ApiKeyPermissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ApiKeyPermission"
-    objects: {
-      apiKey: Prisma.$ApiKeyPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      apiKeyId: string
-      permission: string
-    }, ExtArgs["result"]["apiKeyPermission"]>
-    composites: {}
-  }
-
-  type ApiKeyPermissionGetPayload<S extends boolean | null | undefined | ApiKeyPermissionDefaultArgs> = $Result.GetResult<Prisma.$ApiKeyPermissionPayload, S>
-
-  type ApiKeyPermissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ApiKeyPermissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ApiKeyPermissionCountAggregateInputType | true
-    }
-
-  export interface ApiKeyPermissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiKeyPermission'], meta: { name: 'ApiKeyPermission' } }
-    /**
-     * Find zero or one ApiKeyPermission that matches the filter.
-     * @param {ApiKeyPermissionFindUniqueArgs} args - Arguments to find a ApiKeyPermission
-     * @example
-     * // Get one ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ApiKeyPermissionFindUniqueArgs>(args: SelectSubset<T, ApiKeyPermissionFindUniqueArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ApiKeyPermission that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ApiKeyPermissionFindUniqueOrThrowArgs} args - Arguments to find a ApiKeyPermission
-     * @example
-     * // Get one ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ApiKeyPermissionFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiKeyPermission that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionFindFirstArgs} args - Arguments to find a ApiKeyPermission
-     * @example
-     * // Get one ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ApiKeyPermissionFindFirstArgs>(args?: SelectSubset<T, ApiKeyPermissionFindFirstArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiKeyPermission that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionFindFirstOrThrowArgs} args - Arguments to find a ApiKeyPermission
-     * @example
-     * // Get one ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ApiKeyPermissionFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ApiKeyPermissions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ApiKeyPermissions
-     * const apiKeyPermissions = await prisma.apiKeyPermission.findMany()
-     * 
-     * // Get first 10 ApiKeyPermissions
-     * const apiKeyPermissions = await prisma.apiKeyPermission.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ApiKeyPermissionFindManyArgs>(args?: SelectSubset<T, ApiKeyPermissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ApiKeyPermission.
-     * @param {ApiKeyPermissionCreateArgs} args - Arguments to create a ApiKeyPermission.
-     * @example
-     * // Create one ApiKeyPermission
-     * const ApiKeyPermission = await prisma.apiKeyPermission.create({
-     *   data: {
-     *     // ... data to create a ApiKeyPermission
-     *   }
-     * })
-     * 
-     */
-    create<T extends ApiKeyPermissionCreateArgs>(args: SelectSubset<T, ApiKeyPermissionCreateArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ApiKeyPermissions.
-     * @param {ApiKeyPermissionCreateManyArgs} args - Arguments to create many ApiKeyPermissions.
-     * @example
-     * // Create many ApiKeyPermissions
-     * const apiKeyPermission = await prisma.apiKeyPermission.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ApiKeyPermissionCreateManyArgs>(args?: SelectSubset<T, ApiKeyPermissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ApiKeyPermissions and returns the data saved in the database.
-     * @param {ApiKeyPermissionCreateManyAndReturnArgs} args - Arguments to create many ApiKeyPermissions.
-     * @example
-     * // Create many ApiKeyPermissions
-     * const apiKeyPermission = await prisma.apiKeyPermission.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ApiKeyPermissions and only return the `id`
-     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ApiKeyPermissionCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ApiKeyPermission.
-     * @param {ApiKeyPermissionDeleteArgs} args - Arguments to delete one ApiKeyPermission.
-     * @example
-     * // Delete one ApiKeyPermission
-     * const ApiKeyPermission = await prisma.apiKeyPermission.delete({
-     *   where: {
-     *     // ... filter to delete one ApiKeyPermission
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ApiKeyPermissionDeleteArgs>(args: SelectSubset<T, ApiKeyPermissionDeleteArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ApiKeyPermission.
-     * @param {ApiKeyPermissionUpdateArgs} args - Arguments to update one ApiKeyPermission.
-     * @example
-     * // Update one ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ApiKeyPermissionUpdateArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ApiKeyPermissions.
-     * @param {ApiKeyPermissionDeleteManyArgs} args - Arguments to filter ApiKeyPermissions to delete.
-     * @example
-     * // Delete a few ApiKeyPermissions
-     * const { count } = await prisma.apiKeyPermission.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ApiKeyPermissionDeleteManyArgs>(args?: SelectSubset<T, ApiKeyPermissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiKeyPermissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ApiKeyPermissions
-     * const apiKeyPermission = await prisma.apiKeyPermission.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ApiKeyPermissionUpdateManyArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiKeyPermissions and returns the data updated in the database.
-     * @param {ApiKeyPermissionUpdateManyAndReturnArgs} args - Arguments to update many ApiKeyPermissions.
-     * @example
-     * // Update many ApiKeyPermissions
-     * const apiKeyPermission = await prisma.apiKeyPermission.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ApiKeyPermissions and only return the `id`
-     * const apiKeyPermissionWithIdOnly = await prisma.apiKeyPermission.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ApiKeyPermissionUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ApiKeyPermission.
-     * @param {ApiKeyPermissionUpsertArgs} args - Arguments to update or create a ApiKeyPermission.
-     * @example
-     * // Update or create a ApiKeyPermission
-     * const apiKeyPermission = await prisma.apiKeyPermission.upsert({
-     *   create: {
-     *     // ... data to create a ApiKeyPermission
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ApiKeyPermission we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ApiKeyPermissionUpsertArgs>(args: SelectSubset<T, ApiKeyPermissionUpsertArgs<ExtArgs>>): Prisma__ApiKeyPermissionClient<$Result.GetResult<Prisma.$ApiKeyPermissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ApiKeyPermissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionCountArgs} args - Arguments to filter ApiKeyPermissions to count.
-     * @example
-     * // Count the number of ApiKeyPermissions
-     * const count = await prisma.apiKeyPermission.count({
-     *   where: {
-     *     // ... the filter for the ApiKeyPermissions we want to count
-     *   }
-     * })
-    **/
-    count<T extends ApiKeyPermissionCountArgs>(
-      args?: Subset<T, ApiKeyPermissionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ApiKeyPermissionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ApiKeyPermission.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ApiKeyPermissionAggregateArgs>(args: Subset<T, ApiKeyPermissionAggregateArgs>): Prisma.PrismaPromise<GetApiKeyPermissionAggregateType<T>>
-
-    /**
-     * Group by ApiKeyPermission.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiKeyPermissionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ApiKeyPermissionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ApiKeyPermissionGroupByArgs['orderBy'] }
-        : { orderBy?: ApiKeyPermissionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ApiKeyPermissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiKeyPermissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ApiKeyPermission model
-   */
-  readonly fields: ApiKeyPermissionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ApiKeyPermission.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ApiKeyPermissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    apiKey<T extends ApiKeyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ApiKeyDefaultArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ApiKeyPermission model
-   */
-  interface ApiKeyPermissionFieldRefs {
-    readonly id: FieldRef<"ApiKeyPermission", 'String'>
-    readonly apiKeyId: FieldRef<"ApiKeyPermission", 'String'>
-    readonly permission: FieldRef<"ApiKeyPermission", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ApiKeyPermission findUnique
-   */
-  export type ApiKeyPermissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiKeyPermission to fetch.
-     */
-    where: ApiKeyPermissionWhereUniqueInput
-  }
-
-  /**
-   * ApiKeyPermission findUniqueOrThrow
-   */
-  export type ApiKeyPermissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiKeyPermission to fetch.
-     */
-    where: ApiKeyPermissionWhereUniqueInput
-  }
-
-  /**
-   * ApiKeyPermission findFirst
-   */
-  export type ApiKeyPermissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiKeyPermission to fetch.
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiKeyPermissions to fetch.
-     */
-    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiKeyPermissions.
-     */
-    cursor?: ApiKeyPermissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiKeyPermissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiKeyPermissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiKeyPermissions.
-     */
-    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
-  }
-
-  /**
-   * ApiKeyPermission findFirstOrThrow
-   */
-  export type ApiKeyPermissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiKeyPermission to fetch.
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiKeyPermissions to fetch.
-     */
-    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiKeyPermissions.
-     */
-    cursor?: ApiKeyPermissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiKeyPermissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiKeyPermissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiKeyPermissions.
-     */
-    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
-  }
-
-  /**
-   * ApiKeyPermission findMany
-   */
-  export type ApiKeyPermissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiKeyPermissions to fetch.
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiKeyPermissions to fetch.
-     */
-    orderBy?: ApiKeyPermissionOrderByWithRelationInput | ApiKeyPermissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ApiKeyPermissions.
-     */
-    cursor?: ApiKeyPermissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiKeyPermissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiKeyPermissions.
-     */
-    skip?: number
-    distinct?: ApiKeyPermissionScalarFieldEnum | ApiKeyPermissionScalarFieldEnum[]
-  }
-
-  /**
-   * ApiKeyPermission create
-   */
-  export type ApiKeyPermissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ApiKeyPermission.
-     */
-    data: XOR<ApiKeyPermissionCreateInput, ApiKeyPermissionUncheckedCreateInput>
-  }
-
-  /**
-   * ApiKeyPermission createMany
-   */
-  export type ApiKeyPermissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ApiKeyPermissions.
-     */
-    data: ApiKeyPermissionCreateManyInput | ApiKeyPermissionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ApiKeyPermission createManyAndReturn
-   */
-  export type ApiKeyPermissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * The data used to create many ApiKeyPermissions.
-     */
-    data: ApiKeyPermissionCreateManyInput | ApiKeyPermissionCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiKeyPermission update
-   */
-  export type ApiKeyPermissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ApiKeyPermission.
-     */
-    data: XOR<ApiKeyPermissionUpdateInput, ApiKeyPermissionUncheckedUpdateInput>
-    /**
-     * Choose, which ApiKeyPermission to update.
-     */
-    where: ApiKeyPermissionWhereUniqueInput
-  }
-
-  /**
-   * ApiKeyPermission updateMany
-   */
-  export type ApiKeyPermissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ApiKeyPermissions.
-     */
-    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiKeyPermissions to update
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * Limit how many ApiKeyPermissions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiKeyPermission updateManyAndReturn
-   */
-  export type ApiKeyPermissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * The data used to update ApiKeyPermissions.
-     */
-    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiKeyPermissions to update
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * Limit how many ApiKeyPermissions to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiKeyPermission upsert
-   */
-  export type ApiKeyPermissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ApiKeyPermission to update in case it exists.
-     */
-    where: ApiKeyPermissionWhereUniqueInput
-    /**
-     * In case the ApiKeyPermission found by the `where` argument doesn't exist, create a new ApiKeyPermission with this data.
-     */
-    create: XOR<ApiKeyPermissionCreateInput, ApiKeyPermissionUncheckedCreateInput>
-    /**
-     * In case the ApiKeyPermission was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ApiKeyPermissionUpdateInput, ApiKeyPermissionUncheckedUpdateInput>
-  }
-
-  /**
-   * ApiKeyPermission delete
-   */
-  export type ApiKeyPermissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-    /**
-     * Filter which ApiKeyPermission to delete.
-     */
-    where: ApiKeyPermissionWhereUniqueInput
-  }
-
-  /**
-   * ApiKeyPermission deleteMany
-   */
-  export type ApiKeyPermissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiKeyPermissions to delete
-     */
-    where?: ApiKeyPermissionWhereInput
-    /**
-     * Limit how many ApiKeyPermissions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiKeyPermission without action
-   */
-  export type ApiKeyPermissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiKeyPermission
-     */
-    select?: ApiKeyPermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiKeyPermission
-     */
-    omit?: ApiKeyPermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiKeyPermissionInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ApiCreditsPurchase
-   */
-
-  export type AggregateApiCreditsPurchase = {
-    _count: ApiCreditsPurchaseCountAggregateOutputType | null
-    _avg: ApiCreditsPurchaseAvgAggregateOutputType | null
-    _sum: ApiCreditsPurchaseSumAggregateOutputType | null
-    _min: ApiCreditsPurchaseMinAggregateOutputType | null
-    _max: ApiCreditsPurchaseMaxAggregateOutputType | null
-  }
-
-  export type ApiCreditsPurchaseAvgAggregateOutputType = {
-    credits: number | null
-    userId: number | null
-  }
-
-  export type ApiCreditsPurchaseSumAggregateOutputType = {
-    credits: number | null
-    userId: number | null
-  }
-
-  export type ApiCreditsPurchaseMinAggregateOutputType = {
-    id: string | null
-    credits: number | null
-    purchaseDate: Date | null
-    userId: number | null
-  }
-
-  export type ApiCreditsPurchaseMaxAggregateOutputType = {
-    id: string | null
-    credits: number | null
-    purchaseDate: Date | null
-    userId: number | null
-  }
-
-  export type ApiCreditsPurchaseCountAggregateOutputType = {
-    id: number
-    credits: number
-    purchaseDate: number
-    userId: number
-    _all: number
-  }
-
-
-  export type ApiCreditsPurchaseAvgAggregateInputType = {
-    credits?: true
-    userId?: true
-  }
-
-  export type ApiCreditsPurchaseSumAggregateInputType = {
-    credits?: true
-    userId?: true
-  }
-
-  export type ApiCreditsPurchaseMinAggregateInputType = {
-    id?: true
-    credits?: true
-    purchaseDate?: true
-    userId?: true
-  }
-
-  export type ApiCreditsPurchaseMaxAggregateInputType = {
-    id?: true
-    credits?: true
-    purchaseDate?: true
-    userId?: true
-  }
-
-  export type ApiCreditsPurchaseCountAggregateInputType = {
-    id?: true
-    credits?: true
-    purchaseDate?: true
-    userId?: true
-    _all?: true
-  }
-
-  export type ApiCreditsPurchaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiCreditsPurchase to aggregate.
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsPurchases to fetch.
-     */
-    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ApiCreditsPurchaseWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsPurchases from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsPurchases.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ApiCreditsPurchases
-    **/
-    _count?: true | ApiCreditsPurchaseCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ApiCreditsPurchaseAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ApiCreditsPurchaseSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ApiCreditsPurchaseMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ApiCreditsPurchaseMaxAggregateInputType
-  }
-
-  export type GetApiCreditsPurchaseAggregateType<T extends ApiCreditsPurchaseAggregateArgs> = {
-        [P in keyof T & keyof AggregateApiCreditsPurchase]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateApiCreditsPurchase[P]>
-      : GetScalarType<T[P], AggregateApiCreditsPurchase[P]>
-  }
-
-
-
-
-  export type ApiCreditsPurchaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiCreditsPurchaseWhereInput
-    orderBy?: ApiCreditsPurchaseOrderByWithAggregationInput | ApiCreditsPurchaseOrderByWithAggregationInput[]
-    by: ApiCreditsPurchaseScalarFieldEnum[] | ApiCreditsPurchaseScalarFieldEnum
-    having?: ApiCreditsPurchaseScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ApiCreditsPurchaseCountAggregateInputType | true
-    _avg?: ApiCreditsPurchaseAvgAggregateInputType
-    _sum?: ApiCreditsPurchaseSumAggregateInputType
-    _min?: ApiCreditsPurchaseMinAggregateInputType
-    _max?: ApiCreditsPurchaseMaxAggregateInputType
-  }
-
-  export type ApiCreditsPurchaseGroupByOutputType = {
-    id: string
-    credits: number
-    purchaseDate: Date
-    userId: number | null
-    _count: ApiCreditsPurchaseCountAggregateOutputType | null
-    _avg: ApiCreditsPurchaseAvgAggregateOutputType | null
-    _sum: ApiCreditsPurchaseSumAggregateOutputType | null
-    _min: ApiCreditsPurchaseMinAggregateOutputType | null
-    _max: ApiCreditsPurchaseMaxAggregateOutputType | null
-  }
-
-  type GetApiCreditsPurchaseGroupByPayload<T extends ApiCreditsPurchaseGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ApiCreditsPurchaseGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ApiCreditsPurchaseGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ApiCreditsPurchaseGroupByOutputType[P]>
-            : GetScalarType<T[P], ApiCreditsPurchaseGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ApiCreditsPurchaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    credits?: boolean
-    purchaseDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsPurchase"]>
-
-  export type ApiCreditsPurchaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    credits?: boolean
-    purchaseDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsPurchase"]>
-
-  export type ApiCreditsPurchaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    credits?: boolean
-    purchaseDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsPurchase"]>
-
-  export type ApiCreditsPurchaseSelectScalar = {
-    id?: boolean
-    credits?: boolean
-    purchaseDate?: boolean
-    userId?: boolean
-  }
-
-  export type ApiCreditsPurchaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "credits" | "purchaseDate" | "userId", ExtArgs["result"]["apiCreditsPurchase"]>
-  export type ApiCreditsPurchaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }
-  export type ApiCreditsPurchaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }
-  export type ApiCreditsPurchaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsPurchase$userArgs<ExtArgs>
-  }
-
-  export type $ApiCreditsPurchasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ApiCreditsPurchase"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      credits: number
-      purchaseDate: Date
-      userId: number | null
-    }, ExtArgs["result"]["apiCreditsPurchase"]>
-    composites: {}
-  }
-
-  type ApiCreditsPurchaseGetPayload<S extends boolean | null | undefined | ApiCreditsPurchaseDefaultArgs> = $Result.GetResult<Prisma.$ApiCreditsPurchasePayload, S>
-
-  type ApiCreditsPurchaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ApiCreditsPurchaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ApiCreditsPurchaseCountAggregateInputType | true
-    }
-
-  export interface ApiCreditsPurchaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiCreditsPurchase'], meta: { name: 'ApiCreditsPurchase' } }
-    /**
-     * Find zero or one ApiCreditsPurchase that matches the filter.
-     * @param {ApiCreditsPurchaseFindUniqueArgs} args - Arguments to find a ApiCreditsPurchase
-     * @example
-     * // Get one ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ApiCreditsPurchaseFindUniqueArgs>(args: SelectSubset<T, ApiCreditsPurchaseFindUniqueArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ApiCreditsPurchase that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ApiCreditsPurchaseFindUniqueOrThrowArgs} args - Arguments to find a ApiCreditsPurchase
-     * @example
-     * // Get one ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ApiCreditsPurchaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiCreditsPurchase that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseFindFirstArgs} args - Arguments to find a ApiCreditsPurchase
-     * @example
-     * // Get one ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ApiCreditsPurchaseFindFirstArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindFirstArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiCreditsPurchase that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseFindFirstOrThrowArgs} args - Arguments to find a ApiCreditsPurchase
-     * @example
-     * // Get one ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ApiCreditsPurchaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ApiCreditsPurchases that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ApiCreditsPurchases
-     * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany()
-     * 
-     * // Get first 10 ApiCreditsPurchases
-     * const apiCreditsPurchases = await prisma.apiCreditsPurchase.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ApiCreditsPurchaseFindManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ApiCreditsPurchase.
-     * @param {ApiCreditsPurchaseCreateArgs} args - Arguments to create a ApiCreditsPurchase.
-     * @example
-     * // Create one ApiCreditsPurchase
-     * const ApiCreditsPurchase = await prisma.apiCreditsPurchase.create({
-     *   data: {
-     *     // ... data to create a ApiCreditsPurchase
-     *   }
-     * })
-     * 
-     */
-    create<T extends ApiCreditsPurchaseCreateArgs>(args: SelectSubset<T, ApiCreditsPurchaseCreateArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ApiCreditsPurchases.
-     * @param {ApiCreditsPurchaseCreateManyArgs} args - Arguments to create many ApiCreditsPurchases.
-     * @example
-     * // Create many ApiCreditsPurchases
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ApiCreditsPurchaseCreateManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ApiCreditsPurchases and returns the data saved in the database.
-     * @param {ApiCreditsPurchaseCreateManyAndReturnArgs} args - Arguments to create many ApiCreditsPurchases.
-     * @example
-     * // Create many ApiCreditsPurchases
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ApiCreditsPurchases and only return the `id`
-     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ApiCreditsPurchaseCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ApiCreditsPurchase.
-     * @param {ApiCreditsPurchaseDeleteArgs} args - Arguments to delete one ApiCreditsPurchase.
-     * @example
-     * // Delete one ApiCreditsPurchase
-     * const ApiCreditsPurchase = await prisma.apiCreditsPurchase.delete({
-     *   where: {
-     *     // ... filter to delete one ApiCreditsPurchase
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ApiCreditsPurchaseDeleteArgs>(args: SelectSubset<T, ApiCreditsPurchaseDeleteArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ApiCreditsPurchase.
-     * @param {ApiCreditsPurchaseUpdateArgs} args - Arguments to update one ApiCreditsPurchase.
-     * @example
-     * // Update one ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ApiCreditsPurchaseUpdateArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ApiCreditsPurchases.
-     * @param {ApiCreditsPurchaseDeleteManyArgs} args - Arguments to filter ApiCreditsPurchases to delete.
-     * @example
-     * // Delete a few ApiCreditsPurchases
-     * const { count } = await prisma.apiCreditsPurchase.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ApiCreditsPurchaseDeleteManyArgs>(args?: SelectSubset<T, ApiCreditsPurchaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiCreditsPurchases.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ApiCreditsPurchases
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ApiCreditsPurchaseUpdateManyArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiCreditsPurchases and returns the data updated in the database.
-     * @param {ApiCreditsPurchaseUpdateManyAndReturnArgs} args - Arguments to update many ApiCreditsPurchases.
-     * @example
-     * // Update many ApiCreditsPurchases
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ApiCreditsPurchases and only return the `id`
-     * const apiCreditsPurchaseWithIdOnly = await prisma.apiCreditsPurchase.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ApiCreditsPurchaseUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ApiCreditsPurchase.
-     * @param {ApiCreditsPurchaseUpsertArgs} args - Arguments to update or create a ApiCreditsPurchase.
-     * @example
-     * // Update or create a ApiCreditsPurchase
-     * const apiCreditsPurchase = await prisma.apiCreditsPurchase.upsert({
-     *   create: {
-     *     // ... data to create a ApiCreditsPurchase
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ApiCreditsPurchase we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ApiCreditsPurchaseUpsertArgs>(args: SelectSubset<T, ApiCreditsPurchaseUpsertArgs<ExtArgs>>): Prisma__ApiCreditsPurchaseClient<$Result.GetResult<Prisma.$ApiCreditsPurchasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ApiCreditsPurchases.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseCountArgs} args - Arguments to filter ApiCreditsPurchases to count.
-     * @example
-     * // Count the number of ApiCreditsPurchases
-     * const count = await prisma.apiCreditsPurchase.count({
-     *   where: {
-     *     // ... the filter for the ApiCreditsPurchases we want to count
-     *   }
-     * })
-    **/
-    count<T extends ApiCreditsPurchaseCountArgs>(
-      args?: Subset<T, ApiCreditsPurchaseCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ApiCreditsPurchaseCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ApiCreditsPurchase.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ApiCreditsPurchaseAggregateArgs>(args: Subset<T, ApiCreditsPurchaseAggregateArgs>): Prisma.PrismaPromise<GetApiCreditsPurchaseAggregateType<T>>
-
-    /**
-     * Group by ApiCreditsPurchase.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsPurchaseGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ApiCreditsPurchaseGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ApiCreditsPurchaseGroupByArgs['orderBy'] }
-        : { orderBy?: ApiCreditsPurchaseGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ApiCreditsPurchaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiCreditsPurchaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ApiCreditsPurchase model
-   */
-  readonly fields: ApiCreditsPurchaseFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ApiCreditsPurchase.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ApiCreditsPurchaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends ApiCreditsPurchase$userArgs<ExtArgs> = {}>(args?: Subset<T, ApiCreditsPurchase$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ApiCreditsPurchase model
-   */
-  interface ApiCreditsPurchaseFieldRefs {
-    readonly id: FieldRef<"ApiCreditsPurchase", 'String'>
-    readonly credits: FieldRef<"ApiCreditsPurchase", 'Int'>
-    readonly purchaseDate: FieldRef<"ApiCreditsPurchase", 'DateTime'>
-    readonly userId: FieldRef<"ApiCreditsPurchase", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ApiCreditsPurchase findUnique
-   */
-  export type ApiCreditsPurchaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsPurchase to fetch.
-     */
-    where: ApiCreditsPurchaseWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsPurchase findUniqueOrThrow
-   */
-  export type ApiCreditsPurchaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsPurchase to fetch.
-     */
-    where: ApiCreditsPurchaseWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsPurchase findFirst
-   */
-  export type ApiCreditsPurchaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsPurchase to fetch.
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsPurchases to fetch.
-     */
-    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiCreditsPurchases.
-     */
-    cursor?: ApiCreditsPurchaseWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsPurchases from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsPurchases.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiCreditsPurchases.
-     */
-    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsPurchase findFirstOrThrow
-   */
-  export type ApiCreditsPurchaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsPurchase to fetch.
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsPurchases to fetch.
-     */
-    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiCreditsPurchases.
-     */
-    cursor?: ApiCreditsPurchaseWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsPurchases from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsPurchases.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiCreditsPurchases.
-     */
-    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsPurchase findMany
-   */
-  export type ApiCreditsPurchaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsPurchases to fetch.
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsPurchases to fetch.
-     */
-    orderBy?: ApiCreditsPurchaseOrderByWithRelationInput | ApiCreditsPurchaseOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ApiCreditsPurchases.
-     */
-    cursor?: ApiCreditsPurchaseWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsPurchases from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsPurchases.
-     */
-    skip?: number
-    distinct?: ApiCreditsPurchaseScalarFieldEnum | ApiCreditsPurchaseScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsPurchase create
-   */
-  export type ApiCreditsPurchaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ApiCreditsPurchase.
-     */
-    data: XOR<ApiCreditsPurchaseCreateInput, ApiCreditsPurchaseUncheckedCreateInput>
-  }
-
-  /**
-   * ApiCreditsPurchase createMany
-   */
-  export type ApiCreditsPurchaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ApiCreditsPurchases.
-     */
-    data: ApiCreditsPurchaseCreateManyInput | ApiCreditsPurchaseCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ApiCreditsPurchase createManyAndReturn
-   */
-  export type ApiCreditsPurchaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * The data used to create many ApiCreditsPurchases.
-     */
-    data: ApiCreditsPurchaseCreateManyInput | ApiCreditsPurchaseCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiCreditsPurchase update
-   */
-  export type ApiCreditsPurchaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ApiCreditsPurchase.
-     */
-    data: XOR<ApiCreditsPurchaseUpdateInput, ApiCreditsPurchaseUncheckedUpdateInput>
-    /**
-     * Choose, which ApiCreditsPurchase to update.
-     */
-    where: ApiCreditsPurchaseWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsPurchase updateMany
-   */
-  export type ApiCreditsPurchaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ApiCreditsPurchases.
-     */
-    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiCreditsPurchases to update
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * Limit how many ApiCreditsPurchases to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiCreditsPurchase updateManyAndReturn
-   */
-  export type ApiCreditsPurchaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * The data used to update ApiCreditsPurchases.
-     */
-    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiCreditsPurchases to update
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * Limit how many ApiCreditsPurchases to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiCreditsPurchase upsert
-   */
-  export type ApiCreditsPurchaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ApiCreditsPurchase to update in case it exists.
-     */
-    where: ApiCreditsPurchaseWhereUniqueInput
-    /**
-     * In case the ApiCreditsPurchase found by the `where` argument doesn't exist, create a new ApiCreditsPurchase with this data.
-     */
-    create: XOR<ApiCreditsPurchaseCreateInput, ApiCreditsPurchaseUncheckedCreateInput>
-    /**
-     * In case the ApiCreditsPurchase was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ApiCreditsPurchaseUpdateInput, ApiCreditsPurchaseUncheckedUpdateInput>
-  }
-
-  /**
-   * ApiCreditsPurchase delete
-   */
-  export type ApiCreditsPurchaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-    /**
-     * Filter which ApiCreditsPurchase to delete.
-     */
-    where: ApiCreditsPurchaseWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsPurchase deleteMany
-   */
-  export type ApiCreditsPurchaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiCreditsPurchases to delete
-     */
-    where?: ApiCreditsPurchaseWhereInput
-    /**
-     * Limit how many ApiCreditsPurchases to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiCreditsPurchase.user
-   */
-  export type ApiCreditsPurchase$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
-   * ApiCreditsPurchase without action
-   */
-  export type ApiCreditsPurchaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsPurchase
-     */
-    select?: ApiCreditsPurchaseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsPurchase
-     */
-    omit?: ApiCreditsPurchaseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsPurchaseInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ApiCreditsUsage
-   */
-
-  export type AggregateApiCreditsUsage = {
-    _count: ApiCreditsUsageCountAggregateOutputType | null
-    _avg: ApiCreditsUsageAvgAggregateOutputType | null
-    _sum: ApiCreditsUsageSumAggregateOutputType | null
-    _min: ApiCreditsUsageMinAggregateOutputType | null
-    _max: ApiCreditsUsageMaxAggregateOutputType | null
-  }
-
-  export type ApiCreditsUsageAvgAggregateOutputType = {
-    credits: number | null
-    userId: number | null
-  }
-
-  export type ApiCreditsUsageSumAggregateOutputType = {
-    credits: number | null
-    userId: number | null
-  }
-
-  export type ApiCreditsUsageMinAggregateOutputType = {
-    id: string | null
-    apiKeyId: string | null
-    credits: number | null
-    usageDate: Date | null
-    userId: number | null
-  }
-
-  export type ApiCreditsUsageMaxAggregateOutputType = {
-    id: string | null
-    apiKeyId: string | null
-    credits: number | null
-    usageDate: Date | null
-    userId: number | null
-  }
-
-  export type ApiCreditsUsageCountAggregateOutputType = {
-    id: number
-    apiKeyId: number
-    credits: number
-    usageDate: number
-    userId: number
-    _all: number
-  }
-
-
-  export type ApiCreditsUsageAvgAggregateInputType = {
-    credits?: true
-    userId?: true
-  }
-
-  export type ApiCreditsUsageSumAggregateInputType = {
-    credits?: true
-    userId?: true
-  }
-
-  export type ApiCreditsUsageMinAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    credits?: true
-    usageDate?: true
-    userId?: true
-  }
-
-  export type ApiCreditsUsageMaxAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    credits?: true
-    usageDate?: true
-    userId?: true
-  }
-
-  export type ApiCreditsUsageCountAggregateInputType = {
-    id?: true
-    apiKeyId?: true
-    credits?: true
-    usageDate?: true
-    userId?: true
-    _all?: true
-  }
-
-  export type ApiCreditsUsageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiCreditsUsage to aggregate.
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsUsages to fetch.
-     */
-    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ApiCreditsUsageWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsUsages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsUsages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ApiCreditsUsages
-    **/
-    _count?: true | ApiCreditsUsageCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ApiCreditsUsageAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ApiCreditsUsageSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ApiCreditsUsageMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ApiCreditsUsageMaxAggregateInputType
-  }
-
-  export type GetApiCreditsUsageAggregateType<T extends ApiCreditsUsageAggregateArgs> = {
-        [P in keyof T & keyof AggregateApiCreditsUsage]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateApiCreditsUsage[P]>
-      : GetScalarType<T[P], AggregateApiCreditsUsage[P]>
-  }
-
-
-
-
-  export type ApiCreditsUsageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ApiCreditsUsageWhereInput
-    orderBy?: ApiCreditsUsageOrderByWithAggregationInput | ApiCreditsUsageOrderByWithAggregationInput[]
-    by: ApiCreditsUsageScalarFieldEnum[] | ApiCreditsUsageScalarFieldEnum
-    having?: ApiCreditsUsageScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ApiCreditsUsageCountAggregateInputType | true
-    _avg?: ApiCreditsUsageAvgAggregateInputType
-    _sum?: ApiCreditsUsageSumAggregateInputType
-    _min?: ApiCreditsUsageMinAggregateInputType
-    _max?: ApiCreditsUsageMaxAggregateInputType
-  }
-
-  export type ApiCreditsUsageGroupByOutputType = {
-    id: string
-    apiKeyId: string
-    credits: number
-    usageDate: Date
-    userId: number | null
-    _count: ApiCreditsUsageCountAggregateOutputType | null
-    _avg: ApiCreditsUsageAvgAggregateOutputType | null
-    _sum: ApiCreditsUsageSumAggregateOutputType | null
-    _min: ApiCreditsUsageMinAggregateOutputType | null
-    _max: ApiCreditsUsageMaxAggregateOutputType | null
-  }
-
-  type GetApiCreditsUsageGroupByPayload<T extends ApiCreditsUsageGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ApiCreditsUsageGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ApiCreditsUsageGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ApiCreditsUsageGroupByOutputType[P]>
-            : GetScalarType<T[P], ApiCreditsUsageGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ApiCreditsUsageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    credits?: boolean
-    usageDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsUsage"]>
-
-  export type ApiCreditsUsageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    credits?: boolean
-    usageDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsUsage"]>
-
-  export type ApiCreditsUsageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    apiKeyId?: boolean
-    credits?: boolean
-    usageDate?: boolean
-    userId?: boolean
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }, ExtArgs["result"]["apiCreditsUsage"]>
-
-  export type ApiCreditsUsageSelectScalar = {
-    id?: boolean
-    apiKeyId?: boolean
-    credits?: boolean
-    usageDate?: boolean
-    userId?: boolean
-  }
-
-  export type ApiCreditsUsageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKeyId" | "credits" | "usageDate" | "userId", ExtArgs["result"]["apiCreditsUsage"]>
-  export type ApiCreditsUsageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }
-  export type ApiCreditsUsageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }
-  export type ApiCreditsUsageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ApiCreditsUsage$userArgs<ExtArgs>
-  }
-
-  export type $ApiCreditsUsagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ApiCreditsUsage"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      apiKeyId: string
-      credits: number
-      usageDate: Date
-      userId: number | null
-    }, ExtArgs["result"]["apiCreditsUsage"]>
-    composites: {}
-  }
-
-  type ApiCreditsUsageGetPayload<S extends boolean | null | undefined | ApiCreditsUsageDefaultArgs> = $Result.GetResult<Prisma.$ApiCreditsUsagePayload, S>
-
-  type ApiCreditsUsageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ApiCreditsUsageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ApiCreditsUsageCountAggregateInputType | true
-    }
-
-  export interface ApiCreditsUsageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiCreditsUsage'], meta: { name: 'ApiCreditsUsage' } }
-    /**
-     * Find zero or one ApiCreditsUsage that matches the filter.
-     * @param {ApiCreditsUsageFindUniqueArgs} args - Arguments to find a ApiCreditsUsage
-     * @example
-     * // Get one ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ApiCreditsUsageFindUniqueArgs>(args: SelectSubset<T, ApiCreditsUsageFindUniqueArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ApiCreditsUsage that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ApiCreditsUsageFindUniqueOrThrowArgs} args - Arguments to find a ApiCreditsUsage
-     * @example
-     * // Get one ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ApiCreditsUsageFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiCreditsUsage that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageFindFirstArgs} args - Arguments to find a ApiCreditsUsage
-     * @example
-     * // Get one ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ApiCreditsUsageFindFirstArgs>(args?: SelectSubset<T, ApiCreditsUsageFindFirstArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ApiCreditsUsage that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageFindFirstOrThrowArgs} args - Arguments to find a ApiCreditsUsage
-     * @example
-     * // Get one ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ApiCreditsUsageFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ApiCreditsUsages that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ApiCreditsUsages
-     * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany()
-     * 
-     * // Get first 10 ApiCreditsUsages
-     * const apiCreditsUsages = await prisma.apiCreditsUsage.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ApiCreditsUsageFindManyArgs>(args?: SelectSubset<T, ApiCreditsUsageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ApiCreditsUsage.
-     * @param {ApiCreditsUsageCreateArgs} args - Arguments to create a ApiCreditsUsage.
-     * @example
-     * // Create one ApiCreditsUsage
-     * const ApiCreditsUsage = await prisma.apiCreditsUsage.create({
-     *   data: {
-     *     // ... data to create a ApiCreditsUsage
-     *   }
-     * })
-     * 
-     */
-    create<T extends ApiCreditsUsageCreateArgs>(args: SelectSubset<T, ApiCreditsUsageCreateArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ApiCreditsUsages.
-     * @param {ApiCreditsUsageCreateManyArgs} args - Arguments to create many ApiCreditsUsages.
-     * @example
-     * // Create many ApiCreditsUsages
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ApiCreditsUsageCreateManyArgs>(args?: SelectSubset<T, ApiCreditsUsageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ApiCreditsUsages and returns the data saved in the database.
-     * @param {ApiCreditsUsageCreateManyAndReturnArgs} args - Arguments to create many ApiCreditsUsages.
-     * @example
-     * // Create many ApiCreditsUsages
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ApiCreditsUsages and only return the `id`
-     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ApiCreditsUsageCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ApiCreditsUsage.
-     * @param {ApiCreditsUsageDeleteArgs} args - Arguments to delete one ApiCreditsUsage.
-     * @example
-     * // Delete one ApiCreditsUsage
-     * const ApiCreditsUsage = await prisma.apiCreditsUsage.delete({
-     *   where: {
-     *     // ... filter to delete one ApiCreditsUsage
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ApiCreditsUsageDeleteArgs>(args: SelectSubset<T, ApiCreditsUsageDeleteArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ApiCreditsUsage.
-     * @param {ApiCreditsUsageUpdateArgs} args - Arguments to update one ApiCreditsUsage.
-     * @example
-     * // Update one ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ApiCreditsUsageUpdateArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ApiCreditsUsages.
-     * @param {ApiCreditsUsageDeleteManyArgs} args - Arguments to filter ApiCreditsUsages to delete.
-     * @example
-     * // Delete a few ApiCreditsUsages
-     * const { count } = await prisma.apiCreditsUsage.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ApiCreditsUsageDeleteManyArgs>(args?: SelectSubset<T, ApiCreditsUsageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiCreditsUsages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ApiCreditsUsages
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ApiCreditsUsageUpdateManyArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ApiCreditsUsages and returns the data updated in the database.
-     * @param {ApiCreditsUsageUpdateManyAndReturnArgs} args - Arguments to update many ApiCreditsUsages.
-     * @example
-     * // Update many ApiCreditsUsages
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ApiCreditsUsages and only return the `id`
-     * const apiCreditsUsageWithIdOnly = await prisma.apiCreditsUsage.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ApiCreditsUsageUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ApiCreditsUsage.
-     * @param {ApiCreditsUsageUpsertArgs} args - Arguments to update or create a ApiCreditsUsage.
-     * @example
-     * // Update or create a ApiCreditsUsage
-     * const apiCreditsUsage = await prisma.apiCreditsUsage.upsert({
-     *   create: {
-     *     // ... data to create a ApiCreditsUsage
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ApiCreditsUsage we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ApiCreditsUsageUpsertArgs>(args: SelectSubset<T, ApiCreditsUsageUpsertArgs<ExtArgs>>): Prisma__ApiCreditsUsageClient<$Result.GetResult<Prisma.$ApiCreditsUsagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ApiCreditsUsages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageCountArgs} args - Arguments to filter ApiCreditsUsages to count.
-     * @example
-     * // Count the number of ApiCreditsUsages
-     * const count = await prisma.apiCreditsUsage.count({
-     *   where: {
-     *     // ... the filter for the ApiCreditsUsages we want to count
-     *   }
-     * })
-    **/
-    count<T extends ApiCreditsUsageCountArgs>(
-      args?: Subset<T, ApiCreditsUsageCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ApiCreditsUsageCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ApiCreditsUsage.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ApiCreditsUsageAggregateArgs>(args: Subset<T, ApiCreditsUsageAggregateArgs>): Prisma.PrismaPromise<GetApiCreditsUsageAggregateType<T>>
-
-    /**
-     * Group by ApiCreditsUsage.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ApiCreditsUsageGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ApiCreditsUsageGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ApiCreditsUsageGroupByArgs['orderBy'] }
-        : { orderBy?: ApiCreditsUsageGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ApiCreditsUsageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiCreditsUsageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ApiCreditsUsage model
-   */
-  readonly fields: ApiCreditsUsageFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ApiCreditsUsage.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ApiCreditsUsageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends ApiCreditsUsage$userArgs<ExtArgs> = {}>(args?: Subset<T, ApiCreditsUsage$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ApiCreditsUsage model
-   */
-  interface ApiCreditsUsageFieldRefs {
-    readonly id: FieldRef<"ApiCreditsUsage", 'String'>
-    readonly apiKeyId: FieldRef<"ApiCreditsUsage", 'String'>
-    readonly credits: FieldRef<"ApiCreditsUsage", 'Int'>
-    readonly usageDate: FieldRef<"ApiCreditsUsage", 'DateTime'>
-    readonly userId: FieldRef<"ApiCreditsUsage", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ApiCreditsUsage findUnique
-   */
-  export type ApiCreditsUsageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsUsage to fetch.
-     */
-    where: ApiCreditsUsageWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsUsage findUniqueOrThrow
-   */
-  export type ApiCreditsUsageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsUsage to fetch.
-     */
-    where: ApiCreditsUsageWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsUsage findFirst
-   */
-  export type ApiCreditsUsageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsUsage to fetch.
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsUsages to fetch.
-     */
-    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiCreditsUsages.
-     */
-    cursor?: ApiCreditsUsageWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsUsages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsUsages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiCreditsUsages.
-     */
-    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsUsage findFirstOrThrow
-   */
-  export type ApiCreditsUsageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsUsage to fetch.
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsUsages to fetch.
-     */
-    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ApiCreditsUsages.
-     */
-    cursor?: ApiCreditsUsageWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsUsages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsUsages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ApiCreditsUsages.
-     */
-    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsUsage findMany
-   */
-  export type ApiCreditsUsageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter, which ApiCreditsUsages to fetch.
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ApiCreditsUsages to fetch.
-     */
-    orderBy?: ApiCreditsUsageOrderByWithRelationInput | ApiCreditsUsageOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ApiCreditsUsages.
-     */
-    cursor?: ApiCreditsUsageWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ApiCreditsUsages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ApiCreditsUsages.
-     */
-    skip?: number
-    distinct?: ApiCreditsUsageScalarFieldEnum | ApiCreditsUsageScalarFieldEnum[]
-  }
-
-  /**
-   * ApiCreditsUsage create
-   */
-  export type ApiCreditsUsageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ApiCreditsUsage.
-     */
-    data: XOR<ApiCreditsUsageCreateInput, ApiCreditsUsageUncheckedCreateInput>
-  }
-
-  /**
-   * ApiCreditsUsage createMany
-   */
-  export type ApiCreditsUsageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ApiCreditsUsages.
-     */
-    data: ApiCreditsUsageCreateManyInput | ApiCreditsUsageCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ApiCreditsUsage createManyAndReturn
-   */
-  export type ApiCreditsUsageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * The data used to create many ApiCreditsUsages.
-     */
-    data: ApiCreditsUsageCreateManyInput | ApiCreditsUsageCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiCreditsUsage update
-   */
-  export type ApiCreditsUsageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ApiCreditsUsage.
-     */
-    data: XOR<ApiCreditsUsageUpdateInput, ApiCreditsUsageUncheckedUpdateInput>
-    /**
-     * Choose, which ApiCreditsUsage to update.
-     */
-    where: ApiCreditsUsageWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsUsage updateMany
-   */
-  export type ApiCreditsUsageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ApiCreditsUsages.
-     */
-    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiCreditsUsages to update
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * Limit how many ApiCreditsUsages to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiCreditsUsage updateManyAndReturn
-   */
-  export type ApiCreditsUsageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * The data used to update ApiCreditsUsages.
-     */
-    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyInput>
-    /**
-     * Filter which ApiCreditsUsages to update
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * Limit how many ApiCreditsUsages to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ApiCreditsUsage upsert
-   */
-  export type ApiCreditsUsageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ApiCreditsUsage to update in case it exists.
-     */
-    where: ApiCreditsUsageWhereUniqueInput
-    /**
-     * In case the ApiCreditsUsage found by the `where` argument doesn't exist, create a new ApiCreditsUsage with this data.
-     */
-    create: XOR<ApiCreditsUsageCreateInput, ApiCreditsUsageUncheckedCreateInput>
-    /**
-     * In case the ApiCreditsUsage was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ApiCreditsUsageUpdateInput, ApiCreditsUsageUncheckedUpdateInput>
-  }
-
-  /**
-   * ApiCreditsUsage delete
-   */
-  export type ApiCreditsUsageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
-    /**
-     * Filter which ApiCreditsUsage to delete.
-     */
-    where: ApiCreditsUsageWhereUniqueInput
-  }
-
-  /**
-   * ApiCreditsUsage deleteMany
-   */
-  export type ApiCreditsUsageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ApiCreditsUsages to delete
-     */
-    where?: ApiCreditsUsageWhereInput
-    /**
-     * Limit how many ApiCreditsUsages to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ApiCreditsUsage.user
-   */
-  export type ApiCreditsUsage$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
-   * ApiCreditsUsage without action
-   */
-  export type ApiCreditsUsageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ApiCreditsUsage
-     */
-    select?: ApiCreditsUsageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ApiCreditsUsage
-     */
-    omit?: ApiCreditsUsageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ApiCreditsUsageInclude<ExtArgs> | null
   }
 
 
@@ -13395,7 +10132,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     school: string | null
-    date: Date | null
+    date: string | null
     expiresAt: Date | null
   }
 
@@ -13403,7 +10140,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     school: string | null
-    date: Date | null
+    date: string | null
     expiresAt: Date | null
   }
 
@@ -13520,7 +10257,7 @@ export namespace Prisma {
     id: string
     username: string
     school: string
-    date: Date
+    date: string
     data: JsonValue
     expiresAt: Date
     _count: TimetableCacheCountAggregateOutputType | null
@@ -13587,7 +10324,7 @@ export namespace Prisma {
       id: string
       username: string
       school: string
-      date: Date
+      date: string
       data: Prisma.JsonValue
       expiresAt: Date
     }, ExtArgs["result"]["timetableCache"]>
@@ -14016,7 +10753,7 @@ export namespace Prisma {
     readonly id: FieldRef<"TimetableCache", 'String'>
     readonly username: FieldRef<"TimetableCache", 'String'>
     readonly school: FieldRef<"TimetableCache", 'String'>
-    readonly date: FieldRef<"TimetableCache", 'DateTime'>
+    readonly date: FieldRef<"TimetableCache", 'String'>
     readonly data: FieldRef<"TimetableCache", 'Json'>
     readonly expiresAt: FieldRef<"TimetableCache", 'DateTime'>
   }
@@ -15560,6 +12297,3255 @@ export namespace Prisma {
 
 
   /**
+   * Model api_credits_purchase
+   */
+
+  export type AggregateApi_credits_purchase = {
+    _count: Api_credits_purchaseCountAggregateOutputType | null
+    _avg: Api_credits_purchaseAvgAggregateOutputType | null
+    _sum: Api_credits_purchaseSumAggregateOutputType | null
+    _min: Api_credits_purchaseMinAggregateOutputType | null
+    _max: Api_credits_purchaseMaxAggregateOutputType | null
+  }
+
+  export type Api_credits_purchaseAvgAggregateOutputType = {
+    credits: number | null
+    user_id: number | null
+  }
+
+  export type Api_credits_purchaseSumAggregateOutputType = {
+    credits: number | null
+    user_id: number | null
+  }
+
+  export type Api_credits_purchaseMinAggregateOutputType = {
+    id: string | null
+    credits: number | null
+    purchaseDate: Date | null
+    user_id: number | null
+  }
+
+  export type Api_credits_purchaseMaxAggregateOutputType = {
+    id: string | null
+    credits: number | null
+    purchaseDate: Date | null
+    user_id: number | null
+  }
+
+  export type Api_credits_purchaseCountAggregateOutputType = {
+    id: number
+    credits: number
+    purchaseDate: number
+    user_id: number
+    _all: number
+  }
+
+
+  export type Api_credits_purchaseAvgAggregateInputType = {
+    credits?: true
+    user_id?: true
+  }
+
+  export type Api_credits_purchaseSumAggregateInputType = {
+    credits?: true
+    user_id?: true
+  }
+
+  export type Api_credits_purchaseMinAggregateInputType = {
+    id?: true
+    credits?: true
+    purchaseDate?: true
+    user_id?: true
+  }
+
+  export type Api_credits_purchaseMaxAggregateInputType = {
+    id?: true
+    credits?: true
+    purchaseDate?: true
+    user_id?: true
+  }
+
+  export type Api_credits_purchaseCountAggregateInputType = {
+    id?: true
+    credits?: true
+    purchaseDate?: true
+    user_id?: true
+    _all?: true
+  }
+
+  export type Api_credits_purchaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_credits_purchase to aggregate.
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_purchases to fetch.
+     */
+    orderBy?: api_credits_purchaseOrderByWithRelationInput | api_credits_purchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: api_credits_purchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_purchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_purchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned api_credits_purchases
+    **/
+    _count?: true | Api_credits_purchaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Api_credits_purchaseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Api_credits_purchaseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Api_credits_purchaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Api_credits_purchaseMaxAggregateInputType
+  }
+
+  export type GetApi_credits_purchaseAggregateType<T extends Api_credits_purchaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateApi_credits_purchase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApi_credits_purchase[P]>
+      : GetScalarType<T[P], AggregateApi_credits_purchase[P]>
+  }
+
+
+
+
+  export type api_credits_purchaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_credits_purchaseWhereInput
+    orderBy?: api_credits_purchaseOrderByWithAggregationInput | api_credits_purchaseOrderByWithAggregationInput[]
+    by: Api_credits_purchaseScalarFieldEnum[] | Api_credits_purchaseScalarFieldEnum
+    having?: api_credits_purchaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Api_credits_purchaseCountAggregateInputType | true
+    _avg?: Api_credits_purchaseAvgAggregateInputType
+    _sum?: Api_credits_purchaseSumAggregateInputType
+    _min?: Api_credits_purchaseMinAggregateInputType
+    _max?: Api_credits_purchaseMaxAggregateInputType
+  }
+
+  export type Api_credits_purchaseGroupByOutputType = {
+    id: string
+    credits: number
+    purchaseDate: Date
+    user_id: number | null
+    _count: Api_credits_purchaseCountAggregateOutputType | null
+    _avg: Api_credits_purchaseAvgAggregateOutputType | null
+    _sum: Api_credits_purchaseSumAggregateOutputType | null
+    _min: Api_credits_purchaseMinAggregateOutputType | null
+    _max: Api_credits_purchaseMaxAggregateOutputType | null
+  }
+
+  type GetApi_credits_purchaseGroupByPayload<T extends api_credits_purchaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Api_credits_purchaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Api_credits_purchaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Api_credits_purchaseGroupByOutputType[P]>
+            : GetScalarType<T[P], Api_credits_purchaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type api_credits_purchaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_purchase"]>
+
+  export type api_credits_purchaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_purchase"]>
+
+  export type api_credits_purchaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_purchase"]>
+
+  export type api_credits_purchaseSelectScalar = {
+    id?: boolean
+    credits?: boolean
+    purchaseDate?: boolean
+    user_id?: boolean
+  }
+
+  export type api_credits_purchaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "credits" | "purchaseDate" | "user_id", ExtArgs["result"]["api_credits_purchase"]>
+  export type api_credits_purchaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }
+  export type api_credits_purchaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }
+  export type api_credits_purchaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_purchase$userArgs<ExtArgs>
+  }
+
+  export type $api_credits_purchasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "api_credits_purchase"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      credits: number
+      purchaseDate: Date
+      user_id: number | null
+    }, ExtArgs["result"]["api_credits_purchase"]>
+    composites: {}
+  }
+
+  type api_credits_purchaseGetPayload<S extends boolean | null | undefined | api_credits_purchaseDefaultArgs> = $Result.GetResult<Prisma.$api_credits_purchasePayload, S>
+
+  type api_credits_purchaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<api_credits_purchaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Api_credits_purchaseCountAggregateInputType | true
+    }
+
+  export interface api_credits_purchaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['api_credits_purchase'], meta: { name: 'api_credits_purchase' } }
+    /**
+     * Find zero or one Api_credits_purchase that matches the filter.
+     * @param {api_credits_purchaseFindUniqueArgs} args - Arguments to find a Api_credits_purchase
+     * @example
+     * // Get one Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends api_credits_purchaseFindUniqueArgs>(args: SelectSubset<T, api_credits_purchaseFindUniqueArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Api_credits_purchase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {api_credits_purchaseFindUniqueOrThrowArgs} args - Arguments to find a Api_credits_purchase
+     * @example
+     * // Get one Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends api_credits_purchaseFindUniqueOrThrowArgs>(args: SelectSubset<T, api_credits_purchaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_credits_purchase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseFindFirstArgs} args - Arguments to find a Api_credits_purchase
+     * @example
+     * // Get one Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends api_credits_purchaseFindFirstArgs>(args?: SelectSubset<T, api_credits_purchaseFindFirstArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_credits_purchase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseFindFirstOrThrowArgs} args - Arguments to find a Api_credits_purchase
+     * @example
+     * // Get one Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends api_credits_purchaseFindFirstOrThrowArgs>(args?: SelectSubset<T, api_credits_purchaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Api_credits_purchases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Api_credits_purchases
+     * const api_credits_purchases = await prisma.api_credits_purchase.findMany()
+     * 
+     * // Get first 10 Api_credits_purchases
+     * const api_credits_purchases = await prisma.api_credits_purchase.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const api_credits_purchaseWithIdOnly = await prisma.api_credits_purchase.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends api_credits_purchaseFindManyArgs>(args?: SelectSubset<T, api_credits_purchaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Api_credits_purchase.
+     * @param {api_credits_purchaseCreateArgs} args - Arguments to create a Api_credits_purchase.
+     * @example
+     * // Create one Api_credits_purchase
+     * const Api_credits_purchase = await prisma.api_credits_purchase.create({
+     *   data: {
+     *     // ... data to create a Api_credits_purchase
+     *   }
+     * })
+     * 
+     */
+    create<T extends api_credits_purchaseCreateArgs>(args: SelectSubset<T, api_credits_purchaseCreateArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Api_credits_purchases.
+     * @param {api_credits_purchaseCreateManyArgs} args - Arguments to create many Api_credits_purchases.
+     * @example
+     * // Create many Api_credits_purchases
+     * const api_credits_purchase = await prisma.api_credits_purchase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends api_credits_purchaseCreateManyArgs>(args?: SelectSubset<T, api_credits_purchaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Api_credits_purchases and returns the data saved in the database.
+     * @param {api_credits_purchaseCreateManyAndReturnArgs} args - Arguments to create many Api_credits_purchases.
+     * @example
+     * // Create many Api_credits_purchases
+     * const api_credits_purchase = await prisma.api_credits_purchase.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Api_credits_purchases and only return the `id`
+     * const api_credits_purchaseWithIdOnly = await prisma.api_credits_purchase.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends api_credits_purchaseCreateManyAndReturnArgs>(args?: SelectSubset<T, api_credits_purchaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Api_credits_purchase.
+     * @param {api_credits_purchaseDeleteArgs} args - Arguments to delete one Api_credits_purchase.
+     * @example
+     * // Delete one Api_credits_purchase
+     * const Api_credits_purchase = await prisma.api_credits_purchase.delete({
+     *   where: {
+     *     // ... filter to delete one Api_credits_purchase
+     *   }
+     * })
+     * 
+     */
+    delete<T extends api_credits_purchaseDeleteArgs>(args: SelectSubset<T, api_credits_purchaseDeleteArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Api_credits_purchase.
+     * @param {api_credits_purchaseUpdateArgs} args - Arguments to update one Api_credits_purchase.
+     * @example
+     * // Update one Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends api_credits_purchaseUpdateArgs>(args: SelectSubset<T, api_credits_purchaseUpdateArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Api_credits_purchases.
+     * @param {api_credits_purchaseDeleteManyArgs} args - Arguments to filter Api_credits_purchases to delete.
+     * @example
+     * // Delete a few Api_credits_purchases
+     * const { count } = await prisma.api_credits_purchase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends api_credits_purchaseDeleteManyArgs>(args?: SelectSubset<T, api_credits_purchaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_credits_purchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Api_credits_purchases
+     * const api_credits_purchase = await prisma.api_credits_purchase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends api_credits_purchaseUpdateManyArgs>(args: SelectSubset<T, api_credits_purchaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_credits_purchases and returns the data updated in the database.
+     * @param {api_credits_purchaseUpdateManyAndReturnArgs} args - Arguments to update many Api_credits_purchases.
+     * @example
+     * // Update many Api_credits_purchases
+     * const api_credits_purchase = await prisma.api_credits_purchase.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Api_credits_purchases and only return the `id`
+     * const api_credits_purchaseWithIdOnly = await prisma.api_credits_purchase.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends api_credits_purchaseUpdateManyAndReturnArgs>(args: SelectSubset<T, api_credits_purchaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Api_credits_purchase.
+     * @param {api_credits_purchaseUpsertArgs} args - Arguments to update or create a Api_credits_purchase.
+     * @example
+     * // Update or create a Api_credits_purchase
+     * const api_credits_purchase = await prisma.api_credits_purchase.upsert({
+     *   create: {
+     *     // ... data to create a Api_credits_purchase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Api_credits_purchase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends api_credits_purchaseUpsertArgs>(args: SelectSubset<T, api_credits_purchaseUpsertArgs<ExtArgs>>): Prisma__api_credits_purchaseClient<$Result.GetResult<Prisma.$api_credits_purchasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Api_credits_purchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseCountArgs} args - Arguments to filter Api_credits_purchases to count.
+     * @example
+     * // Count the number of Api_credits_purchases
+     * const count = await prisma.api_credits_purchase.count({
+     *   where: {
+     *     // ... the filter for the Api_credits_purchases we want to count
+     *   }
+     * })
+    **/
+    count<T extends api_credits_purchaseCountArgs>(
+      args?: Subset<T, api_credits_purchaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Api_credits_purchaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Api_credits_purchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Api_credits_purchaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Api_credits_purchaseAggregateArgs>(args: Subset<T, Api_credits_purchaseAggregateArgs>): Prisma.PrismaPromise<GetApi_credits_purchaseAggregateType<T>>
+
+    /**
+     * Group by Api_credits_purchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_purchaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends api_credits_purchaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: api_credits_purchaseGroupByArgs['orderBy'] }
+        : { orderBy?: api_credits_purchaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, api_credits_purchaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApi_credits_purchaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the api_credits_purchase model
+   */
+  readonly fields: api_credits_purchaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for api_credits_purchase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__api_credits_purchaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends api_credits_purchase$userArgs<ExtArgs> = {}>(args?: Subset<T, api_credits_purchase$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the api_credits_purchase model
+   */
+  interface api_credits_purchaseFieldRefs {
+    readonly id: FieldRef<"api_credits_purchase", 'String'>
+    readonly credits: FieldRef<"api_credits_purchase", 'Int'>
+    readonly purchaseDate: FieldRef<"api_credits_purchase", 'DateTime'>
+    readonly user_id: FieldRef<"api_credits_purchase", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * api_credits_purchase findUnique
+   */
+  export type api_credits_purchaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_purchase to fetch.
+     */
+    where: api_credits_purchaseWhereUniqueInput
+  }
+
+  /**
+   * api_credits_purchase findUniqueOrThrow
+   */
+  export type api_credits_purchaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_purchase to fetch.
+     */
+    where: api_credits_purchaseWhereUniqueInput
+  }
+
+  /**
+   * api_credits_purchase findFirst
+   */
+  export type api_credits_purchaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_purchase to fetch.
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_purchases to fetch.
+     */
+    orderBy?: api_credits_purchaseOrderByWithRelationInput | api_credits_purchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_credits_purchases.
+     */
+    cursor?: api_credits_purchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_purchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_purchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_credits_purchases.
+     */
+    distinct?: Api_credits_purchaseScalarFieldEnum | Api_credits_purchaseScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_purchase findFirstOrThrow
+   */
+  export type api_credits_purchaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_purchase to fetch.
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_purchases to fetch.
+     */
+    orderBy?: api_credits_purchaseOrderByWithRelationInput | api_credits_purchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_credits_purchases.
+     */
+    cursor?: api_credits_purchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_purchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_purchases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_credits_purchases.
+     */
+    distinct?: Api_credits_purchaseScalarFieldEnum | Api_credits_purchaseScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_purchase findMany
+   */
+  export type api_credits_purchaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_purchases to fetch.
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_purchases to fetch.
+     */
+    orderBy?: api_credits_purchaseOrderByWithRelationInput | api_credits_purchaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing api_credits_purchases.
+     */
+    cursor?: api_credits_purchaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_purchases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_purchases.
+     */
+    skip?: number
+    distinct?: Api_credits_purchaseScalarFieldEnum | Api_credits_purchaseScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_purchase create
+   */
+  export type api_credits_purchaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a api_credits_purchase.
+     */
+    data: XOR<api_credits_purchaseCreateInput, api_credits_purchaseUncheckedCreateInput>
+  }
+
+  /**
+   * api_credits_purchase createMany
+   */
+  export type api_credits_purchaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many api_credits_purchases.
+     */
+    data: api_credits_purchaseCreateManyInput | api_credits_purchaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * api_credits_purchase createManyAndReturn
+   */
+  export type api_credits_purchaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * The data used to create many api_credits_purchases.
+     */
+    data: api_credits_purchaseCreateManyInput | api_credits_purchaseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_credits_purchase update
+   */
+  export type api_credits_purchaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a api_credits_purchase.
+     */
+    data: XOR<api_credits_purchaseUpdateInput, api_credits_purchaseUncheckedUpdateInput>
+    /**
+     * Choose, which api_credits_purchase to update.
+     */
+    where: api_credits_purchaseWhereUniqueInput
+  }
+
+  /**
+   * api_credits_purchase updateMany
+   */
+  export type api_credits_purchaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update api_credits_purchases.
+     */
+    data: XOR<api_credits_purchaseUpdateManyMutationInput, api_credits_purchaseUncheckedUpdateManyInput>
+    /**
+     * Filter which api_credits_purchases to update
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * Limit how many api_credits_purchases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_credits_purchase updateManyAndReturn
+   */
+  export type api_credits_purchaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * The data used to update api_credits_purchases.
+     */
+    data: XOR<api_credits_purchaseUpdateManyMutationInput, api_credits_purchaseUncheckedUpdateManyInput>
+    /**
+     * Filter which api_credits_purchases to update
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * Limit how many api_credits_purchases to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_credits_purchase upsert
+   */
+  export type api_credits_purchaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the api_credits_purchase to update in case it exists.
+     */
+    where: api_credits_purchaseWhereUniqueInput
+    /**
+     * In case the api_credits_purchase found by the `where` argument doesn't exist, create a new api_credits_purchase with this data.
+     */
+    create: XOR<api_credits_purchaseCreateInput, api_credits_purchaseUncheckedCreateInput>
+    /**
+     * In case the api_credits_purchase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<api_credits_purchaseUpdateInput, api_credits_purchaseUncheckedUpdateInput>
+  }
+
+  /**
+   * api_credits_purchase delete
+   */
+  export type api_credits_purchaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+    /**
+     * Filter which api_credits_purchase to delete.
+     */
+    where: api_credits_purchaseWhereUniqueInput
+  }
+
+  /**
+   * api_credits_purchase deleteMany
+   */
+  export type api_credits_purchaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_credits_purchases to delete
+     */
+    where?: api_credits_purchaseWhereInput
+    /**
+     * Limit how many api_credits_purchases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_credits_purchase.user
+   */
+  export type api_credits_purchase$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * api_credits_purchase without action
+   */
+  export type api_credits_purchaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_purchase
+     */
+    select?: api_credits_purchaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_purchase
+     */
+    omit?: api_credits_purchaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_purchaseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model api_credits_usage
+   */
+
+  export type AggregateApi_credits_usage = {
+    _count: Api_credits_usageCountAggregateOutputType | null
+    _avg: Api_credits_usageAvgAggregateOutputType | null
+    _sum: Api_credits_usageSumAggregateOutputType | null
+    _min: Api_credits_usageMinAggregateOutputType | null
+    _max: Api_credits_usageMaxAggregateOutputType | null
+  }
+
+  export type Api_credits_usageAvgAggregateOutputType = {
+    credits: number | null
+    user_id: number | null
+  }
+
+  export type Api_credits_usageSumAggregateOutputType = {
+    credits: number | null
+    user_id: number | null
+  }
+
+  export type Api_credits_usageMinAggregateOutputType = {
+    id: string | null
+    api_key_id: string | null
+    credits: number | null
+    usageDate: Date | null
+    user_id: number | null
+  }
+
+  export type Api_credits_usageMaxAggregateOutputType = {
+    id: string | null
+    api_key_id: string | null
+    credits: number | null
+    usageDate: Date | null
+    user_id: number | null
+  }
+
+  export type Api_credits_usageCountAggregateOutputType = {
+    id: number
+    api_key_id: number
+    credits: number
+    usageDate: number
+    user_id: number
+    _all: number
+  }
+
+
+  export type Api_credits_usageAvgAggregateInputType = {
+    credits?: true
+    user_id?: true
+  }
+
+  export type Api_credits_usageSumAggregateInputType = {
+    credits?: true
+    user_id?: true
+  }
+
+  export type Api_credits_usageMinAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    credits?: true
+    usageDate?: true
+    user_id?: true
+  }
+
+  export type Api_credits_usageMaxAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    credits?: true
+    usageDate?: true
+    user_id?: true
+  }
+
+  export type Api_credits_usageCountAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    credits?: true
+    usageDate?: true
+    user_id?: true
+    _all?: true
+  }
+
+  export type Api_credits_usageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_credits_usage to aggregate.
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_usages to fetch.
+     */
+    orderBy?: api_credits_usageOrderByWithRelationInput | api_credits_usageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: api_credits_usageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_usages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_usages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned api_credits_usages
+    **/
+    _count?: true | Api_credits_usageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Api_credits_usageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Api_credits_usageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Api_credits_usageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Api_credits_usageMaxAggregateInputType
+  }
+
+  export type GetApi_credits_usageAggregateType<T extends Api_credits_usageAggregateArgs> = {
+        [P in keyof T & keyof AggregateApi_credits_usage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApi_credits_usage[P]>
+      : GetScalarType<T[P], AggregateApi_credits_usage[P]>
+  }
+
+
+
+
+  export type api_credits_usageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_credits_usageWhereInput
+    orderBy?: api_credits_usageOrderByWithAggregationInput | api_credits_usageOrderByWithAggregationInput[]
+    by: Api_credits_usageScalarFieldEnum[] | Api_credits_usageScalarFieldEnum
+    having?: api_credits_usageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Api_credits_usageCountAggregateInputType | true
+    _avg?: Api_credits_usageAvgAggregateInputType
+    _sum?: Api_credits_usageSumAggregateInputType
+    _min?: Api_credits_usageMinAggregateInputType
+    _max?: Api_credits_usageMaxAggregateInputType
+  }
+
+  export type Api_credits_usageGroupByOutputType = {
+    id: string
+    api_key_id: string
+    credits: number
+    usageDate: Date
+    user_id: number | null
+    _count: Api_credits_usageCountAggregateOutputType | null
+    _avg: Api_credits_usageAvgAggregateOutputType | null
+    _sum: Api_credits_usageSumAggregateOutputType | null
+    _min: Api_credits_usageMinAggregateOutputType | null
+    _max: Api_credits_usageMaxAggregateOutputType | null
+  }
+
+  type GetApi_credits_usageGroupByPayload<T extends api_credits_usageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Api_credits_usageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Api_credits_usageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Api_credits_usageGroupByOutputType[P]>
+            : GetScalarType<T[P], Api_credits_usageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type api_credits_usageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_usage"]>
+
+  export type api_credits_usageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_usage"]>
+
+  export type api_credits_usageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    user_id?: boolean
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }, ExtArgs["result"]["api_credits_usage"]>
+
+  export type api_credits_usageSelectScalar = {
+    id?: boolean
+    api_key_id?: boolean
+    credits?: boolean
+    usageDate?: boolean
+    user_id?: boolean
+  }
+
+  export type api_credits_usageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "api_key_id" | "credits" | "usageDate" | "user_id", ExtArgs["result"]["api_credits_usage"]>
+  export type api_credits_usageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }
+  export type api_credits_usageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }
+  export type api_credits_usageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | api_credits_usage$userArgs<ExtArgs>
+  }
+
+  export type $api_credits_usagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "api_credits_usage"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      api_key_id: string
+      credits: number
+      usageDate: Date
+      user_id: number | null
+    }, ExtArgs["result"]["api_credits_usage"]>
+    composites: {}
+  }
+
+  type api_credits_usageGetPayload<S extends boolean | null | undefined | api_credits_usageDefaultArgs> = $Result.GetResult<Prisma.$api_credits_usagePayload, S>
+
+  type api_credits_usageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<api_credits_usageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Api_credits_usageCountAggregateInputType | true
+    }
+
+  export interface api_credits_usageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['api_credits_usage'], meta: { name: 'api_credits_usage' } }
+    /**
+     * Find zero or one Api_credits_usage that matches the filter.
+     * @param {api_credits_usageFindUniqueArgs} args - Arguments to find a Api_credits_usage
+     * @example
+     * // Get one Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends api_credits_usageFindUniqueArgs>(args: SelectSubset<T, api_credits_usageFindUniqueArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Api_credits_usage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {api_credits_usageFindUniqueOrThrowArgs} args - Arguments to find a Api_credits_usage
+     * @example
+     * // Get one Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends api_credits_usageFindUniqueOrThrowArgs>(args: SelectSubset<T, api_credits_usageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_credits_usage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageFindFirstArgs} args - Arguments to find a Api_credits_usage
+     * @example
+     * // Get one Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends api_credits_usageFindFirstArgs>(args?: SelectSubset<T, api_credits_usageFindFirstArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_credits_usage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageFindFirstOrThrowArgs} args - Arguments to find a Api_credits_usage
+     * @example
+     * // Get one Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends api_credits_usageFindFirstOrThrowArgs>(args?: SelectSubset<T, api_credits_usageFindFirstOrThrowArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Api_credits_usages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Api_credits_usages
+     * const api_credits_usages = await prisma.api_credits_usage.findMany()
+     * 
+     * // Get first 10 Api_credits_usages
+     * const api_credits_usages = await prisma.api_credits_usage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const api_credits_usageWithIdOnly = await prisma.api_credits_usage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends api_credits_usageFindManyArgs>(args?: SelectSubset<T, api_credits_usageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Api_credits_usage.
+     * @param {api_credits_usageCreateArgs} args - Arguments to create a Api_credits_usage.
+     * @example
+     * // Create one Api_credits_usage
+     * const Api_credits_usage = await prisma.api_credits_usage.create({
+     *   data: {
+     *     // ... data to create a Api_credits_usage
+     *   }
+     * })
+     * 
+     */
+    create<T extends api_credits_usageCreateArgs>(args: SelectSubset<T, api_credits_usageCreateArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Api_credits_usages.
+     * @param {api_credits_usageCreateManyArgs} args - Arguments to create many Api_credits_usages.
+     * @example
+     * // Create many Api_credits_usages
+     * const api_credits_usage = await prisma.api_credits_usage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends api_credits_usageCreateManyArgs>(args?: SelectSubset<T, api_credits_usageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Api_credits_usages and returns the data saved in the database.
+     * @param {api_credits_usageCreateManyAndReturnArgs} args - Arguments to create many Api_credits_usages.
+     * @example
+     * // Create many Api_credits_usages
+     * const api_credits_usage = await prisma.api_credits_usage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Api_credits_usages and only return the `id`
+     * const api_credits_usageWithIdOnly = await prisma.api_credits_usage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends api_credits_usageCreateManyAndReturnArgs>(args?: SelectSubset<T, api_credits_usageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Api_credits_usage.
+     * @param {api_credits_usageDeleteArgs} args - Arguments to delete one Api_credits_usage.
+     * @example
+     * // Delete one Api_credits_usage
+     * const Api_credits_usage = await prisma.api_credits_usage.delete({
+     *   where: {
+     *     // ... filter to delete one Api_credits_usage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends api_credits_usageDeleteArgs>(args: SelectSubset<T, api_credits_usageDeleteArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Api_credits_usage.
+     * @param {api_credits_usageUpdateArgs} args - Arguments to update one Api_credits_usage.
+     * @example
+     * // Update one Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends api_credits_usageUpdateArgs>(args: SelectSubset<T, api_credits_usageUpdateArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Api_credits_usages.
+     * @param {api_credits_usageDeleteManyArgs} args - Arguments to filter Api_credits_usages to delete.
+     * @example
+     * // Delete a few Api_credits_usages
+     * const { count } = await prisma.api_credits_usage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends api_credits_usageDeleteManyArgs>(args?: SelectSubset<T, api_credits_usageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_credits_usages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Api_credits_usages
+     * const api_credits_usage = await prisma.api_credits_usage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends api_credits_usageUpdateManyArgs>(args: SelectSubset<T, api_credits_usageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_credits_usages and returns the data updated in the database.
+     * @param {api_credits_usageUpdateManyAndReturnArgs} args - Arguments to update many Api_credits_usages.
+     * @example
+     * // Update many Api_credits_usages
+     * const api_credits_usage = await prisma.api_credits_usage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Api_credits_usages and only return the `id`
+     * const api_credits_usageWithIdOnly = await prisma.api_credits_usage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends api_credits_usageUpdateManyAndReturnArgs>(args: SelectSubset<T, api_credits_usageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Api_credits_usage.
+     * @param {api_credits_usageUpsertArgs} args - Arguments to update or create a Api_credits_usage.
+     * @example
+     * // Update or create a Api_credits_usage
+     * const api_credits_usage = await prisma.api_credits_usage.upsert({
+     *   create: {
+     *     // ... data to create a Api_credits_usage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Api_credits_usage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends api_credits_usageUpsertArgs>(args: SelectSubset<T, api_credits_usageUpsertArgs<ExtArgs>>): Prisma__api_credits_usageClient<$Result.GetResult<Prisma.$api_credits_usagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Api_credits_usages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageCountArgs} args - Arguments to filter Api_credits_usages to count.
+     * @example
+     * // Count the number of Api_credits_usages
+     * const count = await prisma.api_credits_usage.count({
+     *   where: {
+     *     // ... the filter for the Api_credits_usages we want to count
+     *   }
+     * })
+    **/
+    count<T extends api_credits_usageCountArgs>(
+      args?: Subset<T, api_credits_usageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Api_credits_usageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Api_credits_usage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Api_credits_usageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Api_credits_usageAggregateArgs>(args: Subset<T, Api_credits_usageAggregateArgs>): Prisma.PrismaPromise<GetApi_credits_usageAggregateType<T>>
+
+    /**
+     * Group by Api_credits_usage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_credits_usageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends api_credits_usageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: api_credits_usageGroupByArgs['orderBy'] }
+        : { orderBy?: api_credits_usageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, api_credits_usageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApi_credits_usageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the api_credits_usage model
+   */
+  readonly fields: api_credits_usageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for api_credits_usage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__api_credits_usageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends api_credits_usage$userArgs<ExtArgs> = {}>(args?: Subset<T, api_credits_usage$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the api_credits_usage model
+   */
+  interface api_credits_usageFieldRefs {
+    readonly id: FieldRef<"api_credits_usage", 'String'>
+    readonly api_key_id: FieldRef<"api_credits_usage", 'String'>
+    readonly credits: FieldRef<"api_credits_usage", 'Int'>
+    readonly usageDate: FieldRef<"api_credits_usage", 'DateTime'>
+    readonly user_id: FieldRef<"api_credits_usage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * api_credits_usage findUnique
+   */
+  export type api_credits_usageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_usage to fetch.
+     */
+    where: api_credits_usageWhereUniqueInput
+  }
+
+  /**
+   * api_credits_usage findUniqueOrThrow
+   */
+  export type api_credits_usageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_usage to fetch.
+     */
+    where: api_credits_usageWhereUniqueInput
+  }
+
+  /**
+   * api_credits_usage findFirst
+   */
+  export type api_credits_usageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_usage to fetch.
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_usages to fetch.
+     */
+    orderBy?: api_credits_usageOrderByWithRelationInput | api_credits_usageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_credits_usages.
+     */
+    cursor?: api_credits_usageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_usages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_usages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_credits_usages.
+     */
+    distinct?: Api_credits_usageScalarFieldEnum | Api_credits_usageScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_usage findFirstOrThrow
+   */
+  export type api_credits_usageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_usage to fetch.
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_usages to fetch.
+     */
+    orderBy?: api_credits_usageOrderByWithRelationInput | api_credits_usageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_credits_usages.
+     */
+    cursor?: api_credits_usageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_usages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_usages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_credits_usages.
+     */
+    distinct?: Api_credits_usageScalarFieldEnum | Api_credits_usageScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_usage findMany
+   */
+  export type api_credits_usageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter, which api_credits_usages to fetch.
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_credits_usages to fetch.
+     */
+    orderBy?: api_credits_usageOrderByWithRelationInput | api_credits_usageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing api_credits_usages.
+     */
+    cursor?: api_credits_usageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_credits_usages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_credits_usages.
+     */
+    skip?: number
+    distinct?: Api_credits_usageScalarFieldEnum | Api_credits_usageScalarFieldEnum[]
+  }
+
+  /**
+   * api_credits_usage create
+   */
+  export type api_credits_usageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a api_credits_usage.
+     */
+    data: XOR<api_credits_usageCreateInput, api_credits_usageUncheckedCreateInput>
+  }
+
+  /**
+   * api_credits_usage createMany
+   */
+  export type api_credits_usageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many api_credits_usages.
+     */
+    data: api_credits_usageCreateManyInput | api_credits_usageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * api_credits_usage createManyAndReturn
+   */
+  export type api_credits_usageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * The data used to create many api_credits_usages.
+     */
+    data: api_credits_usageCreateManyInput | api_credits_usageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_credits_usage update
+   */
+  export type api_credits_usageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a api_credits_usage.
+     */
+    data: XOR<api_credits_usageUpdateInput, api_credits_usageUncheckedUpdateInput>
+    /**
+     * Choose, which api_credits_usage to update.
+     */
+    where: api_credits_usageWhereUniqueInput
+  }
+
+  /**
+   * api_credits_usage updateMany
+   */
+  export type api_credits_usageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update api_credits_usages.
+     */
+    data: XOR<api_credits_usageUpdateManyMutationInput, api_credits_usageUncheckedUpdateManyInput>
+    /**
+     * Filter which api_credits_usages to update
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * Limit how many api_credits_usages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_credits_usage updateManyAndReturn
+   */
+  export type api_credits_usageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * The data used to update api_credits_usages.
+     */
+    data: XOR<api_credits_usageUpdateManyMutationInput, api_credits_usageUncheckedUpdateManyInput>
+    /**
+     * Filter which api_credits_usages to update
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * Limit how many api_credits_usages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_credits_usage upsert
+   */
+  export type api_credits_usageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the api_credits_usage to update in case it exists.
+     */
+    where: api_credits_usageWhereUniqueInput
+    /**
+     * In case the api_credits_usage found by the `where` argument doesn't exist, create a new api_credits_usage with this data.
+     */
+    create: XOR<api_credits_usageCreateInput, api_credits_usageUncheckedCreateInput>
+    /**
+     * In case the api_credits_usage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<api_credits_usageUpdateInput, api_credits_usageUncheckedUpdateInput>
+  }
+
+  /**
+   * api_credits_usage delete
+   */
+  export type api_credits_usageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+    /**
+     * Filter which api_credits_usage to delete.
+     */
+    where: api_credits_usageWhereUniqueInput
+  }
+
+  /**
+   * api_credits_usage deleteMany
+   */
+  export type api_credits_usageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_credits_usages to delete
+     */
+    where?: api_credits_usageWhereInput
+    /**
+     * Limit how many api_credits_usages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_credits_usage.user
+   */
+  export type api_credits_usage$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * api_credits_usage without action
+   */
+  export type api_credits_usageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_credits_usage
+     */
+    select?: api_credits_usageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_credits_usage
+     */
+    omit?: api_credits_usageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_credits_usageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model api_key_permission
+   */
+
+  export type AggregateApi_key_permission = {
+    _count: Api_key_permissionCountAggregateOutputType | null
+    _min: Api_key_permissionMinAggregateOutputType | null
+    _max: Api_key_permissionMaxAggregateOutputType | null
+  }
+
+  export type Api_key_permissionMinAggregateOutputType = {
+    id: string | null
+    api_key_id: string | null
+    permission: string | null
+  }
+
+  export type Api_key_permissionMaxAggregateOutputType = {
+    id: string | null
+    api_key_id: string | null
+    permission: string | null
+  }
+
+  export type Api_key_permissionCountAggregateOutputType = {
+    id: number
+    api_key_id: number
+    permission: number
+    _all: number
+  }
+
+
+  export type Api_key_permissionMinAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    permission?: true
+  }
+
+  export type Api_key_permissionMaxAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    permission?: true
+  }
+
+  export type Api_key_permissionCountAggregateInputType = {
+    id?: true
+    api_key_id?: true
+    permission?: true
+    _all?: true
+  }
+
+  export type Api_key_permissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_key_permission to aggregate.
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_key_permissions to fetch.
+     */
+    orderBy?: api_key_permissionOrderByWithRelationInput | api_key_permissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: api_key_permissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_key_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_key_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned api_key_permissions
+    **/
+    _count?: true | Api_key_permissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Api_key_permissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Api_key_permissionMaxAggregateInputType
+  }
+
+  export type GetApi_key_permissionAggregateType<T extends Api_key_permissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateApi_key_permission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApi_key_permission[P]>
+      : GetScalarType<T[P], AggregateApi_key_permission[P]>
+  }
+
+
+
+
+  export type api_key_permissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: api_key_permissionWhereInput
+    orderBy?: api_key_permissionOrderByWithAggregationInput | api_key_permissionOrderByWithAggregationInput[]
+    by: Api_key_permissionScalarFieldEnum[] | Api_key_permissionScalarFieldEnum
+    having?: api_key_permissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Api_key_permissionCountAggregateInputType | true
+    _min?: Api_key_permissionMinAggregateInputType
+    _max?: Api_key_permissionMaxAggregateInputType
+  }
+
+  export type Api_key_permissionGroupByOutputType = {
+    id: string
+    api_key_id: string
+    permission: string
+    _count: Api_key_permissionCountAggregateOutputType | null
+    _min: Api_key_permissionMinAggregateOutputType | null
+    _max: Api_key_permissionMaxAggregateOutputType | null
+  }
+
+  type GetApi_key_permissionGroupByPayload<T extends api_key_permissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Api_key_permissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Api_key_permissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Api_key_permissionGroupByOutputType[P]>
+            : GetScalarType<T[P], Api_key_permissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type api_key_permissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    permission?: boolean
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["api_key_permission"]>
+
+  export type api_key_permissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    permission?: boolean
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["api_key_permission"]>
+
+  export type api_key_permissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    api_key_id?: boolean
+    permission?: boolean
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["api_key_permission"]>
+
+  export type api_key_permissionSelectScalar = {
+    id?: boolean
+    api_key_id?: boolean
+    permission?: boolean
+  }
+
+  export type api_key_permissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "api_key_id" | "permission", ExtArgs["result"]["api_key_permission"]>
+  export type api_key_permissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+  export type api_key_permissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+  export type api_key_permissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    api_key?: boolean | ApiKeyDefaultArgs<ExtArgs>
+  }
+
+  export type $api_key_permissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "api_key_permission"
+    objects: {
+      api_key: Prisma.$ApiKeyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      api_key_id: string
+      permission: string
+    }, ExtArgs["result"]["api_key_permission"]>
+    composites: {}
+  }
+
+  type api_key_permissionGetPayload<S extends boolean | null | undefined | api_key_permissionDefaultArgs> = $Result.GetResult<Prisma.$api_key_permissionPayload, S>
+
+  type api_key_permissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<api_key_permissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Api_key_permissionCountAggregateInputType | true
+    }
+
+  export interface api_key_permissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['api_key_permission'], meta: { name: 'api_key_permission' } }
+    /**
+     * Find zero or one Api_key_permission that matches the filter.
+     * @param {api_key_permissionFindUniqueArgs} args - Arguments to find a Api_key_permission
+     * @example
+     * // Get one Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends api_key_permissionFindUniqueArgs>(args: SelectSubset<T, api_key_permissionFindUniqueArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Api_key_permission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {api_key_permissionFindUniqueOrThrowArgs} args - Arguments to find a Api_key_permission
+     * @example
+     * // Get one Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends api_key_permissionFindUniqueOrThrowArgs>(args: SelectSubset<T, api_key_permissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_key_permission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionFindFirstArgs} args - Arguments to find a Api_key_permission
+     * @example
+     * // Get one Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends api_key_permissionFindFirstArgs>(args?: SelectSubset<T, api_key_permissionFindFirstArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Api_key_permission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionFindFirstOrThrowArgs} args - Arguments to find a Api_key_permission
+     * @example
+     * // Get one Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends api_key_permissionFindFirstOrThrowArgs>(args?: SelectSubset<T, api_key_permissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Api_key_permissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Api_key_permissions
+     * const api_key_permissions = await prisma.api_key_permission.findMany()
+     * 
+     * // Get first 10 Api_key_permissions
+     * const api_key_permissions = await prisma.api_key_permission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const api_key_permissionWithIdOnly = await prisma.api_key_permission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends api_key_permissionFindManyArgs>(args?: SelectSubset<T, api_key_permissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Api_key_permission.
+     * @param {api_key_permissionCreateArgs} args - Arguments to create a Api_key_permission.
+     * @example
+     * // Create one Api_key_permission
+     * const Api_key_permission = await prisma.api_key_permission.create({
+     *   data: {
+     *     // ... data to create a Api_key_permission
+     *   }
+     * })
+     * 
+     */
+    create<T extends api_key_permissionCreateArgs>(args: SelectSubset<T, api_key_permissionCreateArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Api_key_permissions.
+     * @param {api_key_permissionCreateManyArgs} args - Arguments to create many Api_key_permissions.
+     * @example
+     * // Create many Api_key_permissions
+     * const api_key_permission = await prisma.api_key_permission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends api_key_permissionCreateManyArgs>(args?: SelectSubset<T, api_key_permissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Api_key_permissions and returns the data saved in the database.
+     * @param {api_key_permissionCreateManyAndReturnArgs} args - Arguments to create many Api_key_permissions.
+     * @example
+     * // Create many Api_key_permissions
+     * const api_key_permission = await prisma.api_key_permission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Api_key_permissions and only return the `id`
+     * const api_key_permissionWithIdOnly = await prisma.api_key_permission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends api_key_permissionCreateManyAndReturnArgs>(args?: SelectSubset<T, api_key_permissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Api_key_permission.
+     * @param {api_key_permissionDeleteArgs} args - Arguments to delete one Api_key_permission.
+     * @example
+     * // Delete one Api_key_permission
+     * const Api_key_permission = await prisma.api_key_permission.delete({
+     *   where: {
+     *     // ... filter to delete one Api_key_permission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends api_key_permissionDeleteArgs>(args: SelectSubset<T, api_key_permissionDeleteArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Api_key_permission.
+     * @param {api_key_permissionUpdateArgs} args - Arguments to update one Api_key_permission.
+     * @example
+     * // Update one Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends api_key_permissionUpdateArgs>(args: SelectSubset<T, api_key_permissionUpdateArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Api_key_permissions.
+     * @param {api_key_permissionDeleteManyArgs} args - Arguments to filter Api_key_permissions to delete.
+     * @example
+     * // Delete a few Api_key_permissions
+     * const { count } = await prisma.api_key_permission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends api_key_permissionDeleteManyArgs>(args?: SelectSubset<T, api_key_permissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_key_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Api_key_permissions
+     * const api_key_permission = await prisma.api_key_permission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends api_key_permissionUpdateManyArgs>(args: SelectSubset<T, api_key_permissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Api_key_permissions and returns the data updated in the database.
+     * @param {api_key_permissionUpdateManyAndReturnArgs} args - Arguments to update many Api_key_permissions.
+     * @example
+     * // Update many Api_key_permissions
+     * const api_key_permission = await prisma.api_key_permission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Api_key_permissions and only return the `id`
+     * const api_key_permissionWithIdOnly = await prisma.api_key_permission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends api_key_permissionUpdateManyAndReturnArgs>(args: SelectSubset<T, api_key_permissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Api_key_permission.
+     * @param {api_key_permissionUpsertArgs} args - Arguments to update or create a Api_key_permission.
+     * @example
+     * // Update or create a Api_key_permission
+     * const api_key_permission = await prisma.api_key_permission.upsert({
+     *   create: {
+     *     // ... data to create a Api_key_permission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Api_key_permission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends api_key_permissionUpsertArgs>(args: SelectSubset<T, api_key_permissionUpsertArgs<ExtArgs>>): Prisma__api_key_permissionClient<$Result.GetResult<Prisma.$api_key_permissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Api_key_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionCountArgs} args - Arguments to filter Api_key_permissions to count.
+     * @example
+     * // Count the number of Api_key_permissions
+     * const count = await prisma.api_key_permission.count({
+     *   where: {
+     *     // ... the filter for the Api_key_permissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends api_key_permissionCountArgs>(
+      args?: Subset<T, api_key_permissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Api_key_permissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Api_key_permission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Api_key_permissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Api_key_permissionAggregateArgs>(args: Subset<T, Api_key_permissionAggregateArgs>): Prisma.PrismaPromise<GetApi_key_permissionAggregateType<T>>
+
+    /**
+     * Group by Api_key_permission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {api_key_permissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends api_key_permissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: api_key_permissionGroupByArgs['orderBy'] }
+        : { orderBy?: api_key_permissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, api_key_permissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApi_key_permissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the api_key_permission model
+   */
+  readonly fields: api_key_permissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for api_key_permission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__api_key_permissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    api_key<T extends ApiKeyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ApiKeyDefaultArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the api_key_permission model
+   */
+  interface api_key_permissionFieldRefs {
+    readonly id: FieldRef<"api_key_permission", 'String'>
+    readonly api_key_id: FieldRef<"api_key_permission", 'String'>
+    readonly permission: FieldRef<"api_key_permission", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * api_key_permission findUnique
+   */
+  export type api_key_permissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter, which api_key_permission to fetch.
+     */
+    where: api_key_permissionWhereUniqueInput
+  }
+
+  /**
+   * api_key_permission findUniqueOrThrow
+   */
+  export type api_key_permissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter, which api_key_permission to fetch.
+     */
+    where: api_key_permissionWhereUniqueInput
+  }
+
+  /**
+   * api_key_permission findFirst
+   */
+  export type api_key_permissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter, which api_key_permission to fetch.
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_key_permissions to fetch.
+     */
+    orderBy?: api_key_permissionOrderByWithRelationInput | api_key_permissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_key_permissions.
+     */
+    cursor?: api_key_permissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_key_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_key_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_key_permissions.
+     */
+    distinct?: Api_key_permissionScalarFieldEnum | Api_key_permissionScalarFieldEnum[]
+  }
+
+  /**
+   * api_key_permission findFirstOrThrow
+   */
+  export type api_key_permissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter, which api_key_permission to fetch.
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_key_permissions to fetch.
+     */
+    orderBy?: api_key_permissionOrderByWithRelationInput | api_key_permissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for api_key_permissions.
+     */
+    cursor?: api_key_permissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_key_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_key_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of api_key_permissions.
+     */
+    distinct?: Api_key_permissionScalarFieldEnum | Api_key_permissionScalarFieldEnum[]
+  }
+
+  /**
+   * api_key_permission findMany
+   */
+  export type api_key_permissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter, which api_key_permissions to fetch.
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of api_key_permissions to fetch.
+     */
+    orderBy?: api_key_permissionOrderByWithRelationInput | api_key_permissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing api_key_permissions.
+     */
+    cursor?: api_key_permissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` api_key_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` api_key_permissions.
+     */
+    skip?: number
+    distinct?: Api_key_permissionScalarFieldEnum | Api_key_permissionScalarFieldEnum[]
+  }
+
+  /**
+   * api_key_permission create
+   */
+  export type api_key_permissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a api_key_permission.
+     */
+    data: XOR<api_key_permissionCreateInput, api_key_permissionUncheckedCreateInput>
+  }
+
+  /**
+   * api_key_permission createMany
+   */
+  export type api_key_permissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many api_key_permissions.
+     */
+    data: api_key_permissionCreateManyInput | api_key_permissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * api_key_permission createManyAndReturn
+   */
+  export type api_key_permissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many api_key_permissions.
+     */
+    data: api_key_permissionCreateManyInput | api_key_permissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_key_permission update
+   */
+  export type api_key_permissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a api_key_permission.
+     */
+    data: XOR<api_key_permissionUpdateInput, api_key_permissionUncheckedUpdateInput>
+    /**
+     * Choose, which api_key_permission to update.
+     */
+    where: api_key_permissionWhereUniqueInput
+  }
+
+  /**
+   * api_key_permission updateMany
+   */
+  export type api_key_permissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update api_key_permissions.
+     */
+    data: XOR<api_key_permissionUpdateManyMutationInput, api_key_permissionUncheckedUpdateManyInput>
+    /**
+     * Filter which api_key_permissions to update
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * Limit how many api_key_permissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_key_permission updateManyAndReturn
+   */
+  export type api_key_permissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * The data used to update api_key_permissions.
+     */
+    data: XOR<api_key_permissionUpdateManyMutationInput, api_key_permissionUncheckedUpdateManyInput>
+    /**
+     * Filter which api_key_permissions to update
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * Limit how many api_key_permissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * api_key_permission upsert
+   */
+  export type api_key_permissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the api_key_permission to update in case it exists.
+     */
+    where: api_key_permissionWhereUniqueInput
+    /**
+     * In case the api_key_permission found by the `where` argument doesn't exist, create a new api_key_permission with this data.
+     */
+    create: XOR<api_key_permissionCreateInput, api_key_permissionUncheckedCreateInput>
+    /**
+     * In case the api_key_permission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<api_key_permissionUpdateInput, api_key_permissionUncheckedUpdateInput>
+  }
+
+  /**
+   * api_key_permission delete
+   */
+  export type api_key_permissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+    /**
+     * Filter which api_key_permission to delete.
+     */
+    where: api_key_permissionWhereUniqueInput
+  }
+
+  /**
+   * api_key_permission deleteMany
+   */
+  export type api_key_permissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which api_key_permissions to delete
+     */
+    where?: api_key_permissionWhereInput
+    /**
+     * Limit how many api_key_permissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * api_key_permission without action
+   */
+  export type api_key_permissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the api_key_permission
+     */
+    select?: api_key_permissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the api_key_permission
+     */
+    omit?: api_key_permissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: api_key_permissionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -15641,43 +15627,13 @@ export namespace Prisma {
     unlimited: 'unlimited',
     minInterval: 'minInterval',
     ownerId: 'ownerId',
-    name: 'name',
     description: 'description',
     createdAt: 'createdAt',
-    lastRequest: 'lastRequest'
+    lastRequest: 'lastRequest',
+    name: 'name'
   };
 
   export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
-
-
-  export const ApiKeyPermissionScalarFieldEnum: {
-    id: 'id',
-    apiKeyId: 'apiKeyId',
-    permission: 'permission'
-  };
-
-  export type ApiKeyPermissionScalarFieldEnum = (typeof ApiKeyPermissionScalarFieldEnum)[keyof typeof ApiKeyPermissionScalarFieldEnum]
-
-
-  export const ApiCreditsPurchaseScalarFieldEnum: {
-    id: 'id',
-    credits: 'credits',
-    purchaseDate: 'purchaseDate',
-    userId: 'userId'
-  };
-
-  export type ApiCreditsPurchaseScalarFieldEnum = (typeof ApiCreditsPurchaseScalarFieldEnum)[keyof typeof ApiCreditsPurchaseScalarFieldEnum]
-
-
-  export const ApiCreditsUsageScalarFieldEnum: {
-    id: 'id',
-    apiKeyId: 'apiKeyId',
-    credits: 'credits',
-    usageDate: 'usageDate',
-    userId: 'userId'
-  };
-
-  export type ApiCreditsUsageScalarFieldEnum = (typeof ApiCreditsUsageScalarFieldEnum)[keyof typeof ApiCreditsUsageScalarFieldEnum]
 
 
   export const ApiUsageLogScalarFieldEnum: {
@@ -15721,6 +15677,36 @@ export namespace Prisma {
   };
 
   export type CalendarAccountScalarFieldEnum = (typeof CalendarAccountScalarFieldEnum)[keyof typeof CalendarAccountScalarFieldEnum]
+
+
+  export const Api_credits_purchaseScalarFieldEnum: {
+    id: 'id',
+    credits: 'credits',
+    purchaseDate: 'purchaseDate',
+    user_id: 'user_id'
+  };
+
+  export type Api_credits_purchaseScalarFieldEnum = (typeof Api_credits_purchaseScalarFieldEnum)[keyof typeof Api_credits_purchaseScalarFieldEnum]
+
+
+  export const Api_credits_usageScalarFieldEnum: {
+    id: 'id',
+    api_key_id: 'api_key_id',
+    credits: 'credits',
+    usageDate: 'usageDate',
+    user_id: 'user_id'
+  };
+
+  export type Api_credits_usageScalarFieldEnum = (typeof Api_credits_usageScalarFieldEnum)[keyof typeof Api_credits_usageScalarFieldEnum]
+
+
+  export const Api_key_permissionScalarFieldEnum: {
+    id: 'id',
+    api_key_id: 'api_key_id',
+    permission: 'permission'
+  };
+
+  export type Api_key_permissionScalarFieldEnum = (typeof Api_key_permissionScalarFieldEnum)[keyof typeof Api_key_permissionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -15887,14 +15873,14 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     totpKey?: BytesNullableFilter<"User"> | Uint8Array | null
     recoveryCode?: BytesFilter<"User"> | Uint8Array
-    sessions?: SessionListRelationFilter
-    emailVerifications?: EmailVerificationRequestListRelationFilter
-    passwordResets?: PasswordResetSessionListRelationFilter
+    subscriptions?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    api_credits_purchase?: Api_credits_purchaseListRelationFilter
+    api_credits_usage?: Api_credits_usageListRelationFilter
     apiKeys?: ApiKeyListRelationFilter
     calendarAccounts?: CalendarAccountListRelationFilter
-    subscriptions?: SubscriptionListRelationFilter
-    apiCreditsPurchases?: ApiCreditsPurchaseListRelationFilter
-    apiCreditsUsages?: ApiCreditsUsageListRelationFilter
+    emailVerifications?: EmailVerificationRequestListRelationFilter
+    passwordResets?: PasswordResetSessionListRelationFilter
+    sessions?: SessionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15905,14 +15891,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     totpKey?: SortOrderInput | SortOrder
     recoveryCode?: SortOrder
-    sessions?: SessionOrderByRelationAggregateInput
-    emailVerifications?: EmailVerificationRequestOrderByRelationAggregateInput
-    passwordResets?: PasswordResetSessionOrderByRelationAggregateInput
+    subscriptions?: SubscriptionOrderByWithRelationInput
+    api_credits_purchase?: api_credits_purchaseOrderByRelationAggregateInput
+    api_credits_usage?: api_credits_usageOrderByRelationAggregateInput
     apiKeys?: ApiKeyOrderByRelationAggregateInput
     calendarAccounts?: CalendarAccountOrderByRelationAggregateInput
-    subscriptions?: SubscriptionOrderByRelationAggregateInput
-    apiCreditsPurchases?: ApiCreditsPurchaseOrderByRelationAggregateInput
-    apiCreditsUsages?: ApiCreditsUsageOrderByRelationAggregateInput
+    emailVerifications?: EmailVerificationRequestOrderByRelationAggregateInput
+    passwordResets?: PasswordResetSessionOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15926,14 +15912,14 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     totpKey?: BytesNullableFilter<"User"> | Uint8Array | null
     recoveryCode?: BytesFilter<"User"> | Uint8Array
-    sessions?: SessionListRelationFilter
-    emailVerifications?: EmailVerificationRequestListRelationFilter
-    passwordResets?: PasswordResetSessionListRelationFilter
+    subscriptions?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    api_credits_purchase?: Api_credits_purchaseListRelationFilter
+    api_credits_usage?: Api_credits_usageListRelationFilter
     apiKeys?: ApiKeyListRelationFilter
     calendarAccounts?: CalendarAccountListRelationFilter
-    subscriptions?: SubscriptionListRelationFilter
-    apiCreditsPurchases?: ApiCreditsPurchaseListRelationFilter
-    apiCreditsUsages?: ApiCreditsUsageListRelationFilter
+    emailVerifications?: EmailVerificationRequestListRelationFilter
+    passwordResets?: PasswordResetSessionListRelationFilter
+    sessions?: SessionListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -16226,13 +16212,13 @@ export namespace Prisma {
     unlimited?: BoolFilter<"ApiKey"> | boolean
     minInterval?: IntFilter<"ApiKey"> | number
     ownerId?: IntNullableFilter<"ApiKey"> | number | null
-    name?: StringFilter<"ApiKey"> | string
     description?: StringNullableFilter<"ApiKey"> | string | null
     createdAt?: DateTimeFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
+    name?: StringFilter<"ApiKey"> | string
     owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    api_key_permission?: Api_key_permissionListRelationFilter
     usageLogs?: ApiUsageLogListRelationFilter
-    apiKeyPermissions?: ApiKeyPermissionListRelationFilter
   }
 
   export type ApiKeyOrderByWithRelationInput = {
@@ -16241,13 +16227,13 @@ export namespace Prisma {
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrderInput | SortOrder
-    name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrderInput | SortOrder
+    name?: SortOrder
     owner?: UserOrderByWithRelationInput
+    api_key_permission?: api_key_permissionOrderByRelationAggregateInput
     usageLogs?: ApiUsageLogOrderByRelationAggregateInput
-    apiKeyPermissions?: ApiKeyPermissionOrderByRelationAggregateInput
   }
 
   export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
@@ -16259,13 +16245,13 @@ export namespace Prisma {
     unlimited?: BoolFilter<"ApiKey"> | boolean
     minInterval?: IntFilter<"ApiKey"> | number
     ownerId?: IntNullableFilter<"ApiKey"> | number | null
-    name?: StringFilter<"ApiKey"> | string
     description?: StringNullableFilter<"ApiKey"> | string | null
     createdAt?: DateTimeFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
+    name?: StringFilter<"ApiKey"> | string
     owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    api_key_permission?: Api_key_permissionListRelationFilter
     usageLogs?: ApiUsageLogListRelationFilter
-    apiKeyPermissions?: ApiKeyPermissionListRelationFilter
   }, "id" | "key">
 
   export type ApiKeyOrderByWithAggregationInput = {
@@ -16274,10 +16260,10 @@ export namespace Prisma {
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrderInput | SortOrder
-    name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrderInput | SortOrder
+    name?: SortOrder
     _count?: ApiKeyCountOrderByAggregateInput
     _avg?: ApiKeyAvgOrderByAggregateInput
     _max?: ApiKeyMaxOrderByAggregateInput
@@ -16294,164 +16280,10 @@ export namespace Prisma {
     unlimited?: BoolWithAggregatesFilter<"ApiKey"> | boolean
     minInterval?: IntWithAggregatesFilter<"ApiKey"> | number
     ownerId?: IntNullableWithAggregatesFilter<"ApiKey"> | number | null
-    name?: StringWithAggregatesFilter<"ApiKey"> | string
     description?: StringNullableWithAggregatesFilter<"ApiKey"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
     lastRequest?: DateTimeNullableWithAggregatesFilter<"ApiKey"> | Date | string | null
-  }
-
-  export type ApiKeyPermissionWhereInput = {
-    AND?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
-    OR?: ApiKeyPermissionWhereInput[]
-    NOT?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
-    id?: StringFilter<"ApiKeyPermission"> | string
-    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
-    permission?: StringFilter<"ApiKeyPermission"> | string
-    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
-  }
-
-  export type ApiKeyPermissionOrderByWithRelationInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    permission?: SortOrder
-    apiKey?: ApiKeyOrderByWithRelationInput
-  }
-
-  export type ApiKeyPermissionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
-    OR?: ApiKeyPermissionWhereInput[]
-    NOT?: ApiKeyPermissionWhereInput | ApiKeyPermissionWhereInput[]
-    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
-    permission?: StringFilter<"ApiKeyPermission"> | string
-    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
-  }, "id">
-
-  export type ApiKeyPermissionOrderByWithAggregationInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    permission?: SortOrder
-    _count?: ApiKeyPermissionCountOrderByAggregateInput
-    _max?: ApiKeyPermissionMaxOrderByAggregateInput
-    _min?: ApiKeyPermissionMinOrderByAggregateInput
-  }
-
-  export type ApiKeyPermissionScalarWhereWithAggregatesInput = {
-    AND?: ApiKeyPermissionScalarWhereWithAggregatesInput | ApiKeyPermissionScalarWhereWithAggregatesInput[]
-    OR?: ApiKeyPermissionScalarWhereWithAggregatesInput[]
-    NOT?: ApiKeyPermissionScalarWhereWithAggregatesInput | ApiKeyPermissionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
-    apiKeyId?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
-    permission?: StringWithAggregatesFilter<"ApiKeyPermission"> | string
-  }
-
-  export type ApiCreditsPurchaseWhereInput = {
-    AND?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
-    OR?: ApiCreditsPurchaseWhereInput[]
-    NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
-    id?: StringFilter<"ApiCreditsPurchase"> | string
-    credits?: IntFilter<"ApiCreditsPurchase"> | number
-    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }
-
-  export type ApiCreditsPurchaseOrderByWithRelationInput = {
-    id?: SortOrder
-    credits?: SortOrder
-    purchaseDate?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type ApiCreditsPurchaseWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
-    OR?: ApiCreditsPurchaseWhereInput[]
-    NOT?: ApiCreditsPurchaseWhereInput | ApiCreditsPurchaseWhereInput[]
-    credits?: IntFilter<"ApiCreditsPurchase"> | number
-    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id">
-
-  export type ApiCreditsPurchaseOrderByWithAggregationInput = {
-    id?: SortOrder
-    credits?: SortOrder
-    purchaseDate?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    _count?: ApiCreditsPurchaseCountOrderByAggregateInput
-    _avg?: ApiCreditsPurchaseAvgOrderByAggregateInput
-    _max?: ApiCreditsPurchaseMaxOrderByAggregateInput
-    _min?: ApiCreditsPurchaseMinOrderByAggregateInput
-    _sum?: ApiCreditsPurchaseSumOrderByAggregateInput
-  }
-
-  export type ApiCreditsPurchaseScalarWhereWithAggregatesInput = {
-    AND?: ApiCreditsPurchaseScalarWhereWithAggregatesInput | ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
-    OR?: ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
-    NOT?: ApiCreditsPurchaseScalarWhereWithAggregatesInput | ApiCreditsPurchaseScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ApiCreditsPurchase"> | string
-    credits?: IntWithAggregatesFilter<"ApiCreditsPurchase"> | number
-    purchaseDate?: DateTimeWithAggregatesFilter<"ApiCreditsPurchase"> | Date | string
-    userId?: IntNullableWithAggregatesFilter<"ApiCreditsPurchase"> | number | null
-  }
-
-  export type ApiCreditsUsageWhereInput = {
-    AND?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
-    OR?: ApiCreditsUsageWhereInput[]
-    NOT?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
-    id?: StringFilter<"ApiCreditsUsage"> | string
-    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
-    credits?: IntFilter<"ApiCreditsUsage"> | number
-    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }
-
-  export type ApiCreditsUsageOrderByWithRelationInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    credits?: SortOrder
-    usageDate?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type ApiCreditsUsageWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
-    OR?: ApiCreditsUsageWhereInput[]
-    NOT?: ApiCreditsUsageWhereInput | ApiCreditsUsageWhereInput[]
-    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
-    credits?: IntFilter<"ApiCreditsUsage"> | number
-    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id">
-
-  export type ApiCreditsUsageOrderByWithAggregationInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    credits?: SortOrder
-    usageDate?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    _count?: ApiCreditsUsageCountOrderByAggregateInput
-    _avg?: ApiCreditsUsageAvgOrderByAggregateInput
-    _max?: ApiCreditsUsageMaxOrderByAggregateInput
-    _min?: ApiCreditsUsageMinOrderByAggregateInput
-    _sum?: ApiCreditsUsageSumOrderByAggregateInput
-  }
-
-  export type ApiCreditsUsageScalarWhereWithAggregatesInput = {
-    AND?: ApiCreditsUsageScalarWhereWithAggregatesInput | ApiCreditsUsageScalarWhereWithAggregatesInput[]
-    OR?: ApiCreditsUsageScalarWhereWithAggregatesInput[]
-    NOT?: ApiCreditsUsageScalarWhereWithAggregatesInput | ApiCreditsUsageScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ApiCreditsUsage"> | string
-    apiKeyId?: StringWithAggregatesFilter<"ApiCreditsUsage"> | string
-    credits?: IntWithAggregatesFilter<"ApiCreditsUsage"> | number
-    usageDate?: DateTimeWithAggregatesFilter<"ApiCreditsUsage"> | Date | string
-    userId?: IntNullableWithAggregatesFilter<"ApiCreditsUsage"> | number | null
+    name?: StringWithAggregatesFilter<"ApiKey"> | string
   }
 
   export type ApiUsageLogWhereInput = {
@@ -16533,7 +16365,7 @@ export namespace Prisma {
     id?: StringFilter<"TimetableCache"> | string
     username?: StringFilter<"TimetableCache"> | string
     school?: StringFilter<"TimetableCache"> | string
-    date?: DateTimeFilter<"TimetableCache"> | Date | string
+    date?: StringFilter<"TimetableCache"> | string
     data?: JsonFilter<"TimetableCache">
     expiresAt?: DateTimeFilter<"TimetableCache"> | Date | string
   }
@@ -16554,7 +16386,7 @@ export namespace Prisma {
     NOT?: TimetableCacheWhereInput | TimetableCacheWhereInput[]
     username?: StringFilter<"TimetableCache"> | string
     school?: StringFilter<"TimetableCache"> | string
-    date?: DateTimeFilter<"TimetableCache"> | Date | string
+    date?: StringFilter<"TimetableCache"> | string
     data?: JsonFilter<"TimetableCache">
     expiresAt?: DateTimeFilter<"TimetableCache"> | Date | string
   }, "id">
@@ -16578,7 +16410,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"TimetableCache"> | string
     username?: StringWithAggregatesFilter<"TimetableCache"> | string
     school?: StringWithAggregatesFilter<"TimetableCache"> | string
-    date?: DateTimeWithAggregatesFilter<"TimetableCache"> | Date | string
+    date?: StringWithAggregatesFilter<"TimetableCache"> | string
     data?: JsonWithAggregatesFilter<"TimetableCache">
     expiresAt?: DateTimeWithAggregatesFilter<"TimetableCache"> | Date | string
   }
@@ -16671,6 +16503,160 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CalendarAccount"> | Date | string
   }
 
+  export type api_credits_purchaseWhereInput = {
+    AND?: api_credits_purchaseWhereInput | api_credits_purchaseWhereInput[]
+    OR?: api_credits_purchaseWhereInput[]
+    NOT?: api_credits_purchaseWhereInput | api_credits_purchaseWhereInput[]
+    id?: StringFilter<"api_credits_purchase"> | string
+    credits?: IntFilter<"api_credits_purchase"> | number
+    purchaseDate?: DateTimeFilter<"api_credits_purchase"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_purchase"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type api_credits_purchaseOrderByWithRelationInput = {
+    id?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type api_credits_purchaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: api_credits_purchaseWhereInput | api_credits_purchaseWhereInput[]
+    OR?: api_credits_purchaseWhereInput[]
+    NOT?: api_credits_purchaseWhereInput | api_credits_purchaseWhereInput[]
+    credits?: IntFilter<"api_credits_purchase"> | number
+    purchaseDate?: DateTimeFilter<"api_credits_purchase"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_purchase"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type api_credits_purchaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    _count?: api_credits_purchaseCountOrderByAggregateInput
+    _avg?: api_credits_purchaseAvgOrderByAggregateInput
+    _max?: api_credits_purchaseMaxOrderByAggregateInput
+    _min?: api_credits_purchaseMinOrderByAggregateInput
+    _sum?: api_credits_purchaseSumOrderByAggregateInput
+  }
+
+  export type api_credits_purchaseScalarWhereWithAggregatesInput = {
+    AND?: api_credits_purchaseScalarWhereWithAggregatesInput | api_credits_purchaseScalarWhereWithAggregatesInput[]
+    OR?: api_credits_purchaseScalarWhereWithAggregatesInput[]
+    NOT?: api_credits_purchaseScalarWhereWithAggregatesInput | api_credits_purchaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"api_credits_purchase"> | string
+    credits?: IntWithAggregatesFilter<"api_credits_purchase"> | number
+    purchaseDate?: DateTimeWithAggregatesFilter<"api_credits_purchase"> | Date | string
+    user_id?: IntNullableWithAggregatesFilter<"api_credits_purchase"> | number | null
+  }
+
+  export type api_credits_usageWhereInput = {
+    AND?: api_credits_usageWhereInput | api_credits_usageWhereInput[]
+    OR?: api_credits_usageWhereInput[]
+    NOT?: api_credits_usageWhereInput | api_credits_usageWhereInput[]
+    id?: StringFilter<"api_credits_usage"> | string
+    api_key_id?: StringFilter<"api_credits_usage"> | string
+    credits?: IntFilter<"api_credits_usage"> | number
+    usageDate?: DateTimeFilter<"api_credits_usage"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_usage"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type api_credits_usageOrderByWithRelationInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type api_credits_usageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: api_credits_usageWhereInput | api_credits_usageWhereInput[]
+    OR?: api_credits_usageWhereInput[]
+    NOT?: api_credits_usageWhereInput | api_credits_usageWhereInput[]
+    api_key_id?: StringFilter<"api_credits_usage"> | string
+    credits?: IntFilter<"api_credits_usage"> | number
+    usageDate?: DateTimeFilter<"api_credits_usage"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_usage"> | number | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type api_credits_usageOrderByWithAggregationInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    user_id?: SortOrderInput | SortOrder
+    _count?: api_credits_usageCountOrderByAggregateInput
+    _avg?: api_credits_usageAvgOrderByAggregateInput
+    _max?: api_credits_usageMaxOrderByAggregateInput
+    _min?: api_credits_usageMinOrderByAggregateInput
+    _sum?: api_credits_usageSumOrderByAggregateInput
+  }
+
+  export type api_credits_usageScalarWhereWithAggregatesInput = {
+    AND?: api_credits_usageScalarWhereWithAggregatesInput | api_credits_usageScalarWhereWithAggregatesInput[]
+    OR?: api_credits_usageScalarWhereWithAggregatesInput[]
+    NOT?: api_credits_usageScalarWhereWithAggregatesInput | api_credits_usageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"api_credits_usage"> | string
+    api_key_id?: StringWithAggregatesFilter<"api_credits_usage"> | string
+    credits?: IntWithAggregatesFilter<"api_credits_usage"> | number
+    usageDate?: DateTimeWithAggregatesFilter<"api_credits_usage"> | Date | string
+    user_id?: IntNullableWithAggregatesFilter<"api_credits_usage"> | number | null
+  }
+
+  export type api_key_permissionWhereInput = {
+    AND?: api_key_permissionWhereInput | api_key_permissionWhereInput[]
+    OR?: api_key_permissionWhereInput[]
+    NOT?: api_key_permissionWhereInput | api_key_permissionWhereInput[]
+    id?: StringFilter<"api_key_permission"> | string
+    api_key_id?: StringFilter<"api_key_permission"> | string
+    permission?: StringFilter<"api_key_permission"> | string
+    api_key?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+  }
+
+  export type api_key_permissionOrderByWithRelationInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    permission?: SortOrder
+    api_key?: ApiKeyOrderByWithRelationInput
+  }
+
+  export type api_key_permissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: api_key_permissionWhereInput | api_key_permissionWhereInput[]
+    OR?: api_key_permissionWhereInput[]
+    NOT?: api_key_permissionWhereInput | api_key_permissionWhereInput[]
+    api_key_id?: StringFilter<"api_key_permission"> | string
+    permission?: StringFilter<"api_key_permission"> | string
+    api_key?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+  }, "id">
+
+  export type api_key_permissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    permission?: SortOrder
+    _count?: api_key_permissionCountOrderByAggregateInput
+    _max?: api_key_permissionMaxOrderByAggregateInput
+    _min?: api_key_permissionMinOrderByAggregateInput
+  }
+
+  export type api_key_permissionScalarWhereWithAggregatesInput = {
+    AND?: api_key_permissionScalarWhereWithAggregatesInput | api_key_permissionScalarWhereWithAggregatesInput[]
+    OR?: api_key_permissionScalarWhereWithAggregatesInput[]
+    NOT?: api_key_permissionScalarWhereWithAggregatesInput | api_key_permissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"api_key_permission"> | string
+    api_key_id?: StringWithAggregatesFilter<"api_key_permission"> | string
+    permission?: StringWithAggregatesFilter<"api_key_permission"> | string
+  }
+
   export type UserCreateInput = {
     email: string
     username: string
@@ -16678,14 +16664,14 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16696,14 +16682,14 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16713,14 +16699,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16731,14 +16717,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -17030,13 +17016,13 @@ export namespace Prisma {
     key: string
     unlimited: boolean
     minInterval?: number
-    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
+    name: string
     owner?: UserCreateNestedOneWithoutApiKeysInput
+    api_key_permission?: api_key_permissionCreateNestedManyWithoutApi_keyInput
     usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
-    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUncheckedCreateInput = {
@@ -17045,12 +17031,12 @@ export namespace Prisma {
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
-    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
+    name: string
+    api_key_permission?: api_key_permissionUncheckedCreateNestedManyWithoutApi_keyInput
     usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
-    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
   }
 
   export type ApiKeyUpdateInput = {
@@ -17058,13 +17044,13 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
     owner?: UserUpdateOneWithoutApiKeysNestedInput
+    api_key_permission?: api_key_permissionUpdateManyWithoutApi_keyNestedInput
     usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
-    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateInput = {
@@ -17073,12 +17059,12 @@ export namespace Prisma {
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    api_key_permission?: api_key_permissionUncheckedUpdateManyWithoutApi_keyNestedInput
     usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
-    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
   }
 
   export type ApiKeyCreateManyInput = {
@@ -17087,10 +17073,10 @@ export namespace Prisma {
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
-    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
+    name: string
   }
 
   export type ApiKeyUpdateManyMutationInput = {
@@ -17098,10 +17084,10 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ApiKeyUncheckedUpdateManyInput = {
@@ -17110,154 +17096,10 @@ export namespace Prisma {
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ApiKeyPermissionCreateInput = {
-    id?: string
-    permission: string
-    apiKey: ApiKeyCreateNestedOneWithoutApiKeyPermissionsInput
-  }
-
-  export type ApiKeyPermissionUncheckedCreateInput = {
-    id?: string
-    apiKeyId: string
-    permission: string
-  }
-
-  export type ApiKeyPermissionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-    apiKey?: ApiKeyUpdateOneRequiredWithoutApiKeyPermissionsNestedInput
-  }
-
-  export type ApiKeyPermissionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ApiKeyPermissionCreateManyInput = {
-    id?: string
-    apiKeyId: string
-    permission: string
-  }
-
-  export type ApiKeyPermissionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ApiKeyPermissionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ApiCreditsPurchaseCreateInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-    user?: UserCreateNestedOneWithoutApiCreditsPurchasesInput
-  }
-
-  export type ApiCreditsPurchaseUncheckedCreateInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-    userId?: number | null
-  }
-
-  export type ApiCreditsPurchaseUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutApiCreditsPurchasesNestedInput
-  }
-
-  export type ApiCreditsPurchaseUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ApiCreditsPurchaseCreateManyInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-    userId?: number | null
-  }
-
-  export type ApiCreditsPurchaseUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsPurchaseUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ApiCreditsUsageCreateInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-    user?: UserCreateNestedOneWithoutApiCreditsUsagesInput
-  }
-
-  export type ApiCreditsUsageUncheckedCreateInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-    userId?: number | null
-  }
-
-  export type ApiCreditsUsageUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutApiCreditsUsagesNestedInput
-  }
-
-  export type ApiCreditsUsageUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ApiCreditsUsageCreateManyInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-    userId?: number | null
-  }
-
-  export type ApiCreditsUsageUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsUsageUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ApiUsageLogCreateInput = {
@@ -17340,7 +17182,7 @@ export namespace Prisma {
     id?: string
     username: string
     school: string
-    date: Date | string
+    date: string
     data: JsonNullValueInput | InputJsonValue
     expiresAt: Date | string
   }
@@ -17349,7 +17191,7 @@ export namespace Prisma {
     id?: string
     username: string
     school: string
-    date: Date | string
+    date: string
     data: JsonNullValueInput | InputJsonValue
     expiresAt: Date | string
   }
@@ -17358,7 +17200,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17367,7 +17209,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17376,7 +17218,7 @@ export namespace Prisma {
     id?: string
     username: string
     school: string
-    date: Date | string
+    date: string
     data: JsonNullValueInput | InputJsonValue
     expiresAt: Date | string
   }
@@ -17385,7 +17227,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17394,7 +17236,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17493,6 +17335,150 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type api_credits_purchaseCreateInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+    user?: UserCreateNestedOneWithoutApi_credits_purchaseInput
+  }
+
+  export type api_credits_purchaseUncheckedCreateInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+    user_id?: number | null
+  }
+
+  export type api_credits_purchaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutApi_credits_purchaseNestedInput
+  }
+
+  export type api_credits_purchaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type api_credits_purchaseCreateManyInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+    user_id?: number | null
+  }
+
+  export type api_credits_purchaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_purchaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type api_credits_usageCreateInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+    user?: UserCreateNestedOneWithoutApi_credits_usageInput
+  }
+
+  export type api_credits_usageUncheckedCreateInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+    user_id?: number | null
+  }
+
+  export type api_credits_usageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutApi_credits_usageNestedInput
+  }
+
+  export type api_credits_usageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type api_credits_usageCreateManyInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+    user_id?: number | null
+  }
+
+  export type api_credits_usageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_usageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type api_key_permissionCreateInput = {
+    id: string
+    permission: string
+    api_key: ApiKeyCreateNestedOneWithoutApi_key_permissionInput
+  }
+
+  export type api_key_permissionUncheckedCreateInput = {
+    id: string
+    api_key_id: string
+    permission: string
+  }
+
+  export type api_key_permissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+    api_key?: ApiKeyUpdateOneRequiredWithoutApi_key_permissionNestedInput
+  }
+
+  export type api_key_permissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type api_key_permissionCreateManyInput = {
+    id: string
+    api_key_id: string
+    permission: string
+  }
+
+  export type api_key_permissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type api_key_permissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -17538,22 +17524,21 @@ export namespace Prisma {
     not?: NestedBytesFilter<$PrismaModel> | Uint8Array
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
+  export type SubscriptionNullableScalarRelationFilter = {
+    is?: SubscriptionWhereInput | null
+    isNot?: SubscriptionWhereInput | null
   }
 
-  export type EmailVerificationRequestListRelationFilter = {
-    every?: EmailVerificationRequestWhereInput
-    some?: EmailVerificationRequestWhereInput
-    none?: EmailVerificationRequestWhereInput
+  export type Api_credits_purchaseListRelationFilter = {
+    every?: api_credits_purchaseWhereInput
+    some?: api_credits_purchaseWhereInput
+    none?: api_credits_purchaseWhereInput
   }
 
-  export type PasswordResetSessionListRelationFilter = {
-    every?: PasswordResetSessionWhereInput
-    some?: PasswordResetSessionWhereInput
-    none?: PasswordResetSessionWhereInput
+  export type Api_credits_usageListRelationFilter = {
+    every?: api_credits_usageWhereInput
+    some?: api_credits_usageWhereInput
+    none?: api_credits_usageWhereInput
   }
 
   export type ApiKeyListRelationFilter = {
@@ -17568,22 +17553,22 @@ export namespace Prisma {
     none?: CalendarAccountWhereInput
   }
 
-  export type SubscriptionListRelationFilter = {
-    every?: SubscriptionWhereInput
-    some?: SubscriptionWhereInput
-    none?: SubscriptionWhereInput
+  export type EmailVerificationRequestListRelationFilter = {
+    every?: EmailVerificationRequestWhereInput
+    some?: EmailVerificationRequestWhereInput
+    none?: EmailVerificationRequestWhereInput
   }
 
-  export type ApiCreditsPurchaseListRelationFilter = {
-    every?: ApiCreditsPurchaseWhereInput
-    some?: ApiCreditsPurchaseWhereInput
-    none?: ApiCreditsPurchaseWhereInput
+  export type PasswordResetSessionListRelationFilter = {
+    every?: PasswordResetSessionWhereInput
+    some?: PasswordResetSessionWhereInput
+    none?: PasswordResetSessionWhereInput
   }
 
-  export type ApiCreditsUsageListRelationFilter = {
-    every?: ApiCreditsUsageWhereInput
-    some?: ApiCreditsUsageWhereInput
-    none?: ApiCreditsUsageWhereInput
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
   }
 
   export type SortOrderInput = {
@@ -17591,15 +17576,11 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SessionOrderByRelationAggregateInput = {
+  export type api_credits_purchaseOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type EmailVerificationRequestOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PasswordResetSessionOrderByRelationAggregateInput = {
+  export type api_credits_usageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17611,15 +17592,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type SubscriptionOrderByRelationAggregateInput = {
+  export type EmailVerificationRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ApiCreditsPurchaseOrderByRelationAggregateInput = {
+  export type PasswordResetSessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ApiCreditsUsageOrderByRelationAggregateInput = {
+  export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17938,23 +17919,23 @@ export namespace Prisma {
     isNot?: UserWhereInput | null
   }
 
+  export type Api_key_permissionListRelationFilter = {
+    every?: api_key_permissionWhereInput
+    some?: api_key_permissionWhereInput
+    none?: api_key_permissionWhereInput
+  }
+
   export type ApiUsageLogListRelationFilter = {
     every?: ApiUsageLogWhereInput
     some?: ApiUsageLogWhereInput
     none?: ApiUsageLogWhereInput
   }
 
-  export type ApiKeyPermissionListRelationFilter = {
-    every?: ApiKeyPermissionWhereInput
-    some?: ApiKeyPermissionWhereInput
-    none?: ApiKeyPermissionWhereInput
-  }
-
-  export type ApiUsageLogOrderByRelationAggregateInput = {
+  export type api_key_permissionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ApiKeyPermissionOrderByRelationAggregateInput = {
+  export type ApiUsageLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17964,10 +17945,10 @@ export namespace Prisma {
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
-    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
+    name?: SortOrder
   }
 
   export type ApiKeyAvgOrderByAggregateInput = {
@@ -17981,10 +17962,10 @@ export namespace Prisma {
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
-    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
+    name?: SortOrder
   }
 
   export type ApiKeyMinOrderByAggregateInput = {
@@ -17993,10 +17974,10 @@ export namespace Prisma {
     unlimited?: SortOrder
     minInterval?: SortOrder
     ownerId?: SortOrder
-    name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     lastRequest?: SortOrder
+    name?: SortOrder
   }
 
   export type ApiKeySumOrderByAggregateInput = {
@@ -18051,94 +18032,6 @@ export namespace Prisma {
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
-
-  export type ApiKeyScalarRelationFilter = {
-    is?: ApiKeyWhereInput
-    isNot?: ApiKeyWhereInput
-  }
-
-  export type ApiKeyPermissionCountOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    permission?: SortOrder
-  }
-
-  export type ApiKeyPermissionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    permission?: SortOrder
-  }
-
-  export type ApiKeyPermissionMinOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    permission?: SortOrder
-  }
-
-  export type ApiCreditsPurchaseCountOrderByAggregateInput = {
-    id?: SortOrder
-    credits?: SortOrder
-    purchaseDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsPurchaseAvgOrderByAggregateInput = {
-    credits?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsPurchaseMaxOrderByAggregateInput = {
-    id?: SortOrder
-    credits?: SortOrder
-    purchaseDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsPurchaseMinOrderByAggregateInput = {
-    id?: SortOrder
-    credits?: SortOrder
-    purchaseDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsPurchaseSumOrderByAggregateInput = {
-    credits?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsUsageCountOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    credits?: SortOrder
-    usageDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsUsageAvgOrderByAggregateInput = {
-    credits?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsUsageMaxOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    credits?: SortOrder
-    usageDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsUsageMinOrderByAggregateInput = {
-    id?: SortOrder
-    apiKeyId?: SortOrder
-    credits?: SortOrder
-    usageDate?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type ApiCreditsUsageSumOrderByAggregateInput = {
-    credits?: SortOrder
-    userId?: SortOrder
-  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -18161,6 +18054,11 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ApiKeyScalarRelationFilter = {
+    is?: ApiKeyWhereInput
+    isNot?: ApiKeyWhereInput
   }
 
   export type ApiUsageLogCountOrderByAggregateInput = {
@@ -18327,25 +18225,107 @@ export namespace Prisma {
     _max?: NestedEnumCalendarProviderFilter<$PrismaModel>
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  export type api_credits_purchaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    user_id?: SortOrder
   }
 
-  export type EmailVerificationRequestCreateNestedManyWithoutUserInput = {
-    create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
-    createMany?: EmailVerificationRequestCreateManyUserInputEnvelope
-    connect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
+  export type api_credits_purchaseAvgOrderByAggregateInput = {
+    credits?: SortOrder
+    user_id?: SortOrder
   }
 
-  export type PasswordResetSessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
-    createMany?: PasswordResetSessionCreateManyUserInputEnvelope
-    connect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+  export type api_credits_purchaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_purchaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    credits?: SortOrder
+    purchaseDate?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_purchaseSumOrderByAggregateInput = {
+    credits?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_usageCountOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_usageAvgOrderByAggregateInput = {
+    credits?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_usageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_usageMinOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    credits?: SortOrder
+    usageDate?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_credits_usageSumOrderByAggregateInput = {
+    credits?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type api_key_permissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type api_key_permissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type api_key_permissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    api_key_id?: SortOrder
+    permission?: SortOrder
+  }
+
+  export type SubscriptionCreateNestedOneWithoutUserInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    connect?: SubscriptionWhereUniqueInput
+  }
+
+  export type api_credits_purchaseCreateNestedManyWithoutUserInput = {
+    create?: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput> | api_credits_purchaseCreateWithoutUserInput[] | api_credits_purchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_purchaseCreateOrConnectWithoutUserInput | api_credits_purchaseCreateOrConnectWithoutUserInput[]
+    createMany?: api_credits_purchaseCreateManyUserInputEnvelope
+    connect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+  }
+
+  export type api_credits_usageCreateNestedManyWithoutUserInput = {
+    create?: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput> | api_credits_usageCreateWithoutUserInput[] | api_credits_usageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_usageCreateOrConnectWithoutUserInput | api_credits_usageCreateOrConnectWithoutUserInput[]
+    createMany?: api_credits_usageCreateManyUserInputEnvelope
+    connect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
   }
 
   export type ApiKeyCreateNestedManyWithoutOwnerInput = {
@@ -18362,46 +18342,45 @@ export namespace Prisma {
     connect?: CalendarAccountWhereUniqueInput | CalendarAccountWhereUniqueInput[]
   }
 
-  export type SubscriptionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput> | SubscriptionCreateWithoutUserInput[] | SubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput | SubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: SubscriptionCreateManyUserInputEnvelope
-    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-  }
-
-  export type ApiCreditsPurchaseCreateNestedManyWithoutUserInput = {
-    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
-    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
-    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-  }
-
-  export type ApiCreditsUsageCreateNestedManyWithoutUserInput = {
-    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
-    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
-    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-  }
-
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput = {
+  export type EmailVerificationRequestCreateNestedManyWithoutUserInput = {
     create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
     createMany?: EmailVerificationRequestCreateManyUserInputEnvelope
     connect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
   }
 
-  export type PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput = {
+  export type PasswordResetSessionCreateNestedManyWithoutUserInput = {
     create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
     createMany?: PasswordResetSessionCreateManyUserInputEnvelope
     connect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+  }
+
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type SubscriptionUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    connect?: SubscriptionWhereUniqueInput
+  }
+
+  export type api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput> | api_credits_purchaseCreateWithoutUserInput[] | api_credits_purchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_purchaseCreateOrConnectWithoutUserInput | api_credits_purchaseCreateOrConnectWithoutUserInput[]
+    createMany?: api_credits_purchaseCreateManyUserInputEnvelope
+    connect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+  }
+
+  export type api_credits_usageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput> | api_credits_usageCreateWithoutUserInput[] | api_credits_usageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_usageCreateOrConnectWithoutUserInput | api_credits_usageCreateOrConnectWithoutUserInput[]
+    createMany?: api_credits_usageCreateManyUserInputEnvelope
+    connect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
   }
 
   export type ApiKeyUncheckedCreateNestedManyWithoutOwnerInput = {
@@ -18418,25 +18397,25 @@ export namespace Prisma {
     connect?: CalendarAccountWhereUniqueInput | CalendarAccountWhereUniqueInput[]
   }
 
-  export type SubscriptionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput> | SubscriptionCreateWithoutUserInput[] | SubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput | SubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: SubscriptionCreateManyUserInputEnvelope
-    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
+  export type EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
+    createMany?: EmailVerificationRequestCreateManyUserInputEnvelope
+    connect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
   }
 
-  export type ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
-    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
-    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
+  export type PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
+    createMany?: PasswordResetSessionCreateManyUserInputEnvelope
+    connect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
   }
 
-  export type ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
-    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
-    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -18455,46 +18434,42 @@ export namespace Prisma {
     set?: Uint8Array
   }
 
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  export type SubscriptionUpdateOneWithoutUserNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    upsert?: SubscriptionUpsertWithoutUserInput
+    disconnect?: SubscriptionWhereInput | boolean
+    delete?: SubscriptionWhereInput | boolean
+    connect?: SubscriptionWhereUniqueInput
+    update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
   }
 
-  export type EmailVerificationRequestUpdateManyWithoutUserNestedInput = {
-    create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
-    upsert?: EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput | EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: EmailVerificationRequestCreateManyUserInputEnvelope
-    set?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
-    disconnect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
-    delete?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
-    connect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
-    update?: EmailVerificationRequestUpdateWithWhereUniqueWithoutUserInput | EmailVerificationRequestUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: EmailVerificationRequestUpdateManyWithWhereWithoutUserInput | EmailVerificationRequestUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: EmailVerificationRequestScalarWhereInput | EmailVerificationRequestScalarWhereInput[]
+  export type api_credits_purchaseUpdateManyWithoutUserNestedInput = {
+    create?: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput> | api_credits_purchaseCreateWithoutUserInput[] | api_credits_purchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_purchaseCreateOrConnectWithoutUserInput | api_credits_purchaseCreateOrConnectWithoutUserInput[]
+    upsert?: api_credits_purchaseUpsertWithWhereUniqueWithoutUserInput | api_credits_purchaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: api_credits_purchaseCreateManyUserInputEnvelope
+    set?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    disconnect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    delete?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    connect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    update?: api_credits_purchaseUpdateWithWhereUniqueWithoutUserInput | api_credits_purchaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: api_credits_purchaseUpdateManyWithWhereWithoutUserInput | api_credits_purchaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: api_credits_purchaseScalarWhereInput | api_credits_purchaseScalarWhereInput[]
   }
 
-  export type PasswordResetSessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
-    upsert?: PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput | PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PasswordResetSessionCreateManyUserInputEnvelope
-    set?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
-    disconnect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
-    delete?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
-    connect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
-    update?: PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput | PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PasswordResetSessionUpdateManyWithWhereWithoutUserInput | PasswordResetSessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PasswordResetSessionScalarWhereInput | PasswordResetSessionScalarWhereInput[]
+  export type api_credits_usageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput> | api_credits_usageCreateWithoutUserInput[] | api_credits_usageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_usageCreateOrConnectWithoutUserInput | api_credits_usageCreateOrConnectWithoutUserInput[]
+    upsert?: api_credits_usageUpsertWithWhereUniqueWithoutUserInput | api_credits_usageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: api_credits_usageCreateManyUserInputEnvelope
+    set?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    disconnect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    delete?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    connect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    update?: api_credits_usageUpdateWithWhereUniqueWithoutUserInput | api_credits_usageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: api_credits_usageUpdateManyWithWhereWithoutUserInput | api_credits_usageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: api_credits_usageScalarWhereInput | api_credits_usageScalarWhereInput[]
   }
 
   export type ApiKeyUpdateManyWithoutOwnerNestedInput = {
@@ -18525,71 +18500,7 @@ export namespace Prisma {
     deleteMany?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
   }
 
-  export type SubscriptionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput> | SubscriptionCreateWithoutUserInput[] | SubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput | SubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: SubscriptionUpsertWithWhereUniqueWithoutUserInput | SubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SubscriptionCreateManyUserInputEnvelope
-    set?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    disconnect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    delete?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    update?: SubscriptionUpdateWithWhereUniqueWithoutUserInput | SubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SubscriptionUpdateManyWithWhereWithoutUserInput | SubscriptionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
-  }
-
-  export type ApiCreditsPurchaseUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
-    upsert?: ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
-    set?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    disconnect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    delete?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    update?: ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput | ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
-  }
-
-  export type ApiCreditsUsageUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
-    upsert?: ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
-    set?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    disconnect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    delete?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    update?: ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ApiCreditsUsageUpdateManyWithWhereWithoutUserInput | ApiCreditsUsageUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput = {
+  export type EmailVerificationRequestUpdateManyWithoutUserNestedInput = {
     create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
     upsert?: EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput | EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput[]
@@ -18603,7 +18514,7 @@ export namespace Prisma {
     deleteMany?: EmailVerificationRequestScalarWhereInput | EmailVerificationRequestScalarWhereInput[]
   }
 
-  export type PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput = {
+  export type PasswordResetSessionUpdateManyWithoutUserNestedInput = {
     create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
     upsert?: PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput | PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput[]
@@ -18615,6 +18526,66 @@ export namespace Prisma {
     update?: PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput | PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PasswordResetSessionUpdateManyWithWhereWithoutUserInput | PasswordResetSessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PasswordResetSessionScalarWhereInput | PasswordResetSessionScalarWhereInput[]
+  }
+
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type SubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    upsert?: SubscriptionUpsertWithoutUserInput
+    disconnect?: SubscriptionWhereInput | boolean
+    delete?: SubscriptionWhereInput | boolean
+    connect?: SubscriptionWhereUniqueInput
+    update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput> | api_credits_purchaseCreateWithoutUserInput[] | api_credits_purchaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_purchaseCreateOrConnectWithoutUserInput | api_credits_purchaseCreateOrConnectWithoutUserInput[]
+    upsert?: api_credits_purchaseUpsertWithWhereUniqueWithoutUserInput | api_credits_purchaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: api_credits_purchaseCreateManyUserInputEnvelope
+    set?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    disconnect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    delete?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    connect?: api_credits_purchaseWhereUniqueInput | api_credits_purchaseWhereUniqueInput[]
+    update?: api_credits_purchaseUpdateWithWhereUniqueWithoutUserInput | api_credits_purchaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: api_credits_purchaseUpdateManyWithWhereWithoutUserInput | api_credits_purchaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: api_credits_purchaseScalarWhereInput | api_credits_purchaseScalarWhereInput[]
+  }
+
+  export type api_credits_usageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput> | api_credits_usageCreateWithoutUserInput[] | api_credits_usageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: api_credits_usageCreateOrConnectWithoutUserInput | api_credits_usageCreateOrConnectWithoutUserInput[]
+    upsert?: api_credits_usageUpsertWithWhereUniqueWithoutUserInput | api_credits_usageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: api_credits_usageCreateManyUserInputEnvelope
+    set?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    disconnect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    delete?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    connect?: api_credits_usageWhereUniqueInput | api_credits_usageWhereUniqueInput[]
+    update?: api_credits_usageUpdateWithWhereUniqueWithoutUserInput | api_credits_usageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: api_credits_usageUpdateManyWithWhereWithoutUserInput | api_credits_usageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: api_credits_usageScalarWhereInput | api_credits_usageScalarWhereInput[]
   }
 
   export type ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput = {
@@ -18645,46 +18616,46 @@ export namespace Prisma {
     deleteMany?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
   }
 
-  export type SubscriptionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput> | SubscriptionCreateWithoutUserInput[] | SubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput | SubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: SubscriptionUpsertWithWhereUniqueWithoutUserInput | SubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SubscriptionCreateManyUserInputEnvelope
-    set?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    disconnect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    delete?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    connect?: SubscriptionWhereUniqueInput | SubscriptionWhereUniqueInput[]
-    update?: SubscriptionUpdateWithWhereUniqueWithoutUserInput | SubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SubscriptionUpdateManyWithWhereWithoutUserInput | SubscriptionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
+  export type EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailVerificationRequestCreateWithoutUserInput, EmailVerificationRequestUncheckedCreateWithoutUserInput> | EmailVerificationRequestCreateWithoutUserInput[] | EmailVerificationRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailVerificationRequestCreateOrConnectWithoutUserInput | EmailVerificationRequestCreateOrConnectWithoutUserInput[]
+    upsert?: EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput | EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailVerificationRequestCreateManyUserInputEnvelope
+    set?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
+    disconnect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
+    delete?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
+    connect?: EmailVerificationRequestWhereUniqueInput | EmailVerificationRequestWhereUniqueInput[]
+    update?: EmailVerificationRequestUpdateWithWhereUniqueWithoutUserInput | EmailVerificationRequestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailVerificationRequestUpdateManyWithWhereWithoutUserInput | EmailVerificationRequestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailVerificationRequestScalarWhereInput | EmailVerificationRequestScalarWhereInput[]
   }
 
-  export type ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput> | ApiCreditsPurchaseCreateWithoutUserInput[] | ApiCreditsPurchaseUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsPurchaseCreateOrConnectWithoutUserInput | ApiCreditsPurchaseCreateOrConnectWithoutUserInput[]
-    upsert?: ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ApiCreditsPurchaseCreateManyUserInputEnvelope
-    set?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    disconnect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    delete?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    connect?: ApiCreditsPurchaseWhereUniqueInput | ApiCreditsPurchaseWhereUniqueInput[]
-    update?: ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput | ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput | ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
+  export type PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PasswordResetSessionCreateWithoutUserInput, PasswordResetSessionUncheckedCreateWithoutUserInput> | PasswordResetSessionCreateWithoutUserInput[] | PasswordResetSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PasswordResetSessionCreateOrConnectWithoutUserInput | PasswordResetSessionCreateOrConnectWithoutUserInput[]
+    upsert?: PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput | PasswordResetSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PasswordResetSessionCreateManyUserInputEnvelope
+    set?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+    disconnect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+    delete?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+    connect?: PasswordResetSessionWhereUniqueInput | PasswordResetSessionWhereUniqueInput[]
+    update?: PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput | PasswordResetSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PasswordResetSessionUpdateManyWithWhereWithoutUserInput | PasswordResetSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PasswordResetSessionScalarWhereInput | PasswordResetSessionScalarWhereInput[]
   }
 
-  export type ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput> | ApiCreditsUsageCreateWithoutUserInput[] | ApiCreditsUsageUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ApiCreditsUsageCreateOrConnectWithoutUserInput | ApiCreditsUsageCreateOrConnectWithoutUserInput[]
-    upsert?: ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ApiCreditsUsageCreateManyUserInputEnvelope
-    set?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    disconnect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    delete?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    connect?: ApiCreditsUsageWhereUniqueInput | ApiCreditsUsageWhereUniqueInput[]
-    update?: ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput | ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ApiCreditsUsageUpdateManyWithWhereWithoutUserInput | ApiCreditsUsageUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSubscriptionsInput = {
@@ -18753,6 +18724,13 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type api_key_permissionCreateNestedManyWithoutApi_keyInput = {
+    create?: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput> | api_key_permissionCreateWithoutApi_keyInput[] | api_key_permissionUncheckedCreateWithoutApi_keyInput[]
+    connectOrCreate?: api_key_permissionCreateOrConnectWithoutApi_keyInput | api_key_permissionCreateOrConnectWithoutApi_keyInput[]
+    createMany?: api_key_permissionCreateManyApi_keyInputEnvelope
+    connect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+  }
+
   export type ApiUsageLogCreateNestedManyWithoutApiKeyInput = {
     create?: XOR<ApiUsageLogCreateWithoutApiKeyInput, ApiUsageLogUncheckedCreateWithoutApiKeyInput> | ApiUsageLogCreateWithoutApiKeyInput[] | ApiUsageLogUncheckedCreateWithoutApiKeyInput[]
     connectOrCreate?: ApiUsageLogCreateOrConnectWithoutApiKeyInput | ApiUsageLogCreateOrConnectWithoutApiKeyInput[]
@@ -18760,11 +18738,11 @@ export namespace Prisma {
     connect?: ApiUsageLogWhereUniqueInput | ApiUsageLogWhereUniqueInput[]
   }
 
-  export type ApiKeyPermissionCreateNestedManyWithoutApiKeyInput = {
-    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
-    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
-    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
-    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
+  export type api_key_permissionUncheckedCreateNestedManyWithoutApi_keyInput = {
+    create?: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput> | api_key_permissionCreateWithoutApi_keyInput[] | api_key_permissionUncheckedCreateWithoutApi_keyInput[]
+    connectOrCreate?: api_key_permissionCreateOrConnectWithoutApi_keyInput | api_key_permissionCreateOrConnectWithoutApi_keyInput[]
+    createMany?: api_key_permissionCreateManyApi_keyInputEnvelope
+    connect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
   }
 
   export type ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput = {
@@ -18772,13 +18750,6 @@ export namespace Prisma {
     connectOrCreate?: ApiUsageLogCreateOrConnectWithoutApiKeyInput | ApiUsageLogCreateOrConnectWithoutApiKeyInput[]
     createMany?: ApiUsageLogCreateManyApiKeyInputEnvelope
     connect?: ApiUsageLogWhereUniqueInput | ApiUsageLogWhereUniqueInput[]
-  }
-
-  export type ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput = {
-    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
-    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
-    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
-    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -18799,6 +18770,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiKeysInput, UserUpdateWithoutApiKeysInput>, UserUncheckedUpdateWithoutApiKeysInput>
   }
 
+  export type api_key_permissionUpdateManyWithoutApi_keyNestedInput = {
+    create?: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput> | api_key_permissionCreateWithoutApi_keyInput[] | api_key_permissionUncheckedCreateWithoutApi_keyInput[]
+    connectOrCreate?: api_key_permissionCreateOrConnectWithoutApi_keyInput | api_key_permissionCreateOrConnectWithoutApi_keyInput[]
+    upsert?: api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput | api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput[]
+    createMany?: api_key_permissionCreateManyApi_keyInputEnvelope
+    set?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    disconnect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    delete?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    connect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    update?: api_key_permissionUpdateWithWhereUniqueWithoutApi_keyInput | api_key_permissionUpdateWithWhereUniqueWithoutApi_keyInput[]
+    updateMany?: api_key_permissionUpdateManyWithWhereWithoutApi_keyInput | api_key_permissionUpdateManyWithWhereWithoutApi_keyInput[]
+    deleteMany?: api_key_permissionScalarWhereInput | api_key_permissionScalarWhereInput[]
+  }
+
   export type ApiUsageLogUpdateManyWithoutApiKeyNestedInput = {
     create?: XOR<ApiUsageLogCreateWithoutApiKeyInput, ApiUsageLogUncheckedCreateWithoutApiKeyInput> | ApiUsageLogCreateWithoutApiKeyInput[] | ApiUsageLogUncheckedCreateWithoutApiKeyInput[]
     connectOrCreate?: ApiUsageLogCreateOrConnectWithoutApiKeyInput | ApiUsageLogCreateOrConnectWithoutApiKeyInput[]
@@ -18813,26 +18798,26 @@ export namespace Prisma {
     deleteMany?: ApiUsageLogScalarWhereInput | ApiUsageLogScalarWhereInput[]
   }
 
-  export type ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput = {
-    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
-    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
-    upsert?: ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput[]
-    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
-    set?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    disconnect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    delete?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    update?: ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput[]
-    updateMany?: ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput | ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput[]
-    deleteMany?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type api_key_permissionUncheckedUpdateManyWithoutApi_keyNestedInput = {
+    create?: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput> | api_key_permissionCreateWithoutApi_keyInput[] | api_key_permissionUncheckedCreateWithoutApi_keyInput[]
+    connectOrCreate?: api_key_permissionCreateOrConnectWithoutApi_keyInput | api_key_permissionCreateOrConnectWithoutApi_keyInput[]
+    upsert?: api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput | api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput[]
+    createMany?: api_key_permissionCreateManyApi_keyInputEnvelope
+    set?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    disconnect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    delete?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    connect?: api_key_permissionWhereUniqueInput | api_key_permissionWhereUniqueInput[]
+    update?: api_key_permissionUpdateWithWhereUniqueWithoutApi_keyInput | api_key_permissionUpdateWithWhereUniqueWithoutApi_keyInput[]
+    updateMany?: api_key_permissionUpdateManyWithWhereWithoutApi_keyInput | api_key_permissionUpdateManyWithWhereWithoutApi_keyInput[]
+    deleteMany?: api_key_permissionScalarWhereInput | api_key_permissionScalarWhereInput[]
   }
 
   export type ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput = {
@@ -18847,66 +18832,6 @@ export namespace Prisma {
     update?: ApiUsageLogUpdateWithWhereUniqueWithoutApiKeyInput | ApiUsageLogUpdateWithWhereUniqueWithoutApiKeyInput[]
     updateMany?: ApiUsageLogUpdateManyWithWhereWithoutApiKeyInput | ApiUsageLogUpdateManyWithWhereWithoutApiKeyInput[]
     deleteMany?: ApiUsageLogScalarWhereInput | ApiUsageLogScalarWhereInput[]
-  }
-
-  export type ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput = {
-    create?: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput> | ApiKeyPermissionCreateWithoutApiKeyInput[] | ApiKeyPermissionUncheckedCreateWithoutApiKeyInput[]
-    connectOrCreate?: ApiKeyPermissionCreateOrConnectWithoutApiKeyInput | ApiKeyPermissionCreateOrConnectWithoutApiKeyInput[]
-    upsert?: ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput[]
-    createMany?: ApiKeyPermissionCreateManyApiKeyInputEnvelope
-    set?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    disconnect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    delete?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    connect?: ApiKeyPermissionWhereUniqueInput | ApiKeyPermissionWhereUniqueInput[]
-    update?: ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput | ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput[]
-    updateMany?: ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput | ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput[]
-    deleteMany?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
-  }
-
-  export type ApiKeyCreateNestedOneWithoutApiKeyPermissionsInput = {
-    create?: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
-    connectOrCreate?: ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput
-    connect?: ApiKeyWhereUniqueInput
-  }
-
-  export type ApiKeyUpdateOneRequiredWithoutApiKeyPermissionsNestedInput = {
-    create?: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
-    connectOrCreate?: ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput
-    upsert?: ApiKeyUpsertWithoutApiKeyPermissionsInput
-    connect?: ApiKeyWhereUniqueInput
-    update?: XOR<XOR<ApiKeyUpdateToOneWithWhereWithoutApiKeyPermissionsInput, ApiKeyUpdateWithoutApiKeyPermissionsInput>, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
-  }
-
-  export type UserCreateNestedOneWithoutApiCreditsPurchasesInput = {
-    create?: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsPurchasesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneWithoutApiCreditsPurchasesNestedInput = {
-    create?: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsPurchasesInput
-    upsert?: UserUpsertWithoutApiCreditsPurchasesInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiCreditsPurchasesInput, UserUpdateWithoutApiCreditsPurchasesInput>, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
-  }
-
-  export type UserCreateNestedOneWithoutApiCreditsUsagesInput = {
-    create?: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsUsagesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneWithoutApiCreditsUsagesNestedInput = {
-    create?: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutApiCreditsUsagesInput
-    upsert?: UserUpsertWithoutApiCreditsUsagesInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiCreditsUsagesInput, UserUpdateWithoutApiCreditsUsagesInput>, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
   }
 
   export type ApiKeyCreateNestedOneWithoutUsageLogsInput = {
@@ -18939,6 +18864,52 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCalendarAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCalendarAccountsInput, UserUpdateWithoutCalendarAccountsInput>, UserUncheckedUpdateWithoutCalendarAccountsInput>
+  }
+
+  export type UserCreateNestedOneWithoutApi_credits_purchaseInput = {
+    create?: XOR<UserCreateWithoutApi_credits_purchaseInput, UserUncheckedCreateWithoutApi_credits_purchaseInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApi_credits_purchaseInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutApi_credits_purchaseNestedInput = {
+    create?: XOR<UserCreateWithoutApi_credits_purchaseInput, UserUncheckedCreateWithoutApi_credits_purchaseInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApi_credits_purchaseInput
+    upsert?: UserUpsertWithoutApi_credits_purchaseInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApi_credits_purchaseInput, UserUpdateWithoutApi_credits_purchaseInput>, UserUncheckedUpdateWithoutApi_credits_purchaseInput>
+  }
+
+  export type UserCreateNestedOneWithoutApi_credits_usageInput = {
+    create?: XOR<UserCreateWithoutApi_credits_usageInput, UserUncheckedCreateWithoutApi_credits_usageInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApi_credits_usageInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutApi_credits_usageNestedInput = {
+    create?: XOR<UserCreateWithoutApi_credits_usageInput, UserUncheckedCreateWithoutApi_credits_usageInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApi_credits_usageInput
+    upsert?: UserUpsertWithoutApi_credits_usageInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApi_credits_usageInput, UserUpdateWithoutApi_credits_usageInput>, UserUncheckedUpdateWithoutApi_credits_usageInput>
+  }
+
+  export type ApiKeyCreateNestedOneWithoutApi_key_permissionInput = {
+    create?: XOR<ApiKeyCreateWithoutApi_key_permissionInput, ApiKeyUncheckedCreateWithoutApi_key_permissionInput>
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutApi_key_permissionInput
+    connect?: ApiKeyWhereUniqueInput
+  }
+
+  export type ApiKeyUpdateOneRequiredWithoutApi_key_permissionNestedInput = {
+    create?: XOR<ApiKeyCreateWithoutApi_key_permissionInput, ApiKeyUncheckedCreateWithoutApi_key_permissionInput>
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutApi_key_permissionInput
+    upsert?: ApiKeyUpsertWithoutApi_key_permissionInput
+    connect?: ApiKeyWhereUniqueInput
+    update?: XOR<XOR<ApiKeyUpdateToOneWithWhereWithoutApi_key_permissionInput, ApiKeyUpdateWithoutApi_key_permissionInput>, ApiKeyUncheckedUpdateWithoutApi_key_permissionInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -19216,25 +19187,147 @@ export namespace Prisma {
     _max?: NestedEnumCalendarProviderFilter<$PrismaModel>
   }
 
-  export type SessionCreateWithoutUserInput = {
+  export type SubscriptionCreateWithoutUserInput = {
     id?: string
-    expiresAt: Date | string
-    twoFactorVerified?: boolean
+    stripeCustomerId: string
+    stripeSubscriptionId: string
+    status: string
+    priceId: string
+    currentPeriodEnd: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type SessionUncheckedCreateWithoutUserInput = {
+  export type SubscriptionUncheckedCreateWithoutUserInput = {
     id?: string
-    expiresAt: Date | string
-    twoFactorVerified?: boolean
+    stripeCustomerId: string
+    stripeSubscriptionId: string
+    status: string
+    priceId: string
+    currentPeriodEnd: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  export type SubscriptionCreateOrConnectWithoutUserInput = {
+    where: SubscriptionWhereUniqueInput
+    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+  export type api_credits_purchaseCreateWithoutUserInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type api_credits_purchaseUncheckedCreateWithoutUserInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type api_credits_purchaseCreateOrConnectWithoutUserInput = {
+    where: api_credits_purchaseWhereUniqueInput
+    create: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput>
+  }
+
+  export type api_credits_purchaseCreateManyUserInputEnvelope = {
+    data: api_credits_purchaseCreateManyUserInput | api_credits_purchaseCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type api_credits_usageCreateWithoutUserInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+  }
+
+  export type api_credits_usageUncheckedCreateWithoutUserInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+  }
+
+  export type api_credits_usageCreateOrConnectWithoutUserInput = {
+    where: api_credits_usageWhereUniqueInput
+    create: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput>
+  }
+
+  export type api_credits_usageCreateManyUserInputEnvelope = {
+    data: api_credits_usageCreateManyUserInput | api_credits_usageCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApiKeyCreateWithoutOwnerInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    name: string
+    api_key_permission?: api_key_permissionCreateNestedManyWithoutApi_keyInput
+    usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    name: string
+    api_key_permission?: api_key_permissionUncheckedCreateNestedManyWithoutApi_keyInput
+    usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyCreateOrConnectWithoutOwnerInput = {
+    where: ApiKeyWhereUniqueInput
+    create: XOR<ApiKeyCreateWithoutOwnerInput, ApiKeyUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type ApiKeyCreateManyOwnerInputEnvelope = {
+    data: ApiKeyCreateManyOwnerInput | ApiKeyCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CalendarAccountCreateWithoutUserInput = {
+    provider?: $Enums.CalendarProvider
+    providerAccountId: string
+    accessToken: string
+    refreshToken?: string | null
+    expiresAt?: Date | string | null
+    scope?: string | null
+    calendarId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarAccountUncheckedCreateWithoutUserInput = {
+    id?: number
+    provider?: $Enums.CalendarProvider
+    providerAccountId: string
+    accessToken: string
+    refreshToken?: string | null
+    expiresAt?: Date | string | null
+    scope?: string | null
+    calendarId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarAccountCreateOrConnectWithoutUserInput = {
+    where: CalendarAccountWhereUniqueInput
+    create: XOR<CalendarAccountCreateWithoutUserInput, CalendarAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type CalendarAccountCreateManyUserInputEnvelope = {
+    data: CalendarAccountCreateManyUserInput | CalendarAccountCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -19290,179 +19383,176 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ApiKeyCreateWithoutOwnerInput = {
+  export type SessionCreateWithoutUserInput = {
     id?: string
-    key: string
-    unlimited: boolean
-    minInterval?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    lastRequest?: Date | string | null
-    usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
-    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
+    expiresAt: Date | string
+    twoFactorVerified?: boolean
   }
 
-  export type ApiKeyUncheckedCreateWithoutOwnerInput = {
+  export type SessionUncheckedCreateWithoutUserInput = {
     id?: string
-    key: string
-    unlimited: boolean
-    minInterval?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    lastRequest?: Date | string | null
-    usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
-    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
+    expiresAt: Date | string
+    twoFactorVerified?: boolean
   }
 
-  export type ApiKeyCreateOrConnectWithoutOwnerInput = {
-    where: ApiKeyWhereUniqueInput
-    create: XOR<ApiKeyCreateWithoutOwnerInput, ApiKeyUncheckedCreateWithoutOwnerInput>
-  }
-
-  export type ApiKeyCreateManyOwnerInputEnvelope = {
-    data: ApiKeyCreateManyOwnerInput | ApiKeyCreateManyOwnerInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CalendarAccountCreateWithoutUserInput = {
-    provider?: $Enums.CalendarProvider
-    providerAccountId: string
-    accessToken: string
-    refreshToken?: string | null
-    expiresAt?: Date | string | null
-    scope?: string | null
-    calendarId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CalendarAccountUncheckedCreateWithoutUserInput = {
-    id?: number
-    provider?: $Enums.CalendarProvider
-    providerAccountId: string
-    accessToken: string
-    refreshToken?: string | null
-    expiresAt?: Date | string | null
-    scope?: string | null
-    calendarId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CalendarAccountCreateOrConnectWithoutUserInput = {
-    where: CalendarAccountWhereUniqueInput
-    create: XOR<CalendarAccountCreateWithoutUserInput, CalendarAccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type CalendarAccountCreateManyUserInputEnvelope = {
-    data: CalendarAccountCreateManyUserInput | CalendarAccountCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SubscriptionCreateWithoutUserInput = {
-    id?: string
-    stripeCustomerId: string
-    stripeSubscriptionId: string
-    status: string
-    priceId: string
-    currentPeriodEnd: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SubscriptionUncheckedCreateWithoutUserInput = {
-    id?: string
-    stripeCustomerId: string
-    stripeSubscriptionId: string
-    status: string
-    priceId: string
-    currentPeriodEnd: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SubscriptionCreateOrConnectWithoutUserInput = {
-    where: SubscriptionWhereUniqueInput
-    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SubscriptionCreateManyUserInputEnvelope = {
-    data: SubscriptionCreateManyUserInput | SubscriptionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ApiCreditsPurchaseCreateWithoutUserInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-  }
-
-  export type ApiCreditsPurchaseUncheckedCreateWithoutUserInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-  }
-
-  export type ApiCreditsPurchaseCreateOrConnectWithoutUserInput = {
-    where: ApiCreditsPurchaseWhereUniqueInput
-    create: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput>
-  }
-
-  export type ApiCreditsPurchaseCreateManyUserInputEnvelope = {
-    data: ApiCreditsPurchaseCreateManyUserInput | ApiCreditsPurchaseCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ApiCreditsUsageCreateWithoutUserInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-  }
-
-  export type ApiCreditsUsageUncheckedCreateWithoutUserInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-  }
-
-  export type ApiCreditsUsageCreateOrConnectWithoutUserInput = {
-    where: ApiCreditsUsageWhereUniqueInput
-    create: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput>
-  }
-
-  export type ApiCreditsUsageCreateManyUserInputEnvelope = {
-    data: ApiCreditsUsageCreateManyUserInput | ApiCreditsUsageCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+  export type SessionCreateOrConnectWithoutUserInput = {
     where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
     create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  export type SubscriptionUpsertWithoutUserInput = {
+    update: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
+    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    where?: SubscriptionWhereInput
   }
 
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    userId?: IntFilter<"Session"> | number
-    expiresAt?: DateTimeFilter<"Session"> | Date | string
-    twoFactorVerified?: BoolFilter<"Session"> | boolean
+  export type SubscriptionUpdateToOneWithWhereWithoutUserInput = {
+    where?: SubscriptionWhereInput
+    data: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SubscriptionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    priceId?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripeCustomerId?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    priceId?: StringFieldUpdateOperationsInput | string
+    currentPeriodEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_purchaseUpsertWithWhereUniqueWithoutUserInput = {
+    where: api_credits_purchaseWhereUniqueInput
+    update: XOR<api_credits_purchaseUpdateWithoutUserInput, api_credits_purchaseUncheckedUpdateWithoutUserInput>
+    create: XOR<api_credits_purchaseCreateWithoutUserInput, api_credits_purchaseUncheckedCreateWithoutUserInput>
+  }
+
+  export type api_credits_purchaseUpdateWithWhereUniqueWithoutUserInput = {
+    where: api_credits_purchaseWhereUniqueInput
+    data: XOR<api_credits_purchaseUpdateWithoutUserInput, api_credits_purchaseUncheckedUpdateWithoutUserInput>
+  }
+
+  export type api_credits_purchaseUpdateManyWithWhereWithoutUserInput = {
+    where: api_credits_purchaseScalarWhereInput
+    data: XOR<api_credits_purchaseUpdateManyMutationInput, api_credits_purchaseUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type api_credits_purchaseScalarWhereInput = {
+    AND?: api_credits_purchaseScalarWhereInput | api_credits_purchaseScalarWhereInput[]
+    OR?: api_credits_purchaseScalarWhereInput[]
+    NOT?: api_credits_purchaseScalarWhereInput | api_credits_purchaseScalarWhereInput[]
+    id?: StringFilter<"api_credits_purchase"> | string
+    credits?: IntFilter<"api_credits_purchase"> | number
+    purchaseDate?: DateTimeFilter<"api_credits_purchase"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_purchase"> | number | null
+  }
+
+  export type api_credits_usageUpsertWithWhereUniqueWithoutUserInput = {
+    where: api_credits_usageWhereUniqueInput
+    update: XOR<api_credits_usageUpdateWithoutUserInput, api_credits_usageUncheckedUpdateWithoutUserInput>
+    create: XOR<api_credits_usageCreateWithoutUserInput, api_credits_usageUncheckedCreateWithoutUserInput>
+  }
+
+  export type api_credits_usageUpdateWithWhereUniqueWithoutUserInput = {
+    where: api_credits_usageWhereUniqueInput
+    data: XOR<api_credits_usageUpdateWithoutUserInput, api_credits_usageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type api_credits_usageUpdateManyWithWhereWithoutUserInput = {
+    where: api_credits_usageScalarWhereInput
+    data: XOR<api_credits_usageUpdateManyMutationInput, api_credits_usageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type api_credits_usageScalarWhereInput = {
+    AND?: api_credits_usageScalarWhereInput | api_credits_usageScalarWhereInput[]
+    OR?: api_credits_usageScalarWhereInput[]
+    NOT?: api_credits_usageScalarWhereInput | api_credits_usageScalarWhereInput[]
+    id?: StringFilter<"api_credits_usage"> | string
+    api_key_id?: StringFilter<"api_credits_usage"> | string
+    credits?: IntFilter<"api_credits_usage"> | number
+    usageDate?: DateTimeFilter<"api_credits_usage"> | Date | string
+    user_id?: IntNullableFilter<"api_credits_usage"> | number | null
+  }
+
+  export type ApiKeyUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: ApiKeyWhereUniqueInput
+    update: XOR<ApiKeyUpdateWithoutOwnerInput, ApiKeyUncheckedUpdateWithoutOwnerInput>
+    create: XOR<ApiKeyCreateWithoutOwnerInput, ApiKeyUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type ApiKeyUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: ApiKeyWhereUniqueInput
+    data: XOR<ApiKeyUpdateWithoutOwnerInput, ApiKeyUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type ApiKeyUpdateManyWithWhereWithoutOwnerInput = {
+    where: ApiKeyScalarWhereInput
+    data: XOR<ApiKeyUpdateManyMutationInput, ApiKeyUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type ApiKeyScalarWhereInput = {
+    AND?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+    OR?: ApiKeyScalarWhereInput[]
+    NOT?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+    id?: StringFilter<"ApiKey"> | string
+    key?: StringFilter<"ApiKey"> | string
+    unlimited?: BoolFilter<"ApiKey"> | boolean
+    minInterval?: IntFilter<"ApiKey"> | number
+    ownerId?: IntNullableFilter<"ApiKey"> | number | null
+    description?: StringNullableFilter<"ApiKey"> | string | null
+    createdAt?: DateTimeFilter<"ApiKey"> | Date | string
+    lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
+    name?: StringFilter<"ApiKey"> | string
+  }
+
+  export type CalendarAccountUpsertWithWhereUniqueWithoutUserInput = {
+    where: CalendarAccountWhereUniqueInput
+    update: XOR<CalendarAccountUpdateWithoutUserInput, CalendarAccountUncheckedUpdateWithoutUserInput>
+    create: XOR<CalendarAccountCreateWithoutUserInput, CalendarAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type CalendarAccountUpdateWithWhereUniqueWithoutUserInput = {
+    where: CalendarAccountWhereUniqueInput
+    data: XOR<CalendarAccountUpdateWithoutUserInput, CalendarAccountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CalendarAccountUpdateManyWithWhereWithoutUserInput = {
+    where: CalendarAccountScalarWhereInput
+    data: XOR<CalendarAccountUpdateManyMutationInput, CalendarAccountUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CalendarAccountScalarWhereInput = {
+    AND?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
+    OR?: CalendarAccountScalarWhereInput[]
+    NOT?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
+    id?: IntFilter<"CalendarAccount"> | number
+    userId?: IntFilter<"CalendarAccount"> | number
+    provider?: EnumCalendarProviderFilter<"CalendarAccount"> | $Enums.CalendarProvider
+    providerAccountId?: StringFilter<"CalendarAccount"> | string
+    accessToken?: StringFilter<"CalendarAccount"> | string
+    refreshToken?: StringNullableFilter<"CalendarAccount"> | string | null
+    expiresAt?: DateTimeNullableFilter<"CalendarAccount"> | Date | string | null
+    scope?: StringNullableFilter<"CalendarAccount"> | string | null
+    calendarId?: StringNullableFilter<"CalendarAccount"> | string | null
+    createdAt?: DateTimeFilter<"CalendarAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"CalendarAccount"> | Date | string
   }
 
   export type EmailVerificationRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -19521,152 +19611,30 @@ export namespace Prisma {
     twoFactorVerified?: BoolFilter<"PasswordResetSession"> | boolean
   }
 
-  export type ApiKeyUpsertWithWhereUniqueWithoutOwnerInput = {
-    where: ApiKeyWhereUniqueInput
-    update: XOR<ApiKeyUpdateWithoutOwnerInput, ApiKeyUncheckedUpdateWithoutOwnerInput>
-    create: XOR<ApiKeyCreateWithoutOwnerInput, ApiKeyUncheckedCreateWithoutOwnerInput>
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type ApiKeyUpdateWithWhereUniqueWithoutOwnerInput = {
-    where: ApiKeyWhereUniqueInput
-    data: XOR<ApiKeyUpdateWithoutOwnerInput, ApiKeyUncheckedUpdateWithoutOwnerInput>
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
   }
 
-  export type ApiKeyUpdateManyWithWhereWithoutOwnerInput = {
-    where: ApiKeyScalarWhereInput
-    data: XOR<ApiKeyUpdateManyMutationInput, ApiKeyUncheckedUpdateManyWithoutOwnerInput>
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type ApiKeyScalarWhereInput = {
-    AND?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
-    OR?: ApiKeyScalarWhereInput[]
-    NOT?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
-    id?: StringFilter<"ApiKey"> | string
-    key?: StringFilter<"ApiKey"> | string
-    unlimited?: BoolFilter<"ApiKey"> | boolean
-    minInterval?: IntFilter<"ApiKey"> | number
-    ownerId?: IntNullableFilter<"ApiKey"> | number | null
-    name?: StringFilter<"ApiKey"> | string
-    description?: StringNullableFilter<"ApiKey"> | string | null
-    createdAt?: DateTimeFilter<"ApiKey"> | Date | string
-    lastRequest?: DateTimeNullableFilter<"ApiKey"> | Date | string | null
-  }
-
-  export type CalendarAccountUpsertWithWhereUniqueWithoutUserInput = {
-    where: CalendarAccountWhereUniqueInput
-    update: XOR<CalendarAccountUpdateWithoutUserInput, CalendarAccountUncheckedUpdateWithoutUserInput>
-    create: XOR<CalendarAccountCreateWithoutUserInput, CalendarAccountUncheckedCreateWithoutUserInput>
-  }
-
-  export type CalendarAccountUpdateWithWhereUniqueWithoutUserInput = {
-    where: CalendarAccountWhereUniqueInput
-    data: XOR<CalendarAccountUpdateWithoutUserInput, CalendarAccountUncheckedUpdateWithoutUserInput>
-  }
-
-  export type CalendarAccountUpdateManyWithWhereWithoutUserInput = {
-    where: CalendarAccountScalarWhereInput
-    data: XOR<CalendarAccountUpdateManyMutationInput, CalendarAccountUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type CalendarAccountScalarWhereInput = {
-    AND?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
-    OR?: CalendarAccountScalarWhereInput[]
-    NOT?: CalendarAccountScalarWhereInput | CalendarAccountScalarWhereInput[]
-    id?: IntFilter<"CalendarAccount"> | number
-    userId?: IntFilter<"CalendarAccount"> | number
-    provider?: EnumCalendarProviderFilter<"CalendarAccount"> | $Enums.CalendarProvider
-    providerAccountId?: StringFilter<"CalendarAccount"> | string
-    accessToken?: StringFilter<"CalendarAccount"> | string
-    refreshToken?: StringNullableFilter<"CalendarAccount"> | string | null
-    expiresAt?: DateTimeNullableFilter<"CalendarAccount"> | Date | string | null
-    scope?: StringNullableFilter<"CalendarAccount"> | string | null
-    calendarId?: StringNullableFilter<"CalendarAccount"> | string | null
-    createdAt?: DateTimeFilter<"CalendarAccount"> | Date | string
-    updatedAt?: DateTimeFilter<"CalendarAccount"> | Date | string
-  }
-
-  export type SubscriptionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SubscriptionWhereUniqueInput
-    update: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
-    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SubscriptionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SubscriptionWhereUniqueInput
-    data: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SubscriptionUpdateManyWithWhereWithoutUserInput = {
-    where: SubscriptionScalarWhereInput
-    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SubscriptionScalarWhereInput = {
-    AND?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
-    OR?: SubscriptionScalarWhereInput[]
-    NOT?: SubscriptionScalarWhereInput | SubscriptionScalarWhereInput[]
-    id?: StringFilter<"Subscription"> | string
-    userId?: IntFilter<"Subscription"> | number
-    stripeCustomerId?: StringFilter<"Subscription"> | string
-    stripeSubscriptionId?: StringFilter<"Subscription"> | string
-    status?: StringFilter<"Subscription"> | string
-    priceId?: StringFilter<"Subscription"> | string
-    currentPeriodEnd?: DateTimeFilter<"Subscription"> | Date | string
-    createdAt?: DateTimeFilter<"Subscription"> | Date | string
-    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
-  }
-
-  export type ApiCreditsPurchaseUpsertWithWhereUniqueWithoutUserInput = {
-    where: ApiCreditsPurchaseWhereUniqueInput
-    update: XOR<ApiCreditsPurchaseUpdateWithoutUserInput, ApiCreditsPurchaseUncheckedUpdateWithoutUserInput>
-    create: XOR<ApiCreditsPurchaseCreateWithoutUserInput, ApiCreditsPurchaseUncheckedCreateWithoutUserInput>
-  }
-
-  export type ApiCreditsPurchaseUpdateWithWhereUniqueWithoutUserInput = {
-    where: ApiCreditsPurchaseWhereUniqueInput
-    data: XOR<ApiCreditsPurchaseUpdateWithoutUserInput, ApiCreditsPurchaseUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ApiCreditsPurchaseUpdateManyWithWhereWithoutUserInput = {
-    where: ApiCreditsPurchaseScalarWhereInput
-    data: XOR<ApiCreditsPurchaseUpdateManyMutationInput, ApiCreditsPurchaseUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ApiCreditsPurchaseScalarWhereInput = {
-    AND?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
-    OR?: ApiCreditsPurchaseScalarWhereInput[]
-    NOT?: ApiCreditsPurchaseScalarWhereInput | ApiCreditsPurchaseScalarWhereInput[]
-    id?: StringFilter<"ApiCreditsPurchase"> | string
-    credits?: IntFilter<"ApiCreditsPurchase"> | number
-    purchaseDate?: DateTimeFilter<"ApiCreditsPurchase"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsPurchase"> | number | null
-  }
-
-  export type ApiCreditsUsageUpsertWithWhereUniqueWithoutUserInput = {
-    where: ApiCreditsUsageWhereUniqueInput
-    update: XOR<ApiCreditsUsageUpdateWithoutUserInput, ApiCreditsUsageUncheckedUpdateWithoutUserInput>
-    create: XOR<ApiCreditsUsageCreateWithoutUserInput, ApiCreditsUsageUncheckedCreateWithoutUserInput>
-  }
-
-  export type ApiCreditsUsageUpdateWithWhereUniqueWithoutUserInput = {
-    where: ApiCreditsUsageWhereUniqueInput
-    data: XOR<ApiCreditsUsageUpdateWithoutUserInput, ApiCreditsUsageUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ApiCreditsUsageUpdateManyWithWhereWithoutUserInput = {
-    where: ApiCreditsUsageScalarWhereInput
-    data: XOR<ApiCreditsUsageUpdateManyMutationInput, ApiCreditsUsageUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ApiCreditsUsageScalarWhereInput = {
-    AND?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
-    OR?: ApiCreditsUsageScalarWhereInput[]
-    NOT?: ApiCreditsUsageScalarWhereInput | ApiCreditsUsageScalarWhereInput[]
-    id?: StringFilter<"ApiCreditsUsage"> | string
-    apiKeyId?: StringFilter<"ApiCreditsUsage"> | string
-    credits?: IntFilter<"ApiCreditsUsage"> | number
-    usageDate?: DateTimeFilter<"ApiCreditsUsage"> | Date | string
-    userId?: IntNullableFilter<"ApiCreditsUsage"> | number | null
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    userId?: IntFilter<"Session"> | number
+    expiresAt?: DateTimeFilter<"Session"> | Date | string
+    twoFactorVerified?: BoolFilter<"Session"> | boolean
   }
 
   export type UserCreateWithoutSubscriptionsInput = {
@@ -19676,13 +19644,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -19693,13 +19661,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -19725,13 +19693,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -19742,13 +19710,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -19758,13 +19726,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -19775,13 +19743,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -19807,13 +19775,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -19824,13 +19792,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailVerificationsInput = {
@@ -19840,13 +19808,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailVerificationsInput = {
@@ -19857,13 +19825,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailVerificationsInput = {
@@ -19889,13 +19857,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailVerificationsInput = {
@@ -19906,13 +19874,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasswordResetsInput = {
@@ -19922,13 +19890,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetsInput = {
@@ -19939,13 +19907,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -19971,13 +19939,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetsInput = {
@@ -19988,13 +19956,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApiKeysInput = {
@@ -20004,13 +19972,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
-    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApiKeysInput = {
@@ -20021,18 +19989,38 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
-    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApiKeysInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
+  }
+
+  export type api_key_permissionCreateWithoutApi_keyInput = {
+    id: string
+    permission: string
+  }
+
+  export type api_key_permissionUncheckedCreateWithoutApi_keyInput = {
+    id: string
+    permission: string
+  }
+
+  export type api_key_permissionCreateOrConnectWithoutApi_keyInput = {
+    where: api_key_permissionWhereUniqueInput
+    create: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput>
+  }
+
+  export type api_key_permissionCreateManyApi_keyInputEnvelope = {
+    data: api_key_permissionCreateManyApi_keyInput | api_key_permissionCreateManyApi_keyInput[]
+    skipDuplicates?: boolean
   }
 
   export type ApiUsageLogCreateWithoutApiKeyInput = {
@@ -20065,26 +20053,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ApiKeyPermissionCreateWithoutApiKeyInput = {
-    id?: string
-    permission: string
-  }
-
-  export type ApiKeyPermissionUncheckedCreateWithoutApiKeyInput = {
-    id?: string
-    permission: string
-  }
-
-  export type ApiKeyPermissionCreateOrConnectWithoutApiKeyInput = {
-    where: ApiKeyPermissionWhereUniqueInput
-    create: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput>
-  }
-
-  export type ApiKeyPermissionCreateManyApiKeyInputEnvelope = {
-    data: ApiKeyPermissionCreateManyApiKeyInput | ApiKeyPermissionCreateManyApiKeyInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserUpsertWithoutApiKeysInput = {
     update: XOR<UserUpdateWithoutApiKeysInput, UserUncheckedUpdateWithoutApiKeysInput>
     create: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
@@ -20103,13 +20071,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
-    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApiKeysInput = {
@@ -20120,13 +20088,38 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
-    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput = {
+    where: api_key_permissionWhereUniqueInput
+    update: XOR<api_key_permissionUpdateWithoutApi_keyInput, api_key_permissionUncheckedUpdateWithoutApi_keyInput>
+    create: XOR<api_key_permissionCreateWithoutApi_keyInput, api_key_permissionUncheckedCreateWithoutApi_keyInput>
+  }
+
+  export type api_key_permissionUpdateWithWhereUniqueWithoutApi_keyInput = {
+    where: api_key_permissionWhereUniqueInput
+    data: XOR<api_key_permissionUpdateWithoutApi_keyInput, api_key_permissionUncheckedUpdateWithoutApi_keyInput>
+  }
+
+  export type api_key_permissionUpdateManyWithWhereWithoutApi_keyInput = {
+    where: api_key_permissionScalarWhereInput
+    data: XOR<api_key_permissionUpdateManyMutationInput, api_key_permissionUncheckedUpdateManyWithoutApi_keyInput>
+  }
+
+  export type api_key_permissionScalarWhereInput = {
+    AND?: api_key_permissionScalarWhereInput | api_key_permissionScalarWhereInput[]
+    OR?: api_key_permissionScalarWhereInput[]
+    NOT?: api_key_permissionScalarWhereInput | api_key_permissionScalarWhereInput[]
+    id?: StringFilter<"api_key_permission"> | string
+    api_key_id?: StringFilter<"api_key_permission"> | string
+    permission?: StringFilter<"api_key_permission"> | string
   }
 
   export type ApiUsageLogUpsertWithWhereUniqueWithoutApiKeyInput = {
@@ -20159,274 +20152,17 @@ export namespace Prisma {
     apiKeyId?: StringFilter<"ApiUsageLog"> | string
   }
 
-  export type ApiKeyPermissionUpsertWithWhereUniqueWithoutApiKeyInput = {
-    where: ApiKeyPermissionWhereUniqueInput
-    update: XOR<ApiKeyPermissionUpdateWithoutApiKeyInput, ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput>
-    create: XOR<ApiKeyPermissionCreateWithoutApiKeyInput, ApiKeyPermissionUncheckedCreateWithoutApiKeyInput>
-  }
-
-  export type ApiKeyPermissionUpdateWithWhereUniqueWithoutApiKeyInput = {
-    where: ApiKeyPermissionWhereUniqueInput
-    data: XOR<ApiKeyPermissionUpdateWithoutApiKeyInput, ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput>
-  }
-
-  export type ApiKeyPermissionUpdateManyWithWhereWithoutApiKeyInput = {
-    where: ApiKeyPermissionScalarWhereInput
-    data: XOR<ApiKeyPermissionUpdateManyMutationInput, ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyInput>
-  }
-
-  export type ApiKeyPermissionScalarWhereInput = {
-    AND?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
-    OR?: ApiKeyPermissionScalarWhereInput[]
-    NOT?: ApiKeyPermissionScalarWhereInput | ApiKeyPermissionScalarWhereInput[]
-    id?: StringFilter<"ApiKeyPermission"> | string
-    apiKeyId?: StringFilter<"ApiKeyPermission"> | string
-    permission?: StringFilter<"ApiKeyPermission"> | string
-  }
-
-  export type ApiKeyCreateWithoutApiKeyPermissionsInput = {
-    id?: string
-    key: string
-    unlimited: boolean
-    minInterval?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    lastRequest?: Date | string | null
-    owner?: UserCreateNestedOneWithoutApiKeysInput
-    usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
-  }
-
-  export type ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput = {
-    id?: string
-    key: string
-    unlimited: boolean
-    minInterval?: number
-    ownerId?: number | null
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    lastRequest?: Date | string | null
-    usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
-  }
-
-  export type ApiKeyCreateOrConnectWithoutApiKeyPermissionsInput = {
-    where: ApiKeyWhereUniqueInput
-    create: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
-  }
-
-  export type ApiKeyUpsertWithoutApiKeyPermissionsInput = {
-    update: XOR<ApiKeyUpdateWithoutApiKeyPermissionsInput, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
-    create: XOR<ApiKeyCreateWithoutApiKeyPermissionsInput, ApiKeyUncheckedCreateWithoutApiKeyPermissionsInput>
-    where?: ApiKeyWhereInput
-  }
-
-  export type ApiKeyUpdateToOneWithWhereWithoutApiKeyPermissionsInput = {
-    where?: ApiKeyWhereInput
-    data: XOR<ApiKeyUpdateWithoutApiKeyPermissionsInput, ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput>
-  }
-
-  export type ApiKeyUpdateWithoutApiKeyPermissionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    unlimited?: BoolFieldUpdateOperationsInput | boolean
-    minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    owner?: UserUpdateOneWithoutApiKeysNestedInput
-    usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
-  }
-
-  export type ApiKeyUncheckedUpdateWithoutApiKeyPermissionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    unlimited?: BoolFieldUpdateOperationsInput | boolean
-    minInterval?: IntFieldUpdateOperationsInput | number
-    ownerId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
-  }
-
-  export type UserCreateWithoutApiCreditsPurchasesInput = {
-    email: string
-    username: string
-    passwordHash: string
-    emailVerified?: boolean
-    totpKey?: Uint8Array | null
-    recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
-    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutApiCreditsPurchasesInput = {
-    id?: number
-    email: string
-    username: string
-    passwordHash: string
-    emailVerified?: boolean
-    totpKey?: Uint8Array | null
-    recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
-    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutApiCreditsPurchasesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
-  }
-
-  export type UserUpsertWithoutApiCreditsPurchasesInput = {
-    update: XOR<UserUpdateWithoutApiCreditsPurchasesInput, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
-    create: XOR<UserCreateWithoutApiCreditsPurchasesInput, UserUncheckedCreateWithoutApiCreditsPurchasesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutApiCreditsPurchasesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutApiCreditsPurchasesInput, UserUncheckedUpdateWithoutApiCreditsPurchasesInput>
-  }
-
-  export type UserUpdateWithoutApiCreditsPurchasesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
-    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutApiCreditsPurchasesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
-    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutApiCreditsUsagesInput = {
-    email: string
-    username: string
-    passwordHash: string
-    emailVerified?: boolean
-    totpKey?: Uint8Array | null
-    recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
-    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutApiCreditsUsagesInput = {
-    id?: number
-    email: string
-    username: string
-    passwordHash: string
-    emailVerified?: boolean
-    totpKey?: Uint8Array | null
-    recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
-    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
-    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutApiCreditsUsagesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
-  }
-
-  export type UserUpsertWithoutApiCreditsUsagesInput = {
-    update: XOR<UserUpdateWithoutApiCreditsUsagesInput, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
-    create: XOR<UserCreateWithoutApiCreditsUsagesInput, UserUncheckedCreateWithoutApiCreditsUsagesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutApiCreditsUsagesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutApiCreditsUsagesInput, UserUncheckedUpdateWithoutApiCreditsUsagesInput>
-  }
-
-  export type UserUpdateWithoutApiCreditsUsagesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
-    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutApiCreditsUsagesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
-    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
-    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type ApiKeyCreateWithoutUsageLogsInput = {
     id?: string
     key: string
     unlimited: boolean
     minInterval?: number
-    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
+    name: string
     owner?: UserCreateNestedOneWithoutApiKeysInput
-    apiKeyPermissions?: ApiKeyPermissionCreateNestedManyWithoutApiKeyInput
+    api_key_permission?: api_key_permissionCreateNestedManyWithoutApi_keyInput
   }
 
   export type ApiKeyUncheckedCreateWithoutUsageLogsInput = {
@@ -20435,11 +20171,11 @@ export namespace Prisma {
     unlimited: boolean
     minInterval?: number
     ownerId?: number | null
-    name: string
     description?: string | null
     createdAt?: Date | string
     lastRequest?: Date | string | null
-    apiKeyPermissions?: ApiKeyPermissionUncheckedCreateNestedManyWithoutApiKeyInput
+    name: string
+    api_key_permission?: api_key_permissionUncheckedCreateNestedManyWithoutApi_keyInput
   }
 
   export type ApiKeyCreateOrConnectWithoutUsageLogsInput = {
@@ -20463,12 +20199,12 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
     owner?: UserUpdateOneWithoutApiKeysNestedInput
-    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
+    api_key_permission?: api_key_permissionUpdateManyWithoutApi_keyNestedInput
   }
 
   export type ApiKeyUncheckedUpdateWithoutUsageLogsInput = {
@@ -20477,11 +20213,11 @@ export namespace Prisma {
     unlimited?: BoolFieldUpdateOperationsInput | boolean
     minInterval?: IntFieldUpdateOperationsInput | number
     ownerId?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    api_key_permission?: api_key_permissionUncheckedUpdateManyWithoutApi_keyNestedInput
   }
 
   export type UserCreateWithoutCalendarAccountsInput = {
@@ -20491,13 +20227,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
-    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCalendarAccountsInput = {
@@ -20508,13 +20244,13 @@ export namespace Prisma {
     emailVerified?: boolean
     totpKey?: Uint8Array | null
     recoveryCode: Uint8Array
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
-    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
-    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedCreateNestedManyWithoutUserInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCalendarAccountsInput = {
@@ -20540,13 +20276,13 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
-    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarAccountsInput = {
@@ -20557,19 +20293,282 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
-    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
-    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsPurchases?: ApiCreditsPurchaseUncheckedUpdateManyWithoutUserNestedInput
-    apiCreditsUsages?: ApiCreditsUsageUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type SessionCreateManyUserInput = {
+  export type UserCreateWithoutApi_credits_purchaseInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutApi_credits_purchaseInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutApi_credits_purchaseInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutApi_credits_purchaseInput, UserUncheckedCreateWithoutApi_credits_purchaseInput>
+  }
+
+  export type UserUpsertWithoutApi_credits_purchaseInput = {
+    update: XOR<UserUpdateWithoutApi_credits_purchaseInput, UserUncheckedUpdateWithoutApi_credits_purchaseInput>
+    create: XOR<UserCreateWithoutApi_credits_purchaseInput, UserUncheckedCreateWithoutApi_credits_purchaseInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutApi_credits_purchaseInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutApi_credits_purchaseInput, UserUncheckedUpdateWithoutApi_credits_purchaseInput>
+  }
+
+  export type UserUpdateWithoutApi_credits_purchaseInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutApi_credits_purchaseInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutApi_credits_usageInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutApi_credits_usageInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutApi_credits_usageInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutApi_credits_usageInput, UserUncheckedCreateWithoutApi_credits_usageInput>
+  }
+
+  export type UserUpsertWithoutApi_credits_usageInput = {
+    update: XOR<UserUpdateWithoutApi_credits_usageInput, UserUncheckedUpdateWithoutApi_credits_usageInput>
+    create: XOR<UserCreateWithoutApi_credits_usageInput, UserUncheckedCreateWithoutApi_credits_usageInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutApi_credits_usageInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutApi_credits_usageInput, UserUncheckedUpdateWithoutApi_credits_usageInput>
+  }
+
+  export type UserUpdateWithoutApi_credits_usageInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutApi_credits_usageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ApiKeyCreateWithoutApi_key_permissionInput = {
     id?: string
-    expiresAt: Date | string
-    twoFactorVerified?: boolean
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    name: string
+    owner?: UserCreateNestedOneWithoutApiKeysInput
+    usageLogs?: ApiUsageLogCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyUncheckedCreateWithoutApi_key_permissionInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    ownerId?: number | null
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    name: string
+    usageLogs?: ApiUsageLogUncheckedCreateNestedManyWithoutApiKeyInput
+  }
+
+  export type ApiKeyCreateOrConnectWithoutApi_key_permissionInput = {
+    where: ApiKeyWhereUniqueInput
+    create: XOR<ApiKeyCreateWithoutApi_key_permissionInput, ApiKeyUncheckedCreateWithoutApi_key_permissionInput>
+  }
+
+  export type ApiKeyUpsertWithoutApi_key_permissionInput = {
+    update: XOR<ApiKeyUpdateWithoutApi_key_permissionInput, ApiKeyUncheckedUpdateWithoutApi_key_permissionInput>
+    create: XOR<ApiKeyCreateWithoutApi_key_permissionInput, ApiKeyUncheckedCreateWithoutApi_key_permissionInput>
+    where?: ApiKeyWhereInput
+  }
+
+  export type ApiKeyUpdateToOneWithWhereWithoutApi_key_permissionInput = {
+    where?: ApiKeyWhereInput
+    data: XOR<ApiKeyUpdateWithoutApi_key_permissionInput, ApiKeyUncheckedUpdateWithoutApi_key_permissionInput>
+  }
+
+  export type ApiKeyUpdateWithoutApi_key_permissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    owner?: UserUpdateOneWithoutApiKeysNestedInput
+    usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type ApiKeyUncheckedUpdateWithoutApi_key_permissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    ownerId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type api_credits_purchaseCreateManyUserInput = {
+    id?: string
+    credits: number
+    purchaseDate?: Date | string
+  }
+
+  export type api_credits_usageCreateManyUserInput = {
+    id?: string
+    api_key_id: string
+    credits: number
+    usageDate?: Date | string
+  }
+
+  export type ApiKeyCreateManyOwnerInput = {
+    id?: string
+    key: string
+    unlimited: boolean
+    minInterval?: number
+    description?: string | null
+    createdAt?: Date | string
+    lastRequest?: Date | string | null
+    name: string
+  }
+
+  export type CalendarAccountCreateManyUserInput = {
+    id?: number
+    provider?: $Enums.CalendarProvider
+    providerAccountId: string
+    accessToken: string
+    refreshToken?: string | null
+    expiresAt?: Date | string | null
+    scope?: string | null
+    calendarId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type EmailVerificationRequestCreateManyUserInput = {
@@ -20588,70 +20587,124 @@ export namespace Prisma {
     twoFactorVerified?: boolean
   }
 
-  export type ApiKeyCreateManyOwnerInput = {
+  export type SessionCreateManyUserInput = {
     id?: string
-    key: string
-    unlimited: boolean
-    minInterval?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    lastRequest?: Date | string | null
+    expiresAt: Date | string
+    twoFactorVerified?: boolean
   }
 
-  export type CalendarAccountCreateManyUserInput = {
-    id?: number
-    provider?: $Enums.CalendarProvider
-    providerAccountId: string
-    accessToken: string
-    refreshToken?: string | null
-    expiresAt?: Date | string | null
-    scope?: string | null
-    calendarId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SubscriptionCreateManyUserInput = {
-    id?: string
-    stripeCustomerId: string
-    stripeSubscriptionId: string
-    status: string
-    priceId: string
-    currentPeriodEnd: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ApiCreditsPurchaseCreateManyUserInput = {
-    id?: string
-    credits: number
-    purchaseDate?: Date | string
-  }
-
-  export type ApiCreditsUsageCreateManyUserInput = {
-    id?: string
-    apiKeyId: string
-    credits: number
-    usageDate?: Date | string
-  }
-
-  export type SessionUpdateWithoutUserInput = {
+  export type api_credits_purchaseUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SessionUncheckedUpdateWithoutUserInput = {
+  export type api_credits_purchaseUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
+  export type api_credits_purchaseUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
+    credits?: IntFieldUpdateOperationsInput | number
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_usageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_usageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type api_credits_usageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    api_key_id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    api_key_permission?: api_key_permissionUpdateManyWithoutApi_keyNestedInput
+    usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type ApiKeyUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    api_key_permission?: api_key_permissionUncheckedUpdateManyWithoutApi_keyNestedInput
+    usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
+  }
+
+  export type ApiKeyUncheckedUpdateManyWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    unlimited?: BoolFieldUpdateOperationsInput | boolean
+    minInterval?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CalendarAccountUpdateWithoutUserInput = {
+    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarAccountUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarAccountUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationRequestUpdateWithoutUserInput = {
@@ -20702,151 +20755,27 @@ export namespace Prisma {
     twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ApiKeyUpdateWithoutOwnerInput = {
+  export type SessionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    unlimited?: BoolFieldUpdateOperationsInput | boolean
-    minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    usageLogs?: ApiUsageLogUpdateManyWithoutApiKeyNestedInput
-    apiKeyPermissions?: ApiKeyPermissionUpdateManyWithoutApiKeyNestedInput
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ApiKeyUncheckedUpdateWithoutOwnerInput = {
+  export type SessionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    unlimited?: BoolFieldUpdateOperationsInput | boolean
-    minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    usageLogs?: ApiUsageLogUncheckedUpdateManyWithoutApiKeyNestedInput
-    apiKeyPermissions?: ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyNestedInput
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ApiKeyUncheckedUpdateManyWithoutOwnerInput = {
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    unlimited?: BoolFieldUpdateOperationsInput | boolean
-    minInterval?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastRequest?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type CalendarAccountUpdateWithoutUserInput = {
-    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
-    providerAccountId?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CalendarAccountUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
-    providerAccountId?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CalendarAccountUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    provider?: EnumCalendarProviderFieldUpdateOperationsInput | $Enums.CalendarProvider
-    providerAccountId?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    scope?: NullableStringFieldUpdateOperationsInput | string | null
-    calendarId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SubscriptionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: StringFieldUpdateOperationsInput | string
-    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    priceId?: StringFieldUpdateOperationsInput | string
-    currentPeriodEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SubscriptionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: StringFieldUpdateOperationsInput | string
-    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    priceId?: StringFieldUpdateOperationsInput | string
-    currentPeriodEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SubscriptionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: StringFieldUpdateOperationsInput | string
-    stripeSubscriptionId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    priceId?: StringFieldUpdateOperationsInput | string
-    currentPeriodEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsPurchaseUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsPurchaseUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsPurchaseUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsUsageUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsUsageUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ApiCreditsUsageUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    apiKeyId?: StringFieldUpdateOperationsInput | string
-    credits?: IntFieldUpdateOperationsInput | number
-    usageDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type api_key_permissionCreateManyApi_keyInput = {
+    id: string
+    permission: string
   }
 
   export type ApiUsageLogCreateManyApiKeyInput = {
@@ -20859,9 +20788,19 @@ export namespace Prisma {
     userAgent?: string | null
   }
 
-  export type ApiKeyPermissionCreateManyApiKeyInput = {
-    id?: string
-    permission: string
+  export type api_key_permissionUpdateWithoutApi_keyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type api_key_permissionUncheckedUpdateWithoutApi_keyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type api_key_permissionUncheckedUpdateManyWithoutApi_keyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    permission?: StringFieldUpdateOperationsInput | string
   }
 
   export type ApiUsageLogUpdateWithoutApiKeyInput = {
@@ -20892,21 +20831,6 @@ export namespace Prisma {
     statusCode?: IntFieldUpdateOperationsInput | number
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ApiKeyPermissionUpdateWithoutApiKeyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ApiKeyPermissionUncheckedUpdateWithoutApiKeyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ApiKeyPermissionUncheckedUpdateManyWithoutApiKeyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    permission?: StringFieldUpdateOperationsInput | string
   }
 
 

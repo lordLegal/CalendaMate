@@ -126,55 +126,53 @@ export async function createApiKeyAction(
   const name = nameRaw.trim();
 
   const descRaw = formData.get("description");
-  let description: string | null = null;
-  if (typeof descRaw === "string") {
-    description = descRaw.trim() || null;
-  }
+  const description = typeof descRaw === "string" && descRaw.trim() !== "" 
+    ? descRaw.trim() 
+    : null;
 
   // Duplikat prüfen
   const exists = await prisma.apiKey.findFirst({
-    where: { ownerId: user.id, name }
+    where: { ownerId: user.id, name },
   });
   if (exists) {
-    return { success: false, message: "Ein API-Key mit diesem Namen existiert bereits" };
+    return { success: false, message: "API-Key-Name bereits vergeben" };
   }
 
-  // Roh-Key generieren
-  const rawKey = crypto.randomUUID();
+  // 1) Roh-Key und Salt erzeugen
+  const rawKey = crypto.randomBytes(32).toString("hex");          // 256 Bit Zufall :contentReference[oaicite:8]{index=8}
+  const salt   = crypto.randomBytes(16).toString("hex");          // 128 Bit Salt  :contentReference[oaicite:9]{index=9}
 
-  // Verschlüsseln mit AES-GCM
-  const iv = crypto.randomBytes(12);
-  const cipher = crypto.createCipheriv(ALGO, ENC_KEY, iv);
-  let encrypted = cipher.update(rawKey, "utf8", "hex");
-  encrypted += cipher.final("hex");
-  const tag = cipher.getAuthTag().toString("hex");
-  const encryptedKey = `${iv.toString("hex")}:${encrypted}:${tag}`;
+  // 2) HMAC-SHA256-Hash erstellen
+  const hmac = crypto
+    .createHmac("sha256", process.env.HMAC_SECRET!)
+    .update(salt)
+    .update(rawKey)
+    .digest("hex");                                              // HMAC schützt vor Length-Extension :contentReference[oaicite:10]{index=10}
+  const storedKey = `${salt}:${hmac}`;
 
-  // Speichern
+  // 3) Speichern (nur Salt:Hash)
   const newKey = await prisma.apiKey.create({
     data: {
-      owner: { connect: { id: user.id } },
+      owner:      { connect: { id: user.id } },
       name,
       description,
-      key: encryptedKey,
-      unlimited: false,
-    }
+      key:        storedKey,
+      unlimited:  false,
+    },
   });
 
-  // Cache invalidieren
+  // 4) UI aktualisieren & Rückgabe des Klartext-Keys
   revalidatePath("/settings/api");
-
-  // Rückgabe des Roh-Keys
   return {
     success: true,
     message: "API-Key erfolgreich erstellt",
     apiKey: {
-      id: newKey.id,
-      name: newKey.name,
-      rawKey,
+      id:        newKey.id,
+      name:      newKey.name,
+      rawKey,                                             
       createdAt: newKey.createdAt,
-      ownerId: user.id,
-    }
+      ownerId:   user.id,
+    },
   };
 }
 
@@ -205,43 +203,4 @@ export async function deleteApiKeyAction(
     message: "API-Key gelöscht",
     deletedKeyId: idRaw,
   };
-}
-
-/**
- * Lädt Credits auf einen limitierten API-Key auf und gibt nur Message zurück.
- */
-export async function topUpApiKeyAction(
-  formData: FormData
-): Promise<ActionResult> {
-  const { user } = await getCurrentSession();
-  if (!user) {
-    return { success: false, message: "Nicht authentifiziert" };
-  }
-  const keyId = formData.get("keyId");
-  const amountRaw = formData.get("amount");
-  if (typeof keyId !== "string" || typeof amountRaw !== "string") {
-    return { success: false, message: "Ungültige Eingabe" };
-  }
-  const amount = parseInt(amountRaw, 10);
-  if (isNaN(amount) || amount < 1) {
-    return { success: false, message: "Betrag muss größer 0 sein" };
-  }
-  const existing = await prisma.apiKey.findUnique({ where: { id: keyId } });
-  if (!existing || existing.ownerId !== user.id) {
-    return { success: false, message: "API-Key nicht gefunden" };
-  }
-  if (existing.unlimited) {
-    return { success: false, message: "Unlimitierte Keys können nicht aufgeladen werden" };
-  }
-
-  // Purchase-Record anlegen
-  await prisma.apiCreditsPurchase.create({
-    data: {
-      user: { connect: { id: user.id } },
-      credits: amount,
-    }
-  });
-
-  revalidatePath("/settings/api");
-  return { success: true, message: `Guthaben um ${amount} Credits erhöht` };
 }

@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
           fullSession.line_items?.data?.[0]?.price?.id || undefined;
 
         await prisma.subscription.upsert({
-          where: { userId },
+          where: { userId: userId },
           create: {
             userId,
             stripeSubscriptionId: subscriptionId,
@@ -81,8 +81,8 @@ export async function POST(req: NextRequest) {
         const credits = parseInt(metadata.credits, 10);
         const uid = parseInt(metadata.userId, 10);
         if (!isNaN(credits) && uid) {
-          await prisma.apiCreditsPurchase.create({
-            data: { userId: uid, credits }
+          await prisma.api_credits_purchase.create({
+            data: { user_id: uid, credits }
           });
         }
       }
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
           currentPeriodEnd: new Date(sub.billing_cycle_anchor * 1000)
         };
         await prisma.subscription.upsert({
-          where: { userId },
+          where: { userId: userId },
           // Create a new subscription record if it doesn't exist, or update the existing one
           create: { userId, ...record },
           update: record
@@ -150,7 +150,7 @@ export async function POST(req: NextRequest) {
         const uid = parseInt(metadata.userId, 10);
         const credits = parseInt(metadata.credits, 10);
         if (uid && !isNaN(credits)) {
-          await prisma.apiCreditsPurchase.create({ data: { userId: uid, credits } });
+          await prisma.api_credits_purchase.create({ data: { user_id: uid, credits } });
         }
       }
     }

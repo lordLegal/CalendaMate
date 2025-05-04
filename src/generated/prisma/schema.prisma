@@ -8,34 +8,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Benutzer aus der Web-Applikation
 model User {
-  id            Int     @id @default(autoincrement())
-  email         String  @unique
-  username      String
-  passwordHash  String  @map("password_hash")
-  emailVerified Boolean @default(false) @map("email_verified")
-  totpKey       Bytes?  @map("totp_key")
-  recoveryCode  Bytes   @map("recovery_code")
+  id                   Int                        @id @default(autoincrement())
+  email                String                     @unique
+  username             String
+  passwordHash         String                     @map("password_hash")
+  emailVerified        Boolean                    @default(false) @map("email_verified")
+  totpKey              Bytes?                     @map("totp_key")
+  recoveryCode         Bytes                      @map("recovery_code")
+  subscriptions        Subscription?
+  api_credits_purchase api_credits_purchase[]     @relation("api_credits_purchaseTouser")
+  api_credits_usage    api_credits_usage[]        @relation("api_credits_usageTouser")
+  apiKeys              ApiKey[]                   @relation("UserApiKeys")
+  calendarAccounts     CalendarAccount[]
+  emailVerifications   EmailVerificationRequest[]
+  passwordResets       PasswordResetSession[]
+  sessions             Session[]
 
-  // Beziehungen
-  sessions            Session[]
-  emailVerifications  EmailVerificationRequest[]
-  passwordResets      PasswordResetSession[]
-  apiKeys             ApiKey[]                   @relation("UserApiKeys")
-  calendarAccounts    CalendarAccount[]
-  subscriptions       Subscription[]
-  apiCreditsPurchases ApiCreditsPurchase[]
-  apiCreditsUsages    ApiCreditsUsage[]
-
-  @@index([email], name: "email_index")
+  @@index([email], map: "email_index")
   @@map("user")
 }
 
-// Stripe billing subscription model
 model Subscription {
   id                   String   @id @default(cuid())
-  user                 User     @relation(fields: [userId], references: [id])
   userId               Int      @unique
   stripeCustomerId     String   @unique
   stripeSubscriptionId String   @unique
@@ -44,21 +39,15 @@ model Subscription {
   currentPeriodEnd     DateTime
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
+  user                 User     @relation(fields: [userId], references: [id])
 }
-
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 model Session {
   id                String   @id @default(uuid())
   userId            Int      @map("user_id")
   expiresAt         DateTime @map("expires_at")
   twoFactorVerified Boolean  @default(false) @map("two_factor_verified")
-
-  user User @relation(fields: [userId], references: [id])
+  user              User     @relation(fields: [userId], references: [id])
 
   @@map("session")
 }
@@ -69,8 +58,7 @@ model EmailVerificationRequest {
   email     String
   code      String
   expiresAt DateTime @map("expires_at")
-
-  user User @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("email_verification_request")
 }
@@ -83,60 +71,26 @@ model PasswordResetSession {
   expiresAt         DateTime @map("expires_at")
   emailVerified     Boolean  @default(false) @map("email_verified")
   twoFactorVerified Boolean  @default(false) @map("two_factor_verified")
-
-  user User @relation(fields: [userId], references: [id])
+  user              User     @relation(fields: [userId], references: [id])
 
   @@map("password_reset_session")
 }
 
-// Modelle für die WebUntis API
 model ApiKey {
-  id          String  @id @default(uuid())
-  key         String  @unique
-  unlimited   Boolean
-  minInterval Int     @default(0)
-
-  // Verknüpfung zum Owner-User
-  ownerId           Int?               @map("owner_id")
-  owner             User?              @relation("UserApiKeys", fields: [ownerId], references: [id])
-  name              String
-  description       String?
-  createdAt         DateTime           @default(now())
-  lastRequest       DateTime?
-  usageLogs         ApiUsageLog[]
-  apiKeyPermissions ApiKeyPermission[]
+  id                 String               @id @default(uuid())
+  key                String               @unique
+  unlimited          Boolean
+  minInterval        Int                  @default(0)
+  ownerId            Int?                 @map("owner_id")
+  description        String?
+  createdAt          DateTime             @default(now())
+  lastRequest        DateTime?
+  name               String
+  owner              User?                @relation("UserApiKeys", fields: [ownerId], references: [id])
+  api_key_permission api_key_permission[] @relation("api_keyToapi_key_permission")
+  usageLogs          ApiUsageLog[]
 
   @@map("api_key")
-}
-
-model ApiKeyPermission {
-  id         String @id @default(uuid())
-  apiKeyId   String @map("api_key_id")
-  permission String
-  apiKey     ApiKey @relation(fields: [apiKeyId], references: [id])
-
-  @@map("api_key_permission")
-}
-
-model ApiCreditsPurchase {
-  id           String   @id @default(uuid())
-  credits      Int
-  purchaseDate DateTime @default(now())
-  userId       Int?     @map("user_id")
-  user         User?    @relation(fields: [userId], references: [id])
-
-  @@map("api_credits_purchase")
-}
-
-model ApiCreditsUsage {
-  id        String   @id @default(uuid())
-  apiKeyId  String   @map("api_key_id")
-  credits   Int
-  usageDate DateTime @default(now())
-  userId    Int?     @map("user_id")
-  user      User?    @relation(fields: [userId], references: [id])
-
-  @@map("api_credits_usage")
 }
 
 model ApiUsageLog {
@@ -147,9 +101,8 @@ model ApiUsageLog {
   statusCode Int
   ipAddress  String?
   userAgent  String?
-
-  apiKey   ApiKey @relation(fields: [apiKeyId], references: [id])
-  apiKeyId String @map("api_key_id")
+  apiKeyId   String   @map("api_key_id")
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id])
 
   @@map("api_usage_log")
 }
@@ -158,7 +111,7 @@ model TimetableCache {
   id        String   @id @default(uuid())
   username  String
   school    String
-  date      DateTime
+  date      String
   data      Json
   expiresAt DateTime
 
@@ -166,27 +119,50 @@ model TimetableCache {
   @@map("timetable_cache")
 }
 
-// External calendar connections (OAuth tokens) for Google, Microsoft, and iCloud/Apple
+model CalendarAccount {
+  id                Int              @id @default(autoincrement())
+  userId            Int
+  provider          CalendarProvider @default(GOOGLE)
+  providerAccountId String
+  accessToken       String
+  refreshToken      String?
+  expiresAt         DateTime?
+  scope             String?
+  calendarId        String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  user              User             @relation(fields: [userId], references: [id])
+
+  @@unique([userId, provider])
+  @@map("calendar_account")
+}
+
+model api_credits_purchase {
+  id           String   @id @default(uuid())
+  credits      Int
+  purchaseDate DateTime @default(now())
+  user_id      Int?
+  user         User?    @relation("api_credits_purchaseTouser", fields: [user_id], references: [id])
+}
+
+model api_credits_usage {
+  id         String   @id @default(uuid())
+  api_key_id String
+  credits    Int
+  usageDate  DateTime @default(now())
+  user_id    Int?
+  user       User?    @relation("api_credits_usageTouser", fields: [user_id], references: [id])
+}
+
+model api_key_permission {
+  id         String @id
+  api_key_id String
+  permission String
+  api_key    ApiKey @relation("api_keyToapi_key_permission", fields: [api_key_id], references: [id])
+}
+
 enum CalendarProvider {
   GOOGLE
   MICROSOFT
   ICLOUD
-}
-
-model CalendarAccount {
-  id                Int              @id @default(autoincrement())
-  user              User             @relation(fields: [userId], references: [id])
-  userId            Int
-  provider          CalendarProvider @default(GOOGLE)
-  providerAccountId String // The provider-specific user/account identifier
-  accessToken       String // OAuth access token
-  refreshToken      String? // OAuth refresh token
-  expiresAt         DateTime? // Token expiry
-  scope             String? // Granted scopes
-  calendarId        String? // Default calendar identifier (e.g., "primary")
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-
-  @@unique([userId, provider])
-  @@map("calendar_account")
 }

@@ -33,25 +33,25 @@ export default async function ApiKeysPage() {
         where: { ownerId: userId },
         orderBy: { createdAt: "desc" },
       }),
-      prisma.apiCreditsPurchase.aggregate({
-        where: { userId },
+      prisma.api_credits_purchase.aggregate({
+        where: { user_id: userId },
         _sum: { credits: true },
       }),
-      prisma.apiCreditsUsage.aggregate({
-        where: { userId },
+      prisma.api_credits_usage.aggregate({
+        where: { user_id: userId },
         _sum: { credits: true },
       }),
       // Für das Chart: pro Tag die gekauften Credits
-      prisma.apiCreditsPurchase.groupBy({
+      prisma.api_credits_purchase.groupBy({
         by: ["purchaseDate"],
-        where: { userId },
+        where: { user_id: userId },
         _sum: { credits: true },
         orderBy: { purchaseDate: "asc" },
       }),
       // Für das Chart: pro Tag die genutzten Credits
-      prisma.apiCreditsUsage.groupBy({
+      prisma.api_credits_usage.groupBy({
         by: ["usageDate"],
-        where: { userId },
+        where: { user_id: userId },
         _sum: { credits: true },
         orderBy: { usageDate: "asc" },
       }),
