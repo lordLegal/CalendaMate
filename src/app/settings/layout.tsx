@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Settings, User } from 'lucide-react';
+import { Calendar, Settings, User } from 'lucide-react';
 import {
   Sidebar,
   SidebarProvider,
@@ -20,6 +20,7 @@ import { Toaster } from '@/components/ui/sonner';
 const items = [
   { title: 'General', url: '/settings/', icon: Settings},
   { title: 'Profile', url: '/settings/profile', icon: User },
+  { title: 'Calendar', url: '/settings/calendar', icon: Calendar },
   { title: 'API Keys', url: '/settings/api', icon: IconDashboard },
 ];
 

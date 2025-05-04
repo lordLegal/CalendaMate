@@ -3,23 +3,81 @@
 import { useState } from "react";
 //import { regenerateRecoveryCodeAction} from "./actions";
 // Calendar connections (Google & Microsoft)
-export function CalendarConnections() {
+import Link from "next/link";
+import { CalendarProvider } from "@/generated/prisma";
+export function CalendarConnections({providerGoogle, providerMicrosoft}: {providerGoogle: {
+  id: number;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  scope: string | null;
+  calendarId: string | null;
+  provider: CalendarProvider;
+  providerAccountId: string;
+  accessToken: string;
+  refreshToken: string | null;
+  expiresAt: Date | null;
+}[];
+providerMicrosoft: {
+  id: number;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  scope: string | null;
+  calendarId: string | null;
+  provider: CalendarProvider;
+  providerAccountId: string;
+  accessToken: string;
+  refreshToken: string | null;
+  expiresAt: Date | null;
+}[];}) {
+
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold mb-4">Calendar Connections</h2>
       <div className="flex flex-col gap-4">
-        <a
-          href="/api/oauth/google/authorize"
-          className="w-full inline-block text-center bg-red-600 hover:bg-red-700 text-white py-2 rounded"
-        >
-          Mit Google Kalender verbinden
-        </a>
-        <a
-          href="/api/oauth/microsoft/authorize"
-          className="w-full inline-block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
-        >
-          Mit Microsoft Kalender verbinden
-        </a>
+        <div className="p-4 bg-white shadow rounded">
+          <h3 className="text-xl font-semibold mb-2">Google Calendar</h3>
+          {providerGoogle.length > 0 ? (
+            providerGoogle.map((account) => (
+              <>
+              <div key={account.id} className="mb-2">
+                <p>Connected: {account.providerAccountId}</p>
+                <p>Calendar ID: {account.calendarId}</p>
+              </div>
+              <Link href="/api/oauth/google/authorize" >
+              <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              Google Calendar verbinden
+              </button>
+            </Link>
+            </>
+            ))
+          ) : (
+            <Link href="/api/oauth/google/authorize" >
+              <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              Google Calendar verbinden
+              </button>
+            </Link>
+          )}
+        </div>
+        <div className="p-4 bg-white shadow rounded">
+          <h3 className="text-xl font-semibold mb-2">Microsoft Calendar</h3>
+          {providerMicrosoft.length > 0 ? (
+            providerMicrosoft.map((account) => (
+              <div key={account.id} className="mb-2">
+                <p>Connected: {account.providerAccountId}</p>
+                <p>Calendar ID: {account.calendarId}</p>
+              </div>
+            ))
+          ) : (
+            <Link href="/api/oauth/microsoft/auhthorize" >
+              <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              Microsoft Calendar verbinden
+              </button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

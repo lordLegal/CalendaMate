@@ -23,6 +23,15 @@ export default async function Page() {
     ? await prisma.subscription.findFirst({ where: { userId: user.id } })
     : null
   const isActive = sub?.status === 'active'
+
+  const providerGoogle = await prisma.calendarAccount.findMany({
+    where: { userId: user.id, provider: "GOOGLE" }
+  });
+
+  const providerMicrosoft = await prisma.calendarAccount.findMany({
+    where: { userId: user.id, provider: "MICROSOFT" }
+  });
+
   console.log("isActive", isActive)
   return (
     <div className="min-h-screen bg-gray-50">
@@ -31,7 +40,7 @@ export default async function Page() {
         
         {/* Calendar connections */}
         <section className="mb-8 p-6 bg-white shadow rounded">
-          <CalendarConnections />
+          <CalendarConnections providerGoogle={providerGoogle} providerMicrosoft={providerMicrosoft}  />
         </section>
         <section className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Subscription</h2>

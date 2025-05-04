@@ -1,9 +1,10 @@
 // app/api/auth/google/callback/route.ts
 import { NextResponse } from 'next/server';
-import { getTokensFromCode } from '@/lib/server/google';
+import { getCalendarEvents, getTokensFromCode, listCalendars } from '@/lib/server/google';
 import prisma from '@/lib/server/prisma';
 import { getCurrentSession } from '@/lib/server/session';
 import { CalendarProvider } from '@/generated/prisma';
+import { calendar } from 'googleapis/build/src/apis/calendar';
 
 export async function GET(request: Request) {
   const { session, user } = await getCurrentSession()
@@ -14,28 +15,48 @@ export async function GET(request: Request) {
     return NextResponse.redirect('/2fa');
   }
 
-  const { searchParams } = new URL(request.url);
-  const code = searchParams.get('code');
+  const code = new URL(request.url).searchParams.get('code');
   if (!code) return NextResponse.json({ error: 'Missing code' }, { status: 400 });
 
   const tokens = await getTokensFromCode(code);
-  if (!tokens) return NextResponse.json({ error: 'Invalid code no token' }, { status: 400 });
-  if (!tokens.access_token) return NextResponse.json({ error: 'Invalid tokens acces_token' }, { status: 400 });
+  if (!tokens.access_token) return NextResponse.json({ error: 'Invalid tokens' }, { status: 400 });
+
+  // hier die beiden Umrechnungen:
+  const accessTokenExpiresAt = tokens.expiry_date
+    ? new Date(tokens.expiry_date)
+    : tokens.expiry_date
+      ? new Date(Date.now() + tokens.expiry_date * 1000)
+      : null;
+
+
+  console.log(await prisma.calendarAccount.findUnique({
+    where: { userId_provider: { userId: user.id, provider: CalendarProvider.GOOGLE } },
+  }));
+  const calendars = await listCalendars(tokens);
+  console.log(calendars);
+
+  if (calendars && calendars.length > 0 && typeof calendars[0].id === 'string') {
+    console.log(await getCalendarEvents(tokens, calendars[0].id));
+  } else {
+    console.log('No valid calendar found.');
+  }
+
+
   await prisma.calendarAccount.upsert({
     where: { userId_provider: { userId: user.id, provider: CalendarProvider.GOOGLE } },
     update: {
       accessToken: tokens.access_token,
-      providerAccountId: CalendarProvider.GOOGLE,
       refreshToken: tokens.refresh_token,
-      expiresAt: tokens.expiry_date ? new Date(tokens.expiry_date) : null,
+      expiresAt: accessTokenExpiresAt,
     },
     create: {
       userId: user.id,
-      providerAccountId: CalendarProvider.GOOGLE, // Add a valid providerAccountId value
-      accessToken: tokens.access_token ?? '',
+      providerAccountId: CalendarProvider.GOOGLE,
+      accessToken: tokens.access_token,
       refreshToken: tokens.refresh_token,
-      expiresAt: new Date(tokens.expiry_date ?? 0),
+      expiresAt: accessTokenExpiresAt,
     },
   });
-  return NextResponse.json(tokens);
+
+  return NextResponse.redirect(new URL('/settings', request.url));
 }
