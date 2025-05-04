@@ -143,8 +143,12 @@ export async function createApiKeyAction(
   const salt   = crypto.randomBytes(16).toString("hex");          // 128 Bit Salt  :contentReference[oaicite:9]{index=9}
 
   // 2) HMAC-SHA256-Hash erstellen
+  const hmacSecret = process.env.HMAC_SECRET;
+  if (!hmacSecret) {
+    throw new Error("HMAC_SECRET environment variable is not set.");
+  }
   const hmac = crypto
-    .createHmac("sha256", process.env.HMAC_SECRET!)
+    .createHmac("sha256", hmacSecret)
     .update(salt)
     .update(rawKey)
     .digest("hex");                                              // HMAC schützt vor Length-Extension :contentReference[oaicite:10]{index=10}
