@@ -127,6 +127,14 @@ exports.Prisma.UserScalarFieldEnum = {
   recoveryCode: 'recoveryCode'
 };
 
+exports.Prisma.ApiKeyCreditsBalanceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  credits: 'credits',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SubscriptionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -263,6 +271,7 @@ exports.CalendarProvider = exports.$Enums.CalendarProvider = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  ApiKeyCreditsBalance: 'ApiKeyCreditsBalance',
   Subscription: 'Subscription',
   Session: 'Session',
   EmailVerificationRequest: 'EmailVerificationRequest',

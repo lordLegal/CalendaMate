@@ -150,7 +150,17 @@ export async function POST(req: NextRequest) {
         const uid = parseInt(metadata.userId, 10);
         const credits = parseInt(metadata.credits, 10);
         if (uid && !isNaN(credits)) {
+          // check if the id is a valid number
+          if (!await prisma.user.findUnique({ where: { id: uid } })) {
+            throw new Error('User not found');
+          }
+
           await prisma.api_credits_purchase.create({ data: { user_id: uid, credits } });
+          await prisma.apiKeyCreditsBalance.upsert({
+            where: { userId: uid },
+            create: { userId: uid, credits },
+            update: { credits: { increment: credits } }
+          });
         }
       }
     }

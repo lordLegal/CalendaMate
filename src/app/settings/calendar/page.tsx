@@ -58,7 +58,7 @@ export default async function Page() {
         <div className="min-h-screen bg-gray-50">
         <main className="max-w-3xl mx-auto p-6">
             <h1 className="text-3xl font-bold mb-8">Calender Settings</h1>
-
+            
         </main>
         </div>
     );

@@ -24,9 +24,19 @@ model User {
   emailVerifications   EmailVerificationRequest[]
   passwordResets       PasswordResetSession[]
   sessions             Session[]
+  creditsBalance       ApiKeyCreditsBalance[]
 
   @@index([email], map: "email_index")
   @@map("user")
+}
+
+model ApiKeyCreditsBalance {
+  id        String   @id @unique @default(cuid())
+  userId    Int      @unique
+  credits   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Subscription {
@@ -101,8 +111,8 @@ model ApiUsageLog {
   statusCode Int
   ipAddress  String?
   userAgent  String?
-  apiKeyId   String   @map("api_key_id")
-  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id])
+  apiKeyId   String?  @map("api_key_id")
+  apiKey     ApiKey?  @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
 
   @@map("api_usage_log")
 }
@@ -158,7 +168,7 @@ model api_key_permission {
   id         String @id
   api_key_id String
   permission String
-  api_key    ApiKey @relation("api_keyToapi_key_permission", fields: [api_key_id], references: [id])
+  api_key    ApiKey @relation("api_keyToapi_key_permission", fields: [api_key_id], references: [id], onDelete: Cascade)
 }
 
 enum CalendarProvider {

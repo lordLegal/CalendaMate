@@ -111,7 +111,13 @@ export function ApiKeysDashboard({ keys, purchaseSum, usageSum, creditsRemaining
               Speichere diesen Schlüssel sicher – er wird nur einmal angezeigt.
             </DialogDescription>
           </DialogHeader>
-          <pre className="p-4 bg-gray-100 rounded font-mono break-all">{createdKey}</pre>
+          <Input
+            className="font-mono bg-gray-100 w-[400px] pointer-events-none select-all overflow-hidden whitespace-nowrap text-ellipsis"
+            value={createdKey || ""}
+            readOnly
+            tabIndex={0}
+            title={createdKey || undefined}
+          />
           <Button
             className={
               `mt-2 flex items-center gap-2 transition-all ${

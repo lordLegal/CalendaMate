@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model ApiKeyCreditsBalance
+ * 
+ */
+export type ApiKeyCreditsBalance = $Result.DefaultSelection<Prisma.$ApiKeyCreditsBalancePayload>
+/**
  * Model Subscription
  * 
  */
@@ -226,6 +231,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apiKeyCreditsBalance`: Exposes CRUD operations for the **ApiKeyCreditsBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApiKeyCreditsBalances
+    * const apiKeyCreditsBalances = await prisma.apiKeyCreditsBalance.findMany()
+    * ```
+    */
+  get apiKeyCreditsBalance(): Prisma.ApiKeyCreditsBalanceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.subscription`: Exposes CRUD operations for the **Subscription** model.
@@ -777,6 +792,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    ApiKeyCreditsBalance: 'ApiKeyCreditsBalance',
     Subscription: 'Subscription',
     Session: 'Session',
     EmailVerificationRequest: 'EmailVerificationRequest',
@@ -806,7 +822,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount" | "api_credits_purchase" | "api_credits_usage" | "api_key_permission"
+      modelProps: "user" | "apiKeyCreditsBalance" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount" | "api_credits_purchase" | "api_credits_usage" | "api_key_permission"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -881,6 +897,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApiKeyCreditsBalance: {
+        payload: Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>
+        fields: Prisma.ApiKeyCreditsBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApiKeyCreditsBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApiKeyCreditsBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.ApiKeyCreditsBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApiKeyCreditsBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          findMany: {
+            args: Prisma.ApiKeyCreditsBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>[]
+          }
+          create: {
+            args: Prisma.ApiKeyCreditsBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          createMany: {
+            args: Prisma.ApiKeyCreditsBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApiKeyCreditsBalanceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>[]
+          }
+          delete: {
+            args: Prisma.ApiKeyCreditsBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          update: {
+            args: Prisma.ApiKeyCreditsBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.ApiKeyCreditsBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApiKeyCreditsBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApiKeyCreditsBalanceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>[]
+          }
+          upsert: {
+            args: Prisma.ApiKeyCreditsBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyCreditsBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.ApiKeyCreditsBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiKeyCreditsBalance>
+          }
+          groupBy: {
+            args: Prisma.ApiKeyCreditsBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyCreditsBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApiKeyCreditsBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyCreditsBalanceCountAggregateOutputType> | number
           }
         }
       }
@@ -1783,6 +1873,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    apiKeyCreditsBalance?: ApiKeyCreditsBalanceOmit
     subscription?: SubscriptionOmit
     session?: SessionOmit
     emailVerificationRequest?: EmailVerificationRequestOmit
@@ -1895,6 +1986,7 @@ export namespace Prisma {
     emailVerifications: number
     passwordResets: number
     sessions: number
+    creditsBalance: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1905,6 +1997,7 @@ export namespace Prisma {
     emailVerifications?: boolean | UserCountOutputTypeCountEmailVerificationsArgs
     passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    creditsBalance?: boolean | UserCountOutputTypeCountCreditsBalanceArgs
   }
 
   // Custom InputTypes
@@ -1965,6 +2058,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreditsBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyCreditsBalanceWhereInput
   }
 
 
@@ -2234,6 +2334,7 @@ export namespace Prisma {
     emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
     passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    creditsBalance?: boolean | User$creditsBalanceArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2277,6 +2378,7 @@ export namespace Prisma {
     emailVerifications?: boolean | User$emailVerificationsArgs<ExtArgs>
     passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    creditsBalance?: boolean | User$creditsBalanceArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2293,6 +2395,7 @@ export namespace Prisma {
       emailVerifications: Prisma.$EmailVerificationRequestPayload<ExtArgs>[]
       passwordResets: Prisma.$PasswordResetSessionPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
+      creditsBalance: Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2704,6 +2807,7 @@ export namespace Prisma {
     emailVerifications<T extends User$emailVerificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailVerificationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     passwordResets<T extends User$passwordResetsArgs<ExtArgs> = {}>(args?: Subset<T, User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    creditsBalance<T extends User$creditsBalanceArgs<ExtArgs> = {}>(args?: Subset<T, User$creditsBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3315,6 +3419,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.creditsBalance
+   */
+  export type User$creditsBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    where?: ApiKeyCreditsBalanceWhereInput
+    orderBy?: ApiKeyCreditsBalanceOrderByWithRelationInput | ApiKeyCreditsBalanceOrderByWithRelationInput[]
+    cursor?: ApiKeyCreditsBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiKeyCreditsBalanceScalarFieldEnum | ApiKeyCreditsBalanceScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3330,6 +3458,1102 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApiKeyCreditsBalance
+   */
+
+  export type AggregateApiKeyCreditsBalance = {
+    _count: ApiKeyCreditsBalanceCountAggregateOutputType | null
+    _avg: ApiKeyCreditsBalanceAvgAggregateOutputType | null
+    _sum: ApiKeyCreditsBalanceSumAggregateOutputType | null
+    _min: ApiKeyCreditsBalanceMinAggregateOutputType | null
+    _max: ApiKeyCreditsBalanceMaxAggregateOutputType | null
+  }
+
+  export type ApiKeyCreditsBalanceAvgAggregateOutputType = {
+    userId: number | null
+    credits: number | null
+  }
+
+  export type ApiKeyCreditsBalanceSumAggregateOutputType = {
+    userId: number | null
+    credits: number | null
+  }
+
+  export type ApiKeyCreditsBalanceMinAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    credits: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ApiKeyCreditsBalanceMaxAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    credits: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ApiKeyCreditsBalanceCountAggregateOutputType = {
+    id: number
+    userId: number
+    credits: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ApiKeyCreditsBalanceAvgAggregateInputType = {
+    userId?: true
+    credits?: true
+  }
+
+  export type ApiKeyCreditsBalanceSumAggregateInputType = {
+    userId?: true
+    credits?: true
+  }
+
+  export type ApiKeyCreditsBalanceMinAggregateInputType = {
+    id?: true
+    userId?: true
+    credits?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ApiKeyCreditsBalanceMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    credits?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ApiKeyCreditsBalanceCountAggregateInputType = {
+    id?: true
+    userId?: true
+    credits?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ApiKeyCreditsBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiKeyCreditsBalance to aggregate.
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyCreditsBalances to fetch.
+     */
+    orderBy?: ApiKeyCreditsBalanceOrderByWithRelationInput | ApiKeyCreditsBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApiKeyCreditsBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyCreditsBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyCreditsBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApiKeyCreditsBalances
+    **/
+    _count?: true | ApiKeyCreditsBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApiKeyCreditsBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApiKeyCreditsBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApiKeyCreditsBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApiKeyCreditsBalanceMaxAggregateInputType
+  }
+
+  export type GetApiKeyCreditsBalanceAggregateType<T extends ApiKeyCreditsBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiKeyCreditsBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApiKeyCreditsBalance[P]>
+      : GetScalarType<T[P], AggregateApiKeyCreditsBalance[P]>
+  }
+
+
+
+
+  export type ApiKeyCreditsBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyCreditsBalanceWhereInput
+    orderBy?: ApiKeyCreditsBalanceOrderByWithAggregationInput | ApiKeyCreditsBalanceOrderByWithAggregationInput[]
+    by: ApiKeyCreditsBalanceScalarFieldEnum[] | ApiKeyCreditsBalanceScalarFieldEnum
+    having?: ApiKeyCreditsBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApiKeyCreditsBalanceCountAggregateInputType | true
+    _avg?: ApiKeyCreditsBalanceAvgAggregateInputType
+    _sum?: ApiKeyCreditsBalanceSumAggregateInputType
+    _min?: ApiKeyCreditsBalanceMinAggregateInputType
+    _max?: ApiKeyCreditsBalanceMaxAggregateInputType
+  }
+
+  export type ApiKeyCreditsBalanceGroupByOutputType = {
+    id: string
+    userId: number
+    credits: number
+    createdAt: Date
+    updatedAt: Date
+    _count: ApiKeyCreditsBalanceCountAggregateOutputType | null
+    _avg: ApiKeyCreditsBalanceAvgAggregateOutputType | null
+    _sum: ApiKeyCreditsBalanceSumAggregateOutputType | null
+    _min: ApiKeyCreditsBalanceMinAggregateOutputType | null
+    _max: ApiKeyCreditsBalanceMaxAggregateOutputType | null
+  }
+
+  type GetApiKeyCreditsBalanceGroupByPayload<T extends ApiKeyCreditsBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApiKeyCreditsBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApiKeyCreditsBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApiKeyCreditsBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiKeyCreditsBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApiKeyCreditsBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    credits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyCreditsBalance"]>
+
+  export type ApiKeyCreditsBalanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    credits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyCreditsBalance"]>
+
+  export type ApiKeyCreditsBalanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    credits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKeyCreditsBalance"]>
+
+  export type ApiKeyCreditsBalanceSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    credits?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ApiKeyCreditsBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "credits" | "createdAt" | "updatedAt", ExtArgs["result"]["apiKeyCreditsBalance"]>
+  export type ApiKeyCreditsBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ApiKeyCreditsBalanceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ApiKeyCreditsBalanceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ApiKeyCreditsBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApiKeyCreditsBalance"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: number
+      credits: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["apiKeyCreditsBalance"]>
+    composites: {}
+  }
+
+  type ApiKeyCreditsBalanceGetPayload<S extends boolean | null | undefined | ApiKeyCreditsBalanceDefaultArgs> = $Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload, S>
+
+  type ApiKeyCreditsBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApiKeyCreditsBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiKeyCreditsBalanceCountAggregateInputType | true
+    }
+
+  export interface ApiKeyCreditsBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiKeyCreditsBalance'], meta: { name: 'ApiKeyCreditsBalance' } }
+    /**
+     * Find zero or one ApiKeyCreditsBalance that matches the filter.
+     * @param {ApiKeyCreditsBalanceFindUniqueArgs} args - Arguments to find a ApiKeyCreditsBalance
+     * @example
+     * // Get one ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApiKeyCreditsBalanceFindUniqueArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceFindUniqueArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApiKeyCreditsBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApiKeyCreditsBalanceFindUniqueOrThrowArgs} args - Arguments to find a ApiKeyCreditsBalance
+     * @example
+     * // Get one ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApiKeyCreditsBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiKeyCreditsBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceFindFirstArgs} args - Arguments to find a ApiKeyCreditsBalance
+     * @example
+     * // Get one ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApiKeyCreditsBalanceFindFirstArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceFindFirstArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiKeyCreditsBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceFindFirstOrThrowArgs} args - Arguments to find a ApiKeyCreditsBalance
+     * @example
+     * // Get one ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApiKeyCreditsBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApiKeyCreditsBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApiKeyCreditsBalances
+     * const apiKeyCreditsBalances = await prisma.apiKeyCreditsBalance.findMany()
+     * 
+     * // Get first 10 ApiKeyCreditsBalances
+     * const apiKeyCreditsBalances = await prisma.apiKeyCreditsBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const apiKeyCreditsBalanceWithIdOnly = await prisma.apiKeyCreditsBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApiKeyCreditsBalanceFindManyArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApiKeyCreditsBalance.
+     * @param {ApiKeyCreditsBalanceCreateArgs} args - Arguments to create a ApiKeyCreditsBalance.
+     * @example
+     * // Create one ApiKeyCreditsBalance
+     * const ApiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.create({
+     *   data: {
+     *     // ... data to create a ApiKeyCreditsBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApiKeyCreditsBalanceCreateArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceCreateArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApiKeyCreditsBalances.
+     * @param {ApiKeyCreditsBalanceCreateManyArgs} args - Arguments to create many ApiKeyCreditsBalances.
+     * @example
+     * // Create many ApiKeyCreditsBalances
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApiKeyCreditsBalanceCreateManyArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApiKeyCreditsBalances and returns the data saved in the database.
+     * @param {ApiKeyCreditsBalanceCreateManyAndReturnArgs} args - Arguments to create many ApiKeyCreditsBalances.
+     * @example
+     * // Create many ApiKeyCreditsBalances
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApiKeyCreditsBalances and only return the `id`
+     * const apiKeyCreditsBalanceWithIdOnly = await prisma.apiKeyCreditsBalance.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApiKeyCreditsBalanceCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApiKeyCreditsBalance.
+     * @param {ApiKeyCreditsBalanceDeleteArgs} args - Arguments to delete one ApiKeyCreditsBalance.
+     * @example
+     * // Delete one ApiKeyCreditsBalance
+     * const ApiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.delete({
+     *   where: {
+     *     // ... filter to delete one ApiKeyCreditsBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApiKeyCreditsBalanceDeleteArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceDeleteArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApiKeyCreditsBalance.
+     * @param {ApiKeyCreditsBalanceUpdateArgs} args - Arguments to update one ApiKeyCreditsBalance.
+     * @example
+     * // Update one ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApiKeyCreditsBalanceUpdateArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceUpdateArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApiKeyCreditsBalances.
+     * @param {ApiKeyCreditsBalanceDeleteManyArgs} args - Arguments to filter ApiKeyCreditsBalances to delete.
+     * @example
+     * // Delete a few ApiKeyCreditsBalances
+     * const { count } = await prisma.apiKeyCreditsBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApiKeyCreditsBalanceDeleteManyArgs>(args?: SelectSubset<T, ApiKeyCreditsBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiKeyCreditsBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApiKeyCreditsBalances
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApiKeyCreditsBalanceUpdateManyArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiKeyCreditsBalances and returns the data updated in the database.
+     * @param {ApiKeyCreditsBalanceUpdateManyAndReturnArgs} args - Arguments to update many ApiKeyCreditsBalances.
+     * @example
+     * // Update many ApiKeyCreditsBalances
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApiKeyCreditsBalances and only return the `id`
+     * const apiKeyCreditsBalanceWithIdOnly = await prisma.apiKeyCreditsBalance.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApiKeyCreditsBalanceUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApiKeyCreditsBalance.
+     * @param {ApiKeyCreditsBalanceUpsertArgs} args - Arguments to update or create a ApiKeyCreditsBalance.
+     * @example
+     * // Update or create a ApiKeyCreditsBalance
+     * const apiKeyCreditsBalance = await prisma.apiKeyCreditsBalance.upsert({
+     *   create: {
+     *     // ... data to create a ApiKeyCreditsBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApiKeyCreditsBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApiKeyCreditsBalanceUpsertArgs>(args: SelectSubset<T, ApiKeyCreditsBalanceUpsertArgs<ExtArgs>>): Prisma__ApiKeyCreditsBalanceClient<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApiKeyCreditsBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceCountArgs} args - Arguments to filter ApiKeyCreditsBalances to count.
+     * @example
+     * // Count the number of ApiKeyCreditsBalances
+     * const count = await prisma.apiKeyCreditsBalance.count({
+     *   where: {
+     *     // ... the filter for the ApiKeyCreditsBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApiKeyCreditsBalanceCountArgs>(
+      args?: Subset<T, ApiKeyCreditsBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApiKeyCreditsBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApiKeyCreditsBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApiKeyCreditsBalanceAggregateArgs>(args: Subset<T, ApiKeyCreditsBalanceAggregateArgs>): Prisma.PrismaPromise<GetApiKeyCreditsBalanceAggregateType<T>>
+
+    /**
+     * Group by ApiKeyCreditsBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiKeyCreditsBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApiKeyCreditsBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApiKeyCreditsBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: ApiKeyCreditsBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApiKeyCreditsBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiKeyCreditsBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApiKeyCreditsBalance model
+   */
+  readonly fields: ApiKeyCreditsBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApiKeyCreditsBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApiKeyCreditsBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApiKeyCreditsBalance model
+   */
+  interface ApiKeyCreditsBalanceFieldRefs {
+    readonly id: FieldRef<"ApiKeyCreditsBalance", 'String'>
+    readonly userId: FieldRef<"ApiKeyCreditsBalance", 'Int'>
+    readonly credits: FieldRef<"ApiKeyCreditsBalance", 'Int'>
+    readonly createdAt: FieldRef<"ApiKeyCreditsBalance", 'DateTime'>
+    readonly updatedAt: FieldRef<"ApiKeyCreditsBalance", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApiKeyCreditsBalance findUnique
+   */
+  export type ApiKeyCreditsBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyCreditsBalance to fetch.
+     */
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyCreditsBalance findUniqueOrThrow
+   */
+  export type ApiKeyCreditsBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyCreditsBalance to fetch.
+     */
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyCreditsBalance findFirst
+   */
+  export type ApiKeyCreditsBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyCreditsBalance to fetch.
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyCreditsBalances to fetch.
+     */
+    orderBy?: ApiKeyCreditsBalanceOrderByWithRelationInput | ApiKeyCreditsBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiKeyCreditsBalances.
+     */
+    cursor?: ApiKeyCreditsBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyCreditsBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyCreditsBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiKeyCreditsBalances.
+     */
+    distinct?: ApiKeyCreditsBalanceScalarFieldEnum | ApiKeyCreditsBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyCreditsBalance findFirstOrThrow
+   */
+  export type ApiKeyCreditsBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyCreditsBalance to fetch.
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyCreditsBalances to fetch.
+     */
+    orderBy?: ApiKeyCreditsBalanceOrderByWithRelationInput | ApiKeyCreditsBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApiKeyCreditsBalances.
+     */
+    cursor?: ApiKeyCreditsBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyCreditsBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyCreditsBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApiKeyCreditsBalances.
+     */
+    distinct?: ApiKeyCreditsBalanceScalarFieldEnum | ApiKeyCreditsBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyCreditsBalance findMany
+   */
+  export type ApiKeyCreditsBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which ApiKeyCreditsBalances to fetch.
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApiKeyCreditsBalances to fetch.
+     */
+    orderBy?: ApiKeyCreditsBalanceOrderByWithRelationInput | ApiKeyCreditsBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApiKeyCreditsBalances.
+     */
+    cursor?: ApiKeyCreditsBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApiKeyCreditsBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApiKeyCreditsBalances.
+     */
+    skip?: number
+    distinct?: ApiKeyCreditsBalanceScalarFieldEnum | ApiKeyCreditsBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * ApiKeyCreditsBalance create
+   */
+  export type ApiKeyCreditsBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApiKeyCreditsBalance.
+     */
+    data: XOR<ApiKeyCreditsBalanceCreateInput, ApiKeyCreditsBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * ApiKeyCreditsBalance createMany
+   */
+  export type ApiKeyCreditsBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApiKeyCreditsBalances.
+     */
+    data: ApiKeyCreditsBalanceCreateManyInput | ApiKeyCreditsBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApiKeyCreditsBalance createManyAndReturn
+   */
+  export type ApiKeyCreditsBalanceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApiKeyCreditsBalances.
+     */
+    data: ApiKeyCreditsBalanceCreateManyInput | ApiKeyCreditsBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiKeyCreditsBalance update
+   */
+  export type ApiKeyCreditsBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApiKeyCreditsBalance.
+     */
+    data: XOR<ApiKeyCreditsBalanceUpdateInput, ApiKeyCreditsBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which ApiKeyCreditsBalance to update.
+     */
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyCreditsBalance updateMany
+   */
+  export type ApiKeyCreditsBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApiKeyCreditsBalances.
+     */
+    data: XOR<ApiKeyCreditsBalanceUpdateManyMutationInput, ApiKeyCreditsBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiKeyCreditsBalances to update
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * Limit how many ApiKeyCreditsBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiKeyCreditsBalance updateManyAndReturn
+   */
+  export type ApiKeyCreditsBalanceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * The data used to update ApiKeyCreditsBalances.
+     */
+    data: XOR<ApiKeyCreditsBalanceUpdateManyMutationInput, ApiKeyCreditsBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which ApiKeyCreditsBalances to update
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * Limit how many ApiKeyCreditsBalances to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApiKeyCreditsBalance upsert
+   */
+  export type ApiKeyCreditsBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApiKeyCreditsBalance to update in case it exists.
+     */
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+    /**
+     * In case the ApiKeyCreditsBalance found by the `where` argument doesn't exist, create a new ApiKeyCreditsBalance with this data.
+     */
+    create: XOR<ApiKeyCreditsBalanceCreateInput, ApiKeyCreditsBalanceUncheckedCreateInput>
+    /**
+     * In case the ApiKeyCreditsBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApiKeyCreditsBalanceUpdateInput, ApiKeyCreditsBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * ApiKeyCreditsBalance delete
+   */
+  export type ApiKeyCreditsBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which ApiKeyCreditsBalance to delete.
+     */
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+  }
+
+  /**
+   * ApiKeyCreditsBalance deleteMany
+   */
+  export type ApiKeyCreditsBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApiKeyCreditsBalances to delete
+     */
+    where?: ApiKeyCreditsBalanceWhereInput
+    /**
+     * Limit how many ApiKeyCreditsBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApiKeyCreditsBalance without action
+   */
+  export type ApiKeyCreditsBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKeyCreditsBalance
+     */
+    select?: ApiKeyCreditsBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKeyCreditsBalance
+     */
+    omit?: ApiKeyCreditsBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyCreditsBalanceInclude<ExtArgs> | null
   }
 
 
@@ -9178,7 +10402,7 @@ export namespace Prisma {
     statusCode: number
     ipAddress: string | null
     userAgent: string | null
-    apiKeyId: string
+    apiKeyId: string | null
     _count: ApiUsageLogCountAggregateOutputType | null
     _avg: ApiUsageLogAvgAggregateOutputType | null
     _sum: ApiUsageLogSumAggregateOutputType | null
@@ -9209,7 +10433,7 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     apiKeyId?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }, ExtArgs["result"]["apiUsageLog"]>
 
   export type ApiUsageLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9221,7 +10445,7 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     apiKeyId?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }, ExtArgs["result"]["apiUsageLog"]>
 
   export type ApiUsageLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9233,7 +10457,7 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     apiKeyId?: boolean
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }, ExtArgs["result"]["apiUsageLog"]>
 
   export type ApiUsageLogSelectScalar = {
@@ -9249,19 +10473,19 @@ export namespace Prisma {
 
   export type ApiUsageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "timestamp" | "endpoint" | "params" | "statusCode" | "ipAddress" | "userAgent" | "apiKeyId", ExtArgs["result"]["apiUsageLog"]>
   export type ApiUsageLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }
   export type ApiUsageLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }
   export type ApiUsageLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    apiKey?: boolean | ApiKeyDefaultArgs<ExtArgs>
+    apiKey?: boolean | ApiUsageLog$apiKeyArgs<ExtArgs>
   }
 
   export type $ApiUsageLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ApiUsageLog"
     objects: {
-      apiKey: Prisma.$ApiKeyPayload<ExtArgs>
+      apiKey: Prisma.$ApiKeyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9271,7 +10495,7 @@ export namespace Prisma {
       statusCode: number
       ipAddress: string | null
       userAgent: string | null
-      apiKeyId: string
+      apiKeyId: string | null
     }, ExtArgs["result"]["apiUsageLog"]>
     composites: {}
   }
@@ -9666,7 +10890,7 @@ export namespace Prisma {
    */
   export interface Prisma__ApiUsageLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    apiKey<T extends ApiKeyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ApiKeyDefaultArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    apiKey<T extends ApiUsageLog$apiKeyArgs<ExtArgs> = {}>(args?: Subset<T, ApiUsageLog$apiKeyArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10097,6 +11321,25 @@ export namespace Prisma {
      * Limit how many ApiUsageLogs to delete.
      */
     limit?: number
+  }
+
+  /**
+   * ApiUsageLog.apiKey
+   */
+  export type ApiUsageLog$apiKeyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKey
+     */
+    select?: ApiKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKey
+     */
+    omit?: ApiKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyInclude<ExtArgs> | null
+    where?: ApiKeyWhereInput
   }
 
   /**
@@ -15572,6 +16815,17 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const ApiKeyCreditsBalanceScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    credits: 'credits',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ApiKeyCreditsBalanceScalarFieldEnum = (typeof ApiKeyCreditsBalanceScalarFieldEnum)[keyof typeof ApiKeyCreditsBalanceScalarFieldEnum]
+
+
   export const SubscriptionScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -15881,6 +17135,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestListRelationFilter
     passwordResets?: PasswordResetSessionListRelationFilter
     sessions?: SessionListRelationFilter
+    creditsBalance?: ApiKeyCreditsBalanceListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15899,6 +17154,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestOrderByRelationAggregateInput
     passwordResets?: PasswordResetSessionOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    creditsBalance?: ApiKeyCreditsBalanceOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15920,6 +17176,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestListRelationFilter
     passwordResets?: PasswordResetSessionListRelationFilter
     sessions?: SessionListRelationFilter
+    creditsBalance?: ApiKeyCreditsBalanceListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -15948,6 +17205,63 @@ export namespace Prisma {
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     totpKey?: BytesNullableWithAggregatesFilter<"User"> | Uint8Array | null
     recoveryCode?: BytesWithAggregatesFilter<"User"> | Uint8Array
+  }
+
+  export type ApiKeyCreditsBalanceWhereInput = {
+    AND?: ApiKeyCreditsBalanceWhereInput | ApiKeyCreditsBalanceWhereInput[]
+    OR?: ApiKeyCreditsBalanceWhereInput[]
+    NOT?: ApiKeyCreditsBalanceWhereInput | ApiKeyCreditsBalanceWhereInput[]
+    id?: StringFilter<"ApiKeyCreditsBalance"> | string
+    userId?: IntFilter<"ApiKeyCreditsBalance"> | number
+    credits?: IntFilter<"ApiKeyCreditsBalance"> | number
+    createdAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ApiKeyCreditsBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    credits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ApiKeyCreditsBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: number
+    AND?: ApiKeyCreditsBalanceWhereInput | ApiKeyCreditsBalanceWhereInput[]
+    OR?: ApiKeyCreditsBalanceWhereInput[]
+    NOT?: ApiKeyCreditsBalanceWhereInput | ApiKeyCreditsBalanceWhereInput[]
+    credits?: IntFilter<"ApiKeyCreditsBalance"> | number
+    createdAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "id" | "userId">
+
+  export type ApiKeyCreditsBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    credits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ApiKeyCreditsBalanceCountOrderByAggregateInput
+    _avg?: ApiKeyCreditsBalanceAvgOrderByAggregateInput
+    _max?: ApiKeyCreditsBalanceMaxOrderByAggregateInput
+    _min?: ApiKeyCreditsBalanceMinOrderByAggregateInput
+    _sum?: ApiKeyCreditsBalanceSumOrderByAggregateInput
+  }
+
+  export type ApiKeyCreditsBalanceScalarWhereWithAggregatesInput = {
+    AND?: ApiKeyCreditsBalanceScalarWhereWithAggregatesInput | ApiKeyCreditsBalanceScalarWhereWithAggregatesInput[]
+    OR?: ApiKeyCreditsBalanceScalarWhereWithAggregatesInput[]
+    NOT?: ApiKeyCreditsBalanceScalarWhereWithAggregatesInput | ApiKeyCreditsBalanceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ApiKeyCreditsBalance"> | string
+    userId?: IntWithAggregatesFilter<"ApiKeyCreditsBalance"> | number
+    credits?: IntWithAggregatesFilter<"ApiKeyCreditsBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ApiKeyCreditsBalance"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ApiKeyCreditsBalance"> | Date | string
   }
 
   export type SubscriptionWhereInput = {
@@ -16297,8 +17611,8 @@ export namespace Prisma {
     statusCode?: IntFilter<"ApiUsageLog"> | number
     ipAddress?: StringNullableFilter<"ApiUsageLog"> | string | null
     userAgent?: StringNullableFilter<"ApiUsageLog"> | string | null
-    apiKeyId?: StringFilter<"ApiUsageLog"> | string
-    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+    apiKeyId?: StringNullableFilter<"ApiUsageLog"> | string | null
+    apiKey?: XOR<ApiKeyNullableScalarRelationFilter, ApiKeyWhereInput> | null
   }
 
   export type ApiUsageLogOrderByWithRelationInput = {
@@ -16309,7 +17623,7 @@ export namespace Prisma {
     statusCode?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    apiKeyId?: SortOrder
+    apiKeyId?: SortOrderInput | SortOrder
     apiKey?: ApiKeyOrderByWithRelationInput
   }
 
@@ -16324,8 +17638,8 @@ export namespace Prisma {
     statusCode?: IntFilter<"ApiUsageLog"> | number
     ipAddress?: StringNullableFilter<"ApiUsageLog"> | string | null
     userAgent?: StringNullableFilter<"ApiUsageLog"> | string | null
-    apiKeyId?: StringFilter<"ApiUsageLog"> | string
-    apiKey?: XOR<ApiKeyScalarRelationFilter, ApiKeyWhereInput>
+    apiKeyId?: StringNullableFilter<"ApiUsageLog"> | string | null
+    apiKey?: XOR<ApiKeyNullableScalarRelationFilter, ApiKeyWhereInput> | null
   }, "id">
 
   export type ApiUsageLogOrderByWithAggregationInput = {
@@ -16336,7 +17650,7 @@ export namespace Prisma {
     statusCode?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    apiKeyId?: SortOrder
+    apiKeyId?: SortOrderInput | SortOrder
     _count?: ApiUsageLogCountOrderByAggregateInput
     _avg?: ApiUsageLogAvgOrderByAggregateInput
     _max?: ApiUsageLogMaxOrderByAggregateInput
@@ -16355,7 +17669,7 @@ export namespace Prisma {
     statusCode?: IntWithAggregatesFilter<"ApiUsageLog"> | number
     ipAddress?: StringNullableWithAggregatesFilter<"ApiUsageLog"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"ApiUsageLog"> | string | null
-    apiKeyId?: StringWithAggregatesFilter<"ApiUsageLog"> | string
+    apiKeyId?: StringNullableWithAggregatesFilter<"ApiUsageLog"> | string | null
   }
 
   export type TimetableCacheWhereInput = {
@@ -16672,6 +17986,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16690,6 +18005,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16707,6 +18023,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16725,6 +18042,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -16754,6 +18072,61 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+  }
+
+  export type ApiKeyCreditsBalanceCreateInput = {
+    id?: string
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCreditsBalanceInput
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedCreateInput = {
+    id?: string
+    userId: number
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCreditsBalanceNestedInput
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyCreditsBalanceCreateManyInput = {
+    id?: string
+    userId: number
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriptionCreateInput = {
@@ -17110,7 +18483,7 @@ export namespace Prisma {
     statusCode: number
     ipAddress?: string | null
     userAgent?: string | null
-    apiKey: ApiKeyCreateNestedOneWithoutUsageLogsInput
+    apiKey?: ApiKeyCreateNestedOneWithoutUsageLogsInput
   }
 
   export type ApiUsageLogUncheckedCreateInput = {
@@ -17121,7 +18494,7 @@ export namespace Prisma {
     statusCode: number
     ipAddress?: string | null
     userAgent?: string | null
-    apiKeyId: string
+    apiKeyId?: string | null
   }
 
   export type ApiUsageLogUpdateInput = {
@@ -17132,7 +18505,7 @@ export namespace Prisma {
     statusCode?: IntFieldUpdateOperationsInput | number
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    apiKey?: ApiKeyUpdateOneRequiredWithoutUsageLogsNestedInput
+    apiKey?: ApiKeyUpdateOneWithoutUsageLogsNestedInput
   }
 
   export type ApiUsageLogUncheckedUpdateInput = {
@@ -17143,7 +18516,7 @@ export namespace Prisma {
     statusCode?: IntFieldUpdateOperationsInput | number
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    apiKeyId?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ApiUsageLogCreateManyInput = {
@@ -17154,7 +18527,7 @@ export namespace Prisma {
     statusCode: number
     ipAddress?: string | null
     userAgent?: string | null
-    apiKeyId: string
+    apiKeyId?: string | null
   }
 
   export type ApiUsageLogUpdateManyMutationInput = {
@@ -17175,7 +18548,7 @@ export namespace Prisma {
     statusCode?: IntFieldUpdateOperationsInput | number
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    apiKeyId?: StringFieldUpdateOperationsInput | string
+    apiKeyId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TimetableCacheCreateInput = {
@@ -17571,6 +18944,12 @@ export namespace Prisma {
     none?: SessionWhereInput
   }
 
+  export type ApiKeyCreditsBalanceListRelationFilter = {
+    every?: ApiKeyCreditsBalanceWhereInput
+    some?: ApiKeyCreditsBalanceWhereInput
+    none?: ApiKeyCreditsBalanceWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -17601,6 +18980,10 @@ export namespace Prisma {
   }
 
   export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApiKeyCreditsBalanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17720,6 +19103,54 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type ApiKeyCreditsBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    credits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ApiKeyCreditsBalanceAvgOrderByAggregateInput = {
+    userId?: SortOrder
+    credits?: SortOrder
+  }
+
+  export type ApiKeyCreditsBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    credits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ApiKeyCreditsBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    credits?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ApiKeyCreditsBalanceSumOrderByAggregateInput = {
+    userId?: SortOrder
+    credits?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type SubscriptionCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -17762,20 +19193,6 @@ export namespace Prisma {
 
   export type SubscriptionSumOrderByAggregateInput = {
     userId?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type SessionCountOrderByAggregateInput = {
@@ -18056,9 +19473,9 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type ApiKeyScalarRelationFilter = {
-    is?: ApiKeyWhereInput
-    isNot?: ApiKeyWhereInput
+  export type ApiKeyNullableScalarRelationFilter = {
+    is?: ApiKeyWhereInput | null
+    isNot?: ApiKeyWhereInput | null
   }
 
   export type ApiUsageLogCountOrderByAggregateInput = {
@@ -18290,6 +19707,11 @@ export namespace Prisma {
     user_id?: SortOrder
   }
 
+  export type ApiKeyScalarRelationFilter = {
+    is?: ApiKeyWhereInput
+    isNot?: ApiKeyWhereInput
+  }
+
   export type api_key_permissionCountOrderByAggregateInput = {
     id?: SortOrder
     api_key_id?: SortOrder
@@ -18363,6 +19785,13 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
+  export type ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput> | ApiKeyCreditsBalanceCreateWithoutUserInput[] | ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput | ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput[]
+    createMany?: ApiKeyCreditsBalanceCreateManyUserInputEnvelope
+    connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+  }
+
   export type SubscriptionUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
     connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
@@ -18416,6 +19845,13 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput> | ApiKeyCreditsBalanceCreateWithoutUserInput[] | ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput | ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput[]
+    createMany?: ApiKeyCreditsBalanceCreateManyUserInputEnvelope
+    connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -18542,6 +19978,20 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
+  export type ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput> | ApiKeyCreditsBalanceCreateWithoutUserInput[] | ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput | ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput[]
+    upsert?: ApiKeyCreditsBalanceUpsertWithWhereUniqueWithoutUserInput | ApiKeyCreditsBalanceUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiKeyCreditsBalanceCreateManyUserInputEnvelope
+    set?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    disconnect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    delete?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    update?: ApiKeyCreditsBalanceUpdateWithWhereUniqueWithoutUserInput | ApiKeyCreditsBalanceUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiKeyCreditsBalanceUpdateManyWithWhereWithoutUserInput | ApiKeyCreditsBalanceUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -18658,14 +20108,42 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutSubscriptionsInput = {
-    create?: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionsInput
+  export type ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput> | ApiKeyCreditsBalanceCreateWithoutUserInput[] | ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput | ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput[]
+    upsert?: ApiKeyCreditsBalanceUpsertWithWhereUniqueWithoutUserInput | ApiKeyCreditsBalanceUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiKeyCreditsBalanceCreateManyUserInputEnvelope
+    set?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    disconnect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    delete?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+    update?: ApiKeyCreditsBalanceUpdateWithWhereUniqueWithoutUserInput | ApiKeyCreditsBalanceUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiKeyCreditsBalanceUpdateManyWithWhereWithoutUserInput | ApiKeyCreditsBalanceUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCreditsBalanceInput = {
+    create?: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreditsBalanceInput
     connect?: UserWhereUniqueInput
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type UserUpdateOneRequiredWithoutCreditsBalanceNestedInput = {
+    create?: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreditsBalanceInput
+    upsert?: UserUpsertWithoutCreditsBalanceInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreditsBalanceInput, UserUpdateWithoutCreditsBalanceInput>, UserUncheckedUpdateWithoutCreditsBalanceInput>
+  }
+
+  export type UserCreateNestedOneWithoutSubscriptionsInput = {
+    create?: XOR<UserCreateWithoutSubscriptionsInput, UserUncheckedCreateWithoutSubscriptionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
@@ -18840,10 +20318,12 @@ export namespace Prisma {
     connect?: ApiKeyWhereUniqueInput
   }
 
-  export type ApiKeyUpdateOneRequiredWithoutUsageLogsNestedInput = {
+  export type ApiKeyUpdateOneWithoutUsageLogsNestedInput = {
     create?: XOR<ApiKeyCreateWithoutUsageLogsInput, ApiKeyUncheckedCreateWithoutUsageLogsInput>
     connectOrCreate?: ApiKeyCreateOrConnectWithoutUsageLogsInput
     upsert?: ApiKeyUpsertWithoutUsageLogsInput
+    disconnect?: ApiKeyWhereInput | boolean
+    delete?: ApiKeyWhereInput | boolean
     connect?: ApiKeyWhereUniqueInput
     update?: XOR<XOR<ApiKeyUpdateToOneWithWhereWithoutUsageLogsInput, ApiKeyUpdateWithoutUsageLogsInput>, ApiKeyUncheckedUpdateWithoutUsageLogsInput>
   }
@@ -19405,6 +20885,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ApiKeyCreditsBalanceCreateWithoutUserInput = {
+    id?: string
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput = {
+    id?: string
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput = {
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+    create: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiKeyCreditsBalanceCreateManyUserInputEnvelope = {
+    data: ApiKeyCreditsBalanceCreateManyUserInput | ApiKeyCreditsBalanceCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SubscriptionUpsertWithoutUserInput = {
     update: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
     create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
@@ -19637,6 +21141,119 @@ export namespace Prisma {
     twoFactorVerified?: BoolFilter<"Session"> | boolean
   }
 
+  export type ApiKeyCreditsBalanceUpsertWithWhereUniqueWithoutUserInput = {
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+    update: XOR<ApiKeyCreditsBalanceUpdateWithoutUserInput, ApiKeyCreditsBalanceUncheckedUpdateWithoutUserInput>
+    create: XOR<ApiKeyCreditsBalanceCreateWithoutUserInput, ApiKeyCreditsBalanceUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiKeyCreditsBalanceUpdateWithWhereUniqueWithoutUserInput = {
+    where: ApiKeyCreditsBalanceWhereUniqueInput
+    data: XOR<ApiKeyCreditsBalanceUpdateWithoutUserInput, ApiKeyCreditsBalanceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ApiKeyCreditsBalanceUpdateManyWithWhereWithoutUserInput = {
+    where: ApiKeyCreditsBalanceScalarWhereInput
+    data: XOR<ApiKeyCreditsBalanceUpdateManyMutationInput, ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ApiKeyCreditsBalanceScalarWhereInput = {
+    AND?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
+    OR?: ApiKeyCreditsBalanceScalarWhereInput[]
+    NOT?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
+    id?: StringFilter<"ApiKeyCreditsBalance"> | string
+    userId?: IntFilter<"ApiKeyCreditsBalance"> | number
+    credits?: IntFilter<"ApiKeyCreditsBalance"> | number
+    createdAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
+  }
+
+  export type UserCreateWithoutCreditsBalanceInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCreditsBalanceInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCreditsBalanceInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
+  }
+
+  export type UserUpsertWithoutCreditsBalanceInput = {
+    update: XOR<UserUpdateWithoutCreditsBalanceInput, UserUncheckedUpdateWithoutCreditsBalanceInput>
+    create: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreditsBalanceInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreditsBalanceInput, UserUncheckedUpdateWithoutCreditsBalanceInput>
+  }
+
+  export type UserUpdateWithoutCreditsBalanceInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreditsBalanceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutSubscriptionsInput = {
     email: string
     username: string
@@ -19651,6 +21268,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -19668,6 +21286,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -19700,6 +21319,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -19717,6 +21337,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -19733,6 +21354,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -19750,6 +21372,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -19782,6 +21405,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -19799,6 +21423,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailVerificationsInput = {
@@ -19815,6 +21440,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailVerificationsInput = {
@@ -19832,6 +21458,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailVerificationsInput = {
@@ -19864,6 +21491,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailVerificationsInput = {
@@ -19881,6 +21509,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasswordResetsInput = {
@@ -19897,6 +21526,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetsInput = {
@@ -19914,6 +21544,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -19946,6 +21577,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetsInput = {
@@ -19963,6 +21595,7 @@ export namespace Prisma {
     calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApiKeysInput = {
@@ -19979,6 +21612,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApiKeysInput = {
@@ -19996,6 +21630,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApiKeysInput = {
@@ -20078,6 +21713,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApiKeysInput = {
@@ -20095,6 +21731,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput = {
@@ -20149,7 +21786,7 @@ export namespace Prisma {
     statusCode?: IntFilter<"ApiUsageLog"> | number
     ipAddress?: StringNullableFilter<"ApiUsageLog"> | string | null
     userAgent?: StringNullableFilter<"ApiUsageLog"> | string | null
-    apiKeyId?: StringFilter<"ApiUsageLog"> | string
+    apiKeyId?: StringNullableFilter<"ApiUsageLog"> | string | null
   }
 
   export type ApiKeyCreateWithoutUsageLogsInput = {
@@ -20234,6 +21871,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCalendarAccountsInput = {
@@ -20251,6 +21889,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCalendarAccountsInput = {
@@ -20283,6 +21922,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarAccountsInput = {
@@ -20300,6 +21940,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApi_credits_purchaseInput = {
@@ -20316,6 +21957,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApi_credits_purchaseInput = {
@@ -20333,6 +21975,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApi_credits_purchaseInput = {
@@ -20365,6 +22008,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApi_credits_purchaseInput = {
@@ -20382,6 +22026,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApi_credits_usageInput = {
@@ -20398,6 +22043,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApi_credits_usageInput = {
@@ -20415,6 +22061,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApi_credits_usageInput = {
@@ -20447,6 +22094,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApi_credits_usageInput = {
@@ -20464,6 +22112,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ApiKeyCreateWithoutApi_key_permissionInput = {
@@ -20591,6 +22240,13 @@ export namespace Prisma {
     id?: string
     expiresAt: Date | string
     twoFactorVerified?: boolean
+  }
+
+  export type ApiKeyCreditsBalanceCreateManyUserInput = {
+    id?: string
+    credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type api_credits_purchaseUpdateWithoutUserInput = {
@@ -20771,6 +22427,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     twoFactorVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ApiKeyCreditsBalanceUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type api_key_permissionCreateManyApi_keyInput = {

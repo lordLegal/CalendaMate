@@ -111,61 +111,51 @@ export async function createCreditPurchaseSessionAction(
 /**
  * Erstellt einen neuen API-Key, verschlüsselt in der DB, zeigt rawKey im Popup.
  */
-export async function createApiKeyAction(
-  formData: FormData
-): Promise<ActionResult> {
+export async function createApiKeyAction(formData: FormData): Promise<ActionResult> {
   const { user } = await getCurrentSession();
-  if (!user) {
-    return { success: false, message: "Nicht authentifiziert" };
-  }
+  if (!user) throw new Error("Nicht authentifiziert");
 
   const nameRaw = formData.get("name");
-  if (typeof nameRaw !== "string" || nameRaw.trim().length < 3) {
+  const name = typeof nameRaw === "string" ? nameRaw.trim() : "";
+  if (name.length < 3) {
     return { success: false, message: "Ungültiger Name" };
   }
-  const name = nameRaw.trim();
 
-  const descRaw = formData.get("description");
-  const description = typeof descRaw === "string" && descRaw.trim() !== "" 
-    ? descRaw.trim() 
-    : null;
-
-  // Duplikat prüfen
-  const exists = await prisma.apiKey.findFirst({
-    where: { ownerId: user.id, name },
+  // 1) Erst mal einen Platzhalter-Datensatz anlegen (ohne key)
+  const placeholder = await prisma.apiKey.create({
+    data: {
+      ownerId: user.id ,
+      name,
+      description: formData.get("description") as string | null,
+      unlimited:  false,
+      key:       "",              // leer, kommt gleich
+    },
   });
-  if (exists) {
-    return { success: false, message: "API-Key-Name bereits vergeben" };
-  }
 
-  // 1) Roh-Key und Salt erzeugen
-  const rawKey = crypto.randomBytes(32).toString("hex");          // 256 Bit Zufall :contentReference[oaicite:8]{index=8}
-  const salt   = crypto.randomBytes(16).toString("hex");          // 128 Bit Salt  :contentReference[oaicite:9]{index=9}
-
-  // 2) HMAC-SHA256-Hash erstellen
+  // 2) rawSecret + Salt + HMAC erzeugen
+  const rawSecret = crypto.randomBytes(32).toString("hex");  // 64 Zeichen
+  const salt      = crypto.randomBytes(16).toString("hex");  // 32 Zeichen
   const hmacSecret = process.env.HMAC_SECRET;
   if (!hmacSecret) {
-    throw new Error("HMAC_SECRET environment variable is not set.");
+    throw new Error("HMAC_SECRET is not defined");
   }
   const hmac = crypto
     .createHmac("sha256", hmacSecret)
     .update(salt)
-    .update(rawKey)
-    .digest("hex");                                              // HMAC schützt vor Length-Extension :contentReference[oaicite:10]{index=10}
-  const storedKey = `${salt}:${hmac}`;
+    .update(rawSecret)
+    .digest("hex");
 
-  // 3) Speichern (nur Salt:Hash)
-  const newKey = await prisma.apiKey.create({
-    data: {
-      owner:      { connect: { id: user.id } },
-      name,
-      description,
-      key:        storedKey,
-      unlimited:  false,
-    },
+  const stored = `${salt}:${hmac}`;
+
+  // 3) Datensatz mit dem echten Hash updaten
+  const newKey = await prisma.apiKey.update({
+    where: { id: placeholder.id },
+    data:  { key: stored },
   });
 
-  // 4) UI aktualisieren & Rückgabe des Klartext-Keys
+  // 4) rawKey zurückgeben: "<dbId>.<secret>"
+  const rawKey = `${newKey.id.toString()}.${rawSecret}`;
+
   revalidatePath("/settings/api");
   return {
     success: true,
@@ -173,7 +163,7 @@ export async function createApiKeyAction(
     apiKey: {
       id:        newKey.id,
       name:      newKey.name,
-      rawKey,                                             
+      rawKey,                        
       createdAt: newKey.createdAt,
       ownerId:   user.id,
     },
