@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model LearningAccount
+ * 
+ */
+export type LearningAccount = $Result.DefaultSelection<Prisma.$LearningAccountPayload>
+/**
  * Model ApiKeyCreditsBalance
  * 
  */
@@ -83,7 +88,15 @@ export type api_key_permission = $Result.DefaultSelection<Prisma.$api_key_permis
  * Enums
  */
 export namespace $Enums {
-  export const CalendarProvider: {
+  export const AccountType: {
+  WEBUNTIS: 'WEBUNTIS',
+  MOODLE: 'MOODLE'
+};
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
+
+export const CalendarProvider: {
   GOOGLE: 'GOOGLE',
   MICROSOFT: 'MICROSOFT',
   ICLOUD: 'ICLOUD'
@@ -92,6 +105,10 @@ export namespace $Enums {
 export type CalendarProvider = (typeof CalendarProvider)[keyof typeof CalendarProvider]
 
 }
+
+export type AccountType = $Enums.AccountType
+
+export const AccountType: typeof $Enums.AccountType
 
 export type CalendarProvider = $Enums.CalendarProvider
 
@@ -231,6 +248,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.learningAccount`: Exposes CRUD operations for the **LearningAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LearningAccounts
+    * const learningAccounts = await prisma.learningAccount.findMany()
+    * ```
+    */
+  get learningAccount(): Prisma.LearningAccountDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.apiKeyCreditsBalance`: Exposes CRUD operations for the **ApiKeyCreditsBalance** model.
@@ -792,6 +819,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    LearningAccount: 'LearningAccount',
     ApiKeyCreditsBalance: 'ApiKeyCreditsBalance',
     Subscription: 'Subscription',
     Session: 'Session',
@@ -822,7 +850,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "apiKeyCreditsBalance" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount" | "api_credits_purchase" | "api_credits_usage" | "api_key_permission"
+      modelProps: "user" | "learningAccount" | "apiKeyCreditsBalance" | "subscription" | "session" | "emailVerificationRequest" | "passwordResetSession" | "apiKey" | "apiUsageLog" | "timetableCache" | "calendarAccount" | "api_credits_purchase" | "api_credits_usage" | "api_key_permission"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -897,6 +925,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      LearningAccount: {
+        payload: Prisma.$LearningAccountPayload<ExtArgs>
+        fields: Prisma.LearningAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LearningAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LearningAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.LearningAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LearningAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          findMany: {
+            args: Prisma.LearningAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>[]
+          }
+          create: {
+            args: Prisma.LearningAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          createMany: {
+            args: Prisma.LearningAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LearningAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.LearningAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          update: {
+            args: Prisma.LearningAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.LearningAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LearningAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LearningAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.LearningAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.LearningAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLearningAccount>
+          }
+          groupBy: {
+            args: Prisma.LearningAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LearningAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LearningAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<LearningAccountCountAggregateOutputType> | number
           }
         }
       }
@@ -1873,6 +1975,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    learningAccount?: LearningAccountOmit
     apiKeyCreditsBalance?: ApiKeyCreditsBalanceOmit
     subscription?: SubscriptionOmit
     session?: SessionOmit
@@ -1987,6 +2090,7 @@ export namespace Prisma {
     passwordResets: number
     sessions: number
     creditsBalance: number
+    LearningAccounts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1998,6 +2102,7 @@ export namespace Prisma {
     passwordResets?: boolean | UserCountOutputTypeCountPasswordResetsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     creditsBalance?: boolean | UserCountOutputTypeCountCreditsBalanceArgs
+    LearningAccounts?: boolean | UserCountOutputTypeCountLearningAccountsArgs
   }
 
   // Custom InputTypes
@@ -2065,6 +2170,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCreditsBalanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ApiKeyCreditsBalanceWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLearningAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LearningAccountWhereInput
   }
 
 
@@ -2335,6 +2447,7 @@ export namespace Prisma {
     passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     creditsBalance?: boolean | User$creditsBalanceArgs<ExtArgs>
+    LearningAccounts?: boolean | User$LearningAccountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2379,6 +2492,7 @@ export namespace Prisma {
     passwordResets?: boolean | User$passwordResetsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     creditsBalance?: boolean | User$creditsBalanceArgs<ExtArgs>
+    LearningAccounts?: boolean | User$LearningAccountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2396,6 +2510,7 @@ export namespace Prisma {
       passwordResets: Prisma.$PasswordResetSessionPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       creditsBalance: Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>[]
+      LearningAccounts: Prisma.$LearningAccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2808,6 +2923,7 @@ export namespace Prisma {
     passwordResets<T extends User$passwordResetsArgs<ExtArgs> = {}>(args?: Subset<T, User$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     creditsBalance<T extends User$creditsBalanceArgs<ExtArgs> = {}>(args?: Subset<T, User$creditsBalanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyCreditsBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LearningAccounts<T extends User$LearningAccountsArgs<ExtArgs> = {}>(args?: Subset<T, User$LearningAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3443,6 +3559,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.LearningAccounts
+   */
+  export type User$LearningAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    where?: LearningAccountWhereInput
+    orderBy?: LearningAccountOrderByWithRelationInput | LearningAccountOrderByWithRelationInput[]
+    cursor?: LearningAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LearningAccountScalarFieldEnum | LearningAccountScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3458,6 +3598,1154 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LearningAccount
+   */
+
+  export type AggregateLearningAccount = {
+    _count: LearningAccountCountAggregateOutputType | null
+    _avg: LearningAccountAvgAggregateOutputType | null
+    _sum: LearningAccountSumAggregateOutputType | null
+    _min: LearningAccountMinAggregateOutputType | null
+    _max: LearningAccountMaxAggregateOutputType | null
+  }
+
+  export type LearningAccountAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type LearningAccountSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type LearningAccountMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    type: $Enums.AccountType | null
+    username: string | null
+    passwordHash: string | null
+    school: string | null
+    baseUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LearningAccountMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    type: $Enums.AccountType | null
+    username: string | null
+    passwordHash: string | null
+    school: string | null
+    baseUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LearningAccountCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    username: number
+    passwordHash: number
+    school: number
+    baseUrl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LearningAccountAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type LearningAccountSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type LearningAccountMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    username?: true
+    passwordHash?: true
+    school?: true
+    baseUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LearningAccountMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    username?: true
+    passwordHash?: true
+    school?: true
+    baseUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LearningAccountCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    username?: true
+    passwordHash?: true
+    school?: true
+    baseUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LearningAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LearningAccount to aggregate.
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LearningAccounts to fetch.
+     */
+    orderBy?: LearningAccountOrderByWithRelationInput | LearningAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LearningAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LearningAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LearningAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LearningAccounts
+    **/
+    _count?: true | LearningAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LearningAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LearningAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LearningAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LearningAccountMaxAggregateInputType
+  }
+
+  export type GetLearningAccountAggregateType<T extends LearningAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateLearningAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLearningAccount[P]>
+      : GetScalarType<T[P], AggregateLearningAccount[P]>
+  }
+
+
+
+
+  export type LearningAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LearningAccountWhereInput
+    orderBy?: LearningAccountOrderByWithAggregationInput | LearningAccountOrderByWithAggregationInput[]
+    by: LearningAccountScalarFieldEnum[] | LearningAccountScalarFieldEnum
+    having?: LearningAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LearningAccountCountAggregateInputType | true
+    _avg?: LearningAccountAvgAggregateInputType
+    _sum?: LearningAccountSumAggregateInputType
+    _min?: LearningAccountMinAggregateInputType
+    _max?: LearningAccountMaxAggregateInputType
+  }
+
+  export type LearningAccountGroupByOutputType = {
+    id: number
+    userId: number
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt: Date
+    updatedAt: Date
+    _count: LearningAccountCountAggregateOutputType | null
+    _avg: LearningAccountAvgAggregateOutputType | null
+    _sum: LearningAccountSumAggregateOutputType | null
+    _min: LearningAccountMinAggregateOutputType | null
+    _max: LearningAccountMaxAggregateOutputType | null
+  }
+
+  type GetLearningAccountGroupByPayload<T extends LearningAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LearningAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LearningAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LearningAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], LearningAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LearningAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    username?: boolean
+    passwordHash?: boolean
+    school?: boolean
+    baseUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["learningAccount"]>
+
+  export type LearningAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    username?: boolean
+    passwordHash?: boolean
+    school?: boolean
+    baseUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["learningAccount"]>
+
+  export type LearningAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    username?: boolean
+    passwordHash?: boolean
+    school?: boolean
+    baseUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["learningAccount"]>
+
+  export type LearningAccountSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    username?: boolean
+    passwordHash?: boolean
+    school?: boolean
+    baseUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LearningAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "username" | "passwordHash" | "school" | "baseUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["learningAccount"]>
+  export type LearningAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LearningAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LearningAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LearningAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LearningAccount"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      type: $Enums.AccountType
+      username: string
+      passwordHash: string
+      school: string
+      baseUrl: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["learningAccount"]>
+    composites: {}
+  }
+
+  type LearningAccountGetPayload<S extends boolean | null | undefined | LearningAccountDefaultArgs> = $Result.GetResult<Prisma.$LearningAccountPayload, S>
+
+  type LearningAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LearningAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LearningAccountCountAggregateInputType | true
+    }
+
+  export interface LearningAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LearningAccount'], meta: { name: 'LearningAccount' } }
+    /**
+     * Find zero or one LearningAccount that matches the filter.
+     * @param {LearningAccountFindUniqueArgs} args - Arguments to find a LearningAccount
+     * @example
+     * // Get one LearningAccount
+     * const learningAccount = await prisma.learningAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LearningAccountFindUniqueArgs>(args: SelectSubset<T, LearningAccountFindUniqueArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LearningAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LearningAccountFindUniqueOrThrowArgs} args - Arguments to find a LearningAccount
+     * @example
+     * // Get one LearningAccount
+     * const learningAccount = await prisma.learningAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LearningAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, LearningAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LearningAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountFindFirstArgs} args - Arguments to find a LearningAccount
+     * @example
+     * // Get one LearningAccount
+     * const learningAccount = await prisma.learningAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LearningAccountFindFirstArgs>(args?: SelectSubset<T, LearningAccountFindFirstArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LearningAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountFindFirstOrThrowArgs} args - Arguments to find a LearningAccount
+     * @example
+     * // Get one LearningAccount
+     * const learningAccount = await prisma.learningAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LearningAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, LearningAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LearningAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LearningAccounts
+     * const learningAccounts = await prisma.learningAccount.findMany()
+     * 
+     * // Get first 10 LearningAccounts
+     * const learningAccounts = await prisma.learningAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const learningAccountWithIdOnly = await prisma.learningAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LearningAccountFindManyArgs>(args?: SelectSubset<T, LearningAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LearningAccount.
+     * @param {LearningAccountCreateArgs} args - Arguments to create a LearningAccount.
+     * @example
+     * // Create one LearningAccount
+     * const LearningAccount = await prisma.learningAccount.create({
+     *   data: {
+     *     // ... data to create a LearningAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends LearningAccountCreateArgs>(args: SelectSubset<T, LearningAccountCreateArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LearningAccounts.
+     * @param {LearningAccountCreateManyArgs} args - Arguments to create many LearningAccounts.
+     * @example
+     * // Create many LearningAccounts
+     * const learningAccount = await prisma.learningAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LearningAccountCreateManyArgs>(args?: SelectSubset<T, LearningAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LearningAccounts and returns the data saved in the database.
+     * @param {LearningAccountCreateManyAndReturnArgs} args - Arguments to create many LearningAccounts.
+     * @example
+     * // Create many LearningAccounts
+     * const learningAccount = await prisma.learningAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LearningAccounts and only return the `id`
+     * const learningAccountWithIdOnly = await prisma.learningAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LearningAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, LearningAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LearningAccount.
+     * @param {LearningAccountDeleteArgs} args - Arguments to delete one LearningAccount.
+     * @example
+     * // Delete one LearningAccount
+     * const LearningAccount = await prisma.learningAccount.delete({
+     *   where: {
+     *     // ... filter to delete one LearningAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LearningAccountDeleteArgs>(args: SelectSubset<T, LearningAccountDeleteArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LearningAccount.
+     * @param {LearningAccountUpdateArgs} args - Arguments to update one LearningAccount.
+     * @example
+     * // Update one LearningAccount
+     * const learningAccount = await prisma.learningAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LearningAccountUpdateArgs>(args: SelectSubset<T, LearningAccountUpdateArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LearningAccounts.
+     * @param {LearningAccountDeleteManyArgs} args - Arguments to filter LearningAccounts to delete.
+     * @example
+     * // Delete a few LearningAccounts
+     * const { count } = await prisma.learningAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LearningAccountDeleteManyArgs>(args?: SelectSubset<T, LearningAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LearningAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LearningAccounts
+     * const learningAccount = await prisma.learningAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LearningAccountUpdateManyArgs>(args: SelectSubset<T, LearningAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LearningAccounts and returns the data updated in the database.
+     * @param {LearningAccountUpdateManyAndReturnArgs} args - Arguments to update many LearningAccounts.
+     * @example
+     * // Update many LearningAccounts
+     * const learningAccount = await prisma.learningAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LearningAccounts and only return the `id`
+     * const learningAccountWithIdOnly = await prisma.learningAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LearningAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, LearningAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LearningAccount.
+     * @param {LearningAccountUpsertArgs} args - Arguments to update or create a LearningAccount.
+     * @example
+     * // Update or create a LearningAccount
+     * const learningAccount = await prisma.learningAccount.upsert({
+     *   create: {
+     *     // ... data to create a LearningAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LearningAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LearningAccountUpsertArgs>(args: SelectSubset<T, LearningAccountUpsertArgs<ExtArgs>>): Prisma__LearningAccountClient<$Result.GetResult<Prisma.$LearningAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LearningAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountCountArgs} args - Arguments to filter LearningAccounts to count.
+     * @example
+     * // Count the number of LearningAccounts
+     * const count = await prisma.learningAccount.count({
+     *   where: {
+     *     // ... the filter for the LearningAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends LearningAccountCountArgs>(
+      args?: Subset<T, LearningAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LearningAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LearningAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LearningAccountAggregateArgs>(args: Subset<T, LearningAccountAggregateArgs>): Prisma.PrismaPromise<GetLearningAccountAggregateType<T>>
+
+    /**
+     * Group by LearningAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LearningAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LearningAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LearningAccountGroupByArgs['orderBy'] }
+        : { orderBy?: LearningAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LearningAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLearningAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LearningAccount model
+   */
+  readonly fields: LearningAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LearningAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LearningAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LearningAccount model
+   */
+  interface LearningAccountFieldRefs {
+    readonly id: FieldRef<"LearningAccount", 'Int'>
+    readonly userId: FieldRef<"LearningAccount", 'Int'>
+    readonly type: FieldRef<"LearningAccount", 'AccountType'>
+    readonly username: FieldRef<"LearningAccount", 'String'>
+    readonly passwordHash: FieldRef<"LearningAccount", 'String'>
+    readonly school: FieldRef<"LearningAccount", 'String'>
+    readonly baseUrl: FieldRef<"LearningAccount", 'String'>
+    readonly createdAt: FieldRef<"LearningAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"LearningAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LearningAccount findUnique
+   */
+  export type LearningAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which LearningAccount to fetch.
+     */
+    where: LearningAccountWhereUniqueInput
+  }
+
+  /**
+   * LearningAccount findUniqueOrThrow
+   */
+  export type LearningAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which LearningAccount to fetch.
+     */
+    where: LearningAccountWhereUniqueInput
+  }
+
+  /**
+   * LearningAccount findFirst
+   */
+  export type LearningAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which LearningAccount to fetch.
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LearningAccounts to fetch.
+     */
+    orderBy?: LearningAccountOrderByWithRelationInput | LearningAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LearningAccounts.
+     */
+    cursor?: LearningAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LearningAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LearningAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LearningAccounts.
+     */
+    distinct?: LearningAccountScalarFieldEnum | LearningAccountScalarFieldEnum[]
+  }
+
+  /**
+   * LearningAccount findFirstOrThrow
+   */
+  export type LearningAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which LearningAccount to fetch.
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LearningAccounts to fetch.
+     */
+    orderBy?: LearningAccountOrderByWithRelationInput | LearningAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LearningAccounts.
+     */
+    cursor?: LearningAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LearningAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LearningAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LearningAccounts.
+     */
+    distinct?: LearningAccountScalarFieldEnum | LearningAccountScalarFieldEnum[]
+  }
+
+  /**
+   * LearningAccount findMany
+   */
+  export type LearningAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which LearningAccounts to fetch.
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LearningAccounts to fetch.
+     */
+    orderBy?: LearningAccountOrderByWithRelationInput | LearningAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LearningAccounts.
+     */
+    cursor?: LearningAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LearningAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LearningAccounts.
+     */
+    skip?: number
+    distinct?: LearningAccountScalarFieldEnum | LearningAccountScalarFieldEnum[]
+  }
+
+  /**
+   * LearningAccount create
+   */
+  export type LearningAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LearningAccount.
+     */
+    data: XOR<LearningAccountCreateInput, LearningAccountUncheckedCreateInput>
+  }
+
+  /**
+   * LearningAccount createMany
+   */
+  export type LearningAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LearningAccounts.
+     */
+    data: LearningAccountCreateManyInput | LearningAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LearningAccount createManyAndReturn
+   */
+  export type LearningAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many LearningAccounts.
+     */
+    data: LearningAccountCreateManyInput | LearningAccountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LearningAccount update
+   */
+  export type LearningAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LearningAccount.
+     */
+    data: XOR<LearningAccountUpdateInput, LearningAccountUncheckedUpdateInput>
+    /**
+     * Choose, which LearningAccount to update.
+     */
+    where: LearningAccountWhereUniqueInput
+  }
+
+  /**
+   * LearningAccount updateMany
+   */
+  export type LearningAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LearningAccounts.
+     */
+    data: XOR<LearningAccountUpdateManyMutationInput, LearningAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which LearningAccounts to update
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * Limit how many LearningAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LearningAccount updateManyAndReturn
+   */
+  export type LearningAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update LearningAccounts.
+     */
+    data: XOR<LearningAccountUpdateManyMutationInput, LearningAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which LearningAccounts to update
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * Limit how many LearningAccounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LearningAccount upsert
+   */
+  export type LearningAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LearningAccount to update in case it exists.
+     */
+    where: LearningAccountWhereUniqueInput
+    /**
+     * In case the LearningAccount found by the `where` argument doesn't exist, create a new LearningAccount with this data.
+     */
+    create: XOR<LearningAccountCreateInput, LearningAccountUncheckedCreateInput>
+    /**
+     * In case the LearningAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LearningAccountUpdateInput, LearningAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * LearningAccount delete
+   */
+  export type LearningAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
+    /**
+     * Filter which LearningAccount to delete.
+     */
+    where: LearningAccountWhereUniqueInput
+  }
+
+  /**
+   * LearningAccount deleteMany
+   */
+  export type LearningAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LearningAccounts to delete
+     */
+    where?: LearningAccountWhereInput
+    /**
+     * Limit how many LearningAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LearningAccount without action
+   */
+  export type LearningAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LearningAccount
+     */
+    select?: LearningAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LearningAccount
+     */
+    omit?: LearningAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LearningAccountInclude<ExtArgs> | null
   }
 
 
@@ -16815,6 +18103,21 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const LearningAccountScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    username: 'username',
+    passwordHash: 'passwordHash',
+    school: 'school',
+    baseUrl: 'baseUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LearningAccountScalarFieldEnum = (typeof LearningAccountScalarFieldEnum)[keyof typeof LearningAccountScalarFieldEnum]
+
+
   export const ApiKeyCreditsBalanceScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -17058,6 +18361,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AccountType'
+   */
+  export type EnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType'>
+    
+
+
+  /**
+   * Reference to a field of type 'AccountType[]'
+   */
+  export type ListEnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -17136,6 +18453,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionListRelationFilter
     sessions?: SessionListRelationFilter
     creditsBalance?: ApiKeyCreditsBalanceListRelationFilter
+    LearningAccounts?: LearningAccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17155,6 +18473,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     creditsBalance?: ApiKeyCreditsBalanceOrderByRelationAggregateInput
+    LearningAccounts?: LearningAccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -17177,6 +18496,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionListRelationFilter
     sessions?: SessionListRelationFilter
     creditsBalance?: ApiKeyCreditsBalanceListRelationFilter
+    LearningAccounts?: LearningAccountListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -17205,6 +18525,84 @@ export namespace Prisma {
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     totpKey?: BytesNullableWithAggregatesFilter<"User"> | Uint8Array | null
     recoveryCode?: BytesWithAggregatesFilter<"User"> | Uint8Array
+  }
+
+  export type LearningAccountWhereInput = {
+    AND?: LearningAccountWhereInput | LearningAccountWhereInput[]
+    OR?: LearningAccountWhereInput[]
+    NOT?: LearningAccountWhereInput | LearningAccountWhereInput[]
+    id?: IntFilter<"LearningAccount"> | number
+    userId?: IntFilter<"LearningAccount"> | number
+    type?: EnumAccountTypeFilter<"LearningAccount"> | $Enums.AccountType
+    username?: StringFilter<"LearningAccount"> | string
+    passwordHash?: StringFilter<"LearningAccount"> | string
+    school?: StringFilter<"LearningAccount"> | string
+    baseUrl?: StringFilter<"LearningAccount"> | string
+    createdAt?: DateTimeFilter<"LearningAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"LearningAccount"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LearningAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    passwordHash?: SortOrder
+    school?: SortOrder
+    baseUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type LearningAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_type?: LearningAccountUserIdTypeCompoundUniqueInput
+    AND?: LearningAccountWhereInput | LearningAccountWhereInput[]
+    OR?: LearningAccountWhereInput[]
+    NOT?: LearningAccountWhereInput | LearningAccountWhereInput[]
+    userId?: IntFilter<"LearningAccount"> | number
+    type?: EnumAccountTypeFilter<"LearningAccount"> | $Enums.AccountType
+    username?: StringFilter<"LearningAccount"> | string
+    passwordHash?: StringFilter<"LearningAccount"> | string
+    school?: StringFilter<"LearningAccount"> | string
+    baseUrl?: StringFilter<"LearningAccount"> | string
+    createdAt?: DateTimeFilter<"LearningAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"LearningAccount"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_type">
+
+  export type LearningAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    passwordHash?: SortOrder
+    school?: SortOrder
+    baseUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LearningAccountCountOrderByAggregateInput
+    _avg?: LearningAccountAvgOrderByAggregateInput
+    _max?: LearningAccountMaxOrderByAggregateInput
+    _min?: LearningAccountMinOrderByAggregateInput
+    _sum?: LearningAccountSumOrderByAggregateInput
+  }
+
+  export type LearningAccountScalarWhereWithAggregatesInput = {
+    AND?: LearningAccountScalarWhereWithAggregatesInput | LearningAccountScalarWhereWithAggregatesInput[]
+    OR?: LearningAccountScalarWhereWithAggregatesInput[]
+    NOT?: LearningAccountScalarWhereWithAggregatesInput | LearningAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"LearningAccount"> | number
+    userId?: IntWithAggregatesFilter<"LearningAccount"> | number
+    type?: EnumAccountTypeWithAggregatesFilter<"LearningAccount"> | $Enums.AccountType
+    username?: StringWithAggregatesFilter<"LearningAccount"> | string
+    passwordHash?: StringWithAggregatesFilter<"LearningAccount"> | string
+    school?: StringWithAggregatesFilter<"LearningAccount"> | string
+    baseUrl?: StringWithAggregatesFilter<"LearningAccount"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LearningAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LearningAccount"> | Date | string
   }
 
   export type ApiKeyCreditsBalanceWhereInput = {
@@ -17987,6 +19385,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18006,6 +19405,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -18024,6 +19424,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18043,6 +19444,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18072,6 +19474,86 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
     recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+  }
+
+  export type LearningAccountCreateInput = {
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutLearningAccountsInput
+  }
+
+  export type LearningAccountUncheckedCreateInput = {
+    id?: number
+    userId: number
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LearningAccountUpdateInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLearningAccountsNestedInput
+  }
+
+  export type LearningAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LearningAccountCreateManyInput = {
+    id?: number
+    userId: number
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LearningAccountUpdateManyMutationInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LearningAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiKeyCreditsBalanceCreateInput = {
@@ -18950,6 +20432,12 @@ export namespace Prisma {
     none?: ApiKeyCreditsBalanceWhereInput
   }
 
+  export type LearningAccountListRelationFilter = {
+    every?: LearningAccountWhereInput
+    some?: LearningAccountWhereInput
+    none?: LearningAccountWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -18984,6 +20472,10 @@ export namespace Prisma {
   }
 
   export type ApiKeyCreditsBalanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LearningAccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19087,6 +20579,13 @@ export namespace Prisma {
     _max?: NestedBytesFilter<$PrismaModel>
   }
 
+  export type EnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -19101,6 +20600,81 @@ export namespace Prisma {
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type LearningAccountUserIdTypeCompoundUniqueInput = {
+    userId: number
+    type: $Enums.AccountType
+  }
+
+  export type LearningAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    passwordHash?: SortOrder
+    school?: SortOrder
+    baseUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LearningAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type LearningAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    passwordHash?: SortOrder
+    school?: SortOrder
+    baseUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LearningAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    passwordHash?: SortOrder
+    school?: SortOrder
+    baseUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LearningAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type EnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type ApiKeyCreditsBalanceCountOrderByAggregateInput = {
@@ -19135,20 +20709,6 @@ export namespace Prisma {
   export type ApiKeyCreditsBalanceSumOrderByAggregateInput = {
     userId?: SortOrder
     credits?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type SubscriptionCountOrderByAggregateInput = {
@@ -19792,6 +21352,13 @@ export namespace Prisma {
     connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
   }
 
+  export type LearningAccountCreateNestedManyWithoutUserInput = {
+    create?: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput> | LearningAccountCreateWithoutUserInput[] | LearningAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LearningAccountCreateOrConnectWithoutUserInput | LearningAccountCreateOrConnectWithoutUserInput[]
+    createMany?: LearningAccountCreateManyUserInputEnvelope
+    connect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+  }
+
   export type SubscriptionUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
     connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
@@ -19852,6 +21419,13 @@ export namespace Prisma {
     connectOrCreate?: ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput | ApiKeyCreditsBalanceCreateOrConnectWithoutUserInput[]
     createMany?: ApiKeyCreditsBalanceCreateManyUserInputEnvelope
     connect?: ApiKeyCreditsBalanceWhereUniqueInput | ApiKeyCreditsBalanceWhereUniqueInput[]
+  }
+
+  export type LearningAccountUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput> | LearningAccountCreateWithoutUserInput[] | LearningAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LearningAccountCreateOrConnectWithoutUserInput | LearningAccountCreateOrConnectWithoutUserInput[]
+    createMany?: LearningAccountCreateManyUserInputEnvelope
+    connect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -19992,6 +21566,20 @@ export namespace Prisma {
     deleteMany?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
   }
 
+  export type LearningAccountUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput> | LearningAccountCreateWithoutUserInput[] | LearningAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LearningAccountCreateOrConnectWithoutUserInput | LearningAccountCreateOrConnectWithoutUserInput[]
+    upsert?: LearningAccountUpsertWithWhereUniqueWithoutUserInput | LearningAccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LearningAccountCreateManyUserInputEnvelope
+    set?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    disconnect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    delete?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    connect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    update?: LearningAccountUpdateWithWhereUniqueWithoutUserInput | LearningAccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LearningAccountUpdateManyWithWhereWithoutUserInput | LearningAccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LearningAccountScalarWhereInput | LearningAccountScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -20122,14 +21710,46 @@ export namespace Prisma {
     deleteMany?: ApiKeyCreditsBalanceScalarWhereInput | ApiKeyCreditsBalanceScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutCreditsBalanceInput = {
-    create?: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCreditsBalanceInput
+  export type LearningAccountUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput> | LearningAccountCreateWithoutUserInput[] | LearningAccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LearningAccountCreateOrConnectWithoutUserInput | LearningAccountCreateOrConnectWithoutUserInput[]
+    upsert?: LearningAccountUpsertWithWhereUniqueWithoutUserInput | LearningAccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LearningAccountCreateManyUserInputEnvelope
+    set?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    disconnect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    delete?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    connect?: LearningAccountWhereUniqueInput | LearningAccountWhereUniqueInput[]
+    update?: LearningAccountUpdateWithWhereUniqueWithoutUserInput | LearningAccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LearningAccountUpdateManyWithWhereWithoutUserInput | LearningAccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LearningAccountScalarWhereInput | LearningAccountScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutLearningAccountsInput = {
+    create?: XOR<UserCreateWithoutLearningAccountsInput, UserUncheckedCreateWithoutLearningAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLearningAccountsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type EnumAccountTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AccountType
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type UserUpdateOneRequiredWithoutLearningAccountsNestedInput = {
+    create?: XOR<UserCreateWithoutLearningAccountsInput, UserUncheckedCreateWithoutLearningAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLearningAccountsInput
+    upsert?: UserUpsertWithoutLearningAccountsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLearningAccountsInput, UserUpdateWithoutLearningAccountsInput>, UserUncheckedUpdateWithoutLearningAccountsInput>
+  }
+
+  export type UserCreateNestedOneWithoutCreditsBalanceInput = {
+    create?: XOR<UserCreateWithoutCreditsBalanceInput, UserUncheckedCreateWithoutCreditsBalanceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreditsBalanceInput
+    connect?: UserWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutCreditsBalanceNestedInput = {
@@ -20519,6 +22139,13 @@ export namespace Prisma {
     _max?: NestedBytesFilter<$PrismaModel>
   }
 
+  export type NestedEnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -20528,6 +22155,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccountType[] | ListEnumAccountTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -20909,6 +22546,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LearningAccountCreateWithoutUserInput = {
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LearningAccountUncheckedCreateWithoutUserInput = {
+    id?: number
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LearningAccountCreateOrConnectWithoutUserInput = {
+    where: LearningAccountWhereUniqueInput
+    create: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type LearningAccountCreateManyUserInputEnvelope = {
+    data: LearningAccountCreateManyUserInput | LearningAccountCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SubscriptionUpsertWithoutUserInput = {
     update: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
     create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
@@ -21168,6 +22836,127 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ApiKeyCreditsBalance"> | Date | string
   }
 
+  export type LearningAccountUpsertWithWhereUniqueWithoutUserInput = {
+    where: LearningAccountWhereUniqueInput
+    update: XOR<LearningAccountUpdateWithoutUserInput, LearningAccountUncheckedUpdateWithoutUserInput>
+    create: XOR<LearningAccountCreateWithoutUserInput, LearningAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type LearningAccountUpdateWithWhereUniqueWithoutUserInput = {
+    where: LearningAccountWhereUniqueInput
+    data: XOR<LearningAccountUpdateWithoutUserInput, LearningAccountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LearningAccountUpdateManyWithWhereWithoutUserInput = {
+    where: LearningAccountScalarWhereInput
+    data: XOR<LearningAccountUpdateManyMutationInput, LearningAccountUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LearningAccountScalarWhereInput = {
+    AND?: LearningAccountScalarWhereInput | LearningAccountScalarWhereInput[]
+    OR?: LearningAccountScalarWhereInput[]
+    NOT?: LearningAccountScalarWhereInput | LearningAccountScalarWhereInput[]
+    id?: IntFilter<"LearningAccount"> | number
+    userId?: IntFilter<"LearningAccount"> | number
+    type?: EnumAccountTypeFilter<"LearningAccount"> | $Enums.AccountType
+    username?: StringFilter<"LearningAccount"> | string
+    passwordHash?: StringFilter<"LearningAccount"> | string
+    school?: StringFilter<"LearningAccount"> | string
+    baseUrl?: StringFilter<"LearningAccount"> | string
+    createdAt?: DateTimeFilter<"LearningAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"LearningAccount"> | Date | string
+  }
+
+  export type UserCreateWithoutLearningAccountsInput = {
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLearningAccountsInput = {
+    id?: number
+    email: string
+    username: string
+    passwordHash: string
+    emailVerified?: boolean
+    totpKey?: Uint8Array | null
+    recoveryCode: Uint8Array
+    subscriptions?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    api_credits_purchase?: api_credits_purchaseUncheckedCreateNestedManyWithoutUserInput
+    api_credits_usage?: api_credits_usageUncheckedCreateNestedManyWithoutUserInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutOwnerInput
+    calendarAccounts?: CalendarAccountUncheckedCreateNestedManyWithoutUserInput
+    emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
+    passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLearningAccountsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLearningAccountsInput, UserUncheckedCreateWithoutLearningAccountsInput>
+  }
+
+  export type UserUpsertWithoutLearningAccountsInput = {
+    update: XOR<UserUpdateWithoutLearningAccountsInput, UserUncheckedUpdateWithoutLearningAccountsInput>
+    create: XOR<UserCreateWithoutLearningAccountsInput, UserUncheckedCreateWithoutLearningAccountsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLearningAccountsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLearningAccountsInput, UserUncheckedUpdateWithoutLearningAccountsInput>
+  }
+
+  export type UserUpdateWithoutLearningAccountsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLearningAccountsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    totpKey?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    recoveryCode?: BytesFieldUpdateOperationsInput | Uint8Array
+    subscriptions?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    api_credits_purchase?: api_credits_purchaseUncheckedUpdateManyWithoutUserNestedInput
+    api_credits_usage?: api_credits_usageUncheckedUpdateManyWithoutUserNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutOwnerNestedInput
+    calendarAccounts?: CalendarAccountUncheckedUpdateManyWithoutUserNestedInput
+    emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
+    passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutCreditsBalanceInput = {
     email: string
     username: string
@@ -21183,6 +22972,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCreditsBalanceInput = {
@@ -21201,6 +22991,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCreditsBalanceInput = {
@@ -21234,6 +23025,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreditsBalanceInput = {
@@ -21252,6 +23044,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSubscriptionsInput = {
@@ -21269,6 +23062,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -21287,6 +23081,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -21320,6 +23115,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -21338,6 +23134,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -21355,6 +23152,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -21373,6 +23171,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -21406,6 +23205,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -21424,6 +23224,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailVerificationsInput = {
@@ -21441,6 +23242,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailVerificationsInput = {
@@ -21459,6 +23261,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailVerificationsInput = {
@@ -21492,6 +23295,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailVerificationsInput = {
@@ -21510,6 +23314,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasswordResetsInput = {
@@ -21527,6 +23332,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetsInput = {
@@ -21545,6 +23351,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetsInput = {
@@ -21578,6 +23385,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetsInput = {
@@ -21596,6 +23404,7 @@ export namespace Prisma {
     emailVerifications?: EmailVerificationRequestUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApiKeysInput = {
@@ -21613,6 +23422,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApiKeysInput = {
@@ -21631,6 +23441,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApiKeysInput = {
@@ -21714,6 +23525,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApiKeysInput = {
@@ -21732,6 +23544,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type api_key_permissionUpsertWithWhereUniqueWithoutApi_keyInput = {
@@ -21872,6 +23685,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCalendarAccountsInput = {
@@ -21890,6 +23704,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCalendarAccountsInput = {
@@ -21923,6 +23738,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarAccountsInput = {
@@ -21941,6 +23757,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApi_credits_purchaseInput = {
@@ -21958,6 +23775,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApi_credits_purchaseInput = {
@@ -21976,6 +23794,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApi_credits_purchaseInput = {
@@ -22009,6 +23828,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApi_credits_purchaseInput = {
@@ -22027,6 +23847,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutApi_credits_usageInput = {
@@ -22044,6 +23865,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApi_credits_usageInput = {
@@ -22062,6 +23884,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedCreateNestedManyWithoutUserInput
+    LearningAccounts?: LearningAccountUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApi_credits_usageInput = {
@@ -22095,6 +23918,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApi_credits_usageInput = {
@@ -22113,6 +23937,7 @@ export namespace Prisma {
     passwordResets?: PasswordResetSessionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     creditsBalance?: ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserNestedInput
+    LearningAccounts?: LearningAccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ApiKeyCreateWithoutApi_key_permissionInput = {
@@ -22245,6 +24070,17 @@ export namespace Prisma {
   export type ApiKeyCreditsBalanceCreateManyUserInput = {
     id?: string
     credits: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LearningAccountCreateManyUserInput = {
+    id?: number
+    type: $Enums.AccountType
+    username: string
+    passwordHash: string
+    school: string
+    baseUrl: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22446,6 +24282,38 @@ export namespace Prisma {
   export type ApiKeyCreditsBalanceUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     credits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LearningAccountUpdateWithoutUserInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LearningAccountUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LearningAccountUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    school?: StringFieldUpdateOperationsInput | string
+    baseUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

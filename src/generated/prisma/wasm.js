@@ -127,6 +127,18 @@ exports.Prisma.UserScalarFieldEnum = {
   recoveryCode: 'recoveryCode'
 };
 
+exports.Prisma.LearningAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  username: 'username',
+  passwordHash: 'passwordHash',
+  school: 'school',
+  baseUrl: 'baseUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ApiKeyCreditsBalanceScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -263,6 +275,11 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.AccountType = exports.$Enums.AccountType = {
+  WEBUNTIS: 'WEBUNTIS',
+  MOODLE: 'MOODLE'
+};
+
 exports.CalendarProvider = exports.$Enums.CalendarProvider = {
   GOOGLE: 'GOOGLE',
   MICROSOFT: 'MICROSOFT',
@@ -271,6 +288,7 @@ exports.CalendarProvider = exports.$Enums.CalendarProvider = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  LearningAccount: 'LearningAccount',
   ApiKeyCreditsBalance: 'ApiKeyCreditsBalance',
   Subscription: 'Subscription',
   Session: 'Session',
