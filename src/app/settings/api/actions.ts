@@ -6,10 +6,6 @@ import crypto from "crypto";
 import { globalGETRateLimit } from "@/lib/server/requests";
 import stripe from "@/lib/server/stripe";
 
-// Verschlüsselungs-Konfiguration
-const ALGO = "aes-256-gcm";
-const ENC_KEY = Buffer.from(process.env.API_KEY_ENCRYPTION_KEY!, "hex"); // 32-Byte hex-String in .env
-
 /**
  * Basis-Interface für alle Server-Actions.
  * actionResult kann optional apiKey oder deletedKeyId enthalten.

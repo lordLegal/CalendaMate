@@ -4,7 +4,6 @@ import { getCalendarEvents, getTokensFromCode, listCalendars } from '@/lib/serve
 import prisma from '@/lib/server/prisma';
 import { getCurrentSession } from '@/lib/server/session';
 import { CalendarProvider } from '@/generated/prisma';
-import { calendar } from 'googleapis/build/src/apis/calendar';
 
 export async function GET(request: Request) {
   const { session, user } = await getCurrentSession()

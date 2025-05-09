@@ -23,13 +23,13 @@ export default async function Page() {
   // Subscription
   const sub = await prisma.subscription.findFirst({ where: { userId: user.id } });
 
-  // Kalender-Accounts
-  const providerGoogle = await prisma.calendarAccount.findMany({
-    where: { userId: user.id, provider: "GOOGLE" }
-  });
-  const providerMicrosoft = await prisma.calendarAccount.findMany({
-    where: { userId: user.id, provider: "MICROSOFT" }
-  });
+  if (sub === null) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-red-600">
+        No subscription found
+      </div>
+    );
+  }
 
   // Lern-System-Accounts (WebUntis & Moodle)
   const learningAccounts = await prisma.learningAccount.findMany({
